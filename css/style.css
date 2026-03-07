@@ -1,0 +1,964 @@
+/* ============================================
+   Platform Bengali — Linguistic OS Interface
+   Light silver · Monochrome · Red accent
+
+   SCALING STRATEGY:
+   .hero-scale-wrapper is a CSS container with
+   fixed aspect-ratio (950:620) and fluid width.
+   It acts like an SVG viewBox — all children use
+   position:absolute with % coordinates, and font
+   sizes use cqi (container query inline) units.
+   Everything scales proportionally with ZERO JS.
+   ============================================ */
+
+:root {
+  --bg-deep: #d8d5d0;
+  --bg-mid: #e0ddd8;
+  --bg-light: #eae8e4;
+  --bg-white: #f4f2ef;
+  --bg-section-a: #e3e0dc;
+  --bg-section-b: #dad7d2;
+  --accent-red: #cc2828;
+  --accent-red-soft: rgba(204, 40, 40, 0.08);
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #8a8a8a;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-mid: rgba(0, 0, 0, 0.1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar { display: none; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* ==========================================
+   LEFT VERTICAL BAR NAVIGATOR
+   ========================================== */
+.nav-bar {
+  position: fixed;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 280px;
+}
+
+.nav-counter {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.nav-track {
+  position: relative;
+  width: 2px;
+  height: 240px;
+  background: var(--border-subtle);
+  border-radius: 1px;
+}
+
+.nav-fill {
+  position: absolute;
+  left: 0;
+  width: 2px;
+  background: var(--text-primary);
+  border-radius: 1px;
+  transition: top 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-total {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+
+.nav-segment {
+  position: absolute;
+  left: -8px;
+  width: 18px;
+  height: 16.66%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.nav-tick {
+  width: 8px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+.nav-segment.active .nav-tick {
+  background: var(--text-primary);
+  width: 12px;
+}
+
+.nav-segment:hover .nav-tick {
+  background: var(--text-secondary);
+  width: 12px;
+}
+
+.nav-seg-label {
+  position: absolute;
+  right: 24px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.nav-segment:hover .nav-seg-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.nav-segment.active .nav-seg-label {
+  color: var(--text-primary);
+}
+
+/* ==========================================
+   STICKY HEADER
+   ========================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(8px, 1.5vw, 16px) clamp(12px, 3vw, 40px);
+  background: rgba(216, 213, 208, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: clamp(22px, 3.5vw, 40px);
+  width: auto;
+  display: block;
+}
+
+.logo-fallback {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(10px, 1.2vw, 14px);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.header-logo-left .logo-fallback {
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
+.hero {
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  position: relative;
+  background: var(--bg-deep);
+}
+
+/* Background curves */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bg-curve {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.bg-curve-1 {
+  width: 120vw;
+  height: 120vw;
+  top: -50vw;
+  right: -35vw;
+  background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.15) 45%, transparent 65%);
+}
+
+.bg-curve-2 {
+  width: 90vw;
+  height: 90vw;
+  bottom: -35vw;
+  left: -25vw;
+  background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 45%, transparent 65%);
+}
+
+/* ==========================================
+   HERO STAGE — centering container
+   ========================================== */
+.hero-stage {
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 20px;
+}
+
+/* ==========================================
+   HERO SCALE WRAPPER — the proportional
+   viewport. Works like an SVG viewBox:
+   fixed aspect-ratio, fluid width, all
+   children use % positions + cqi fonts.
+   
+   Design space: 950 × 620 px
+   At max (950px wide): 1cqi = 9.5px
+   At 375px phone: 1cqi = 3.35px (35% scale)
+   ========================================== */
+.hero-scale-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 950px;
+  aspect-ratio: 950 / 620;
+  margin: 0 auto;
+  overflow: visible;
+  container-type: inline-size;
+  container-name: hero;
+}
+
+/* ==========================================
+   VERTICAL TITLES
+   Tweak 1: left 1.58% (was 3.68%) — further
+   from center to avoid overlapping ক.
+   ========================================== */
+.vertical-titles {
+  position: absolute;
+  left: 1.58%;
+  top: 50%;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.v-line {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(12px, 2.95cqi, 28px);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.v-line.platform {
+  color: rgba(26, 26, 26, 0.45);
+  font-weight: 700;
+}
+
+.v-line.bengali {
+  color: rgba(26, 26, 26, 0.9);
+  font-weight: 800;
+}
+
+/* ==========================================
+   DOT MATRIX CANVAS
+   Tweak 2: height 77.42% (was 58.06%) — taller
+   vertically to cover more area behind ক.
+   ========================================== */
+.matrix-canvas-wrap {
+  position: absolute;
+  left: 13.68%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36.84%;
+  height: 77.42%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+#matrixCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==========================================
+   3D ক CANVAS
+   ========================================== */
+.ka-canvas-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-70%, -52%);
+  z-index: 10;
+  width: 54.74%;
+  height: 83.87%;
+  will-change: transform;
+}
+
+#kaCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================
+   ORBIT NAVIGATION — semicircle around ক
+   Container uses % of wrapper; dots use %
+   of orbit-system. SVG viewBox scales arc.
+   ========================================== */
+.orbit-system {
+  position: absolute;
+  left: 48%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42.11%;
+  height: 90.32%;
+  z-index: 20;
+}
+
+.orbit-arcs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.orbit-item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.47cqi, 14px);
+  pointer-events: auto;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.o-dot {
+  width: clamp(10px, 1.89cqi, 18px);
+  height: clamp(10px, 1.89cqi, 18px);
+  background: #fff;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+  transition: all 0.4s ease;
+}
+
+.o-label {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(8px, 1.58cqi, 15px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  transform: translateX(4px);
+  transition: transform 0.3s ease;
+}
+
+.orbit-item:hover .o-label {
+  background: transparent;
+  border: none;
+  transform: translateX(4px) scale(1.12);
+}
+
+/* Tap/active zoom for mobile touch */
+.orbit-item:active .o-label {
+  transform: translateX(4px) scale(1.15);
+}
+
+.orbit-item:hover .o-dot {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  transform: scale(1.3);
+  box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.08);
+}
+
+/* Orbit dot positions: % of orbit-system container (400×560)
+   Arc-length equidistant on ellipse cx=-42.6 cy=260 rx=200 ry=220 */
+.oi-1 { left: 5.25%;  top: 8.21%; }
+.oi-2 { left: 28.75%; top: 23.04%; }
+.oi-3 { left: 37.00%; top: 44.82%; }
+.oi-4 { left: 28.75%; top: 66.61%; }
+.oi-5 { left: 5.25%;  top: 81.43%; }
+
+/* ==========================================
+   DECORATIVE CHEVRONS
+   ========================================== */
+.chevron {
+  position: absolute;
+  opacity: 0.1;
+  pointer-events: none;
+  user-select: none;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(14px, 2.95cqi, 28px);
+  font-weight: 700;
+  z-index: 2;
+  color: var(--text-primary);
+}
+
+.chev-top { top: 5%; left: 50%; }
+.chev-bottom { bottom: 7%; left: 47%; }
+
+/* ==========================================
+   HERO BOTTOM INFO
+   ========================================== */
+.hero-info {
+  position: absolute;
+  bottom: clamp(20px, 5vh, 60px);
+  left: clamp(20px, 8vw, 100px);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero-desc {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: clamp(10px, 1.2vw, 13px);
+  line-height: 1.7;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  max-width: clamp(200px, 35vw, 380px);
+  color: var(--text-secondary);
+}
+
+.lang-toggle {
+  display: flex;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50px;
+  padding: 4px;
+  width: fit-content;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.lang-btn {
+  border: none;
+  background: transparent;
+  padding: clamp(5px, 0.8vw, 8px) clamp(12px, 2vw, 22px);
+  border-radius: 40px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(10px, 1vw, 12px);
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.lang-btn.active {
+  background: var(--accent-red);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(204, 40, 40, 0.35);
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.2;
+  z-index: 50;
+  animation: pulseHint 2s ease-in-out infinite;
+}
+
+.scroll-hint span {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.scroll-hint-line {
+  width: 1px;
+  height: 24px;
+  background: var(--text-muted);
+}
+
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.06; }
+}
+
+.deco-arrow {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 5;
+  color: var(--text-primary);
+}
+
+/* ==========================================
+   ENTRY ANIMATIONS
+   Transforms must preserve the base positioning
+   transforms (translateY, rotate, translate).
+   ========================================== */
+.vertical-titles { animation: titleReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
+.hero-info       { animation: slideUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
+.ka-canvas-wrap  { animation: fadeScale 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both; }
+.orbit-item      { animation: slideRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.oi-1 { animation-delay: 0.5s; }
+.oi-2 { animation-delay: 0.6s; }
+.oi-3 { animation-delay: 0.7s; }
+.oi-4 { animation-delay: 0.8s; }
+.oi-5 { animation-delay: 0.9s; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes titleReveal {
+  from { opacity: 0; transform: translateY(-50%) rotate(180deg) translateX(30px); }
+  to   { opacity: 1; transform: translateY(-50%) rotate(180deg) translateX(0); }
+}
+@keyframes fadeScale {
+  from { opacity: 0; transform: translate(-70%, -52%) scale(0.85); }
+  to   { opacity: 1; transform: translate(-70%, -52%) scale(1); }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Mobile-specific keyframes (different base transforms) */
+@keyframes titleRevealMobile {
+  from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  to   { opacity: 1; transform: translateX(-50%); }
+}
+@keyframes fadeScaleMobile {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ==========================================
+   SECTION STYLES
+   ========================================== */
+.section-inner {
+  max-width: 1200px;
+  width: 100%;
+  padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 80px);
+}
+
+.section-label {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-red);
+  opacity: 0.6;
+  margin-bottom: 24px;
+}
+
+.section-heading {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+}
+
+.section-body {
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 640px;
+}
+
+.section-content {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-a { background: var(--bg-section-a); }
+.section-b { background: var(--bg-section-b); }
+
+.section-number {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(60px, 14vw, 180px);
+  position: absolute;
+  right: clamp(16px, 4vw, 80px);
+  bottom: 40px;
+  color: rgba(0, 0, 0, 0.03);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* Placeholder cards */
+.placeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.placeholder-card {
+  padding: 32px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.3s ease;
+}
+
+.placeholder-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  border-color: var(--border-mid);
+}
+
+.placeholder-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.placeholder-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ==========================================
+   PRELOADER
+   ========================================== */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.preloader-text {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-weight: 900;
+  font-size: 48px;
+  color: var(--text-primary);
+  opacity: 0.3;
+  animation: preloaderPulse 1.2s ease-in-out infinite;
+}
+.preloader-bar {
+  width: 80px;
+  height: 2px;
+  background: var(--border-subtle);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.preloader-fill {
+  width: 40%;
+  height: 100%;
+  background: var(--text-primary);
+  border-radius: 1px;
+  animation: preloaderSlide 1s ease-in-out infinite;
+}
+@keyframes preloaderPulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+}
+@keyframes preloaderSlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+/* ==========================================
+   MOBILE (≤ 768px) — 5 Tasks
+   Changes the wrapper from landscape (950:620)
+   to portrait (3:4) and repositions elements
+   for vertical phone layout.
+   ========================================== */
+@media (max-width: 768px) {
+
+  /* ------------------------------------------
+     Viewport & overflow (carried from prior fix)
+     ------------------------------------------ */
+  .hero {
+    overflow: hidden;
+    padding-top: 60px;
+    padding-bottom: 0;
+  }
+  .hero-stage {
+    overflow-x: hidden;
+    max-width: 100vw;
+    padding: 0 8px;
+  }
+  .hero-scale-wrapper {
+    aspect-ratio: 3 / 4;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  /* ------------------------------------------
+     TASK 2: Header — fix logo stretch + spacing
+     ------------------------------------------ */
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .header-logo-left img,
+  .header-logo-left .logo-img {
+    height: auto;
+    width: auto;
+    max-height: 34px;
+    max-width: 120px;
+    object-fit: contain;
+  }
+  .header-logo-right .logo-img {
+    height: auto;
+    max-height: 28px;
+    max-width: 160px;
+    object-fit: contain;
+  }
+  .header-logo-right {
+    margin-left: auto;         /* Force to far right edge */
+  }
+  .header-logo-right .logo-fallback {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .logo-fallback {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+
+  /* ------------------------------------------
+     TASK 3: "PLATFORM BENGALI" — stack 2 lines,
+     centered in the top void area
+     ------------------------------------------ */
+  .vertical-titles {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    transform: translateX(-50%);
+    top: 2%;
+    left: 50%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
+    max-width: 220px;
+    animation: titleRevealMobile 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  }
+  .v-line {
+    font-size: clamp(16px, 5vw, 24px);
+    letter-spacing: 0.15em;
+    line-height: 1.3;
+  }
+
+  /* ------------------------------------------
+     TASK 4: Shift ক left + expand matrix
+     ক pulls 5vw left of previous center;
+     matrix bleeds out 130% behind it.
+     ------------------------------------------ */
+  .ka-canvas-wrap {
+    left: 28%;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    width: 62%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    animation: fadeScaleMobile 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+  }
+
+  .matrix-canvas-wrap {
+    left: 0%;
+    top: 48%;
+    transform: translateY(-50%);
+    width: 55%;
+    height: 50%;
+  }
+
+  /* Orbit — shifted RIGHT to clear ক overlap */
+  .orbit-system {
+    left: 38%;
+    top: 48%;
+    transform: translateY(-50%);
+    width: 58%;
+    height: 55%;
+  }
+
+  /* ------------------------------------------
+     TASK 5: Shrink event fonts on mobile
+     Clamped tight so they sit flush with dots
+     ------------------------------------------ */
+  .o-label {
+    font-size: clamp(8px, 2.2vw, 11px);
+    padding: 0;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transform: translateX(2px);
+  }
+  .orbit-item:hover .o-label,
+  .orbit-item:active .o-label {
+    transform: translateX(2px) scale(1.12);
+  }
+  .o-dot {
+    width: 12px;
+    height: 12px;
+    border-width: 1.5px;
+  }
+  .orbit-item {
+    gap: 6px;
+  }
+
+  /* Uniform vertical spacing — override oi-2 and oi-4
+     so all 5 gaps are equal at 18.3% each.
+     oi-1 (8.21%), oi-3 (44.82%), oi-5 (81.43%) unchanged.
+     Left values follow semicircular arc geometry. */
+  .oi-2 { left: 32.75%; top: 26.52%; }
+  .oi-4 { left: 32.75%; top: 63.12%; }
+
+  /* Hero info (carried from prior fix) */
+  .hero-info {
+    left: 16px;
+    right: 16px;
+    bottom: 20px;
+    gap: 12px;
+  }
+  .hero-desc {
+    font-size: clamp(11px, 3vw, 14px);
+    line-height: 1.6;
+    max-width: 85vw;
+    letter-spacing: 0.03em;
+  }
+  .lang-btn {
+    font-size: 12px;
+    padding: 7px 18px;
+  }
+
+  /* Hide decorative elements */
+  .chevron { display: none; }
+  .deco-arrow { display: none; }
+  .scroll-hint { bottom: 10px; opacity: 0.15; }
+}
+
+/* Nav bar: hide below 900px */
+@media (max-width: 900px) {
+  .nav-bar { display: none; }
+}
+
+@media (max-width: 600px) {
+  .placeholder-grid { grid-template-columns: 1fr; gap: 16px; }
+  .placeholder-card { padding: 24px; }
+}

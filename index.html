@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platform Bengali — Tracing Language Evolution and Cultural Practice in Digital Economy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader" class="preloader">
+  <div class="preloader-inner">
+    <span class="preloader-text">ক</span>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+</div>
+
+<!-- STICKY HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="header-logo header-logo-left">
+    <img src="img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+    <span class="logo-fallback" style="display:none;">IFA</span>
+  </div>
+  <div class="header-logo header-logo-right">
+    <img src="img/site-logo.png" alt="Platform Bengali" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+    <span class="logo-fallback" style="display:none;">Platform Bengali</span>
+  </div>
+</header>
+
+<!-- VERTICAL BAR NAVIGATOR -->
+<nav class="nav-bar" id="navBar">
+  <div class="nav-counter" id="navCounter">01</div>
+  <div class="nav-track">
+    <div class="nav-fill" id="navFill" style="top: 0%; height: 16.66%;"></div>
+    <div class="nav-segment active" data-section="0" style="top: 0%;">
+      <div class="nav-tick"></div>
+      <span class="nav-seg-label">Home</span>
+    </div>
+    <div class="nav-segment" data-section="1" style="top: 20%;">
+      <div class="nav-tick"></div>
+      <span class="nav-seg-label">Vision</span>
+    </div>
+    <div class="nav-segment" data-section="2" style="top: 40%;">
+      <div class="nav-tick"></div>
+      <span class="nav-seg-label">IFA</span>
+    </div>
+    <div class="nav-segment" data-section="3" style="top: 60%;">
+      <div class="nav-tick"></div>
+      <span class="nav-seg-label">Resources</span>
+    </div>
+    <div class="nav-segment" data-section="4" style="top: 80%;">
+      <div class="nav-tick"></div>
+      <span class="nav-seg-label">Bhashascope</span>
+    </div>
+    <div class="nav-segment" data-section="5" style="top: 97%;">
+      <div class="nav-tick"></div>
+      <span class="nav-seg-label">Certificates</span>
+    </div>
+  </div>
+  <div class="nav-total">/ 06</div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="section-0">
+
+  <!-- Subtle background curves -->
+  <div class="hero-bg">
+    <div class="bg-curve bg-curve-1"></div>
+    <div class="bg-curve bg-curve-2"></div>
+  </div>
+
+  <div class="hero-stage">
+    <div class="hero-scale-wrapper">
+
+      <!-- Dot matrix canvas -->
+      <div class="matrix-canvas-wrap">
+        <canvas id="matrixCanvas"></canvas>
+      </div>
+
+      <!-- Vertical titles -->
+      <div class="vertical-titles">
+        <span class="v-line platform">Platform</span>
+        <span class="v-line bengali">Bengali</span>
+      </div>
+
+      <!-- 3D ক canvas -->
+      <div class="ka-canvas-wrap">
+        <canvas id="kaCanvas"></canvas>
+      </div>
+
+      <!-- Orbit navigation — semicircular arc wrapping around ক -->
+      <div class="orbit-system">
+        <svg class="orbit-arcs" viewBox="0 0 400 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 30,55 A 200,220 0 0,1 30,465" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" stroke-dasharray="4 7"/>
+        </svg>
+        <a href="events/orientation-workshop.html" class="orbit-item oi-1">
+          <div class="o-dot"></div>
+          <div class="o-label" data-en="Orientation Workshop" data-bn="প্রবেশক কর্মশালা">Orientation Workshop</div>
+        </a>
+        <a href="events/mt-workshop.html" class="orbit-item oi-2">
+          <div class="o-dot"></div>
+          <div class="o-label" data-en="MT Workshop" data-bn="যন্ত্রানুবাদ কর্মশালা">MT Workshop</div>
+        </a>
+        <a href="events/conference.html" class="orbit-item oi-3">
+          <div class="o-dot"></div>
+          <div class="o-label" data-en="Conference" data-bn="আলোচনাচক্র">Conference</div>
+        </a>
+        <a href="events/youtuber-interviews.html" class="orbit-item oi-4">
+          <div class="o-dot"></div>
+          <div class="o-label" data-en="Youtuber Series" data-bn="সাক্ষাতে ইউটিউবার">Youtuber Series</div>
+        </a>
+        <a href="events/monthly-talks.html" class="orbit-item oi-5">
+          <div class="o-dot"></div>
+          <div class="o-label" data-en="Speaker Series" data-bn="মাসিক বৈঠক">Speaker Series</div>
+        </a>
+      </div>
+
+      <!-- Decorative chevrons -->
+      <div class="chevron chev-top">»</div>
+      <div class="chevron chev-bottom">»</div>
+
+    </div>
+  </div>
+
+  <!-- Hero bottom info -->
+  <div class="hero-info">
+    <p class="hero-desc" data-en="Tracing Language Evolution and Cultural Practice in Digital Economy" data-bn="ডিজিটাল অর্থনীতিতে ভাষার বিবর্তন ও সাংস্কৃতিক চর্চার অনুসন্ধান">
+      Tracing Language Evolution and Cultural Practice in Digital Economy
+    </p>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btnEN" data-lang="en">English</button>
+      <button class="lang-btn" id="btnBN" data-lang="bn">বাংলা</button>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-hint-line"></div>
+  </div>
+
+  <!-- Deco arrow -->
+  <div class="deco-arrow">
+    <svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M10 10 L40 25 L10 40"/>
+    </svg>
+  </div>
+
+</section>
+
+<!-- ==================== SECTIONS ==================== -->
+<section class="section-content section-a" id="section-1">
+  <div class="section-inner">
+    <div class="section-label reveal">01</div>
+    <h2 class="section-heading reveal reveal-delay-1">Project Vision</h2>
+    <p class="section-body reveal reveal-delay-2">
+      Platform Bengali (2020–2025) investigates how the Bengali language evolves, adapts, and transforms across digital platforms. From YouTube creators to machine translation systems, this IFA-funded research maps the living digital landscape of one of the world's most spoken languages.
+    </p>
+  </div>
+  <div class="section-number">01</div>
+</section>
+
+<section class="section-content section-b" id="section-2">
+  <div class="section-inner">
+    <div class="section-label reveal">02</div>
+    <h2 class="section-heading reveal reveal-delay-1">About IFA</h2>
+    <p class="section-body reveal reveal-delay-2">
+      India Foundation for the Arts is an independent, nationwide, not-for-profit organisation that has supported over 900 projects across research, practice and education in arts and culture since 1995. Platform Bengali operates under IFA's Arts Research programme.
+    </p>
+  </div>
+  <div class="section-number">02</div>
+</section>
+
+<section class="section-content section-a" id="section-3">
+  <div class="section-inner">
+    <div class="section-label reveal">03</div>
+    <h2 class="section-heading reveal reveal-delay-1">Relevant Resources</h2>
+    <p class="section-body reveal reveal-delay-2">
+      A curated collection of research materials, transcription repositories, theoretical frameworks, and documentation tools developed during the project.
+    </p>
+    <div class="placeholder-grid reveal reveal-delay-3">
+      <div class="placeholder-card"><h3>Publications</h3><p>Research papers and working documents.</p></div>
+      <div class="placeholder-card"><h3>Transcriptions</h3><p>Bilingual transcription repositories.</p></div>
+      <div class="placeholder-card"><h3>Tools</h3><p>Digital documentation and analysis tools.</p></div>
+    </div>
+  </div>
+  <div class="section-number">03</div>
+</section>
+
+<section class="section-content section-b" id="section-4">
+  <div class="section-inner">
+    <div class="section-label reveal">04</div>
+    <h2 class="section-heading reveal reveal-delay-1">Project Bhashascope</h2>
+    <p class="section-body reveal reveal-delay-2">
+      Bhashascope (ভাষাস্কোপ) — a telescope for language. The permanent digital infrastructure that houses Platform Bengali and future language research initiatives, extending vision into the living landscape of language.
+    </p>
+  </div>
+  <div class="section-number">04</div>
+</section>
+
+<section class="section-content section-a" id="section-5">
+  <div class="section-inner">
+    <div class="section-label reveal">05</div>
+    <h2 class="section-heading reveal reveal-delay-1">Certificate Registry</h2>
+    <p class="section-body reveal reveal-delay-2">
+      Participants of the workshops and conference can verify and download their certificates of participation here.
+    </p>
+    <div class="placeholder-grid reveal reveal-delay-3">
+      <div class="placeholder-card"><h3>Orientation Workshop</h3><p>One-day introductory session certificates.</p></div>
+      <div class="placeholder-card"><h3>MT Workshop</h3><p>5-day Machine Translation intensive certificates.</p></div>
+      <div class="placeholder-card"><h3>Conference</h3><p>International hybrid conference certificates.</p></div>
+    </div>
+  </div>
+  <div class="section-number">05</div>
+</section>
+
+<script src="js/ka-rotation.js" defer></script>
+<script src="js/matrix.js" defer></script>
+<script src="js/navigation.js" defer></script>
+</body>
+</html>
