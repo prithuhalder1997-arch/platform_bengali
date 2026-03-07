@@ -85,23 +85,57 @@
   });
 
   // ==========================================
-  // BILINGUAL TOGGLE
+  // ORBIT ITEM CLICK FEEDBACK (DELAY & RESET)
+  // Adds .is-clicked for the glasspill effect,
+  // pauses so user sees it, then resets on back.
+  // ==========================================
+  document.querySelectorAll('.orbit-item').forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault(); // Stop instant redirect
+      var targetUrl = this.getAttribute('href');
+      
+      // Clear from any previously clicked item
+      document.querySelectorAll('.orbit-item.is-clicked').forEach(function (prev) {
+        prev.classList.remove('is-clicked');
+      });
+      
+      // Add glasspill to the one just clicked
+      this.classList.add('is-clicked');
+      
+      // Wait 300ms for the glass pill to form, then redirect
+      setTimeout(function() {
+        window.location.href = targetUrl;
+      }, 300); 
+    });
+  });
+
+  // Reset the glass pill if user clicks the browser "Back" button
+  window.addEventListener('pageshow', function(event) {
+    document.querySelectorAll('.orbit-item.is-clicked').forEach(function(item) {
+      item.classList.remove('is-clicked');
+    });
+  });
+
+  // ==========================================
+  // BILINGUAL TOGGLE (Home page: btnEN / btnBN)
   // ==========================================
   var btnEN = document.getElementById('btnEN');
   var btnBN = document.getElementById('btnBN');
   var lang = 'en';
 
+  var bnFontStack = "'Nirmala UI','Bangla Sangam MN','Noto Sans Bengali',sans-serif";
+
   function switchLang(newLang) {
     if (newLang === lang) return;
     lang = newLang;
 
-    btnEN.classList.toggle('active', lang === 'en');
-    btnBN.classList.toggle('active', lang === 'bn');
+    if (btnEN) btnEN.classList.toggle('active', lang === 'en');
+    if (btnBN) btnBN.classList.toggle('active', lang === 'bn');
 
     document.querySelectorAll('[data-en][data-bn]').forEach(function (el) {
       el.textContent = el.getAttribute('data-' + lang);
       if (lang === 'bn') {
-        el.style.fontFamily = "'Nirmala UI','Bangla Sangam MN','Noto Sans Bengali',sans-serif";
+        el.style.fontFamily = bnFontStack;
         el.style.letterSpacing = '0';
         el.style.textTransform = 'none';
         el.style.fontSize = el.classList.contains('o-label') ? '16px' : '';
@@ -116,25 +150,6 @@
 
   if (btnEN) btnEN.addEventListener('click', function () { switchLang('en'); });
   if (btnBN) btnBN.addEventListener('click', function () { switchLang('bn'); });
-
-  // ==========================================
-  // HEADER TOGGLE
-  // ==========================================
-  var siteHeader = document.getElementById('siteHeader');
-  var headerVisible = true;
-
-  if (siteHeader) {
-    document.addEventListener('click', function (e) {
-      var tag = e.target.tagName.toLowerCase();
-      var isInteractive = tag === 'a' || tag === 'button' ||
-        e.target.closest('a') || e.target.closest('button') ||
-        e.target.closest('.nav-bar') || e.target.closest('.lang-toggle') ||
-        e.target.closest('.site-header');
-      if (isInteractive) return;
-      headerVisible = !headerVisible;
-      siteHeader.classList.toggle('hidden', !headerVisible);
-    });
-  }
 
   // ==========================================
   // SCROLL REVEAL
