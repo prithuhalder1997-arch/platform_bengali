@@ -11,6 +11,9 @@
 </head>
 <body>
 
+<!-- FIXED BACKGROUND ILLUSTRATION -->
+<div class="bg-illustration"></div>
+
 <!-- PRELOADER -->
 <div id="preloader" class="preloader">
   <div class="preloader-inner">
@@ -196,7 +199,7 @@
     <div class="section-label reveal">04</div>
     <h2 class="section-heading reveal reveal-delay-1">Project Bhashascope</h2>
     <p class="section-body reveal reveal-delay-2">
-      Bhashascope (ভাষাস্কোপ) — a telescope for language. The permanent digital infrastructure that houses Platform Bengali and future language research initiatives, extending vision into the living landscape of language.
+      Bhashascope (ভাষাস্কোপ) — Mapping the Bhasha with newer tools and methods. The permanent digital infrastructure that houses Platform Bengali and future language research initiatives, extending vision into the living landscape of language.
     </p>
   </div>
   <div class="section-number">04</div>
@@ -221,5 +224,25 @@
 <script src="js/ka-rotation.js" defer></script>
 <script src="js/matrix.js" defer></script>
 <script src="js/navigation.js" defer></script>
+
+<!-- Background illustration scroll fade — visible in hero, fades as you scroll into sections -->
+<script>
+(function () {
+  var bgEl = document.querySelector('.bg-illustration');
+  if (!bgEl) return;
+  // Read the CSS-set opacity as the max (respects media query overrides)
+  var maxOpacity = parseFloat(getComputedStyle(bgEl).opacity) || 0.18;
+  var minOpacity = 0.03;
+  function updateBg() {
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var heroHeight = window.innerHeight;
+    var progress = Math.min(scrollTop / heroHeight, 1);
+    var eased = progress * progress;
+    bgEl.style.opacity = maxOpacity - (maxOpacity - minOpacity) * eased;
+  }
+  window.addEventListener('scroll', updateBg, { passive: true });
+  updateBg();
+})();
+</script>
 </body>
 </html>
