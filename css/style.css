@@ -52,56 +52,31 @@ img { max-width: 100%; height: auto; }
 
 /* ==========================================
    FIXED BACKGROUND ILLUSTRATION — Jantar Mantar
-   contain on white — white meets white, seamless.
-   Positioned and scaled per screen type.
+   Three responsive versions, each matching its
+   target aspect ratio — so cover fills perfectly.
    ========================================== */
 .bg-illustration {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: url('../img/jantar-mantar-bg.png') center center / contain no-repeat;
-  background-color: var(--bg-deep); /* white fill around edges */
+  background: url('../img/jantar-mantar-desktop.png') center center / cover no-repeat;
+  background-color: var(--bg-deep);
   opacity: 0.18;
   will-change: opacity;
 }
 
-/* Widescreen desktops: image doesn't fill width, 
-   shift down slightly so apparatus anchors lower-center */
-@media (min-aspect-ratio: 16/10) {
+/* Tablets — landscape & portrait (max-width 1024px) */
+@media (max-width: 1024px) {
   .bg-illustration {
-    background-position: center 55%;
+    background-image: url('../img/jantar-mantar-tablet.png');
   }
 }
 
-/* Ultra-wide monitors: scale up slightly via padding trick */
-@media (min-aspect-ratio: 2/1) {
+/* Phones — portrait (max-width 600px) */
+@media (max-width: 600px) {
   .bg-illustration {
-    background-size: auto 110%;
-    background-position: center 50%;
-  }
-}
-
-/* Tablets landscape (roughly 4:3) — near-native fit */
-@media (min-aspect-ratio: 1/1) and (max-aspect-ratio: 16/10) {
-  .bg-illustration {
-    background-position: center center;
-  }
-}
-
-/* Tablets portrait & phones — fill height, center horizontally */
-@media (max-aspect-ratio: 1/1) {
-  .bg-illustration {
-    background-size: auto 80%;
-    background-position: center 40%;
-  }
-}
-
-/* Small phones — keep it subtle, shift up to show apparatus */
-@media (max-width: 480px) {
-  .bg-illustration {
-    background-size: auto 70%;
-    background-position: center 35%;
+    background-image: url('../img/jantar-mantar-mobile.png');
     opacity: 0.14;
   }
 }
