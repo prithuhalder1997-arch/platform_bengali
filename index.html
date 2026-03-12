@@ -67,17 +67,17 @@
 
 /* Dark blocks */
 .sb-dark {
-  background: #2a2725;
+  background: rgba(42, 39, 37, 0.88);
   color: #e8e4df;
 }
 .sb-dark .s-prose { color: rgba(232,228,223,0.75); }
 .sb-dark .s-prose strong { color: #e8e4df; }
 
 /* Warm block */
-.sb-warm { background: #faf9f7; }
+.sb-warm { background: rgba(250, 249, 247, 0.85); }
 
 /* Cool block */
-.sb-cool { background: #f5f4f2; }
+.sb-cool { background: rgba(245, 244, 242, 0.85); }
 
 /* Transparent (shows Jantar Mantar) */
 .sb-clear { background: transparent; }
@@ -160,7 +160,7 @@
 .dt-line { display: flex; flex-direction: column; margin-top: 40px; position: relative; padding-left: 32px; }
 .dt-line::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #3d5a80, #b08d40, #457b6e, #cc2828); opacity: 0.2; }
 .dt-entry { position: relative; padding: 20px 0 36px 20px; }
-.dt-dot { position: absolute; left: -28px; top: 24px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); background: #2a2725; transition: all 0.3s; }
+.dt-dot { position: absolute; left: -28px; top: 24px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.25); background: rgba(42,39,37,0.9); transition: all 0.3s; }
 .dt-entry:hover .dt-dot { background: #cc2828; border-color: #cc2828; transform: scale(1.3); }
 .dt-edots { display: flex; gap: 5px; margin-bottom: 6px; }
 .dt-edot { width: 8px; height: 8px; border-radius: 50%; }
@@ -303,7 +303,17 @@
 <!-- ==================== SECTION 1 — PROJECT VISION (FULL STORY) ==================== -->
 <div id="section-1">
 
-  <!-- 1A: Provocation -->
+  <!-- 1A: The Hook — Bengali is changing -->
+  <div class="story-block sb-clear" style="min-height:90vh; display:flex; align-items:center;">
+    <div class="story-inner">
+      <div class="s-eyebrow sr">Project Vision</div>
+      <h2 class="sr sd1" style="font-family:'Syne',sans-serif; font-size:clamp(40px,6vw,72px); font-weight:800; line-height:1.05; letter-spacing:-0.02em; color:#1a1a1a; margin-bottom:28px;">Bengali is <span style="position:relative; display:inline;"><span style="position:relative; z-index:1;">changing.</span><span style="position:absolute; bottom:4px; left:0; right:0; height:8px; background:rgba(204,40,40,0.12); z-index:0; border-radius:2px;"></span></span><br>Right now. As you read this.</h2>
+      <p class="s-prose sr sd2">On YouTube. On Instagram reels. In Facebook comment threads. In WhatsApp forwards. A language spoken by 300 million people is being remade — one video, one caption, one meme at a time.</p>
+      <div class="sr sd3" style="display:inline-flex; align-items:center; gap:8px; margin-top:28px; font-family:'Syne',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:8px 20px; border-radius:40px; background:rgba(204,40,40,0.06); border:1px solid rgba(204,40,40,0.15); color:#cc2828;"><span style="width:6px; height:6px; border-radius:50%; background:#cc2828;"></span> Feb 2026 — Aug 2027 · 18 Months</div>
+    </div>
+  </div>
+
+  <!-- 1B: Provocation -->
   <div class="story-block sb-dark">
     <div class="deco-fl" style="font-size:180px; right:-20px; top:30px;">ভ</div>
     <div class="story-inner">
