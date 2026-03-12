@@ -675,8 +675,8 @@ img { max-width: 100%; height: auto; }
   z-index: 1;
 }
 
-.section-a { background: var(--bg-section-a); }
-.section-b { background: var(--bg-section-b); }
+.section-a { background: rgba(248, 247, 245, 0.85); }
+.section-b { background: rgba(243, 242, 240, 0.85); }
 
 .section-number {
   font-family: 'Syne', sans-serif;
