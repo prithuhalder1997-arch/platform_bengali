@@ -6,8 +6,216 @@
 <title>Platform Bengali — Tracing Language Evolution and Cultural Practice in Digital Economy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+/* ============================================
+   STORYTELLING STYLES — Section 1 expansion
+   ============================================ */
+
+/* Fixed language toggle — global, all sections */
+.lang-toggle-fixed {
+  position: fixed;
+  bottom: 32px; right: 32px;
+  z-index: 250;
+  display: flex;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 50px; padding: 4px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.lang-toggle-fixed .lang-btn {
+  border: none; background: transparent; outline: none; cursor: pointer;
+  padding: 8px 20px; border-radius: 40px;
+  font-family: 'DM Sans', sans-serif; font-weight: 700;
+  font-size: 12px; text-transform: uppercase;
+  color: #8a8a8a; transition: all 0.3s; line-height: 1;
+}
+.lang-toggle-fixed .lang-btn.active {
+  background: #cc2828; color: #fff;
+  box-shadow: 0 2px 12px rgba(204,40,40,0.35);
+}
+.lang-toggle-fixed .lang-btn[data-lang="bn"] {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-weight: 600; text-transform: none; font-size: 13px;
+}
+@media (max-width: 768px) {
+  .lang-toggle-fixed { bottom: 16px; right: 16px; }
+  .lang-toggle-fixed .lang-btn { padding: 7px 14px; font-size: 11px; }
+}
+
+/* --- Story sub-sections (within section-1) --- */
+.story-block {
+  position: relative;
+  z-index: 1;
+  padding: clamp(60px, 10vh, 120px) clamp(24px, 5vw, 80px);
+  overflow: hidden;
+}
+.story-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* Reveal */
+.sr { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.sr.sv { opacity: 1; transform: translateY(0); }
+.sr.sd1 { transition-delay: 0.1s; }
+.sr.sd2 { transition-delay: 0.2s; }
+.sr.sd3 { transition-delay: 0.3s; }
+.sr.sd4 { transition-delay: 0.4s; }
+
+/* Dark blocks */
+.sb-dark {
+  background: #2a2725;
+  color: #e8e4df;
+}
+.sb-dark .s-prose { color: rgba(232,228,223,0.75); }
+.sb-dark .s-prose strong { color: #e8e4df; }
+
+/* Warm block */
+.sb-warm { background: #faf9f7; }
+
+/* Cool block */
+.sb-cool { background: #f5f4f2; }
+
+/* Transparent (shows Jantar Mantar) */
+.sb-clear { background: transparent; }
+
+/* --- Typography for story --- */
+.s-eyebrow {
+  font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #cc2828; opacity: 0.6; margin-bottom: 14px;
+}
+.s-heading {
+  font-family: 'Syne', sans-serif; font-size: clamp(26px, 3.5vw, 42px); font-weight: 800;
+  line-height: 1.12; color: #1a1a1a; margin-bottom: 20px;
+}
+.sb-dark .s-heading { color: #e8e4df; }
+.s-prose {
+  font-size: clamp(15px, 1.1vw, 17px); line-height: 1.9;
+  color: #4a4a4a; max-width: 680px;
+}
+.s-prose strong { color: #1a1a1a; font-weight: 700; }
+.s-prose em { font-style: italic; }
+.s-underline {
+  text-decoration: underline; text-decoration-color: #cc2828;
+  text-underline-offset: 4px; text-decoration-thickness: 2px;
+}
+.s-highlight {
+  display: inline;
+  background: linear-gradient(to bottom, transparent 60%, rgba(204,40,40,0.08) 60%);
+  padding-bottom: 1px;
+}
+
+/* Big question */
+.big-q {
+  font-family: 'Syne', sans-serif; font-size: clamp(26px, 4vw, 50px); font-weight: 800;
+  line-height: 1.15; margin-bottom: 28px;
+}
+.big-q em { font-style: italic; color: #cc2828; }
+
+/* Maybe items */
+.maybe-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px; }
+.maybe-arrow { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 800; color: #cc2828; opacity: 0.4; flex-shrink: 0; margin-top: 2px; }
+.maybe-txt { font-size: clamp(15px, 1.2vw, 18px); line-height: 1.6; color: #4a4a4a; }
+.maybe-txt em { font-style: italic; color: #1a1a1a; font-weight: 500; }
+
+/* Callout */
+.s-callout {
+  background: rgba(245,244,242,0.7); border: 1px solid rgba(0,0,0,0.05);
+  border-left: 3px solid #cc2828; border-radius: 0 12px 12px 0;
+  padding: 24px 28px; margin: 36px 0;
+}
+.s-callout p { font-size: 15px; line-height: 1.75; color: #4a4a4a; }
+.s-callout strong { color: #1a1a1a; }
+
+/* Spectrum */
+.spectrum-row { display: flex; align-items: center; gap: 16px; margin: 36px 0 44px; }
+.sp-pole { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+.sp-pole.left { color: #3d5a80; }
+.sp-pole.right { color: #457b6e; }
+.sp-bar { flex: 1; height: 3px; border-radius: 2px; background: linear-gradient(to right, #3d5a80, #b08d40 50%, #457b6e); opacity: 0.35; position: relative; }
+.sp-label { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #b08d40; white-space: nowrap; }
+
+/* Engine rows */
+.engine-stack { display: flex; flex-direction: column; gap: 28px; }
+.e-row { display: grid; grid-template-columns: 60px 1fr; gap: 20px; padding: 24px; border-radius: 14px; border: 1px solid rgba(0,0,0,0.06); transition: all 0.3s ease; }
+.e-row:hover { box-shadow: 0 10px 32px rgba(0,0,0,0.04); transform: translateY(-2px); }
+.e-row.e1 { background: rgba(61,90,128,0.04); border-left: 3px solid #3d5a80; }
+.e-row.e2 { background: rgba(176,141,64,0.04); border-left: 3px solid #b08d40; }
+.e-row.e3 { background: rgba(69,123,110,0.04); border-left: 3px solid #457b6e; }
+.e-num { font-family: 'Syne', sans-serif; font-size: 38px; font-weight: 800; opacity: 0.07; }
+.e-approach { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
+.e1 .e-approach { color: #3d5a80; }
+.e2 .e-approach { color: #b08d40; }
+.e3 .e-approach { color: #457b6e; }
+.e-title { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 800; color: #1a1a1a; margin-bottom: 6px; }
+.e-desc { font-size: 13px; line-height: 1.7; color: #4a4a4a; }
+.e-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+.e-tag { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 10px; background: rgba(240,238,235,0.7); border: 1px solid rgba(0,0,0,0.05); color: #4a4a4a; }
+
+/* Deliverables timeline */
+.dt-line { display: flex; flex-direction: column; margin-top: 40px; position: relative; padding-left: 32px; }
+.dt-line::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #3d5a80, #b08d40, #457b6e, #cc2828); opacity: 0.2; }
+.dt-entry { position: relative; padding: 20px 0 36px 20px; }
+.dt-dot { position: absolute; left: -28px; top: 24px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); background: #2a2725; transition: all 0.3s; }
+.dt-entry:hover .dt-dot { background: #cc2828; border-color: #cc2828; transform: scale(1.3); }
+.dt-edots { display: flex; gap: 5px; margin-bottom: 6px; }
+.dt-edot { width: 8px; height: 8px; border-radius: 50%; }
+.dt-edot.cb { background: #3d5a80; }
+.dt-edot.cg { background: #b08d40; }
+.dt-edot.ct { background: #457b6e; }
+.dt-edot.cr { background: #cc2828; }
+.dt-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: #e8e4df; margin-bottom: 3px; }
+.dt-sub { font-size: 10px; color: rgba(232,228,223,0.5); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.dt-desc { font-size: 13px; line-height: 1.7; color: rgba(232,228,223,0.6); max-width: 540px; }
+
+/* CFP chips */
+.cfp-wrap { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+.cfp-chip { padding: 9px 16px; border-radius: 40px; background: rgba(240,238,235,0.6); border: 1px solid rgba(0,0,0,0.05); font-size: 12px; color: #4a4a4a; transition: all 0.25s; cursor: default; }
+.cfp-chip:hover { background: rgba(230,228,224,0.8); border-color: #cc2828; color: #1a1a1a; transform: translateY(-2px); }
+
+/* Archive box */
+.archive-box { padding: 40px 32px; border-radius: 18px; border: 2px solid rgba(204,40,40,0.12); background: rgba(250,249,247,0.85); text-align: center; margin-top: 28px; }
+.archive-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: #cc2828; margin-bottom: 6px; }
+.archive-sub { font-size: 12px; color: #8a8a8a; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
+.archive-items { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+.archive-item { font-size: 11px; font-weight: 500; padding: 5px 12px; border-radius: 16px; background: rgba(204,40,40,0.05); border: 1px solid rgba(204,40,40,0.1); color: #4a4a4a; }
+
+/* Timeline visual */
+.tl-row { display: flex; justify-content: space-between; position: relative; padding: 40px 0 16px; margin-top: 28px; }
+.tl-row::before { content: ''; position: absolute; top: 62px; left: 0; right: 0; height: 2px; background: linear-gradient(to right, #3d5a80, #b08d40, #457b6e, #cc2828); opacity: 0.2; }
+.tl-stop { display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1; min-width: 90px; }
+.tl-mk { width: 11px; height: 11px; border-radius: 50%; border: 2px solid #8a8a8a; background: #f5f4f2; margin-bottom: 12px; transition: all 0.3s; }
+.tl-stop:hover .tl-mk { background: #cc2828; border-color: #cc2828; transform: scale(1.3); }
+.tl-when { font-family: 'Syne', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8a8a8a; margin-bottom: 3px; }
+.tl-what { font-size: 11px; font-weight: 500; color: #1a1a1a; line-height: 1.3; }
+
+.close-stmt { margin-top: 56px; text-align: center; }
+.close-stmt p { font-family: 'Syne', sans-serif; font-size: clamp(16px, 2.2vw, 26px); font-weight: 700; line-height: 1.5; color: #4a4a4a; }
+.close-stmt .ifa-cr { margin-top: 16px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-style: italic; color: #8a8a8a; }
+
+/* Decorative float */
+.deco-fl { position: absolute; pointer-events: none; user-select: none; font-family: 'Noto Sans Bengali', sans-serif; font-weight: 800; opacity: 0.03; line-height: 1; }
+
+/* Mobile overrides for story blocks */
+@media (max-width: 768px) {
+  .story-block { padding: clamp(48px, 8vh, 80px) 18px; }
+  .big-q { font-size: clamp(22px, 5.5vw, 30px); }
+  .spectrum-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .sp-bar { width: 100%; margin: 6px 0; }
+  .sp-label { position: static; transform: none; }
+  .e-row { grid-template-columns: 1fr; gap: 8px; padding: 20px 16px; }
+  .tl-row { display: grid; grid-template-columns: 1fr; gap: 0; padding: 16px 0 8px 24px; }
+  .tl-row::before { content: ''; position: absolute; left: 8px; top: 16px; bottom: 8px; width: 2px; height: auto; right: auto; }
+  .tl-stop { display: flex; flex-direction: row; align-items: flex-start; gap: 10px; text-align: left; padding: 10px 0; }
+  .tl-mk { margin-bottom: 0; margin-top: 2px; margin-left: -20px; }
+  .cfp-chip { font-size: 11px; padding: 7px 12px; }
+  .archive-box { padding: 28px 16px; }
+}
+</style>
 </head>
 <body>
 
@@ -34,139 +242,198 @@
   </div>
 </header>
 
+<!-- FIXED LANGUAGE TOGGLE -->
+<div class="lang-toggle-fixed" id="langToggleFixed">
+  <button class="lang-btn active" id="btnEN" data-lang="en">English</button>
+  <button class="lang-btn" id="btnBN" data-lang="bn">বাংলা</button>
+</div>
+
 <!-- VERTICAL BAR NAVIGATOR -->
 <nav class="nav-bar" id="navBar">
   <div class="nav-counter" id="navCounter">01</div>
   <div class="nav-track">
     <div class="nav-fill" id="navFill" style="top: 0%; height: 16.66%;"></div>
-    <div class="nav-segment active" data-section="0" style="top: 0%;">
-      <div class="nav-tick"></div>
-      <span class="nav-seg-label">Home</span>
-    </div>
-    <div class="nav-segment" data-section="1" style="top: 20%;">
-      <div class="nav-tick"></div>
-      <span class="nav-seg-label">Vision</span>
-    </div>
-    <div class="nav-segment" data-section="2" style="top: 40%;">
-      <div class="nav-tick"></div>
-      <span class="nav-seg-label">IFA</span>
-    </div>
-    <div class="nav-segment" data-section="3" style="top: 60%;">
-      <div class="nav-tick"></div>
-      <span class="nav-seg-label">Resources</span>
-    </div>
-    <div class="nav-segment" data-section="4" style="top: 80%;">
-      <div class="nav-tick"></div>
-      <span class="nav-seg-label">Bhashascope</span>
-    </div>
-    <div class="nav-segment" data-section="5" style="top: 97%;">
-      <div class="nav-tick"></div>
-      <span class="nav-seg-label">Certificates</span>
-    </div>
+    <div class="nav-segment active" data-section="0" style="top: 0%;"><div class="nav-tick"></div><span class="nav-seg-label">Home</span></div>
+    <div class="nav-segment" data-section="1" style="top: 20%;"><div class="nav-tick"></div><span class="nav-seg-label">Vision</span></div>
+    <div class="nav-segment" data-section="2" style="top: 40%;"><div class="nav-tick"></div><span class="nav-seg-label">IFA</span></div>
+    <div class="nav-segment" data-section="3" style="top: 60%;"><div class="nav-tick"></div><span class="nav-seg-label">Resources</span></div>
+    <div class="nav-segment" data-section="4" style="top: 80%;"><div class="nav-tick"></div><span class="nav-seg-label">Bhashascope</span></div>
+    <div class="nav-segment" data-section="5" style="top: 97%;"><div class="nav-tick"></div><span class="nav-seg-label">Certificates</span></div>
   </div>
   <div class="nav-total">/ 06</div>
 </nav>
 
 <!-- ==================== HERO ==================== -->
 <section class="hero" id="section-0">
-
-  <!-- Subtle background curves -->
   <div class="hero-bg">
     <div class="bg-curve bg-curve-1"></div>
     <div class="bg-curve bg-curve-2"></div>
   </div>
-
   <div class="hero-stage">
     <div class="hero-scale-wrapper">
-
-      <!-- Dot matrix canvas -->
-      <div class="matrix-canvas-wrap">
-        <canvas id="matrixCanvas"></canvas>
-      </div>
-
-      <!-- Vertical titles -->
+      <div class="matrix-canvas-wrap"><canvas id="matrixCanvas"></canvas></div>
       <div class="vertical-titles">
         <span class="v-line platform">Platform</span>
         <span class="v-line bengali">Bengali</span>
       </div>
-
-      <!-- 3D ক canvas -->
-      <div class="ka-canvas-wrap">
-        <canvas id="kaCanvas"></canvas>
-      </div>
-
-      <!-- Orbit navigation — semicircular arc wrapping around ক -->
+      <div class="ka-canvas-wrap"><canvas id="kaCanvas"></canvas></div>
       <div class="orbit-system">
         <svg class="orbit-arcs" viewBox="0 0 400 560" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M 30,55 A 200,220 0 0,1 30,465" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" stroke-dasharray="4 7"/>
         </svg>
-        <a href="events/orientation-workshop.html" class="orbit-item oi-1">
-          <div class="o-dot"></div>
-          <div class="o-label" data-en="Orientation Workshop" data-bn="প্রবেশক কর্মশালা">Orientation Workshop</div>
-        </a>
-        <a href="events/mt-workshop.html" class="orbit-item oi-2">
-          <div class="o-dot"></div>
-          <div class="o-label" data-en="MT Workshop" data-bn="যন্ত্রানুবাদ কর্মশালা">MT Workshop</div>
-        </a>
-        <a href="events/conference.html" class="orbit-item oi-3">
-          <div class="o-dot"></div>
-          <div class="o-label" data-en="Conference" data-bn="আলোচনাচক্র">Conference</div>
-        </a>
-        <a href="events/youtuber-interviews.html" class="orbit-item oi-4">
-          <div class="o-dot"></div>
-          <div class="o-label" data-en="Youtuber Series" data-bn="সাক্ষাতে ইউটিউবার">Youtuber Series</div>
-        </a>
-        <a href="events/monthly-talks.html" class="orbit-item oi-5">
-          <div class="o-dot"></div>
-          <div class="o-label" data-en="Speaker Series" data-bn="মাসিক বৈঠক">Speaker Series</div>
-        </a>
+        <a href="events/orientation-workshop.html" class="orbit-item oi-1"><div class="o-dot"></div><div class="o-label" data-en="Orientation Workshop" data-bn="প্রবেশক কর্মশালা">Orientation Workshop</div></a>
+        <a href="events/mt-workshop.html" class="orbit-item oi-2"><div class="o-dot"></div><div class="o-label" data-en="MT Workshop" data-bn="যন্ত্রানুবাদ কর্মশালা">MT Workshop</div></a>
+        <a href="events/conference.html" class="orbit-item oi-3"><div class="o-dot"></div><div class="o-label" data-en="Conference" data-bn="আলোচনাচক্র">Conference</div></a>
+        <a href="events/youtuber-interviews.html" class="orbit-item oi-4"><div class="o-dot"></div><div class="o-label" data-en="Youtuber Series" data-bn="সাক্ষাতে ইউটিউবার">Youtuber Series</div></a>
+        <a href="events/monthly-talks.html" class="orbit-item oi-5"><div class="o-dot"></div><div class="o-label" data-en="Speaker Series" data-bn="মাসিক বৈঠক">Speaker Series</div></a>
       </div>
-
-      <!-- Decorative chevrons -->
       <div class="chevron chev-top">»</div>
       <div class="chevron chev-bottom">»</div>
-
     </div>
   </div>
-
-  <!-- Hero bottom info -->
   <div class="hero-info">
     <p class="hero-desc" data-en="Tracing Language Evolution and Cultural Practice in Digital Economy" data-bn="ডিজিটাল অর্থনীতিতে ভাষার বিবর্তন ও সাংস্কৃতিক চর্চার অনুসন্ধান">
       Tracing Language Evolution and Cultural Practice in Digital Economy
     </p>
-    <div class="lang-toggle">
-      <button class="lang-btn active" id="btnEN" data-lang="en">English</button>
-      <button class="lang-btn" id="btnBN" data-lang="bn">বাংলা</button>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-hint-line"></div></div>
+  <div class="deco-arrow"><svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1"><path d="M10 10 L40 25 L10 40"/></svg></div>
+</section>
+
+<!-- ==================== SECTION 1 — PROJECT VISION (FULL STORY) ==================== -->
+<div id="section-1">
+
+  <!-- 1A: Provocation -->
+  <div class="story-block sb-dark">
+    <div class="deco-fl" style="font-size:180px; right:-20px; top:30px;">ভ</div>
+    <div class="story-inner">
+      <h2 class="big-q sr">But here's the thing — <em>who gets to decide</em> what "correct" Bengali is?</h2>
+      <p class="s-prose sr sd1">The Bangla Akademi? University departments? Corporate media houses? Or the YouTuber in Barasat who coined a phrase that a million people now use daily?</p>
+      <p class="s-prose sr sd2" style="margin-top:18px;">Platform Bengali doesn't pick a side. It <span class="s-underline">maps the entire terrain</span> — from how language <em>should</em> be spoken to how it <em>is</em> spoken. And in doing so, it asks a radical question:</p>
+      <p class="s-prose sr sd3" style="margin-top:24px; font-size:clamp(16px, 1.3vw, 20px); font-weight:700; color:#e8e4df;">What if platform creators are not just entertainers — but <span class="s-underline">arts practitioners</span> reshaping a living language?</p>
     </div>
   </div>
 
-  <!-- Scroll hint -->
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-hint-line"></div>
+  <!-- 1B: Think about it -->
+  <div class="story-block sb-warm">
+    <div class="story-inner">
+      <p class="s-prose sr" style="font-style:italic; color:#8a8a8a; margin-bottom:28px;">Think about it this way —</p>
+      <div class="maybe-row sr"><span class="maybe-arrow">→</span><p class="maybe-txt">A Bengali roasting channel uses expletives and local slangs in a single sentence — and their audience <em>relates to it</em>. The standardised genteel <em>bhadralok</em> tongue would forbid these words from being used in public.</p></div>
+      <div class="maybe-row sr sd1"><span class="maybe-arrow">→</span><p class="maybe-txt">An Instagrammer invents a portmanteau mixing Bengali and English that gets <em>picked up by thousands</em> within a week.</p></div>
+      <div class="maybe-row sr sd2"><span class="maybe-arrow">→</span><p class="maybe-txt">A Facebook writer deploys culturally-specific references that <em>no machine translator can parse</em> — and that's precisely the point.</p></div>
+      <div class="maybe-row sr sd3"><span class="maybe-arrow">→</span><p class="maybe-txt">Sunday Suspense creates an entire <em>audio-literary ecosystem</em> that rewrites the rules of Bengali storytelling for the digital age.</p></div>
+      <div class="s-callout sr sd4">
+        <p>These aren't just "content." They're <strong>acts of vernacular creativity</strong> — tacit knowledge of cultural codes, linguistic choices, and community-specific references deployed to build audience communities within platform-driven digital economies.</p>
+      </div>
+    </div>
   </div>
 
-  <!-- Deco arrow -->
-  <div class="deco-arrow">
-    <svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1">
-      <path d="M10 10 L40 25 L10 40"/>
-    </svg>
+  <!-- 1C: Three Engines -->
+  <div class="story-block sb-cool">
+    <div class="story-inner">
+      <div class="s-eyebrow sr">Project Framework</div>
+      <h2 class="s-heading sr sd1">Three Engines of Language Mapping</h2>
+      <p class="s-prose sr sd2">The project identifies three agents of linguistic change, arranged across a spectrum. Each represents a different relationship to language, standardisation, and digital culture.</p>
+      <div class="spectrum-row sr sd3">
+        <span class="sp-pole left">← How Language Should Be</span>
+        <div class="sp-bar"><span class="sp-label">Platform Bengali</span></div>
+        <span class="sp-pole right">How Language Is Spoken →</span>
+      </div>
+      <div class="engine-stack">
+        <div class="e-row e1 sr"><div class="e-num">01</div><div><div class="e-approach">Top-Down Approach</div><div class="e-title">The Gatekeepers</div><p class="e-desc">Those who define how Bengali <em>should</em> be spoken — the traditional gatekeepers of linguistic legitimacy. They codify grammar, set norms, and police the boundaries of "correct" Bengali.</p><div class="e-tags"><span class="e-tag">Academic Institutions</span><span class="e-tag">Corporate Media</span><span class="e-tag">Bangla Akademi</span></div></div></div>
+        <div class="e-row e2 sr sd1"><div class="e-num">02</div><div><div class="e-approach">Cartographers</div><div class="e-title">The Knowledge Producers</div><p class="e-desc">Academics and researchers building the tools, theories, and methodologies to <em>map</em> what's happening — bridging the normative and the lived across linguistics, media studies, and digital humanities.</p><div class="e-tags"><span class="e-tag">DH Scholars</span><span class="e-tag">Linguists</span><span class="e-tag">Media Studies</span></div></div></div>
+        <div class="e-row e3 sr sd2"><div class="e-num">03</div><div><div class="e-approach">Bottom-Up Approach</div><div class="e-title">The Practitioners</div><p class="e-desc">Content creators who shape how Bengali is <em>actually</em> spoken — generating neologisms, code-switching patterns, and platform-native idioms through daily digital practice. The living laboratory.</p><div class="e-tags"><span class="e-tag">YouTubers</span><span class="e-tag">Instagrammers</span><span class="e-tag">Content Creators</span></div></div></div>
+      </div>
+    </div>
   </div>
 
-</section>
-
-<!-- ==================== SECTIONS ==================== -->
-<section class="section-content section-a" id="section-1">
-  <div class="section-inner">
-    <div class="section-label reveal">01</div>
-    <h2 class="section-heading reveal reveal-delay-1">Project Vision</h2>
-    <p class="section-body reveal reveal-delay-2">
-      Platform Bengali (2020–2025) investigates how the Bengali language evolves, adapts, and transforms across digital platforms. From YouTube creators to machine translation systems, this IFA-funded research maps the living digital landscape of one of the world's most spoken languages.
-    </p>
+  <!-- 1D: Deliverables -->
+  <div class="story-block sb-dark">
+    <div class="story-inner">
+      <div class="s-eyebrow sr" style="color:rgba(204,40,40,0.7);">So how do we investigate this?</div>
+      <h2 class="s-heading sr sd1" style="color:#e8e4df;">Seven Instruments of Inquiry</h2>
+      <p class="s-prose sr sd2">Each instrument engages one or more engines. Together, they produce a composite cartography of Bengali in the platform era.</p>
+      <div class="dt-line">
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cg"></span></div><div class="dt-title">Inaugural DH Lecture</div><div class="dt-sub">Contextualising DH in Bhashasphere · Online · 1 Day</div><p class="dt-desc">A leading Digital Humanities professor situates the project within the broader landscape of Indian vernaculars — using Meenakshi Mukherjee's concept of "Bhasha" languages as the entry point.</p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cg"></span><span class="dt-edot ct"></span></div><div class="dt-title">Inaugural Workshop</div><div class="dt-sub">Ethics of Researching Social Media</div><p class="dt-desc">An expert-led workshop on the policy frameworks and ethical considerations for working with social media as a research object — from informed consent and data privacy to platform terms of service and the politics of scraping digital cultures.</p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cb"></span><span class="dt-edot cg"></span><span class="dt-edot ct"></span></div><div class="dt-title">Monthly Lecture Series</div><div class="dt-sub">12 Speakers · 12 Months · All Three Engines</div><p class="dt-desc">The only deliverable that bridges the <em>entire</em> spectrum — editors and media house veterans alongside academics alongside YouTubers and Instagrammers. A year-long conversation across all three engines.</p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot ct"></span></div><div class="dt-title">YouTube Creator Interviews</div><div class="dt-sub">10 In-Person · Qualitative Research</div><p class="dt-desc">Deep-dive interviews examining linguistic registers, code-switching, platform adaptations, and the use of AI in Bengali content production — with particular attention to the pandemic-era shifts that accelerated vernacular digital culture between 2020 and 2025.</p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cb"></span><span class="dt-edot cg"></span></div><div class="dt-title">5-Day Translation Workshop</div><div class="dt-sub">Bengali: Machine Translation & AI · Intensive</div><p class="dt-desc">What happens when you run Bengali through machine translation systems? Where does the machine fail — and what does that failure reveal about the language itself? Culminates in a comprehensive MT evaluation report.</p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cb"></span><span class="dt-edot cg"></span><span class="dt-edot ct"></span></div><div class="dt-title">One-Day Hybrid Academic Conference</div><div class="dt-sub">Platform Bengali: Technology & Vernacular in the Digital Age</div><p class="dt-desc">The culminating event. All three engines converge — scholars, institutional voices, and digital practitioners — to present research, debate findings, and chart future directions.</p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cr"></span></div><div class="dt-title">Bilingual Digital Repository</div><div class="dt-sub">Bhashascope · Mapping the Bhasha with Newer Tools and Methods</div><p class="dt-desc">Everything lives here. AV documentation, interview transcripts, the MT workshop report, conference proceedings, relevant resources — a bilingual infrastructure that outlasts the project itself.</p></div>
+      </div>
+    </div>
   </div>
-  <div class="section-number">01</div>
-</section>
 
+  <!-- 1E: CFP Themes -->
+  <div class="story-block sb-warm">
+    <div class="story-inner">
+      <div class="s-eyebrow sr">Conference</div>
+      <h2 class="s-heading sr sd1">13 Themes We're Exploring</h2>
+      <p class="s-prose sr sd2">The conference call for papers spans the full breadth of Bengali's digital transformation.</p>
+      <div class="cfp-wrap sr sd3">
+        <span class="cfp-chip">Bengali Syntax & Neologisms</span>
+        <span class="cfp-chip">Print to Digital: Blogs & Portals</span>
+        <span class="cfp-chip">Bornoporichoy in the Age of AI</span>
+        <span class="cfp-chip">Bengali Digital Advertising</span>
+        <span class="cfp-chip">Writing for Facebook Audiences</span>
+        <span class="cfp-chip">YouTubers & Linguistic Innovation</span>
+        <span class="cfp-chip">OTT Web Series & New Slang</span>
+        <span class="cfp-chip">Sunday Suspense & Audio Storytelling</span>
+        <span class="cfp-chip">Authors as Internet Microcelebrities</span>
+        <span class="cfp-chip">Transnational Bengali</span>
+        <span class="cfp-chip">Bichitra & Shabdakalpa: DH Case Studies</span>
+        <span class="cfp-chip">Film Trailers & Marketing Language</span>
+        <span class="cfp-chip">Policy, Preservation & Standardisation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1F: Archive -->
+  <div class="story-block sb-clear">
+    <div class="story-inner">
+      <div class="s-eyebrow sr">Where does it all go?</div>
+      <h2 class="s-heading sr sd1">Everything Flows Into the Archive</h2>
+      <p class="s-prose sr sd2">All lectures, workshops, and conference proceedings are recorded. All interviews transcribed. All reports documented. The bilingual website serves as the permanent infrastructure for this and future language research.</p>
+      <div class="archive-box sr sd3">
+        <div class="archive-title">Bhashascope</div>
+        <div class="archive-sub">ভাষাস্কোপ — Mapping the Bhasha with Newer Tools and Methods</div>
+        <a href="bhashascope.html" style="display:inline-block; margin-bottom:14px; font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#cc2828; text-decoration:none; border-bottom:1px solid rgba(204,40,40,0.3); padding-bottom:2px;">About Bhashascope →</a>
+        <div class="archive-items">
+          <span class="archive-item">AV Documentation</span>
+          <span class="archive-item">Interview Transcripts</span>
+          <span class="archive-item">MT Workshop Report</span>
+          <span class="archive-item">Conference Proceedings</span>
+          <span class="archive-item">Relevant Resources</span>
+          <span class="archive-item">Announcements</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1G: Timeline + Close -->
+  <div class="story-block sb-cool">
+    <div class="story-inner">
+      <div class="s-eyebrow sr">Timeline</div>
+      <h2 class="s-heading sr sd1">The Project Arc</h2>
+      <div style="display:inline-block; margin-bottom:20px; font-family:'Syne',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:6px 16px; border-radius:20px; background:rgba(204,40,40,0.06); border:1px solid rgba(204,40,40,0.15); color:#cc2828;">Feb 2026 — Aug 2027 · 18 Months</div>
+      <div class="tl-row sr sd2">
+        <div class="tl-stop"><div class="tl-mk"></div><span class="tl-when">Q1 2026</span><span class="tl-what">DH Lecture, SM Ethics Workshop & MT Workshop</span></div>
+        <div class="tl-stop"><div class="tl-mk"></div><span class="tl-when">Q2 2026</span><span class="tl-what">Hybrid Academic Conference</span></div>
+        <div class="tl-stop"><div class="tl-mk"></div><span class="tl-when">2026–27</span><span class="tl-what">Monthly Lectures</span></div>
+        <div class="tl-stop"><div class="tl-mk"></div><span class="tl-when">2026–27</span><span class="tl-what">Creator Interviews</span></div>
+        <div class="tl-stop"><div class="tl-mk"></div><span class="tl-when">Mid 2027</span><span class="tl-what">Final Paperwork & Closure</span></div>
+      </div>
+      <div class="close-stmt sr sd3">
+        <p>A language is not preserved in a dictionary.<br>It lives in the mouths of its speakers —<br>and now, on their screens.</p>
+        <p class="ifa-cr">Sponsored by the India Foundation for the Arts under its Arts Research programme.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /section-1 -->
+
+<!-- ==================== REMAINING SECTIONS ==================== -->
 <section class="section-content section-b" id="section-2">
   <div class="section-inner">
     <div class="section-label reveal">02</div>
@@ -221,16 +488,20 @@
   <div class="section-number">05</div>
 </section>
 
+<!-- ==================== FOOTER ==================== -->
+<footer style="position:relative; z-index:1; max-width:900px; margin:0 auto; padding:32px clamp(20px,5vw,48px) 56px; border-top:1px solid rgba(0,0,0,0.06); display:flex; justify-content:space-between; align-items:center;">
+  <span style="font-size:12px; color:#8a8a8a;">© 2026 Platform Bengali — India Foundation for the Arts</span>
+</footer>
+
 <script src="js/ka-rotation.js" defer></script>
 <script src="js/matrix.js" defer></script>
 <script src="js/navigation.js" defer></script>
 
-<!-- Background illustration scroll fade — visible in hero, fades as you scroll into sections -->
+<!-- Background illustration scroll fade -->
 <script>
 (function () {
   var bgEl = document.querySelector('.bg-illustration');
   if (!bgEl) return;
-  // Read the CSS-set opacity as the max (respects media query overrides)
   var maxOpacity = parseFloat(getComputedStyle(bgEl).opacity) || 0.18;
   var minOpacity = 0.03;
   function updateBg() {
@@ -242,6 +513,17 @@
   }
   window.addEventListener('scroll', updateBg, { passive: true });
   updateBg();
+})();
+</script>
+
+<!-- Story block scroll reveal -->
+<script>
+(function () {
+  var els = document.querySelectorAll('.sr');
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('sv'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function (el) { obs.observe(el); });
 })();
 </script>
 </body>
