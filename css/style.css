@@ -230,7 +230,7 @@ img { max-width: 100%; height: auto; }
 }
 
 .header-logo-right .logo-img {
-  height: clamp(32px, 5vw, 56px);
+  height: clamp(40px, 6vw, 72px);
 }
 
 /* ==========================================
@@ -837,8 +837,8 @@ img { max-width: 100%; height: auto; }
   }
   .header-logo-right .logo-img {
     height: auto;
-    max-height: 38px;
-    max-width: 180px;
+    max-height: 44px;
+    max-width: 200px;
     object-fit: contain;
   }
   .header-logo-right {
