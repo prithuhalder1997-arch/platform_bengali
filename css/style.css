@@ -86,7 +86,7 @@ img { max-width: 100%; height: auto; }
    ========================================== */
 .nav-bar {
   position: fixed;
-  left: 40px;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 200;
@@ -162,7 +162,7 @@ img { max-width: 100%; height: auto; }
 
 .nav-seg-label {
   position: absolute;
-  right: 24px;
+  left: 24px;
   font-family: 'Syne', sans-serif;
   font-size: 11px;
   font-weight: 600;
@@ -171,7 +171,7 @@ img { max-width: 100%; height: auto; }
   color: var(--text-secondary);
   white-space: nowrap;
   opacity: 0;
-  transform: translateX(8px);
+  transform: translateX(-8px);
   transition: all 0.3s ease;
   pointer-events: none;
 }
@@ -227,6 +227,10 @@ img { max-width: 100%; height: auto; }
 .header-logo-left .logo-fallback {
   color: var(--text-secondary);
   font-weight: 700;
+}
+
+.header-logo-right .logo-img {
+  height: clamp(32px, 5vw, 56px);
 }
 
 /* ==========================================
@@ -833,8 +837,8 @@ img { max-width: 100%; height: auto; }
   }
   .header-logo-right .logo-img {
     height: auto;
-    max-height: 28px;
-    max-width: 160px;
+    max-height: 38px;
+    max-width: 180px;
     object-fit: contain;
   }
   .header-logo-right {
