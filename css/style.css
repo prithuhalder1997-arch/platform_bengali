@@ -469,12 +469,12 @@ img { max-width: 100%; height: auto; }
   box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.08);
 }
 
-.oi-0 { left: 2.00%;  top: 10.00%; }
-.oi-1 { left: 12.00%; top: 22.00%; }
-.oi-2 { left: 27.00%; top: 35.00%; }
-.oi-3 { left: 37.00%; top: 50.00%; }
-.oi-4 { left: 27.00%; top: 65.00%; }
-.oi-5 { left: 12.00%; top: 78.00%; }
+.oi-0 { left: 7.5%;  top: 10.7%; }
+.oi-1 { left: 36.9%; top: 17.9%; }
+.oi-2 { left: 55.0%; top: 36.6%; }
+.oi-3 { left: 55.0%; top: 59.8%; }
+.oi-4 { left: 36.9%; top: 78.6%; }
+.oi-5 { left: 7.5%;  top: 85.7%; }
 
 /* ==========================================
    DECORATIVE CHEVRONS
@@ -940,9 +940,9 @@ img { max-width: 100%; height: auto; }
     gap: 6px;
   }
 
-  .oi-0 { left: 2.00%;  top: 10.00%; }
-  .oi-2 { left: 34.00%; top: 28.00%; }
-  .oi-4 { left: 34.00%; top: 62.00%; }
+  .oi-0 { left: 7.5%;  top: 10.7%; }
+  .oi-2 { left: 50.0%; top: 36.6%; }
+  .oi-4 { left: 36.9%; top: 78.6%; }
 
   .hero-info {
     left: 16px;
