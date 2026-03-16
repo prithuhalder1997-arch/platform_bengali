@@ -469,11 +469,12 @@ img { max-width: 100%; height: auto; }
   box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.08);
 }
 
-.oi-1 { left: 5.25%;  top: 8.21%; }
-.oi-2 { left: 28.75%; top: 23.04%; }
-.oi-3 { left: 37.00%; top: 44.82%; }
-.oi-4 { left: 28.75%; top: 66.61%; }
-.oi-5 { left: 5.25%;  top: 81.43%; }
+.oi-0 { left: 2.00%;  top: 2.50%; }
+.oi-1 { left: 14.00%; top: 15.50%; }
+.oi-2 { left: 30.00%; top: 30.00%; }
+.oi-3 { left: 37.00%; top: 47.00%; }
+.oi-4 { left: 30.00%; top: 64.00%; }
+.oi-5 { left: 14.00%; top: 78.50%; }
 
 /* ==========================================
    DECORATIVE CHEVRONS
@@ -547,38 +548,48 @@ img { max-width: 100%; height: auto; }
   box-shadow: 0 2px 12px rgba(204, 40, 40, 0.35);
 }
 
-/* Scroll hint */
-.scroll-hint {
+/* Scroll nudge — bouncing arrow */
+.scroll-nudge {
   position: absolute;
-  bottom: 32px;
+  bottom: 36px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  opacity: 0.2;
+  gap: 6px;
   z-index: 50;
-  animation: pulseHint 2s ease-in-out infinite;
+  cursor: pointer;
+  opacity: 0.35;
+  animation: nudgeBounce 2.2s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite,
+             nudgeFadeIn 1s 1.2s both;
+  transition: opacity 0.4s ease;
 }
-
-.scroll-hint span {
+.scroll-nudge svg {
+  color: var(--text-primary);
+  opacity: 0.6;
+}
+.scroll-nudge span {
   font-family: 'Syne', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.15em;
+  font-size: 9px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
-
-.scroll-hint-line {
-  width: 1px;
-  height: 24px;
-  background: var(--text-muted);
+.scroll-nudge.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
-@keyframes pulseHint {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.06; }
+@keyframes nudgeBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  30% { transform: translateX(-50%) translateY(10px); }
+  50% { transform: translateX(-50%) translateY(4px); }
+  70% { transform: translateX(-50%) translateY(8px); }
+}
+@keyframes nudgeFadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.35; }
 }
 
 .deco-arrow {
@@ -600,11 +611,12 @@ img { max-width: 100%; height: auto; }
 .hero-info       { animation: slideUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
 .ka-canvas-wrap  { animation: fadeScale 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both; }
 .orbit-item      { animation: slideRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
-.oi-1 { animation-delay: 0.5s; }
-.oi-2 { animation-delay: 0.6s; }
-.oi-3 { animation-delay: 0.7s; }
-.oi-4 { animation-delay: 0.8s; }
-.oi-5 { animation-delay: 0.9s; }
+.oi-0 { animation-delay: 0.45s; }
+.oi-1 { animation-delay: 0.55s; }
+.oi-2 { animation-delay: 0.65s; }
+.oi-3 { animation-delay: 0.75s; }
+.oi-4 { animation-delay: 0.85s; }
+.oi-5 { animation-delay: 0.95s; }
 
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(40px); }
@@ -925,8 +937,9 @@ img { max-width: 100%; height: auto; }
     gap: 6px;
   }
 
-  .oi-2 { left: 32.75%; top: 26.52%; }
-  .oi-4 { left: 32.75%; top: 63.12%; }
+  .oi-0 { left: 2.00%;  top: 5.00%; }
+  .oi-2 { left: 34.00%; top: 28.00%; }
+  .oi-4 { left: 34.00%; top: 62.00%; }
 
   .hero-info {
     left: 16px;
@@ -947,7 +960,8 @@ img { max-width: 100%; height: auto; }
 
   .chevron { display: none; }
   .deco-arrow { display: none; }
-  .scroll-hint { bottom: 10px; opacity: 0.15; }
+  .scroll-nudge { bottom: 12px; }
+  .scroll-nudge svg { width: 20px; height: 20px; }
 }
 
 @media (max-width: 900px) {
