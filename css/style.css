@@ -469,12 +469,12 @@ img { max-width: 100%; height: auto; }
   box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.08);
 }
 
-.oi-0 { left: 2.00%;  top: 2.50%; }
-.oi-1 { left: 14.00%; top: 15.50%; }
-.oi-2 { left: 30.00%; top: 30.00%; }
+.oi-0 { left: 2.00%;  top: 5.00%; }
+.oi-1 { left: 12.00%; top: 18.00%; }
+.oi-2 { left: 27.00%; top: 31.00%; }
 .oi-3 { left: 37.00%; top: 47.00%; }
-.oi-4 { left: 30.00%; top: 64.00%; }
-.oi-5 { left: 14.00%; top: 78.50%; }
+.oi-4 { left: 27.00%; top: 63.00%; }
+.oi-5 { left: 12.00%; top: 77.00%; }
 
 /* ==========================================
    DECORATIVE CHEVRONS
@@ -560,21 +560,24 @@ img { max-width: 100%; height: auto; }
   gap: 6px;
   z-index: 50;
   cursor: pointer;
-  opacity: 0.35;
+  opacity: 0.7;
   animation: nudgeBounce 2.2s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite,
              nudgeFadeIn 1s 1.2s both;
   transition: opacity 0.4s ease;
 }
 .scroll-nudge svg {
+  width: 28px;
+  height: 28px;
   color: var(--text-primary);
-  opacity: 0.6;
+  opacity: 0.7;
 }
 .scroll-nudge span {
   font-family: 'Syne', sans-serif;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-secondary);
+  font-weight: 600;
 }
 .scroll-nudge.hidden {
   opacity: 0;
@@ -583,13 +586,13 @@ img { max-width: 100%; height: auto; }
 
 @keyframes nudgeBounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  30% { transform: translateX(-50%) translateY(10px); }
-  50% { transform: translateX(-50%) translateY(4px); }
-  70% { transform: translateX(-50%) translateY(8px); }
+  30% { transform: translateX(-50%) translateY(12px); }
+  50% { transform: translateX(-50%) translateY(5px); }
+  70% { transform: translateX(-50%) translateY(10px); }
 }
 @keyframes nudgeFadeIn {
   from { opacity: 0; }
-  to { opacity: 0.35; }
+  to { opacity: 0.7; }
 }
 
 .deco-arrow {
@@ -960,8 +963,8 @@ img { max-width: 100%; height: auto; }
 
   .chevron { display: none; }
   .deco-arrow { display: none; }
-  .scroll-nudge { bottom: 12px; }
-  .scroll-nudge svg { width: 20px; height: 20px; }
+  .scroll-nudge { bottom: 14px; opacity: 0.6; }
+  .scroll-nudge svg { width: 24px; height: 24px; }
 }
 
 @media (max-width: 900px) {
