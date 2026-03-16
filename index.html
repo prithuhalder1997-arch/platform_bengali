@@ -1,977 +1,476 @@
-/* ============================================
-   Platform Bengali — Linguistic OS Interface
-   White theme · Monochrome · Red accent
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platform Bengali — Tracing Language Evolution and Cultural Practice in Digital Economy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Fixed language toggle */
+.lang-toggle-fixed { position:fixed; bottom:32px; right:32px; z-index:250; display:flex; background:rgba(255,255,255,0.8); backdrop-filter:blur(14px); border:1px solid rgba(0,0,0,0.08); border-radius:50px; padding:4px; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+.lang-toggle-fixed .lang-btn { border:none; background:transparent; outline:none; cursor:pointer; padding:8px 20px; border-radius:40px; font-family:'DM Sans',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; color:#8a8a8a; transition:all 0.3s; line-height:1; }
+.lang-toggle-fixed .lang-btn.active { background:#cc2828; color:#fff; box-shadow:0 2px 12px rgba(204,40,40,0.35); }
+.lang-toggle-fixed .lang-btn[data-lang="bn"] { font-family:'Noto Sans Bengali',sans-serif; font-weight:600; text-transform:none; font-size:13px; }
+@media(max-width:768px){ .lang-toggle-fixed{bottom:16px;right:16px;} .lang-toggle-fixed .lang-btn{padding:7px 14px;font-size:11px;} }
 
-   SCALING STRATEGY:
-   .hero-scale-wrapper is a CSS container with
-   fixed aspect-ratio (950:620) and fluid width.
-   It acts like an SVG viewBox — all children use
-   position:absolute with % coordinates, and font
-   sizes use cqi (container query inline) units.
-   Everything scales proportionally with ZERO JS.
-   ============================================ */
+/* Story blocks */
+.story-block { position:relative; z-index:1; padding:clamp(60px,10vh,120px) clamp(24px,5vw,80px); overflow:hidden; }
+.story-inner { max-width:760px; margin:0 auto; }
+.sr { opacity:0; transform:translateY(28px); transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.sr.sv { opacity:1; transform:translateY(0); }
+.sr.sd1{transition-delay:0.1s;} .sr.sd2{transition-delay:0.2s;} .sr.sd3{transition-delay:0.3s;} .sr.sd4{transition-delay:0.4s;}
+.sb-dark { background:rgba(42,39,37,0.88); color:#e8e4df; }
+.sb-dark .s-prose { color:rgba(232,228,223,0.75); }
+.sb-dark .s-prose strong { color:#e8e4df; }
+.sb-warm { background:rgba(250,249,247,0.85); }
+.sb-cool { background:rgba(245,244,242,0.85); }
+.sb-clear { background:transparent; }
+.s-eyebrow { font-family:'Syne',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#cc2828; opacity:0.6; margin-bottom:14px; }
+.s-heading { font-family:'Syne',sans-serif; font-size:clamp(26px,3.5vw,42px); font-weight:800; line-height:1.12; color:#1a1a1a; margin-bottom:20px; }
+.sb-dark .s-heading { color:#e8e4df; }
+.s-prose { font-size:clamp(15px,1.1vw,17px); line-height:1.9; color:#4a4a4a; max-width:680px; }
+.s-prose strong { color:#1a1a1a; font-weight:700; }
+.s-underline { text-decoration:underline; text-decoration-color:#cc2828; text-underline-offset:4px; text-decoration-thickness:2px; }
+.big-q { font-family:'Syne',sans-serif; font-size:clamp(26px,4vw,50px); font-weight:800; line-height:1.15; margin-bottom:28px; }
+.big-q em { font-style:italic; color:#cc2828; }
+.maybe-row { display:flex; align-items:flex-start; gap:14px; margin-bottom:24px; }
+.maybe-arrow { font-family:'Syne',sans-serif; font-size:14px; font-weight:800; color:#cc2828; opacity:0.4; flex-shrink:0; margin-top:2px; }
+.maybe-txt { font-size:clamp(15px,1.2vw,18px); line-height:1.6; color:#4a4a4a; }
+.maybe-txt em { font-style:italic; color:#1a1a1a; font-weight:500; }
+.s-callout { background:rgba(245,244,242,0.7); border:1px solid rgba(0,0,0,0.05); border-left:3px solid #cc2828; border-radius:0 12px 12px 0; padding:24px 28px; margin:36px 0; }
+.s-callout p { font-size:15px; line-height:1.75; color:#4a4a4a; }
+.s-callout strong { color:#1a1a1a; }
+.spectrum-row { display:flex; align-items:center; gap:16px; margin:36px 0 44px; }
+.sp-pole { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; white-space:nowrap; }
+.sp-pole.left { color:#3d5a80; } .sp-pole.right { color:#457b6e; }
+.sp-bar { flex:1; height:3px; border-radius:2px; background:linear-gradient(to right,#3d5a80,#b08d40 50%,#457b6e); opacity:0.35; position:relative; }
+.sp-label { position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-family:'Syne',sans-serif; font-size:9px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; color:#b08d40; white-space:nowrap; }
+.engine-stack { display:flex; flex-direction:column; gap:28px; }
+.e-row { display:grid; grid-template-columns:60px 1fr; gap:20px; padding:24px; border-radius:14px; border:1px solid rgba(0,0,0,0.06); transition:all 0.3s ease; }
+.e-row:hover { box-shadow:0 10px 32px rgba(0,0,0,0.04); transform:translateY(-2px); }
+.e-row.e1 { background:rgba(61,90,128,0.04); border-left:3px solid #3d5a80; }
+.e-row.e2 { background:rgba(176,141,64,0.04); border-left:3px solid #b08d40; }
+.e-row.e3 { background:rgba(69,123,110,0.04); border-left:3px solid #457b6e; }
+.e-num { font-family:'Syne',sans-serif; font-size:38px; font-weight:800; opacity:0.07; }
+.e-approach { font-family:'Syne',sans-serif; font-size:9px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:4px; }
+.e1 .e-approach { color:#3d5a80; } .e2 .e-approach { color:#b08d40; } .e3 .e-approach { color:#457b6e; }
+.e-title { font-family:'Syne',sans-serif; font-size:19px; font-weight:800; color:#1a1a1a; margin-bottom:6px; }
+.e-desc { font-size:13px; line-height:1.7; color:#4a4a4a; }
+.e-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:10px; }
+.e-tag { font-size:10px; font-weight:600; padding:3px 9px; border-radius:10px; background:rgba(240,238,235,0.7); border:1px solid rgba(0,0,0,0.05); color:#4a4a4a; }
+.dt-line { display:flex; flex-direction:column; margin-top:40px; position:relative; padding-left:32px; }
+.dt-line::before { content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,#3d5a80,#b08d40,#457b6e,#cc2828); opacity:0.2; }
+.dt-entry { position:relative; padding:20px 0 36px 20px; }
+.dt-dot { position:absolute; left:-28px; top:24px; width:12px; height:12px; border-radius:50%; border:2px solid rgba(255,255,255,0.25); background:rgba(42,39,37,0.9); transition:all 0.3s; }
+.dt-entry:hover .dt-dot { background:#cc2828; border-color:#cc2828; transform:scale(1.3); }
+.dt-edots { display:flex; gap:5px; margin-bottom:6px; }
+.dt-edot { width:8px; height:8px; border-radius:50%; }
+.dt-edot.cb{background:#3d5a80;} .dt-edot.cg{background:#b08d40;} .dt-edot.ct{background:#457b6e;} .dt-edot.cr{background:#cc2828;}
+.dt-title { font-family:'Syne',sans-serif; font-size:18px; font-weight:800; color:#e8e4df; margin-bottom:3px; }
+.dt-sub { font-size:10px; color:rgba(232,228,223,0.5); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px; }
+.dt-desc { font-size:13px; line-height:1.7; color:rgba(232,228,223,0.6); max-width:540px; }
+.cfp-wrap { display:flex; flex-wrap:wrap; gap:9px; margin-top:24px; }
+.cfp-chip { padding:9px 16px; border-radius:40px; background:rgba(240,238,235,0.6); border:1px solid rgba(0,0,0,0.05); font-size:12px; color:#4a4a4a; transition:all 0.25s; cursor:default; }
+.cfp-chip:hover { background:rgba(230,228,224,0.8); border-color:#cc2828; color:#1a1a1a; transform:translateY(-2px); }
+.archive-box { padding:40px 32px; border-radius:18px; border:2px solid rgba(204,40,40,0.12); background:rgba(250,249,247,0.85); text-align:center; margin-top:28px; }
+.archive-title { font-family:'Syne',sans-serif; font-size:26px; font-weight:800; color:#cc2828; margin-bottom:6px; }
+.archive-sub { font-size:12px; color:#8a8a8a; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:16px; }
+.archive-items { display:flex; flex-wrap:wrap; gap:7px; justify-content:center; }
+.archive-item { font-size:11px; font-weight:500; padding:5px 12px; border-radius:16px; background:rgba(204,40,40,0.05); border:1px solid rgba(204,40,40,0.1); color:#4a4a4a; }
+.tl-row { display:flex; justify-content:space-between; position:relative; padding:40px 0 16px; margin-top:28px; }
+.tl-row::before { content:''; position:absolute; top:62px; left:0; right:0; height:2px; background:linear-gradient(to right,#3d5a80,#b08d40,#457b6e,#cc2828); opacity:0.2; }
+.tl-stop { display:flex; flex-direction:column; align-items:center; text-align:center; flex:1; min-width:90px; }
+.tl-mk { width:11px; height:11px; border-radius:50%; border:2px solid #8a8a8a; background:#f5f4f2; margin-bottom:12px; transition:all 0.3s; }
+.tl-stop:hover .tl-mk { background:#cc2828; border-color:#cc2828; transform:scale(1.3); }
+.tl-when { font-family:'Syne',sans-serif; font-size:9px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#8a8a8a; margin-bottom:3px; }
+.tl-what { font-size:11px; font-weight:500; color:#1a1a1a; line-height:1.3; }
+.close-stmt { margin-top:56px; text-align:center; }
+.close-stmt p { font-family:'Syne',sans-serif; font-size:clamp(16px,2.2vw,26px); font-weight:700; line-height:1.5; color:#4a4a4a; }
+.close-stmt .ifa-cr { margin-top:16px; font-family:'DM Sans',sans-serif; font-size:13px; font-style:italic; color:#8a8a8a; }
+.deco-fl { position:absolute; pointer-events:none; user-select:none; font-family:'Noto Sans Bengali',sans-serif; font-weight:800; opacity:0.03; line-height:1; }
+/* Bengali mode */
+.lang-en { display: inline; }
+.lang-bn { display: none; }
+body.bn-mode .lang-en { display: none; }
+body.bn-mode .lang-bn { display: inline; }
+.lang-en.block, body.bn-mode .lang-bn.block { display: block; }
+body.bn-mode .lang-en.block { display: none; }
+.lang-bn.block { display: none; }
+body.bn-mode .s-heading, body.bn-mode .big-q, body.bn-mode .e-title, body.bn-mode .dt-title, body.bn-mode .archive-title, body.bn-mode .close-stmt p { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+body.bn-mode .s-eyebrow, body.bn-mode .e-approach, body.bn-mode .dt-sub, body.bn-mode .sp-pole, body.bn-mode .sp-label, body.bn-mode .tl-when, body.bn-mode .archive-sub { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+body.bn-mode .s-prose, body.bn-mode .e-desc, body.bn-mode .dt-desc, body.bn-mode .maybe-txt, body.bn-mode .s-callout p, body.bn-mode .cfp-chip, body.bn-mode .archive-item, body.bn-mode .tl-what, body.bn-mode .e-tag { font-family:'Noto Sans Bengali',sans-serif; }
+body.bn-mode .section-heading, body.bn-mode .section-body, body.bn-mode .section-label { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-family:'Noto Sans Bengali',sans-serif; }
+@media(max-width:768px){ .story-block{padding:clamp(48px,8vh,80px) 18px;} .big-q{font-size:clamp(22px,5.5vw,30px);} .spectrum-row{flex-direction:column;align-items:flex-start;gap:8px;} .sp-bar{width:100%;margin:6px 0;} .sp-label{position:static;transform:none;} .e-row{grid-template-columns:1fr;gap:8px;padding:20px 16px;} .tl-row{display:grid;grid-template-columns:1fr;gap:0;padding:16px 0 8px 24px;} .tl-row::before{position:absolute;left:8px;top:16px;bottom:8px;width:2px;height:auto;right:auto;} .tl-stop{display:flex;flex-direction:row;align-items:flex-start;gap:10px;text-align:left;padding:10px 0;} .tl-mk{margin-bottom:0;margin-top:2px;margin-left:-20px;} .cfp-chip{font-size:11px;padding:7px 12px;} .archive-box{padding:28px 16px;} }
+</style>
+</head>
+<body>
 
-:root {
-  --bg-deep: #ffffff;
-  --bg-mid: #fafaf9;
-  --bg-light: #f7f6f4;
-  --bg-white: #ffffff;
-  --bg-section-a: #f8f7f5;
-  --bg-section-b: #f3f2f0;
-  --accent-red: #cc2828;
-  --accent-red-soft: rgba(204, 40, 40, 0.08);
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a4a4a;
-  --text-muted: #8a8a8a;
-  --border-subtle: rgba(0, 0, 0, 0.06);
-  --border-mid: rgba(0, 0, 0, 0.1);
-}
+<div class="bg-illustration"></div>
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+<div id="preloader" class="preloader"><div class="preloader-inner"><span class="preloader-text">ক</span><div class="preloader-bar"><div class="preloader-fill"></div></div></div></div>
 
-/* FIX: Strict anti-pinch viewport lock */
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
-  scrollbar-width: none;
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-}
-html::-webkit-scrollbar { display: none; }
+<header class="site-header" id="siteHeader">
+  <div class="header-logo header-logo-left"><img src="img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span></div>
+  <div class="header-logo header-logo-right"><img src="img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></div>
+</header>
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg-deep);
-  color: var(--text-primary);
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-  -webkit-overflow-scrolling: touch;
-}
+<div class="lang-toggle-fixed" id="langToggleFixed">
+  <button class="lang-btn active" id="btnEN" data-lang="en">English</button>
+  <button class="lang-btn" id="btnBN" data-lang="bn">বাংলা</button>
+</div>
 
-img { max-width: 100%; height: auto; }
+<nav class="nav-bar" id="navBar">
+  <div class="nav-counter" id="navCounter">01</div>
+  <div class="nav-track">
+    <div class="nav-fill" id="navFill" style="top:0%;height:16.66%;"></div>
+    <div class="nav-segment active" data-section="0" style="top:0%;"><div class="nav-tick"></div><span class="nav-seg-label">Home</span></div>
+    <div class="nav-segment" data-section="1" style="top:20%;"><div class="nav-tick"></div><span class="nav-seg-label">Project Vision</span></div>
+    <div class="nav-segment" data-section="2" style="top:40%;"><div class="nav-tick"></div><span class="nav-seg-label">About IFA</span></div>
+    <div class="nav-segment" data-section="3" style="top:60%;"><div class="nav-tick"></div><span class="nav-seg-label">Resources</span></div>
+    <div class="nav-segment" data-section="4" style="top:80%;"><div class="nav-tick"></div><span class="nav-seg-label">Bhashascope</span></div>
+    <div class="nav-segment" data-section="5" style="top:97%;"><div class="nav-tick"></div><span class="nav-seg-label">Certificates</span></div>
+  </div>
+  <div class="nav-total">/ 06</div>
+</nav>
 
-/* ==========================================
-   FIXED BACKGROUND ILLUSTRATION — Jantar Mantar
-   Three responsive versions, each matching its
-   target aspect ratio — so cover fills perfectly.
-   ========================================== */
-.bg-illustration {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: url('../img/jantar-mantar-desktop.png') center center / cover no-repeat;
-  background-color: var(--bg-deep);
-  opacity: 0.18;
-  will-change: opacity;
-}
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="section-0">
+  <div class="hero-bg"><div class="bg-curve bg-curve-1"></div><div class="bg-curve bg-curve-2"></div></div>
+  <div class="hero-stage"><div class="hero-scale-wrapper">
+    <div class="matrix-canvas-wrap"><canvas id="matrixCanvas"></canvas></div>
+    <div class="vertical-titles"><span class="v-line platform">Platform</span><span class="v-line bengali">Bengali</span></div>
+    <div class="ka-canvas-wrap"><canvas id="kaCanvas"></canvas></div>
+    <div class="orbit-system">
+      <svg class="orbit-arcs" viewBox="0 0 400 560" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 30,60 A 200,210 0 0,1 30,480" fill="none" stroke="rgba(0,0,0,0.3)" stroke-width="1.5" stroke-dasharray="4 7"/></svg>
+      <a href="events/inaugural-lecture.html" class="orbit-item oi-0"><div class="o-dot"></div><div class="o-label" data-en="Inaugural Lecture" data-bn="উদ্বোধনী বক্তৃতা">Inaugural Lecture</div></a>
+      <a href="events/orientation-workshop.html" class="orbit-item oi-1"><div class="o-dot"></div><div class="o-label" data-en="Orientation Workshop" data-bn="প্রবেশক কর্মশালা">Orientation Workshop</div></a>
+      <a href="events/mt-workshop.html" class="orbit-item oi-2"><div class="o-dot"></div><div class="o-label" data-en="MT Workshop" data-bn="যন্ত্রানুবাদ কর্মশালা">MT Workshop</div></a>
+      <a href="events/conference.html" class="orbit-item oi-3"><div class="o-dot"></div><div class="o-label" data-en="Conference" data-bn="আলোচনাচক্র">Conference</div></a>
+      <a href="events/youtuber-interviews.html" class="orbit-item oi-4"><div class="o-dot"></div><div class="o-label" data-en="Youtuber Series" data-bn="সাক্ষাতে ইউটিউবার">Youtuber Series</div></a>
+      <a href="events/monthly-talks.html" class="orbit-item oi-5"><div class="o-dot"></div><div class="o-label" data-en="Speaker Series" data-bn="মাসিক বৈঠক">Speaker Series</div></a>
+    </div>
+    <div class="chevron chev-top">»</div><div class="chevron chev-bottom">»</div>
+  </div></div>
+  <div class="hero-info">
+    <p class="hero-desc" data-en="Tracing Language Evolution and Cultural Practice in Digital Economy" data-bn="বৈদ্যুতিন অর্থনীতিতে সাংস্কৃতিক চর্চা ও ভাষাগত পরিবর্তন অনুসন্ধানের প্রয়াস">Tracing Language Evolution and Cultural Practice in Digital Economy</p>
+  </div>
+  <div class="scroll-nudge" id="scrollNudge"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg><span>Scroll</span></div>
+  <div class="deco-arrow"><svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1"><path d="M10 10 L40 25 L10 40"/></svg></div>
+</section>
 
-/* Tablets — landscape & portrait (max-width 1024px) */
-@media (max-width: 1024px) {
-  .bg-illustration {
-    background-image: url('../img/jantar-mantar-tablet.png');
+<!-- ==================== SECTION 1 — PROJECT VISION ==================== -->
+<div id="section-1">
+
+  <!-- 1A: Hook -->
+  <div class="story-block sb-clear" style="min-height:90vh; display:flex; align-items:center;">
+    <div class="story-inner">
+      <div class="s-eyebrow sr" data-en="Project Vision" data-bn="প্রকল্প প্রস্তাবনা">Project Vision</div>
+      <h2 class="sr sd1" style="font-family:'Syne',sans-serif; font-size:clamp(40px,6vw,72px); font-weight:800; line-height:1.05; letter-spacing:-0.02em; color:#1a1a1a; margin-bottom:28px;"><span class="lang-en">Bengali is <span style="position:relative;display:inline;"><span style="position:relative;z-index:1;">changing.</span><span style="position:absolute;bottom:4px;left:0;right:0;height:8px;background:rgba(204,40,40,0.12);z-index:0;border-radius:2px;"></span></span><br>Right now. As you read this.</span><span class="lang-bn">বাংলা <span style="position:relative;display:inline;"><span style="position:relative;z-index:1;">বদলাচ্ছে</span><span style="position:absolute;bottom:4px;left:0;right:0;height:8px;background:rgba(204,40,40,0.12);z-index:0;border-radius:2px;"></span></span> রোজ।<br>প্রতিনিয়ত। প্রতি মুহূর্তে।</span></h2>
+      <p class="s-prose sr sd2" data-en="On YouTube. On Instagram reels. In Facebook comment threads. In WhatsApp forwards. A language spoken by 300 million people is being remade — one video, one caption, one meme at a time." data-bn="ইউটিউবে। ইন্সটাগ্রামে। ফেসবুকে। হোয়াটসঅ্যাপ ফরোয়ার্ডে। বিজ্ঞাপনের হোর্ডিং এ। সোস্যাল মিডিয়া ও প্রযুক্তির দৌলতে প্রায় ৩০ কোটি মানুষের মুখের ভাষা বদলে চলেছে দ্রুত।">On YouTube. On Instagram reels. In Facebook comment threads. In WhatsApp forwards. A language spoken by 300 million people is being remade — one video, one caption, one meme at a time.</p>
+      <div class="sr sd3" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:8px 20px;border-radius:40px;background:rgba(204,40,40,0.06);border:1px solid rgba(204,40,40,0.15);color:#cc2828;"><span style="width:6px;height:6px;border-radius:50%;background:#cc2828;display:inline-block;"></span> <span class="lang-en">Feb 2026 — Aug 2027 · 18 Months</span><span class="lang-bn">ফেব্রুয়ারি ২০২৬ — আগস্ট ২০২৭ · ১৮ মাস</span></div>
+    </div>
+  </div>
+
+  <!-- 1B: Provocation -->
+  <div class="story-block sb-dark">
+    <div class="deco-fl" style="font-size:180px;right:-20px;top:30px;">ভ</div>
+    <div class="story-inner">
+      <h2 class="big-q sr"><span class="lang-en">But here's the thing — <em>who gets to decide</em> what "correct" Bengali is?</span><span class="lang-bn">কিন্তু ভাবার কথা — <em>কে ঠিক করে</em>, কোনটা মান্য ভাষা? কোন ভাষাটা "ঠিক"?</span></h2>
+      <p class="s-prose sr sd1" data-en="The Bangla Akademi? University departments? Corporate media houses? Or the YouTuber in Barasat who coined a phrase that a million people now use daily?" data-bn="সরকারি প্রতিষ্ঠান? বিশ্ববিদ্যালয়ের পাঠক্রম? কর্পোরেট মিডিয়া হাউস? নাকি কার্সিয়াং এর সেই ইউটিউবার, যার বুলি মানুষের মুখে মুখে ঘুরছে?">The Bangla Akademi? University departments? Corporate media houses? Or the YouTuber in Barasat who coined a phrase that a million people now use daily?</p>
+      <p class="s-prose sr sd2" style="margin-top:18px;"><span class="lang-en">Platform Bengali doesn't pick a side. It <span class="s-underline">maps the entire terrain</span> — from how language <em>should</em> be spoken to how it <em>is</em> spoken. And in doing so, it asks a radical question:</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি প্রকল্পে আমরা কোনো পক্ষ না নিয়ে সবদিক দিয়ে বাংলা ভাষা ও সংস্কৃতির বর্তমান অবস্থা বোঝার চেষ্টা করছি। "কীভাবে ভাষা ব্যবহার করা উচিত" থেকে শুরু করে "কীভাবে ভাষা ব্যবহার করা হচ্ছে" — <span class="s-underline">ভাষা মানচিত্রের ব্যাপ্তি বিপুল</span>। সেই প্রক্রিয়ায় একটু ঝুঁকি নিয়েই হয়তো, আমরা একটা নতুন প্রশ্ন উস্কে দেবো —</span></p>
+      <p class="s-prose sr sd3" style="margin-top:24px;font-size:clamp(16px,1.3vw,20px);font-weight:700;color:#e8e4df;"><span class="lang-en">What if platform creators are not just entertainers — but <span class="s-underline">arts practitioners</span> reshaping a living language?</span><span class="lang-bn">স্যোশাল মিডিয়ার কন্টেন্ট ক্রিয়েটরদের কাজকে শুধু বিনোদনমূলক ক্রিয়া হিসেবে না দেখে, বরং যদি একটা <span class="s-underline">ভিন্ন শৈলীর শিল্প মাধ্যম</span> হিসেবে দেখা হয়? স্যোশাল মিডিয়ার কন্টেন্ট নির্মাতাদের ভাষাবিশ্ব(গুলো) কীরকম?</span></p>
+    </div>
+  </div>
+
+  <!-- 1C: Think about it -->
+  <div class="story-block sb-warm">
+    <div class="story-inner">
+      <p class="s-prose sr" style="font-style:italic;color:#8a8a8a;margin-bottom:28px;" data-en="Think about it this way —" data-bn="একটু তলিয়ে ভাবলে বোঝা যায় —">Think about it this way —</p>
+      <div class="maybe-row sr"><span class="maybe-arrow">→</span><p class="maybe-txt"><span class="lang-en">A Bengali roasting channel uses expletives and local slangs in a single sentence — and their audience <em>relates to it</em>. The standardised genteel <em>bhadralok</em> tongue would forbid these words from being used in public.</span><span class="lang-bn">বাংলা রোস্টিং চ্যানেল যে অপশব্দ ব্যবহার করে দর্শককে ধরে রাখতে, তার একটা নিজস্ব "বাজার" আছে। <em>ভদ্রলোক বাঙালির অস্বস্তির নেপথ্যে</em> বাজার, সমাজ এবং অর্থনীতি যে নতুন সাংস্কৃতিক ভাষ্য নির্মাণ করছে, তার চেহারাটা ঠিক কীরকম?</span></p></div>
+      <div class="maybe-row sr sd1"><span class="maybe-arrow">→</span><p class="maybe-txt"><span class="lang-en">An Instagrammer invents a portmanteau mixing Bengali and English that gets <em>picked up by thousands</em> within a week.</span><span class="lang-bn">ইন্টারনেট সংস্কৃতি জন্ম দিয়েছে <em>মিম সংস্কৃতির</em>। কে বানায় মিম, কে হাসে? ভদ্রলোক বাঙালির অস্বস্তির কারণ খিল্লির লঘুগুরু জ্ঞান লোপ। ইন্টারনেটের খিল্লি আচন্ডালে ভেদ করে না।</span></p></div>
+      <div class="maybe-row sr sd2"><span class="maybe-arrow">→</span><p class="maybe-txt"><span class="lang-en">A Facebook writer deploys culturally-specific references that <em>no machine translator can parse</em> — and that's precisely the point.</span><span class="lang-bn">অনুবাদ ভালো না খারাপ সেটা মাপার যে প্রথাগত মানদণ্ড ছিল, মেশিন ট্রান্সলেশন আসার পর থেকে তা ক্রমশ ফিকে হয়ে আসছে। সাহিত্য সংস্কৃতির মানুষ, অভিজ্ঞ অনুবাদক আর প্রযুক্তিবিদের মধ্যে <em>সংলাপের পরিসর বেশ কম</em>।</span></p></div>
+      <div class="maybe-row sr sd3"><span class="maybe-arrow">→</span><p class="maybe-txt"><span class="lang-en">Sunday Suspense creates an entire <em>audio-literary ecosystem</em> that rewrites the rules of Bengali storytelling for the digital age.</span><span class="lang-bn">কিন্তু আদার ব্যাপারী বলে জাহাজের খোঁজ একদম রাখবো না, সেটা ভাবলেও আর চলছে না।</span></p></div>
+      <div class="s-callout sr sd4"><p><span class="lang-en">These aren't just "content." They're <strong>acts of vernacular creativity</strong> — tacit knowledge of cultural codes, linguistic choices, and community-specific references deployed to build audience communities within platform-driven digital economies.</span><span class="lang-bn">এইসব ছকভাঙা প্রশ্নেরই উত্তর খোঁজার চেষ্টা করবো আমাদের প্রকল্পের নানা স্তরে।</span></p></div>
+    </div>
+  </div>
+
+  <!-- 1D: Three Engines -->
+  <div class="story-block sb-cool">
+    <div class="story-inner">
+      <div class="s-eyebrow sr" data-en="Project Framework" data-bn="প্রকল্পিত কাঠামো">Project Framework</div>
+      <h2 class="s-heading sr sd1" data-en="Three Engines of Language Mapping" data-bn="রূপায়ণনীতির ভিত্তিতে তিন ধরণের আঙ্গিক">Three Engines of Language Mapping</h2>
+      <p class="s-prose sr sd2" data-en="The project identifies three agents of linguistic change, arranged across a spectrum. Each represents a different relationship to language, standardisation, and digital culture." data-bn="এই প্রকল্পের সীমিত পরিসরে ভাষা ও সংস্কৃতির অবস্থা ও পরিবর্তন পরিমাপের রূপায়ণনীতির সুবিধার্থে আমরা তিন ধরণের আঙ্গিক সনাক্ত করেছি। প্রত্যেক কর্মসূচি এক বা একাধিক আঙ্গিককে অনুসরণ করে।">The project identifies three agents of linguistic change, arranged across a spectrum. Each represents a different relationship to language, standardisation, and digital culture.</p>
+      <div class="spectrum-row sr sd3">
+        <span class="sp-pole left" data-en="← How Language Should Be" data-bn="← ভাষা কেমন হওয়া উচিত">← How Language Should Be</span>
+        <div class="sp-bar"><span class="sp-label">Platform Bengali</span></div>
+        <span class="sp-pole right" data-en="How Language Is Spoken →" data-bn="কেমন ভাষা ব্যবহৃত হচ্ছে →">How Language Is Spoken →</span>
+      </div>
+      <div class="engine-stack">
+        <div class="e-row e1 sr"><div class="e-num">01</div><div>
+          <div class="e-approach" data-en="Top-Down Approach" data-bn="নিম্নাভিমুখী প্রক্রিয়া">Top-Down Approach</div>
+          <div class="e-title" data-en="The Gatekeepers" data-bn="ভাষাসান্ত্রী">The Gatekeepers</div>
+          <p class="e-desc" ><span class="lang-en">Those who define how Bengali <em>should</em> be spoken — the traditional gatekeepers of linguistic legitimacy. They codify grammar, set norms, and police the boundaries of "correct" Bengali.</span><span class="lang-bn">বিভিন্ন প্রতিষ্ঠান যাঁরা রোজ ঠিক করেন "ভাষা কেমন হওয়া উচিত"। ভাষার মইতে ওপরের দিকে এনাদের অবস্থান। মান্যভাষা, সঠিক ভাষা, বানান, ব্যাকরণ, বিশুদ্ধ ভাষা, অশুদ্ধ ভাষা ইত্যাদি সম্পর্কিত নিয়ম প্রণয়ন করেন।</span></p>
+          <div class="e-tags"><span class="e-tag" data-en="Academic Institutions" data-bn="উচ্চশিক্ষার প্রতিষ্ঠানসমূহ">Academic Institutions</span><span class="e-tag" data-en="Corporate Media" data-bn="কর্পোরেট মিডিয়া হাউস">Corporate Media</span><span class="e-tag" data-en="Bangla Akademi" data-bn="সরকারি প্রতিষ্ঠান">Bangla Akademi</span></div>
+        </div></div>
+        <div class="e-row e2 sr sd1"><div class="e-num">02</div><div>
+          <div class="e-approach" data-en="Cartographers" data-bn="তথ্য ও তত্ত্ব নির্মাতা">Cartographers</div>
+          <div class="e-title" data-en="The Knowledge Producers" data-bn="ভাষাদর্জি">The Knowledge Producers</div>
+          <p class="e-desc" ><span class="lang-en">Academics and researchers building the tools, theories, and methodologies to <em>map</em> what's happening — bridging the normative and the lived across linguistics, media studies, and digital humanities.</span><span class="lang-bn">এনারা ভাষার গোমস্তা। ভাষা ও সংস্কৃতির হিসেব নিকেশ রাখা, নতুন নতুন শব্দবন্ধ তৈরি করে, নতুন নতুন পাঠপদ্ধতি তৈরি করে ভাষা ও সংস্কৃতির সাম্প্রতিকের পাঠ প্রণয়ন করা এনাদের কাজ।</span></p>
+          <div class="e-tags"><span class="e-tag" data-en="DH Scholars" data-bn="গবেষক">DH Scholars</span><span class="e-tag" data-en="Linguists" data-bn="ভাষাবিদ">Linguists</span><span class="e-tag" data-en="Media Studies" data-bn="সমাজতাত্ত্বিক">Media Studies</span></div>
+        </div></div>
+        <div class="e-row e3 sr sd2"><div class="e-num">03</div><div>
+          <div class="e-approach" data-en="Bottom-Up Approach" data-bn="ঊধ্বাভিমুখী প্রক্রিয়া">Bottom-Up Approach</div>
+          <div class="e-title" data-en="The Practitioners" data-bn="পেশাজীবী">The Practitioners</div>
+          <p class="e-desc" ><span class="lang-en">Content creators who shape how Bengali is <em>actually</em> spoken — generating neologisms, code-switching patterns, and platform-native idioms through daily digital practice. The living laboratory.</span><span class="lang-bn">স্যোশাল মিডিয়ার কন্টেন্ট ক্রিয়েটর। যাঁরা নিজেদের কথ্য বাংলায় বাংলা ইংরেজি মিশিয়ে কথা বলেন। খিস্তি/খিল্লি প্রমুখ ভাষার অতিরঞ্জনের মাধ্যমে দর্শক ধরে রাখার নতুন নতুন উপায় বের করেন।</span></p>
+          <div class="e-tags"><span class="e-tag" data-en="YouTubers" data-bn="ইউটিউবার">YouTubers</span><span class="e-tag" data-en="Instagrammers" data-bn="ইনস্টাগ্রামার">Instagrammers</span><span class="e-tag" data-en="Content Creators" data-bn="কন্টেন্ট ক্রিয়েটর">Content Creators</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1E: Deliverables -->
+  <div class="story-block sb-dark">
+    <div class="story-inner">
+      <div class="s-eyebrow sr" style="color:rgba(204,40,40,0.7);" data-en="So how do we investigate this?" data-bn="ভাষা ও সংস্কৃতির অবস্থা কীভাবে ঠাওর করা হবে?">So how do we investigate this?</div>
+      <h2 class="s-heading sr sd1" style="color:#e8e4df;" data-en="Seven Instruments of Inquiry" data-bn="সুলুকসন্ধানের সাতটি ধাপ/কর্মসূচি">Seven Instruments of Inquiry</h2>
+      <p class="s-prose sr sd2" data-en="Each instrument engages one or more engines. Together, they produce a composite cartography of Bengali in the platform era." data-bn="প্রতিটি কর্মসূচি এক বা একাধিক রূপায়ণনীতির সঙ্গে জড়িত। একসাথে মিলে তারা সোশ্যাল মিডিয়ায় যুগে বাংলা ভাষার হাল হকিকতের এক বিশিষ্ট মানচিত্র তৈরি করে।">Each instrument engages one or more engines. Together, they produce a composite cartography of Bengali in the platform era.</p>
+      <div class="dt-line">
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cg"></span></div><div class="dt-title" data-en="Inaugural DH Lecture" data-bn="ডিজিটাল হিউম্যানিটিজের উদ্বোধনী বক্তৃতা">Inaugural DH Lecture</div><div class="dt-sub" data-en="Contextualising DH in Bhashasphere · Online · 1 Day" data-bn="ডিজিটাল হিউমানিটিজের দৃষ্টিতে ভাষামানচিত্রের প্রাসঙ্গীকরণ • অনলাইন • ১ দিন">Contextualising DH in Bhashasphere · Online · 1 Day</div><p class="dt-desc" data-en="A leading Digital Humanities professor situates the project within the broader landscape of Indian vernaculars — using Meenakshi Mukherjee's concept of &quot;Bhasha&quot; languages as the entry point." data-bn="ডিজিটাল হিউমানিটিজের শীর্ষস্থানীয় অধ্যাপক ভারতের আঞ্চলিক ভাষায় এ আই ও অন্যান্য নতুন প্রযুক্তির আবির্ভাব ভাষা ও সংস্কৃতির উপর কী প্রভাব ফেলেছে তা নিয়ে শীর্ষবক্তৃতায় এই প্রকল্পের নান্দীমুখ করবেন।">A leading Digital Humanities professor situates the project within the broader landscape of Indian vernaculars — using Meenakshi Mukherjee's concept of "Bhasha" languages as the entry point.</p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cg"></span><span class="dt-edot ct"></span></div><div class="dt-title" data-en="Inaugural Workshop" data-bn="উদ্বোধনী কর্মশালা">Inaugural Workshop</div><div class="dt-sub" data-en="Ethics of Researching Social Media" data-bn="সোশ্যাল মিডিয়া সংক্রান্ত গবেষণায় নতুন পদ্ধতির হদিশ">Ethics of Researching Social Media</div><p class="dt-desc" data-en="An expert-led workshop on the policy frameworks and ethical considerations for working with social media as a research object — from informed consent and data privacy to platform terms of service and the politics of scraping digital cultures." data-bn="একদিনের অনলাইন কর্মশালায় জনৈক প্রতিষ্ঠিত গবেষক সোশ্যাল মিডিয়া সংক্রান্ত হাতেকলমে আলোচনায় শেখাবেন ইন্টারনেটের যুগে সোস্যাল মিডিয়া নিয়ে কাজ করার নতুন পদ্ধতি ও দৃষ্টিভঙ্গিসমূহ।">An expert-led workshop on the policy frameworks and ethical considerations for working with social media as a research object — from informed consent and data privacy to platform terms of service and the politics of scraping digital cultures.</p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cb"></span><span class="dt-edot cg"></span><span class="dt-edot ct"></span></div><div class="dt-title" data-en="Monthly Lecture Series" data-bn="মাসিক বক্তৃতা সিরিজ">Monthly Lecture Series</div><div class="dt-sub" data-en="12 Speakers · 12 Months · All Three Engines" data-bn="১২ বক্তা • ১২ মাস • ৩টি ইঞ্জিন">12 Speakers · 12 Months · All Three Engines</div><p class="dt-desc" ><span class="lang-en">The only deliverable that bridges the <em>entire</em> spectrum — editors and media house veterans alongside academics alongside YouTubers and Instagrammers. A year-long conversation across all three engines.</span><span class="lang-bn">একমাত্র প্রকল্প-প্রদেয় যেখানে তিন ধরণের আঙ্গিক থেকেই বক্তারা উপস্থিত থাকবেন। সংবাদপত্রের সম্পাদক, অভিজ্ঞ মিডিয়াকর্মী, শিক্ষাবিদ, সোস্যাল মিডিয়া কন্টেন্ট ক্রিয়েটর সহ নানা পেশার মানুষ।</span></p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot ct"></span></div><div class="dt-title" data-en="YouTube Creator Interviews" data-bn="ইউটিউবারদের সাক্ষাৎকার">YouTube Creator Interviews</div><div class="dt-sub" data-en="10 In-Person · Qualitative Research" data-bn="১০ জন • গুণগত গবেষণা">10 In-Person · Qualitative Research</div><p class="dt-desc" data-en="Deep-dive interviews examining linguistic registers, code-switching, platform adaptations, and the use of AI in Bengali content production — with particular attention to the pandemic-era shifts that accelerated vernacular digital culture between 2020 and 2025." data-bn="নিবিড় সাক্ষাৎকারের মাধ্যমে ভাষাগত নিবন্ধন, কোড সুইচিং এবং প্ল্যাটফর্ম অভিযোজন ও বাংলায় কনটেন্ট তৈরি করার ক্ষেত্রে AI এর ব্যবহারের অনুসন্ধান — অতিমারীর সময় আঞ্চলিক বৈদ্যুতিন সংস্কৃতির বিকাশকে বোঝার প্রচেষ্টা।">Deep-dive interviews examining linguistic registers, code-switching, platform adaptations, and the use of AI in Bengali content production — with particular attention to the pandemic-era shifts that accelerated vernacular digital culture between 2020 and 2025.</p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cb"></span><span class="dt-edot cg"></span></div><div class="dt-title" data-en="5-Day Translation Workshop" data-bn="৫ দিনের অনুবাদ কর্মশালা">5-Day Translation Workshop</div><div class="dt-sub" data-en="Bengali: Machine Translation &amp; AI · Intensive" data-bn="বাংলায় যন্ত্র-অনুবাদ এবং এ আই">Bengali: Machine Translation &amp; AI · Intensive</div><p class="dt-desc" data-en="What happens when you run Bengali through machine translation systems? Where does the machine fail — and what does that failure reveal about the language itself? Culminates in a comprehensive MT evaluation report." data-bn="বাংলা লেখার যন্ত্র-অনুবাদ করলে কি হয়? যন্ত্র-অনুবাদ কখন সফল, কখন ব্যর্থ হয়? যন্ত্র-অনুবাদের ব্যর্থতা ভাষা সম্পর্কেই বা কী প্রকাশ করে? কর্মশালার শেষে একটা বিস্তৃত যন্ত্র-অনুবাদের মূল্যায়ন রিপোর্ট তৈরি করা হবে।">What happens when you run Bengali through machine translation systems? Where does the machine fail — and what does that failure reveal about the language itself? Culminates in a comprehensive MT evaluation report.</p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cb"></span><span class="dt-edot cg"></span><span class="dt-edot ct"></span></div><div class="dt-title" data-en="One-Day Hybrid Academic Conference" data-bn="১ দিনের হাইব্রিড শিক্ষামূলক আলোচনাসভা">One-Day Hybrid Academic Conference</div><div class="dt-sub" data-en="Platform Bengali: Technology &amp; Vernacular in the Digital Age" data-bn="প্ল্যাটফর্ম বেঙ্গলি: বৈদ্যুতিন যুগে প্রযুক্তি ও আঞ্চলিক ভাষা">Platform Bengali: Technology &amp; Vernacular in the Digital Age</div><p class="dt-desc" data-en="The culminating event. All three engines converge — scholars, institutional voices, and digital practitioners — to present research, debate findings, and chart future directions." data-bn="সর্বশেষ ইভেন্ট। ৩টি আঙ্গিক মিলিয়ে, শিক্ষাবিদ, কনটেন্ট ক্রিয়েটার, বিশেষজ্ঞ প্রমুখ সব-স্তরের মানুষের অংশগ্রহণের মাধ্যমে নতুন পরিভাষা, নতুন আঙ্গিক, নতুন দৃষ্টিভঙ্গির অন্বেষণ।">The culminating event. All three engines converge — scholars, institutional voices, and digital practitioners — to present research, debate findings, and chart future directions.</p></div>
+        <div class="dt-entry sr"><div class="dt-dot"></div><div class="dt-edots"><span class="dt-edot cr"></span></div><div class="dt-title" data-en="Bilingual Digital Repository" data-bn="দ্বিভাষিক বৈদ্যুতিন আধার">Bilingual Digital Repository</div><div class="dt-sub" data-en="Bhashascope · Mapping the Bhasha with Newer Tools and Methods" data-bn="ভাষাস্কোপ · নতুন পদ্ধতি ও প্রণালীর মাধ্যমে নতুন ভাষাচিত্রের খোঁজ">Bhashascope · Mapping the Bhasha with Newer Tools and Methods</div><p class="dt-desc" data-en="Everything lives here. AV documentation, interview transcripts, the MT workshop report, conference proceedings, relevant resources — a bilingual infrastructure that outlasts the project itself." data-bn="প্রকল্পের সব তথ্য, সাক্ষাৎকারের প্রতিলিপি, কর্মশালার প্রতিবেদন, আলোচনাসভার কার্যবিবরণী, সব এই ওয়েবসাইটে ভবিষ্যতের জন্য সংরক্ষিত হবে। ওয়েবসাইটের দ্বিভাষিক নীতি সুনিশ্চিত করবে যাতে বাঙালি এবং অবাঙালি মানুষ এখানে চিন্তার খোরাক খুঁজে পায়।">Everything lives here. AV documentation, interview transcripts, the MT workshop report, conference proceedings, relevant resources — a bilingual infrastructure that outlasts the project itself.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1F: CFP -->
+  <div class="story-block sb-warm">
+    <div class="story-inner">
+      <div class="s-eyebrow sr" data-en="Conference" data-bn="আলোচনা সভা">Conference</div>
+      <h2 class="s-heading sr sd1" data-en="13 Themes We're Exploring" data-bn="১৩ টি আলোচ্য বিষয়">13 Themes We're Exploring</h2>
+      <p class="s-prose sr sd2" data-en="The conference call for papers spans the full breadth of Bengali's digital transformation." data-bn="আলোচনাসভায় বাংলার বৈদ্যুতিন রূপান্তরের সম্পূর্ণ পরিসর জুড়ে গবেষণাপত্রের আহ্বান।">The conference call for papers spans the full breadth of Bengali's digital transformation.</p>
+      <div class="cfp-wrap sr sd3">
+        <span class="cfp-chip" data-en="Bengali Syntax &amp; Neologisms" data-bn="বাংলা বাক্যগঠন ও নিওলজিজম">Bengali Syntax &amp; Neologisms</span>
+        <span class="cfp-chip" data-en="Print to Digital: Blogs &amp; Portals" data-bn="মুদ্রণ থেকে বৈদ্যুতিন: ব্লগ ও পোর্টাল">Print to Digital: Blogs &amp; Portals</span>
+        <span class="cfp-chip" data-en="Bornoporichoy in the Age of AI" data-bn="কৃত্রিম বুদ্ধিমত্তার যুগে বর্ণপরিচয়">Bornoporichoy in the Age of AI</span>
+        <span class="cfp-chip" data-en="Bengali Digital Advertising" data-bn="বাংলা বৈদ্যুতিন বিজ্ঞাপন">Bengali Digital Advertising</span>
+        <span class="cfp-chip" data-en="Writing for Facebook Audiences" data-bn="ফেসবুক পাঠকের জন্য লেখা">Writing for Facebook Audiences</span>
+        <span class="cfp-chip" data-en="YouTubers &amp; Linguistic Innovation" data-bn="ইউটিউবার এবং ভাষাগত উদ্ভাবন">YouTubers &amp; Linguistic Innovation</span>
+        <span class="cfp-chip" data-en="OTT Web Series &amp; New Slang" data-bn="ও টি টি ওয়েব সিরিজ এবং নতুন শব্দসমূহ">OTT Web Series &amp; New Slang</span>
+        <span class="cfp-chip" data-en="Sunday Suspense &amp; Audio Storytelling" data-bn="সানডে সাসপেন্স এবং অডিও স্টোরি">Sunday Suspense &amp; Audio Storytelling</span>
+        <span class="cfp-chip" data-en="Authors as Internet Microcelebrities" data-bn="ইন্টারনেট &quot;মাইক্রোসেলিব্রিটি&quot; এবং বাঙালি লেখক">Authors as Internet Microcelebrities</span>
+        <span class="cfp-chip" data-en="Transnational Bengali" data-bn="আন্তর্জাতিক বাঙালি">Transnational Bengali</span>
+        <span class="cfp-chip" data-en="Bichitra &amp; Shabdakalpa: DH Case Studies" data-bn="বিচিত্রা এবং শব্দকল্প: ডিজিটাল হিউম্যানিটিজের সফল দৃষ্টান্ত">Bichitra &amp; Shabdakalpa: DH Case Studies</span>
+        <span class="cfp-chip" data-en="Film Trailers &amp; Marketing Language" data-bn="ফিল্ম ট্রেলার এবং বিপণনের ভাষা">Film Trailers &amp; Marketing Language</span>
+        <span class="cfp-chip" data-en="Policy, Preservation &amp; Standardisation" data-bn="নীতি, সংরক্ষণ, প্রমিতকরণ">Policy, Preservation &amp; Standardisation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1G: Archive -->
+  <div class="story-block sb-clear">
+    <div class="story-inner">
+      <div class="s-eyebrow sr" data-en="Where does it all go?" data-bn="কোথায় থাকবে এসব?">Where does it all go?</div>
+      <h2 class="s-heading sr sd1" data-en="Everything Flows Into the Archive" data-bn="প্রকল্পের সব নথি জমা থাকবে একটা দ্বিভাষিক ডিজিটাল আর্কাইভে">Everything Flows Into the Archive</h2>
+      <p class="s-prose sr sd2" data-en="All lectures, workshops, and conference proceedings are recorded. All interviews transcribed. All reports documented. The bilingual website serves as the permanent infrastructure for this and future language research." data-bn="প্রকল্পের সব নথি, প্রতিলিপি, বক্তৃতা, প্রতিবেদন জমা থাকবে একটা দ্বিভাষিক ওয়েবসাইটে, যা ভাষা ও সংস্কৃতি সংক্রান্ত গবেষণায় আগামী গবেষণার জন্য ডিজিটাল আর্কাইভ হিসেবে কাজ করবে।">All lectures, workshops, and conference proceedings are recorded. All interviews transcribed. All reports documented. The bilingual website serves as the permanent infrastructure for this and future language research.</p>
+      <div class="archive-box sr sd3">
+        <div class="archive-title">ভাষাস্কোপ</div>
+        <div class="archive-sub" data-en="Bhashascope — Mapping the Bhasha with Newer Tools and Methods" data-bn="ভাষাস্কোপ — নতুন পদ্ধতি ও প্রণালী ব্যবহার করে ভাষার মানচিত্র নির্মাণ">Bhashascope — Mapping the Bhasha with Newer Tools and Methods</div>
+        <a href="bhashascope.html" style="display:inline-block;margin-bottom:14px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#cc2828;text-decoration:none;border-bottom:1px solid rgba(204,40,40,0.3);padding-bottom:2px;" data-en="About Bhashascope →" data-bn="ভাষাস্কোপ সম্পর্কে →">About Bhashascope →</a>
+        <div class="archive-items">
+          <span class="archive-item" data-en="AV Documentation" data-bn="অডিও ভিজ্যুয়াল দলিল">AV Documentation</span>
+          <span class="archive-item" data-en="Interview Transcripts" data-bn="সাক্ষাৎকার প্রতিলিপি">Interview Transcripts</span>
+          <span class="archive-item" data-en="MT Workshop Report" data-bn="যন্ত্র-অনুবাদ কর্মশালার প্রতিবেদন">MT Workshop Report</span>
+          <span class="archive-item" data-en="Conference Proceedings" data-bn="আলোচনাসভার কার্যক্রম">Conference Proceedings</span>
+          <span class="archive-item" data-en="Relevant Resources" data-bn="প্রাসঙ্গিক সূত্রাবলী">Relevant Resources</span>
+          <span class="archive-item" data-en="Announcements" data-bn="ঘোষণা">Announcements</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1H: Timeline + Quote -->
+  <div class="story-block sb-cool">
+    <div class="story-inner">
+      <div class="s-eyebrow sr" data-en="Timeline" data-bn="সময়সূচী">Timeline</div>
+      <h2 class="s-heading sr sd1" data-en="The Project Arc" data-bn="প্রকল্পের পথরেখা">The Project Arc</h2>
+      <div style="display:inline-block;margin-bottom:20px;font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:6px 16px;border-radius:20px;background:rgba(204,40,40,0.06);border:1px solid rgba(204,40,40,0.15);color:#cc2828;" data-en="Feb 2026 — Aug 2027 · 18 Months" data-bn="ফেব্রুয়ারি ২০২৬ — আগস্ট ২০২৭ · ১৮ মাস">Feb 2026 — Aug 2027 · 18 Months</div>
+      <div class="tl-row sr sd2">
+        <div class="tl-stop"><div class="tl-mk"></div><span class="tl-when" data-en="Q1 2026" data-bn="Q১ ২০২৬">Q1 2026</span><span class="tl-what" data-en="DH Lecture, SM Ethics Workshop &amp; MT Workshop" data-bn="DH বক্তৃতা, নীতি কর্মশালা ও MT কর্মশালা">DH Lecture, SM Ethics Workshop &amp; MT Workshop</span></div>
+        <div class="tl-stop"><div class="tl-mk"></div><span class="tl-when" data-en="Q2 2026" data-bn="Q২ ২০২৬">Q2 2026</span><span class="tl-what" data-en="Hybrid Academic Conference" data-bn="হাইব্রিড একাডেমিক সম্মেলন">Hybrid Academic Conference</span></div>
+        <div class="tl-stop"><div class="tl-mk"></div><span class="tl-when" data-en="2026–27" data-bn="২০২৬-২৭">2026–27</span><span class="tl-what" data-en="Monthly Lectures" data-bn="মাসিক বক্তৃতা">Monthly Lectures</span></div>
+        <div class="tl-stop"><div class="tl-mk"></div><span class="tl-when" data-en="2026–27" data-bn="২০২৬-২৭">2026–27</span><span class="tl-what" data-en="Creator Interviews" data-bn="কনটেন্ট ক্রিয়েটার সাক্ষাৎকার">Creator Interviews</span></div>
+        <div class="tl-stop"><div class="tl-mk"></div><span class="tl-when" data-en="Mid 2027" data-bn="মধ্য ২০২৭">Mid 2027</span><span class="tl-what" data-en="Final Paperwork &amp; Closure" data-bn="অনুক্রমণিকা">Final Paperwork &amp; Closure</span></div>
+      </div>
+      <div class="close-stmt sr sd3">
+        <p ><span class="lang-en">"Words are walking without masters;<br>they go where they will."</span><span class="lang-bn">"কে তুমি? আমাকে যদি বলো তবু — চেয়ে দেখ<br>চশমা নই, জানলা নই,<br>স্বর্গের নরকের নাগরিক নই, আমি বাংলা ভাষা শুধু"</span></p>
+        <p style="font-size:clamp(12px,1vw,14px);color:#8a8a8a;margin-top:8px;font-weight:500;" ><span class="lang-en">— Zora Neale Hurston, <em>Their Eyes Were Watching God</em> (1937)</span><span class="lang-bn">— ভাস্কর চক্রবর্তী</span></p>
+        <p class="ifa-cr" data-en="Sponsored by the India Foundation for the Arts under its Arts Research programme." data-bn="ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত">Sponsored by the India Foundation for the Arts under its Arts Research programme.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /section-1 -->
+
+<!-- ==================== SECTION 2 — ABOUT IFA ==================== -->
+<section class="section-content section-b" id="section-2">
+  <div class="section-inner">
+    <div class="section-label reveal" data-en="02" data-bn="০২">02</div>
+    <p class="reveal" style="font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#cc2828;opacity:0.7;margin-bottom:24px;" data-en="This Foundation Project is implemented by India Foundation for the Arts (IFA), under the Arts Research Programme." data-bn="এই ফাউন্ডেশন প্রকল্পটি ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত">This Foundation Project is implemented by India Foundation for the Arts (IFA), under the Arts Research Programme.</p>
+    <div class="reveal reveal-delay-1" style="display:flex;align-items:center;gap:24px;margin-bottom:32px;flex-wrap:wrap;">
+      <img src="img/ifa-logo.png" alt="IFA" style="height:64px;width:auto;flex-shrink:0;" onerror="this.style.display='none';">
+      <h2 class="section-heading" style="margin-bottom:0;" data-en="About IFA" data-bn="আই এফ এ -এর পরিচয়">About IFA</h2>
+    </div>
+    <p class="section-body reveal reveal-delay-2" data-en="The India Foundation for the Arts (IFA) is an independent, nationwide, not-for-profit organisation that makes grants and implements projects across research, practice, and education in the arts and culture in India. Set up as a Public Charitable Trust in 1993, IFA began making grants and implementing projects in 1995. Since then, it has supported and implemented over 850 projects, disbursing over ₹38.65 crore (USD 4.64 million) across the country." data-bn="ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস একটি স্বাধীন অলাভজনক সংস্থা যাঁরা ভারতবর্ষের গোটা দেশ জুড়ে কলা এবং সংস্কৃতি বিষয়ক গবেষণা, অনুশীলন এবং শিক্ষার জন্য অনুদান দেয় এবং প্রকল্প বাস্তবায়িত করতে সাহায্য করে। ১৯৯৩ সালে একটি দাতব্য প্রতিষ্ঠান হিসেবে যাত্রা শুরু করে, ১৯৯৫ সাল থেকে আই এফ এ ৮৫০ টির বেশি প্রকল্প বাস্তবায়নে সহযোগিতা করেছে, ৩৮.৫৬ কোটি টাকার অনুদানের মাধ্যমে।">The India Foundation for the Arts (IFA) is an independent, nationwide, not-for-profit organisation that makes grants and implements projects across research, practice, and education in the arts and culture in India. Set up as a Public Charitable Trust in 1993, IFA began making grants and implementing projects in 1995. Since then, it has supported and implemented over 850 projects, disbursing over ₹38.65 crore (USD 4.64 million) across the country.</p>
+    <p class="section-body reveal reveal-delay-2" style="margin-top:20px;" data-en="IFA believes that the arts and culture are essential to individual and community lives, and for a more equitable and just world. As a facilitator, catalyst, and provocateur in the field, IFA supports critical investigations, explorations, and experiments that push boundaries of knowledge and practice, challenge dominant narratives, and speak truth to power — with a particular emphasis on encouraging work in Indian languages other than English." data-bn="আই এফ এ বিশ্বাস করে যে কলা এবং সংস্কৃতি হলো ব্যক্তি ও সমাজ জীবনের অপরিহার্য অংশ এবং একটি ন্যায্য পৃথিবী গঠনে গুরুত্বপূর্ণ ভূমিকা পালন করে। গবেষণাক্ষেত্রে সহযোগী এবং অনুঘটক হিসেবে আই এফ এ এমন সমালোচনামূলক অন্বেষণ এবং পরীক্ষাকে সমর্থন করে যা জ্ঞান এবং অনুশীলনের সীমানা অতিক্রম করে প্রভাবশালী বয়ানকে প্রশ্ন করে। সংস্থাটি ইংলিশ ছাড়া অন্য ভারতীয় ভাষার কাজে উৎসাহ প্রদান করে।">IFA believes that the arts and culture are essential to individual and community lives, and for a more equitable and just world. As a facilitator, catalyst, and provocateur in the field, IFA supports critical investigations, explorations, and experiments that push boundaries of knowledge and practice, challenge dominant narratives, and speak truth to power — with a particular emphasis on encouraging work in Indian languages other than English.</p>
+    <p class="section-body reveal reveal-delay-2" style="margin-top:20px;" data-en="The outcomes of IFA-supported projects — as books, films, performances, exhibitions, games, websites, and archival materials — circulate in the public domain through showcases, presentations, seminars, screenings, lecture demonstrations, and festivals, helping widen access and encouraging broader participation in the arts." data-bn="আই এফ এর সহযোগিতায় তৈরি প্রকল্পের মাধ্যমে বই, সিনেমা, প্রদর্শনী, গেমস, ওয়েবসাইট এবং সংরক্ষনাগার জাতীয় উপস্থাপনা জনপরিসরে আলোচনাসভা, বক্তৃতা, প্রদর্শনী ও বিভিন্ন অনুষ্ঠানের মাধ্যমে কলাশিল্পকে জনগণের কাছে পৌঁছে দেওয়ার কাজ করে চলেছে।">The outcomes of IFA-supported projects — as books, films, performances, exhibitions, games, websites, and archival materials — circulate in the public domain through showcases, presentations, seminars, screenings, lecture demonstrations, and festivals, helping widen access and encouraging broader participation in the arts.</p>
+    <div class="reveal reveal-delay-3" style="margin-top:40px;">
+      <p style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#8a8a8a;margin-bottom:16px;" data-en="Five Programmes" data-bn="পাঁচটি কার্যক্রম">Five Programmes</p>
+      <div class="placeholder-grid">
+        <div class="placeholder-card"><h3 data-en="Arts Research" data-bn="কলা গবেষণা">Arts Research</h3><p data-en="Critically enquires into the various histories and artistic practices in India, fostering broader perspectives and deeper understanding through inquiry, interaction, reflection, and experimentation. Platform Bengali operates under this programme." data-bn="ভারতের বিভিন্ন কলাশিল্পের ইতিহাস ও অনুশীলনের সমালোচনামূলক অন্বেষণ। Platform Bengali এই কার্যক্রমের অন্তর্গত।">Critically enquires into the various histories and artistic practices in India, fostering broader perspectives and deeper understanding through inquiry, interaction, reflection, and experimentation. Platform Bengali operates under this programme.</p></div>
+        <div class="placeholder-card"><h3 data-en="Arts Practice" data-bn="কলানুশীলন">Arts Practice</h3><p data-en="Challenges prevalent idioms and conventions of practice, counters market norms, and pushes new boundaries in content, form, and medium." data-bn="অনুশীলনের প্রচলিত বাগধারা ও রীতিনীতিকে প্রশ্ন করা, বাজারি আদর্শকে প্রশ্ন করা, এবং বিষয়বস্তু, বিন্যাস ও মাধ্যমের সীমানা অতিক্রম করার চেষ্টা করা।">Challenges prevalent idioms and conventions of practice, counters market norms, and pushes new boundaries in content, form, and medium.</p></div>
+        <div class="placeholder-card"><h3 data-en="Arts Education" data-bn="কলা শিক্ষা">Arts Education</h3><p data-en="Places the school teacher at the centre of its work, supporting arts-based training and grants for teachers and artists at government schools across and beyond Karnataka." data-bn="স্কুল শিক্ষককে কাজের কেন্দ্রে রাখা, কলা শিক্ষায় সাহায্য প্রদান করা এবং সরকারি বিদ্যালয়ের কলা শিক্ষক ও শিল্পীদের অনুদান প্রদান করা।">Places the school teacher at the centre of its work, supporting arts-based training and grants for teachers and artists at government schools across and beyond Karnataka.</p></div>
+        <div class="placeholder-card"><h3 data-en="Archives &amp; Museums" data-bn="সংরক্ষনাগার ও জাদুঘর">Archives &amp; Museums</h3><p data-en="Energises museums and archives as platforms for dialogue and discourse, generating new, critical, and creative approaches for public engagement with collections." data-bn="সংরক্ষনাগার ও জাদুঘরকে সংলাপ ও বক্তৃতার মাধ্যম হিসেবে গড়ে তোলা ও সম্ভারগুলির সাথে জন সংযোগের নতুন সৃজনশীল পথ তৈরি করা।">Energises museums and archives as platforms for dialogue and discourse, generating new, critical, and creative approaches for public engagement with collections.</p></div>
+        <div class="placeholder-card"><h3 data-en="Project 560" data-bn="প্রকল্প ৫৬০">Project 560</h3><p data-en="Named after Bangalore's pincode, encouraging artists, scholars, institutions, neighbourhoods, and citizens to engage creatively and critically in the city." data-bn="ব্যাঙ্গালোর শহরের পিনকোড নামাঙ্কিত প্রকল্পটি শহরের শিল্পী, বিদ্বজ্জন, সংগঠন, জনগণ ও পাড়াকে সৃজনশীল ও সমালোচনামূলক ভাবে যোগাযোগে উৎসাহ জোগায়।">Named after Bangalore's pincode, encouraging artists, scholars, institutions, neighbourhoods, and citizens to engage creatively and critically in the city.</p></div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-3" style="margin-top:32px;">
+      <a href="https://indiaifa.org/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#cc2828;text-decoration:none;border-bottom:1px solid rgba(204,40,40,0.3);padding-bottom:3px;">Visit indiaifa.org <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+  </div>
+  <div class="section-number">02</div>
+</section>
+
+<!-- ==================== SECTION 3 — RESOURCES ==================== -->
+<section class="section-content section-a" id="section-3">
+  <div class="section-inner">
+    <div class="section-label reveal" data-en="03" data-bn="০৩">03</div>
+    <h2 class="section-heading reveal reveal-delay-1" data-en="Relevant Resources" data-bn="প্রাসঙ্গিক তথ্যপুঞ্জি">Relevant Resources</h2>
+    <p class="section-body reveal reveal-delay-2" data-en="A curated collection of research materials, transcription repositories, theoretical frameworks, and documentation tools developed during the project." data-bn="প্রকল্প চলাকালীন তৈরি গবেষণা সম্পর্কিত উপযোগী তথ্য, প্রতিলিপি ভান্ডার, তাত্ত্বিক কাঠামো এবং নথিবদ্ধকরণ।">A curated collection of research materials, transcription repositories, theoretical frameworks, and documentation tools developed during the project.</p>
+    <div class="placeholder-grid reveal reveal-delay-3">
+      <div class="placeholder-card"><h3 data-en="Publications" data-bn="প্রকাশনা">Publications</h3><p data-en="Research papers and working documents." data-bn="গবেষণা প্রবন্ধ এবং তথ্যসূচি।">Research papers and working documents.</p></div>
+      <div class="placeholder-card"><h3 data-en="Transcriptions" data-bn="প্রতিলিপি">Transcriptions</h3><p data-en="Bilingual transcription repositories." data-bn="দ্বিভাষিক প্রতিলিপি ভান্ডার।">Bilingual transcription repositories.</p></div>
+      <div class="placeholder-card"><h3 data-en="Tools" data-bn="সরঞ্জাম">Tools</h3><p data-en="Digital documentation and analysis tools." data-bn="ডিজিটাল নথিবদ্ধকরণ ও বিশ্লেষণমূলক সরঞ্জাম।">Digital documentation and analysis tools.</p></div>
+    </div>
+  </div>
+  <div class="section-number">03</div>
+</section>
+
+<!-- ==================== SECTION 4 — BHASHASCOPE ==================== -->
+<section class="section-content section-b" id="section-4">
+  <div class="section-inner">
+    <div class="section-label reveal" data-en="04" data-bn="০৪">04</div>
+    <h2 class="section-heading reveal reveal-delay-1" data-en="Project Bhashascope" data-bn="ভাষাস্কোপ প্রকল্প">Project Bhashascope</h2>
+    <p class="section-body reveal reveal-delay-2" ><span class="lang-en">Platform Bengali (2020–2025) represents a specific research initiative bounded by its IFA grant period and scope. However, the digital repository website <strong>www.bhashascope.in</strong> is designed as a lasting infrastructure that transcends these temporal and funding constraints.</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি (২০২০–২০২৫) নামের গবেষণা উদ্যোগটি আই এফ এ-এর অনুদানের জন্য নির্দিষ্ট সময়কাল ও সীমিত পরিসরে আবদ্ধ। তবে এর ডিজিটাল রিপোজিটরি ওয়েবসাইট <strong>www.bhashascope.in</strong> এমন একটি স্থায়ী পরিকাঠামো, যা এই সময়সীমা ও আর্থিক সীমাবদ্ধতাকে অতিক্রম করে দীর্ঘমেয়াদে টিকে থাকার স্বপ্ন দেখে।</span></p>
+    <p class="section-body reveal reveal-delay-2" style="margin-top:20px;" data-en="The name Bhashascope (ভাষাস্কোপ) serves as an expansive umbrella that houses Platform Bengali while promising a future beyond it. Just as a telescope or microscope extends human vision into realms otherwise invisible, Bhashascope extends our vision into the living, evolving landscape of language in the realm of the digital." data-bn="ভাষাস্কোপ ওয়েবসাইটটি বটগাছের মতো, যার অধীনে প্ল্যাটফর্ম বাংলা একটি গুরুত্বপূর্ণ প্রকল্প হিসেবে আত্মপ্রকাশ করেছে। যেমন টেলিস্কোপ বা মাইক্রোস্কোপ মানুষের দৃষ্টিতে এমন সব জগৎ খুলে দেয়, যা সাধারণত অদৃশ্য, তেমনি ভাষাস্কোপ আমাদের দৃষ্টির দিগন্ত বিস্তৃত করে ডিজিটাল পরিসরে ভাষা ও সংস্কৃতির ক্রমপরিবর্তনের রূপরেখাটির হদিশ দিতে সচেষ্ট।">The name Bhashascope (ভাষাস্কোপ) serves as an expansive umbrella that houses Platform Bengali while promising a future beyond it. Just as a telescope or microscope extends human vision into realms otherwise invisible, Bhashascope extends our vision into the living, evolving landscape of language in the realm of the digital.</p>
+    <div class="reveal reveal-delay-3" style="margin-top:40px;">
+      <p style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#8a8a8a;margin-bottom:16px;" data-en="Key Conceptual Foundations" data-bn="প্রধান ধারণাগত ভিত্তি">Key Conceptual Foundations</p>
+      <div class="placeholder-grid">
+        <div class="placeholder-card"><h3 data-en="Continuity Beyond Grant Cycles" data-bn="অনুদান-চক্রের সীমা অতিক্রম">Continuity Beyond Grant Cycles</h3><p data-en="While Platform Bengali is constrained by its 18-month implementation timeline, Bhashascope establishes a permanent home for ongoing inquiry." data-bn="যদিও প্ল্যাটফর্ম বেঙ্গলি মাত্র ১৮ মাসের সময়সীমার মধ্যে আবদ্ধ, ভাষাস্কোপ সময়ের গণ্ডি ডিঙিয়ে একটা স্থায়ী ডিজিটাল ডেরা।">While Platform Bengali is constrained by its 18-month implementation timeline, Bhashascope establishes a permanent home for ongoing inquiry.</p></div>
+        <div class="placeholder-card"><h3 data-en="Breaking Disciplinary Barriers" data-bn="প্রাতিষ্ঠানিক বিভাগের সীমানা অতিক্রম">Breaking Disciplinary Barriers</h3><p data-en="Bhashascope is designed to transcend traditional boundaries — Arts and Science, Quantitative and Qualitative, Academic and Practitioner knowledge." data-bn="ভাষাস্কোপ এমনভাবে পরিকল্পিত, যাতে এটি কলা বনাম বিজ্ঞান, পরিমাণগত বনাম গুণগত পদ্ধতি, অ্যাকাডেমিক বনাম প্রয়োগমুখী জ্ঞানের বিভাজন অতিক্রম করতে পারে।">Bhashascope is designed to transcend traditional boundaries — Arts and Science, Quantitative and Qualitative, Academic and Practitioner knowledge.</p></div>
+        <div class="placeholder-card"><h3 data-en="Adaptive Sustainability" data-bn="অভিযোজিত স্থায়িত্ব">Adaptive Sustainability</h3><p data-en="With funding, different projects exploring diverse aspects of language evolution. Without funding, a community-driven resource crisscrossing boundaries." data-bn="আর্থিক সহযোগিতা পেলে ভিন্ন ভিন্ন প্রকল্পের মাধ্যমে ভাষার বিবর্তনের সুলুকসন্ধান। না থাকলেও সমষ্টিগত গবেষণার তথ্যসূচিতে রূপান্তরিত হতে পারে।">With funding, different projects exploring diverse aspects of language evolution. Without funding, a community-driven resource crisscrossing boundaries.</p></div>
+        <div class="placeholder-card"><h3 data-en="Cross-Community Vision" data-bn="পারস্পরিক বিনিময়">Cross-Community Vision</h3><p data-en="Bhashascope is not limited to Bengali alone. The infrastructure supports exploration across languages and communities." data-bn="ভাষাস্কোপ কেবল বাংলা ভাষার মধ্যেই সীমাবদ্ধ নয়। বিভিন্ন ভাষা ও সাংস্কৃতিক জনগোষ্ঠীর আন্তঃসম্পর্ক নিয়ে জানতে সমানভাবে আগ্রহী।">Bhashascope is not limited to Bengali alone. The infrastructure supports exploration across languages and communities.</p></div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-3" style="margin-top:36px;background:rgba(240,238,235,0.6);border:1px solid rgba(0,0,0,0.05);border-left:3px solid #cc2828;border-radius:0 12px 12px 0;padding:24px 28px;">
+      <p style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#8a8a8a;margin-bottom:10px;" data-en="Relationship to Platform Bengali" data-bn="প্ল্যাটফর্ম বেঙ্গলির সঙ্গে সম্পর্ক">Relationship to Platform Bengali</p>
+      <p style="font-size:14px;line-height:1.75;color:#4a4a4a;" data-en="Platform Bengali is the first major research initiative under Bhashascope. It establishes the methodology, ethical frameworks, and documentation standards that will guide future work. When Platform Bengali concludes, its outputs become permanent resources within Bhashascope, while the platform itself remains open for future investigations — whether funded or community-driven." data-bn="প্ল্যাটফর্ম বাংলা হল ভাষাস্কোপের অধীনে প্রথম এবং প্রধান গবেষণা উদ্যোগ। এটি ভবিষ্যৎ কাজের জন্য পদ্ধতিগত কাঠামো এবং নথিবদ্ধকরণের মানদণ্ড তৈরিতে আগ্রহী। প্ল্যাটফর্ম বেঙ্গলি প্রকল্পটির মেয়াদ উত্তীর্ণ হলে এর সমস্ত ফলাফল ভাষাস্কোপের স্থায়ী সম্পদ হিসেবে থেকে যাবে — তা সে অনুদান-নির্ভর হোক কিংবা সমষ্টিচালিত স্বাধীন উদ্যোগ।">Platform Bengali is the first major research initiative under Bhashascope. It establishes the methodology, ethical frameworks, and documentation standards that will guide future work. When Platform Bengali concludes, its outputs become permanent resources within Bhashascope, while the platform itself remains open for future investigations — whether funded or community-driven.</p>
+    </div>
+    <div class="reveal reveal-delay-3" style="margin-top:28px;">
+      <a href="https://www.bhashascope.in" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#cc2828;text-decoration:none;border-bottom:1px solid rgba(204,40,40,0.3);padding-bottom:3px;">Visit bhashascope.in <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+  </div>
+  <div class="section-number">04</div>
+</section>
+
+<!-- ==================== SECTION 5 — CERTIFICATES ==================== -->
+<section class="section-content section-a" id="section-5">
+  <div class="section-inner">
+    <div class="section-label reveal" data-en="05" data-bn="০৫">05</div>
+    <h2 class="section-heading reveal reveal-delay-1" data-en="Certificate Registry" data-bn="সার্টিফিকেট রেজিস্ট্রি">Certificate Registry</h2>
+    <p class="section-body reveal reveal-delay-2" data-en="Participants of the workshops and conference can verify and download their certificates of participation here." data-bn="কর্মশালা ও সম্মেলনের অংশগ্রহণকারীরা এখানে তাদের অংশগ্রহণের সার্টিফিকেট যাচাই এবং ডাউনলোড করতে পারবেন।">Participants of the workshops and conference can verify and download their certificates of participation here.</p>
+    <div class="placeholder-grid reveal reveal-delay-3">
+      <div class="placeholder-card"><h3 data-en="Orientation Workshop" data-bn="ওরিয়েন্টেশন কর্মশালা">Orientation Workshop</h3><p data-en="One-day introductory session certificates." data-bn="একদিনের প্রারম্ভিক সেশনের সার্টিফিকেট।">One-day introductory session certificates.</p></div>
+      <div class="placeholder-card"><h3 data-en="MT Workshop" data-bn="যন্ত্র অনুবাদ কর্মশালা">MT Workshop</h3><p data-en="5-day Machine Translation intensive certificates." data-bn="৫ দিনের নিবিড় যন্ত্র অনুবাদ কর্মশালার সার্টিফিকেট।">5-day Machine Translation intensive certificates.</p></div>
+      <div class="placeholder-card"><h3 data-en="Conference" data-bn="আলোচনাচক্র">Conference</h3><p data-en="International hybrid conference certificates." data-bn="গবেষক ও আগ্রহীদের জন্য সম্মেলনের সার্টিফিকেট।">International hybrid conference certificates.</p></div>
+    </div>
+  </div>
+  <div class="section-number">05</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="position:relative;z-index:1;max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,48px) 56px;border-top:1px solid rgba(0,0,0,0.06);display:flex;justify-content:space-between;align-items:center;">
+  <span style="font-size:12px;color:#8a8a8a;" data-en="© 2026 Platform Bengali — India Foundation for the Arts" data-bn="© ২০২৬ প্ল্যাটফর্ম বাংলা — ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস">© 2026 Platform Bengali — India Foundation for the Arts</span>
+</footer>
+
+<script src="js/ka-rotation.js" defer></script>
+<script src="js/matrix.js" defer></script>
+<script src="js/navigation.js" defer></script>
+
+<!-- Scroll nudge — hides on scroll, clicks to section-1 -->
+<script>
+(function(){
+  var nudge=document.getElementById('scrollNudge');
+  if(!nudge)return;
+  nudge.addEventListener('click',function(){
+    var target=document.getElementById('section-1');
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+  var hidden=false;
+  window.addEventListener('scroll',function(){
+    if(!hidden && (window.pageYOffset||document.documentElement.scrollTop)>80){
+      nudge.classList.add('hidden'); hidden=true;
+    } else if(hidden && (window.pageYOffset||document.documentElement.scrollTop)<=80){
+      nudge.classList.remove('hidden'); hidden=false;
+    }
+  },{passive:true});
+})();
+</script>
+
+<!-- Background scroll fade -->
+<script>
+(function(){
+  var b=document.querySelector('.bg-illustration');if(!b)return;
+  var mx=parseFloat(getComputedStyle(b).opacity)||0.18,mn=0.03;
+  function u(){var s=window.pageYOffset||document.documentElement.scrollTop,h=window.innerHeight,p=Math.min(s/h,1),e=p*p;b.style.opacity=mx-(mx-mn)*e;}
+  window.addEventListener('scroll',u,{passive:true});u();
+})();
+</script>
+
+<!-- Story scroll reveal -->
+<script>
+(function(){
+  var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('sv');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.sr').forEach(function(el){o.observe(el);});
+})();
+</script>
+
+<!-- Bilingual toggle -->
+<script>
+(function(){
+  var KEY='pb-lang',btnEN=document.getElementById('btnEN'),btnBN=document.getElementById('btnBN');
+  var lang=localStorage.getItem(KEY)||'en';
+  function apply(l){
+    lang=l;localStorage.setItem(KEY,lang);
+    btnEN.classList.toggle('active',lang==='en');
+    btnBN.classList.toggle('active',lang==='bn');
+    document.body.classList.toggle('bn-mode',lang==='bn');
+    document.querySelectorAll('[data-en][data-bn]').forEach(function(el){
+      var c=el.getAttribute('data-'+lang);
+      if(c.indexOf('<')!==-1){el.innerHTML=c;}else{el.textContent=c;}
+    });
   }
-}
-
-/* Phones — portrait (max-width 600px) */
-@media (max-width: 600px) {
-  .bg-illustration {
-    background-image: url('../img/jantar-mantar-mobile.png');
-    opacity: 0.14;
-  }
-}
-
-/* ==========================================
-   LEFT VERTICAL BAR NAVIGATOR
-   ========================================== */
-.nav-bar {
-  position: fixed;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 200;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 280px;
-}
-
-.nav-counter {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-}
-
-.nav-track {
-  position: relative;
-  width: 2px;
-  height: 240px;
-  background: var(--border-subtle);
-  border-radius: 1px;
-}
-
-.nav-fill {
-  position: absolute;
-  left: 0;
-  width: 2px;
-  background: var(--text-primary);
-  border-radius: 1px;
-  transition: top 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.nav-total {
-  font-family: 'Syne', sans-serif;
-  font-weight: 600;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  margin-top: 12px;
-}
-
-.nav-segment {
-  position: absolute;
-  left: -8px;
-  width: 18px;
-  height: 16.66%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-.nav-tick {
-  width: 8px;
-  height: 2px;
-  background: rgba(0, 0, 0, 0.12);
-  border-radius: 1px;
-  transition: all 0.3s ease;
-}
-
-.nav-segment.active .nav-tick {
-  background: var(--text-primary);
-  width: 12px;
-}
-
-.nav-segment:hover .nav-tick {
-  background: var(--text-secondary);
-  width: 12px;
-}
-
-.nav-seg-label {
-  position: absolute;
-  left: 24px;
-  font-family: 'Syne', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: all 0.3s ease;
-  pointer-events: none;
-}
-
-.nav-segment:hover .nav-seg-label {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.nav-segment.active .nav-seg-label {
-  color: var(--text-primary);
-}
-
-/* ==========================================
-   STICKY HEADER
-   ========================================== */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 300;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: clamp(8px, 1.5vw, 16px) clamp(12px, 3vw, 40px);
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-}
-
-.header-logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo-img {
-  height: clamp(22px, 3.5vw, 40px);
-  width: auto;
-  display: block;
-}
-
-.logo-fallback {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(10px, 1.2vw, 14px);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-primary);
-}
-
-.header-logo-left .logo-fallback {
-  color: var(--text-secondary);
-  font-weight: 700;
-}
-
-.header-logo-right .logo-img {
-  height: clamp(40px, 6vw, 72px);
-}
-
-/* ==========================================
-   HERO SECTION
-   FIX: Padding top clears the fixed header!
-   ========================================== */
-.hero {
-  height: 100vh;
-  height: 100dvh;
-  width: 100%;
-  padding-top: 80px; 
-  scroll-snap-align: start;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-  position: relative;
-  background: transparent;
-  z-index: 1;
-}
-
-/* Background curves */
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.bg-curve {
-  position: absolute;
-  border-radius: 50%;
-}
-
-.bg-curve-1 {
-  width: 120vw;
-  height: 120vw;
-  top: -50vw;
-  right: -35vw;
-  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.08) 45%, transparent 65%);
-}
-
-.bg-curve-2 {
-  width: 90vw;
-  height: 90vw;
-  bottom: -35vw;
-  left: -25vw;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 45%, transparent 65%);
-}
-
-/* ==========================================
-   HERO STAGE — centering container
-   ========================================== */
-.hero-stage {
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 0 20px;
-}
-
-/* ==========================================
-   HERO SCALE WRAPPER 
-   ========================================== */
-.hero-scale-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 950px;
-  aspect-ratio: 950 / 620;
-  margin: 0 auto;
-  overflow: visible;
-  container-type: inline-size;
-  container-name: hero;
-}
-
-/* ==========================================
-   VERTICAL TITLES
-   ========================================== */
-.vertical-titles {
-  position: absolute;
-  left: 1.58%;
-  top: 50%;
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: translateY(-50%) rotate(180deg);
-}
-
-.v-line {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(12px, 2.95cqi, 28px);
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  line-height: 1.5;
-}
-
-.v-line.platform {
-  color: rgba(26, 26, 26, 0.45);
-  font-weight: 700;
-}
-
-.v-line.bengali {
-  color: rgba(26, 26, 26, 0.9);
-  font-weight: 800;
-}
-
-/* ==========================================
-   DOT MATRIX CANVAS
-   ========================================== */
-.matrix-canvas-wrap {
-  position: absolute;
-  left: 13.68%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36.84%;
-  height: 77.42%;
-  z-index: 5;
-  pointer-events: none;
-}
-
-#matrixCanvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* ==========================================
-   3D ক CANVAS
-   ========================================== */
-.ka-canvas-wrap {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-70%, -52%);
-  z-index: 10;
-  width: 54.74%;
-  height: 83.87%;
-  will-change: transform;
-}
-
-#kaCanvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* ==========================================
-   ORBIT NAVIGATION 
-   ========================================== */
-.orbit-system {
-  position: absolute;
-  left: 48%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 42.11%;
-  height: 90.32%;
-  z-index: 20;
-}
-
-.orbit-arcs {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: visible;
-}
-
-.orbit-item {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: clamp(6px, 1.47cqi, 14px);
-  pointer-events: auto;
-  cursor: pointer;
-  text-decoration: none;
-  color: var(--text-primary);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.o-dot {
-  width: clamp(10px, 1.89cqi, 18px);
-  height: clamp(10px, 1.89cqi, 18px);
-  background: #fff;
-  border: 2px solid rgba(0, 0, 0, 0.15);
-  border-radius: 50%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
-  flex-shrink: 0;
-  transition: all 0.4s ease;
-}
-
-.o-label {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(8px, 1.58cqi, 15px);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  padding: 0;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border-radius: 0;
-  border: none;
-  box-shadow: none;
-  transform: translateX(4px);
-  transition: all 0.3s ease;
-}
-
-/* FIX: Zoom completely removed, Glasspill applied */
-.orbit-item:hover .o-label {
-  background: transparent;
-  border: none;
-  transform: translateX(4px); 
-}
-
-.orbit-item:active .o-label,
-.orbit-item.is-clicked .o-label {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: var(--text-primary);
-  padding: 4px 12px;
-  border-radius: 20px;
-  transform: translateX(4px); 
-}
-
-.orbit-item:hover .o-dot {
-  background: var(--text-primary);
-  border-color: var(--text-primary);
-  transform: scale(1.3);
-  box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.08);
-}
-
-.oi-0 { left: 7.5%;  top: 10.7%; }
-.oi-1 { left: 47.5%; top: 25.7%; }
-.oi-2 { left: 56.5%; top: 40.7%; }
-.oi-3 { left: 56.5%; top: 55.7%; }
-.oi-4 { left: 47.5%; top: 70.7%; }
-.oi-5 { left: 7.5%;  top: 85.7%; }
-
-/* ==========================================
-   DECORATIVE CHEVRONS
-   ========================================== */
-.chevron {
-  position: absolute;
-  opacity: 0.1;
-  pointer-events: none;
-  user-select: none;
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(14px, 2.95cqi, 28px);
-  font-weight: 700;
-  z-index: 2;
-  color: var(--text-primary);
-}
-
-.chev-top { top: 5%; left: 50%; }
-.chev-bottom { bottom: 7%; left: 47%; }
-
-/* ==========================================
-   HERO BOTTOM INFO
-   ========================================== */
-.hero-info {
-  position: absolute;
-  bottom: clamp(20px, 5vh, 60px);
-  left: clamp(20px, 8vw, 100px);
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.hero-desc {
-  font-family: 'Syne', sans-serif;
-  font-weight: 600;
-  font-size: clamp(10px, 1.2vw, 13px);
-  line-height: 1.7;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  max-width: clamp(200px, 35vw, 380px);
-  color: var(--text-secondary);
-}
-
-.lang-toggle {
-  display: flex;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 50px;
-  padding: 4px;
-  width: fit-content;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-}
-
-.lang-btn {
-  border: none;
-  background: transparent;
-  padding: clamp(5px, 0.8vw, 8px) clamp(12px, 2vw, 22px);
-  border-radius: 40px;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 700;
-  font-size: clamp(10px, 1vw, 12px);
-  text-transform: uppercase;
-  cursor: pointer;
-  color: var(--text-muted);
-  transition: all 0.3s ease;
-}
-
-.lang-btn.active {
-  background: var(--accent-red);
-  color: #fff;
-  box-shadow: 0 2px 12px rgba(204, 40, 40, 0.35);
-}
-
-/* Scroll nudge — bouncing arrow */
-.scroll-nudge {
-  position: absolute;
-  bottom: 36px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  z-index: 50;
-  cursor: pointer;
-  opacity: 0.7;
-  animation: nudgeBounce 2.2s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite,
-             nudgeFadeIn 1s 1.2s both;
-  transition: opacity 0.4s ease;
-}
-.scroll-nudge svg {
-  width: 28px;
-  height: 28px;
-  color: var(--text-primary);
-  opacity: 0.7;
-}
-.scroll-nudge span {
-  font-family: 'Syne', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  font-weight: 600;
-}
-.scroll-nudge.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-@keyframes nudgeBounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  30% { transform: translateX(-50%) translateY(12px); }
-  50% { transform: translateX(-50%) translateY(5px); }
-  70% { transform: translateX(-50%) translateY(10px); }
-}
-@keyframes nudgeFadeIn {
-  from { opacity: 0; }
-  to { opacity: 0.7; }
-}
-
-.deco-arrow {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  width: 50px;
-  height: 50px;
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 5;
-  color: var(--text-primary);
-}
-
-/* ==========================================
-   ENTRY ANIMATIONS
-   ========================================== */
-.vertical-titles { animation: titleReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
-.hero-info       { animation: slideUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
-.ka-canvas-wrap  { animation: fadeScale 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both; }
-.orbit-item      { animation: slideRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
-.oi-0 { animation-delay: 0.45s; }
-.oi-1 { animation-delay: 0.55s; }
-.oi-2 { animation-delay: 0.65s; }
-.oi-3 { animation-delay: 0.75s; }
-.oi-4 { animation-delay: 0.85s; }
-.oi-5 { animation-delay: 0.95s; }
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes titleReveal {
-  from { opacity: 0; transform: translateY(-50%) rotate(180deg) translateX(30px); }
-  to   { opacity: 1; transform: translateY(-50%) rotate(180deg) translateX(0); }
-}
-@keyframes fadeScale {
-  from { opacity: 0; transform: translate(-70%, -52%) scale(0.85); }
-  to   { opacity: 1; transform: translate(-70%, -52%) scale(1); }
-}
-@keyframes slideRight {
-  from { opacity: 0; transform: translateX(-20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes titleRevealMobile {
-  from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-  to   { opacity: 1; transform: translateX(-50%); }
-}
-@keyframes fadeScaleMobile {
-  from { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
-  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-}
-
-/* ==========================================
-   SECTION STYLES
-   ========================================== */
-.section-inner {
-  max-width: 1200px;
-  width: 100%;
-  padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 80px);
-}
-
-.section-label {
-  font-family: 'Syne', sans-serif;
-  font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent-red);
-  opacity: 0.6;
-  margin-bottom: 24px;
-}
-
-.section-heading {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(32px, 4vw, 56px);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  margin-bottom: 32px;
-}
-
-.section-body {
-  font-size: clamp(14px, 1.1vw, 16px);
-  line-height: 1.8;
-  color: var(--text-secondary);
-  max-width: 640px;
-}
-
-.section-content {
-  min-height: 100vh;
-  scroll-snap-align: start;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-
-.section-a { background: rgba(248, 247, 245, 0.85); }
-.section-b { background: rgba(243, 242, 240, 0.85); }
-
-.section-number {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(60px, 14vw, 180px);
-  position: absolute;
-  right: clamp(16px, 4vw, 80px);
-  bottom: 40px;
-  color: rgba(0, 0, 0, 0.03);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Reveal animations */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-
-/* Placeholder cards */
-.placeholder-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-  margin-top: 40px;
-}
-
-.placeholder-card {
-  padding: 32px;
-  border-radius: 16px;
-  background: rgba(245, 244, 242, 0.6);
-  border: 1px solid var(--border-subtle);
-  transition: all 0.3s ease;
-}
-
-.placeholder-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
-  border-color: var(--border-mid);
-}
-
-.placeholder-card h3 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  margin-bottom: 8px;
-  color: var(--text-primary);
-}
-
-.placeholder-card p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-}
-
-/* ==========================================
-   PRELOADER
-   ========================================== */
-.preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: var(--bg-deep);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-.preloader.loaded {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-.preloader-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-.preloader-text {
-  font-family: 'Noto Sans Bengali', sans-serif;
-  font-weight: 900;
-  font-size: 48px;
-  color: var(--text-primary);
-  opacity: 0.3;
-  animation: preloaderPulse 1.2s ease-in-out infinite;
-}
-.preloader-bar {
-  width: 80px;
-  height: 2px;
-  background: var(--border-subtle);
-  border-radius: 1px;
-  overflow: hidden;
-}
-.preloader-fill {
-  width: 40%;
-  height: 100%;
-  background: var(--text-primary);
-  border-radius: 1px;
-  animation: preloaderSlide 1s ease-in-out infinite;
-}
-@keyframes preloaderPulse {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.5; }
-}
-@keyframes preloaderSlide {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(300%); }
-}
-
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
-
-@media (max-width: 768px) {
-  .hero {
-    overflow: hidden;
-    padding-top: 60px;
-    padding-bottom: 0;
-  }
-  .hero-stage {
-    overflow-x: hidden;
-    max-width: 100vw;
-    padding: 0 8px;
-  }
-  .hero-scale-wrapper {
-    aspect-ratio: 3 / 4;
-    max-width: 100%;
-    overflow: visible;
-  }
-
-  .site-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 8px 12px;
-    gap: 8px;
-  }
-  .header-logo-left img,
-  .header-logo-left .logo-img {
-    height: auto;
-    width: auto;
-    max-height: 34px;
-    max-width: 120px;
-    object-fit: contain;
-  }
-  .header-logo-right .logo-img {
-    height: auto;
-    max-height: 44px;
-    max-width: 200px;
-    object-fit: contain;
-  }
-  .header-logo-right {
-    margin-left: auto;
-  }
-  .header-logo-right .logo-fallback {
-    text-align: right;
-    white-space: nowrap;
-  }
-  .logo-fallback {
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-  }
-
-  .vertical-titles {
-    writing-mode: horizontal-tb;
-    text-orientation: initial;
-    transform: translateX(-50%);
-    top: 2%;
-    left: 50%;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 2px;
-    max-width: 220px;
-    animation: titleRevealMobile 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
-  }
-  .v-line {
-    font-size: clamp(16px, 5vw, 24px);
-    letter-spacing: 0.15em;
-    line-height: 1.3;
-  }
-
-  .ka-canvas-wrap {
-    left: 28%;
-    top: 48%;
-    transform: translate(-50%, -50%);
-    width: 62%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    animation: fadeScaleMobile 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
-  }
-
-  .matrix-canvas-wrap {
-    left: 0%;
-    top: 48%;
-    transform: translateY(-50%);
-    width: 55%;
-    height: 50%;
-  }
-
-  .orbit-system {
-    left: 38%;
-    top: 48%;
-    transform: translateY(-50%);
-    width: 58%;
-    height: 55%;
-  }
-
-  .o-label {
-    font-size: clamp(8px, 2.2vw, 11px);
-    padding: 0;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-    transform: translateX(2px);
-  }
-  /* FIX: Zoom removed entirely for mobile */
-  .orbit-item:hover .o-label {
-    transform: translateX(2px);
-  }
-  .orbit-item:active .o-label,
-  .orbit-item.is-clicked .o-label {
-    transform: translateX(2px);
-    padding: 4px 10px; /* Small glasspill padding on mobile */
-  }
-
-  .o-dot {
-    width: 12px;
-    height: 12px;
-    border-width: 1.5px;
-  }
-  .orbit-item {
-    gap: 6px;
-  }
-
-  .oi-0 { left: 7.5%;  top: 10.7%; }
-  .oi-2 { left: 52.0%; top: 40.7%; }
-  .oi-4 { left: 44.0%; top: 70.7%; }
-
-  .hero-info {
-    left: 16px;
-    right: 16px;
-    bottom: 20px;
-    gap: 12px;
-  }
-  .hero-desc {
-    font-size: clamp(11px, 3vw, 14px);
-    line-height: 1.6;
-    max-width: 85vw;
-    letter-spacing: 0.03em;
-  }
-  .lang-btn {
-    font-size: 12px;
-    padding: 7px 18px;
-  }
-
-  .chevron { display: none; }
-  .deco-arrow { display: none; }
-  .scroll-nudge { bottom: 14px; opacity: 0.6; }
-  .scroll-nudge svg { width: 24px; height: 24px; }
-}
-
-@media (max-width: 900px) {
-  .nav-bar { display: none; }
-}
-
-@media (max-width: 600px) {
-  .placeholder-grid { grid-template-columns: 1fr; gap: 16px; }
-  .placeholder-card { padding: 24px; }
-}
+  btnEN.addEventListener('click',function(){apply('en');});
+  btnBN.addEventListener('click',function(){apply('bn');});
+  apply(lang);
+})();
+</script>
+</body>
+</html>
