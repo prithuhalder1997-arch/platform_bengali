@@ -907,10 +907,10 @@ img { max-width: 100%; height: auto; }
   }
 
   .orbit-system {
-    left: 38%;
+    left: 20%;
     top: 48%;
     transform: translateY(-50%);
-    width: 58%;
+    width: 75%;
     height: 55%;
   }
 
@@ -920,6 +920,9 @@ img { max-width: 100%; height: auto; }
     letter-spacing: 0.02em;
     white-space: nowrap;
     transform: translateX(2px);
+    max-width: 45vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   /* FIX: Zoom removed entirely for mobile */
   .orbit-item:hover .o-label {
@@ -940,20 +943,23 @@ img { max-width: 100%; height: auto; }
     gap: 6px;
   }
 
-  .oi-0 { left: 7.5%;  top: 10.7%; }
-  .oi-2 { left: 52.0%; top: 40.7%; }
-  .oi-4 { left: 44.0%; top: 70.7%; }
+  .oi-0 { left: 5%;   top: 10.7%; }
+  .oi-1 { left: 28%;  top: 25.7%; }
+  .oi-2 { left: 38%;  top: 40.7%; }
+  .oi-3 { left: 38%;  top: 55.7%; }
+  .oi-4 { left: 28%;  top: 70.7%; }
+  .oi-5 { left: 5%;   top: 85.7%; }
 
   .hero-info {
     left: 16px;
     right: 16px;
-    bottom: 20px;
-    gap: 12px;
+    bottom: 70px;
+    gap: 10px;
   }
   .hero-desc {
-    font-size: clamp(11px, 3vw, 14px);
-    line-height: 1.6;
-    max-width: 85vw;
+    font-size: clamp(10px, 2.8vw, 13px);
+    line-height: 1.5;
+    max-width: 60vw;
     letter-spacing: 0.03em;
   }
   .lang-btn {
