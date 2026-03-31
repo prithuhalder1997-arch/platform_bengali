@@ -889,10 +889,10 @@ img { max-width: 100%; height: auto; }
   }
 
   .ka-canvas-wrap {
-    left: 28%;
-    top: 48%;
+    left: 18%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    width: 62%;
+    width: 55%;
     height: auto;
     aspect-ratio: 1 / 1;
     animation: fadeScaleMobile 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
@@ -902,15 +902,15 @@ img { max-width: 100%; height: auto; }
     left: 0%;
     top: 48%;
     transform: translateY(-50%);
-    width: 55%;
+    width: 45%;
     height: 50%;
   }
 
   .orbit-system {
-    left: 20%;
+    left: 48%;
     top: 48%;
     transform: translateY(-50%);
-    width: 75%;
+    width: 50%;
     height: 55%;
   }
 
@@ -920,7 +920,7 @@ img { max-width: 100%; height: auto; }
     letter-spacing: 0.02em;
     white-space: nowrap;
     transform: translateX(2px);
-    max-width: 45vw;
+    max-width: 40vw;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -931,7 +931,7 @@ img { max-width: 100%; height: auto; }
   .orbit-item:active .o-label,
   .orbit-item.is-clicked .o-label {
     transform: translateX(2px);
-    padding: 4px 10px; /* Small glasspill padding on mobile */
+    padding: 4px 10px;
   }
 
   .o-dot {
@@ -940,15 +940,15 @@ img { max-width: 100%; height: auto; }
     border-width: 1.5px;
   }
   .orbit-item {
-    gap: 6px;
+    gap: 5px;
   }
 
-  .oi-0 { left: 5%;   top: 10.7%; }
-  .oi-1 { left: 28%;  top: 25.7%; }
-  .oi-2 { left: 38%;  top: 40.7%; }
-  .oi-3 { left: 38%;  top: 55.7%; }
-  .oi-4 { left: 28%;  top: 70.7%; }
-  .oi-5 { left: 5%;   top: 85.7%; }
+  .oi-0 { left: -8%;  top: 10.7%; }
+  .oi-1 { left: 18%;  top: 25.7%; }
+  .oi-2 { left: 30%;  top: 40.7%; }
+  .oi-3 { left: 30%;  top: 55.7%; }
+  .oi-4 { left: 18%;  top: 70.7%; }
+  .oi-5 { left: -8%;  top: 85.7%; }
 
   .hero-info {
     left: 16px;
