@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(De)Signs Taken for Wonders — Dr. Dibyadyuti Roy · Platform Bengali</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; max-width:100vw!important; overflow-x:hidden!important; }
+body { font-family:'DM Sans',sans-serif; background:#ffffff; color:#1a1a1a; max-width:100vw!important; overflow-x:hidden!important; }
+img { max-width:100%; height:auto; }
+
+/* Fixed background */
+.bg-illustration { position:fixed; inset:0; z-index:0; pointer-events:none; background:url('../img/jantar-mantar-desktop.png') center center / cover no-repeat; background-color:#fff; opacity:0.18; will-change:opacity; }
+@media(max-width:1024px){ .bg-illustration { background-image:url('../img/jantar-mantar-tablet.png'); } }
+@media(max-width:600px){ .bg-illustration { background-image:url('../img/jantar-mantar-mobile.png'); opacity:0.14; } }
+
+/* Header */
+.site-header { position:fixed; top:0; left:0; right:0; z-index:300; display:flex; align-items:center; justify-content:space-between; padding:clamp(8px,1.5vw,16px) clamp(12px,3vw,40px); background:rgba(255,255,255,0.55); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(0,0,0,0.04); }
+.header-logo { display:flex; align-items:center; }
+.logo-img { height:clamp(22px,3.5vw,40px); width:auto; display:block; }
+.header-logo-right .logo-img { height:clamp(40px,6vw,72px); }
+.logo-fallback { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(10px,1.2vw,14px); letter-spacing:0.1em; text-transform:uppercase; color:#1a1a1a; }
+
+/* Language toggle */
+.lang-toggle-fixed { position:fixed; bottom:32px; right:32px; z-index:250; display:flex; background:rgba(255,255,255,0.8); backdrop-filter:blur(14px); border:1px solid rgba(0,0,0,0.08); border-radius:50px; padding:4px; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+.lang-toggle-fixed .lang-btn { border:none; background:transparent; outline:none; cursor:pointer; padding:8px 20px; border-radius:40px; font-family:'DM Sans',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; color:#8a8a8a; transition:all 0.3s; line-height:1; }
+.lang-toggle-fixed .lang-btn.active { background:#cc2828; color:#fff; box-shadow:0 2px 12px rgba(204,40,40,0.35); }
+.lang-toggle-fixed .lang-btn[data-lang="bn"] { font-family:'Noto Sans Bengali',sans-serif; font-weight:600; text-transform:none; font-size:13px; }
+@media(max-width:768px){ .lang-toggle-fixed{bottom:16px;right:16px;} .lang-toggle-fixed .lang-btn{padding:7px 14px;font-size:11px;} }
+
+/* Page content */
+.page-wrap { position:relative; z-index:1; min-height:100vh; padding-top:clamp(80px,10vh,120px); }
+
+/* Back nav */
+.back-nav { display:inline-flex; align-items:center; gap:8px; margin-bottom:40px; font-family:'Syne',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#8a8a8a; text-decoration:none; transition:color 0.3s; }
+.back-nav:hover { color:#cc2828; }
+.back-nav svg { width:18px; height:18px; }
+
+/* Event header area */
+.event-header { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,60px); }
+.event-eyebrow { font-family:'Syne',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#cc2828; opacity:0.6; margin-bottom:14px; }
+.event-title { font-family:'Syne',sans-serif; font-size:clamp(32px,5vw,56px); font-weight:800; line-height:1.1; letter-spacing:-0.02em; color:#1a1a1a; margin-bottom:12px; }
+.event-subtitle { font-family:'Syne',sans-serif; font-size:clamp(13px,1.4vw,16px); font-weight:600; letter-spacing:0.04em; color:#8a8a8a; margin-bottom:8px; }
+.event-meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; margin-bottom:40px; }
+.meta-tag { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:6px 16px; border-radius:40px; border:1px solid rgba(0,0,0,0.08); color:#4a4a4a; background:rgba(245,244,242,0.7); }
+.meta-tag.accent { background:rgba(204,40,40,0.06); border-color:rgba(204,40,40,0.15); color:#cc2828; }
+
+/* Video embed */
+.video-wrap { max-width:900px; margin:0 auto 48px; padding:0 clamp(20px,5vw,60px); }
+.video-container { position:relative; width:100%; padding-bottom:56.25%; border-radius:16px; overflow:hidden; background:#0a0a0a; box-shadow:0 20px 60px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06); }
+.video-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+
+/* Description */
+.event-body { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,60px) 80px; }
+.event-desc { font-size:clamp(15px,1.1vw,17px); line-height:1.9; color:#4a4a4a; max-width:680px; margin-bottom:28px; }
+.event-desc strong { color:#1a1a1a; font-weight:700; }
+
+/* Engine badge */
+.engine-badge { display:inline-flex; align-items:center; gap:8px; padding:8px 18px; border-radius:40px; background:rgba(176,141,64,0.06); border:1px solid rgba(176,141,64,0.15); margin-bottom:28px; }
+.engine-dot { width:8px; height:8px; border-radius:50%; background:#b08d40; }
+.engine-label { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#b08d40; }
+
+/* Callout */
+.event-callout { background:rgba(245,244,242,0.7); border:1px solid rgba(0,0,0,0.05); border-left:3px solid #cc2828; border-radius:0 12px 12px 0; padding:24px 28px; margin:28px 0 36px; }
+.event-callout p { font-size:14px; line-height:1.75; color:#4a4a4a; }
+
+/* Separator */
+.event-sep { width:40px; height:2px; background:rgba(0,0,0,0.08); margin:40px 0; border-radius:1px; }
+
+/* Footer */
+.event-footer { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,60px) 60px; border-top:1px solid rgba(0,0,0,0.06); padding-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+.event-footer span { font-size:12px; color:#8a8a8a; }
+.event-footer a { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#cc2828; text-decoration:none; border-bottom:1px solid rgba(204,40,40,0.3); padding-bottom:2px; }
+
+/* Reveal */
+.rv { opacity:0; transform:translateY(24px); transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.rv.vis { opacity:1; transform:translateY(0); }
+.rv-d1 { transition-delay:0.1s; } .rv-d2 { transition-delay:0.2s; } .rv-d3 { transition-delay:0.3s; } .rv-d4 { transition-delay:0.4s; }
+
+/* Bengali mode */
+.lang-en { display:inline; } .lang-bn { display:none; }
+body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; }
+body.bn-mode .event-title, body.bn-mode .event-subtitle, body.bn-mode .event-eyebrow, body.bn-mode .engine-label, body.bn-mode .meta-tag { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav { font-family:'Noto Sans Bengali',sans-serif; }
+
+@media(max-width:768px){
+  .site-header { padding:8px 12px; }
+  .header-logo-right .logo-img { max-height:38px; }
+  .event-meta { gap:8px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-illustration"></div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-logo header-logo-left">
+    <img src="../img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+    <span class="logo-fallback" style="display:none;">IFA</span>
+  </div>
+  <div class="header-logo header-logo-right">
+    <img src="../img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+    <span class="logo-fallback" style="display:none;">Bhashascope</span>
+  </div>
+</header>
+
+<!-- Language toggle -->
+<div class="lang-toggle-fixed" id="langToggleFixed">
+  <button class="lang-btn active" id="btnEN" data-lang="en">English</button>
+  <button class="lang-btn" id="btnBN" data-lang="bn">বাংলা</button>
+</div>
+
+<!-- Page content -->
+<div class="page-wrap">
+
+  <div class="event-header">
+    <a href="../index.html" class="back-nav rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span class="lang-en">Back to Home</span><span class="lang-bn">প্রচ্ছদে ফিরুন</span>
+    </a>
+
+    <div class="event-eyebrow rv rv-d1" data-en="Event 01 · Inaugural Lecture · 13 March 2026" data-bn="কর্মসূচি ০১ · উদ্বোধনী বক্তৃতা · ১৩ মার্চ ২০২৬">Event 01 · Inaugural Lecture · 13 March 2026</div>
+
+    <h1 class="event-title rv rv-d1">
+      <span class="lang-en">(De)Signs Taken for Wonders</span>
+      <span class="lang-bn">(De)Signs Taken for Wonders</span>
+    </h1>
+
+    <p class="event-subtitle rv rv-d2">
+      <span class="lang-en">Provocations on AI, Language, and Authority</span>
+      <span class="lang-bn">কৃত্রিম বুদ্ধিমত্তা, ভাষা এবং কর্তৃত্ব নিয়ে প্ররোচনা</span>
+    </p>
+
+    <p class="rv rv-d2" style="font-family:'DM Sans',sans-serif; font-size:clamp(14px,1.1vw,16px); color:#4a4a4a; margin-top:8px; margin-bottom:4px;">
+      <span class="lang-en"><strong style="color:#1a1a1a;">Dr. Dibyadyuti Roy</strong> · Associate Professor, University of Leeds</span>
+      <span class="lang-bn"><strong style="color:#1a1a1a;">ড. দিব্যদ্যুতি রায়</strong> · অ্যাসোসিয়েট প্রফেসর, ইউনিভার্সিটি অফ লিডস</span>
+    </p>
+
+    <div class="event-meta rv rv-d2">
+      <span class="meta-tag" data-en="Online" data-bn="অনলাইন">Online</span>
+      <span class="meta-tag" data-en="3:30 PM IST" data-bn="বিকেল ৩:৩০ IST">3:30 PM IST</span>
+      <span class="meta-tag accent" data-en="Completed · Recording Available" data-bn="সম্পন্ন · রেকর্ডিং উপলব্ধ">Completed · Recording Available</span>
+    </div>
+
+    <div class="engine-badge rv rv-d3">
+      <span class="engine-dot"></span>
+      <span class="engine-label" data-en="Engine: Knowledge Producers" data-bn="আঙ্গিক: ভাষাদর্জি">Engine: Knowledge Producers</span>
+    </div>
+  </div>
+
+  <!-- Video -->
+  <div class="video-wrap rv rv-d3">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/4UBXkjoG_hM" title="(De)Signs Taken for Wonders — Dr. Dibyadyuti Roy · Platform Bengali" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="event-body">
+    <p class="event-desc rv rv-d4">
+      <span class="lang-en">Who gets to decide how a language lives online? When AI systems translate, transcribe, and classify Bengali—or any Indian language—whose authority do they draw on, and whose do they displace?</span>
+      <span class="lang-bn">ইন্টারনেটে কোনো ভাষার রকমফেরে কোনটা মান্য, কোনটা নয়, তার নির্ধারণ করে কে? যখন কোনো এ আই সিস্টেম বাংলা বা যেকোনো ভারতীয় ভাষাকে অনুবাদ, প্রতিলিপি ও শ্রেণীবদ্ধ করে, তখন কার কর্তৃত্ব প্রাধান্য পায় আর কার গুরুত্বই বা অবহেলিত হয়?</span>
+    </p>
+
+    <p class="event-desc rv rv-d4">
+      <span class="lang-en">In this inaugural lecture for Platform Bengali, <strong>Dr. Dibyadyuti Roy</strong> examines the fraught relationship between artificial intelligence, vernacular languages, and the structures of authority that determine which forms of knowledge count as legitimate. Drawing on the broader history of AI, and Prof. Roy's own intersectional work experience, the talk asks why practitioners rooted in Bhasha traditions—content creators, community archivists, language activists—so often hesitate to claim digital methods as their own, and what prevents wider adoption of DH as a methodology beyond metropolitan, English-dominant institutions.</span>
+      <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলির এই উদ্বোধনী বক্তৃতায় <strong>ড. দিব্যদ্যুতি রায়</strong> কৃত্রিম বুদ্ধিমত্তা, আঞ্চলিক ভাষা, এবং কর্তৃত্বের কাঠামোর মধ্যেকার জটিল সম্পর্ক পরীক্ষা করেছেন। কোন জ্ঞানকে বৈধ বলে গণ্য করা হবে, সেটির নির্ধারণ করে যে কাঠামো, তাকে গভীরভাবে তলিয়ে দেখেছেন। এ আই এর বৃহত্তর ইতিহাস এবং অধ্যাপক রায়ের নিজস্ব আন্তঃবিভাগীয় কাজের অভিজ্ঞতা থেকে এই বক্তৃতা কিছু গুরুত্বপূর্ণ প্রশ্ন তোলে। বক্তৃতায় এও উঠে আসবে যে কেন ভাষা নিয়ে নিয়মিত চর্চায় নিয়োজিত এখনও কেন বৈদ্যুতিন মানববিদ্যাকে বৃহত্তর পরিসরে গ্রহণের ক্ষেত্রে দ্বিধা প্রকাশ করেন। কীভাবে কন্টেন্ট ক্রিয়েটর, সমাজ সচেতন আর্কাইভিষ্ট, ভাষাকর্মী প্রমুখ পেশার মানুষ আরও বেশি প্রযুক্তি কে গ্রহণ করতে পারেন।</span>
+    </p>
+
+    <div class="event-callout rv rv-d4">
+      <p>
+        <span class="lang-en">At stake is a provocation: if AI is rapidly reshaping how languages are produced, circulated, and valued, then who should be at the table when decisions about language technology are made—and who is conspicuously absent?</span>
+        <span class="lang-bn">মূল প্ররোচনা এটাই: যেহেতু এ আই দ্রুতগতিতে ভাষার উৎপাদন, প্রচলন এবং মূল্যায়নের ধরন বদলে দিচ্ছে, সেক্ষেত্রে ভাষা প্রযুক্তি সংক্রান্ত সিদ্ধান্ত নেওয়ার সময় কাদের উপস্থিত থাকা উচিত — আর কাদের অনুপস্থিতিই বা চোখে পড়ার মতো?</span>
+      </p>
+    </div>
+
+    <div class="event-sep"></div>
+
+    <!-- Transcript toggle -->
+    <div class="rv" style="margin-bottom:36px;">
+      <button id="transcriptToggle" style="display:inline-flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#1a1a1a;background:rgba(245,244,242,0.7);border:1px solid rgba(0,0,0,0.08);border-radius:40px;padding:12px 24px;cursor:pointer;transition:all 0.3s;">
+        <svg id="transcriptIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition:transform 0.3s;"><path d="M9 18l6-6-6-6"/></svg>
+        <span class="lang-en">Read Full Transcript</span><span class="lang-bn">সম্পূর্ণ প্রতিলিপি পড়ুন</span>
+      </button>
+    </div>
+
+    <div id="transcriptBody" style="display:none; max-width:680px; margin-bottom:48px; padding:32px; background:rgba(250,249,247,0.85); border:1px solid rgba(0,0,0,0.05); border-radius:16px;">
+      <p style="font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8a8a8a; margin-bottom:20px;">Transcript · (De)Signs Taken for Wonders</p>
+
+      <div class="transcript-text" style="font-size:14px; line-height:2; color:#4a4a4a;">
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">Opening Remarks</h3>
+        <p style="margin-bottom:16px;">Thank you. Firstly, thank you so much, Prithu. My name is Dr. Dibyadyuti Roy. I am an Associate Professor at the University of Leeds. I am deeply grateful to Prithu, the India Foundation for Arts, Dr. Bathwal, Professor Bibhuti, and many friends present here. A special acknowledgement to Rithvika from IFA.</p>
+        <p style="margin-bottom:16px;">Since this event launches Platform Bengali, I will briefly introduce myself in Bengali before returning to English. Given that IFA connects across multiple linguistic publics, I will continue in English for accessibility.</p>
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">Framing the Talk</h3>
+        <p style="margin-bottom:16px;">Today's talk is titled <em>"Designs Taken for Wonders: Provocations on AI, Language, and Authority."</em> My research examines cultural mediations of dominant and emergent technologies—their genealogies, narratives, and legacies. My academic trajectory began with nuclear cultures, moved into digital spaces, and later engaged with race, gender, and colonialism in digital environments. For the past six to seven years, my work has focused on social media, digitality, and algorithmic cultures.</p>
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">Digital Humanities and Institutional Context</h3>
+        <p style="margin-bottom:16px;">I have been fortunate to be a founding member of India's first digital humanities collective, Bharati (formerly DHAI). I was involved in organizing its first conference at IIM Indore in collaboration with IIT Indore. At the University of Leeds, I am part of the Digital Creativity and Cultures Hub, a multi-faculty centre where digital humanities is situated. I also run a series titled <em>Deliberations in Digitality</em>, which foregrounds voices from the majority world.</p>
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">From Digital Humanities to Critical AI Studies</h3>
+        <p style="margin-bottom:16px;">Over the past several years, my work has increasingly focused on what we call <strong>Critical AI Studies</strong>—particularly from a majority world perspective. The term "majority world," as many of you may know, was proposed by Shahidul Alam to challenge terms like "Global South" or "Third World," emphasizing instead where the majority of humanity resides.</p>
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">Opening Provocation: A Question</h3>
+        <p style="margin-bottom:16px;">On your screen are two events separated by approximately 250 years: On the left, the Mechanical Turk (18th century), presented as an automated chess-playing machine. On the right, Amazon's "Just Walk Out" stores (2023), marketed as frictionless AI retail. What is common between them?</p>
+        <p style="margin-bottom:16px;">What is common is that <strong>there is nothing artificial about artificial intelligence</strong>. The Mechanical Turk was later revealed to contain a hidden human operator. Similarly, Amazon's "Just Walk Out" system relied on human workers—reportedly in Gurgaon—monitoring CCTV feeds to enable the illusion of automation.</p>
+        <p style="margin-bottom:16px;">To paraphrase a well-known line: the greatest trick AI has ever pulled is convincing the world that it exists.</p>
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">AI as Myth and Signifier</h3>
+        <p style="margin-bottom:16px;">We live in a moment where everything is branded as AI—AI computers, AI classrooms, AI systems. This proliferation reflects not just technological development, but a discursive inflation. Drawing from linguistic theory, we might say that "AI" functions as a <strong>signifier</strong> whose <strong>signified</strong> has become unstable—overloaded with utopian and dystopian imaginaries.</p>
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">Generative AI and Its Limits</h3>
+        <p style="margin-bottom:16px;">What we currently call AI is largely <strong>generative AI</strong>, built on large language models. However, this is only a small subset within a larger hierarchy: Generative AI → Deep Learning → Machine Learning → Artificial Intelligence. At present, we have accessed only a very small fraction—perhaps 5%—of what might be considered human cognitive capacity, largely limited to object recognition and probabilistic inference. These systems do not "understand" in any meaningful sense. They operate through statistical pattern recognition and optimization.</p>
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">The Political Economy of AI</h3>
+        <p style="margin-bottom:16px;">Beyond utopian and dystopian narratives lies the <strong>material infrastructure</strong> of AI: data annotation, computational labour, global supply chains of digital work. Much of this labour is located in the majority world. The trajectory from sweatshops to call centres to data annotation reflects continuity in global labour hierarchies.</p>
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">Histories of Artificial Intelligence</h3>
+        <p style="margin-bottom:16px;">The term "artificial intelligence" was coined in 1956 by John McCarthy as part of a grant proposal—an "attractive term" designed to secure funding. AI has since undergone multiple hype cycles: the Cold War era (machine translation), the neural networks revival (1980s), and contemporary deep learning and generative AI. A key moment in recent AI history is 2012, marked by the success of deep learning models such as AlexNet, built on datasets like ImageNet developed by Fei-Fei Li.</p>
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">Critical AI Studies</h3>
+        <p style="margin-bottom:16px;">Critical AI Studies approaches AI as a <strong>socio-technical assemblage</strong> rather than a singular entity. It examines cultural meanings, ideological formations, material infrastructures, and power relations. AI can be understood as comprising three key components: training data, learning algorithms, and model applications. Each of these layers introduces potential for error, bias, and distortion.</p>
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">Majority World Perspectives</h3>
+        <p style="margin-bottom:16px;">Critical AI discourse differs across contexts. In the Global North: bias, fairness, accountability, transparency. In the Majority World: data colonialism, indigenous data sovereignty, postcolonial computing, feminist design practices. These approaches are complementary and must be brought into dialogue.</p>
+
+        <h3 style="font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; margin:28px 0 12px;">Conclusion</h3>
+        <p style="margin-bottom:16px;">The future of AI lies not in abstraction, but in its <strong>contextualization within human worlds</strong>. Projects like Platform Bengali (BhashaScope) are crucial because they extend critical inquiry beyond academic spaces into community participation.</p>
+        <p style="margin-bottom:0;">To paraphrase William Gibson: the future is already here—it is just not evenly distributed. Our task is to participate in redistributing that future.</p>
+
+      </div>
+    </div>
+
+    <p class="event-desc rv" style="font-size:13px; font-style:italic; color:#8a8a8a;">
+      <span class="lang-en">Platform Bengali is a foundation project sponsored by the India Foundation for the Arts (IFA) under the Arts Research programme.</span>
+      <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের (আই এফ এ) কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত একটি ফাউন্ডেশন প্রকল্প।</span>
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <div class="event-footer">
+    <span data-en="© 2026 Platform Bengali — India Foundation for the Arts" data-bn="© ২০২৬ প্ল্যাটফর্ম বাংলা — ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস">© 2026 Platform Bengali — India Foundation for the Arts</span>
+    <a href="../index.html"><span class="lang-en">Back to Home</span><span class="lang-bn">প্রচ্ছদে ফিরুন</span></a>
+  </div>
+
+</div>
+
+<!-- Transcript toggle -->
+<script>
+(function(){
+  var btn=document.getElementById('transcriptToggle');
+  var body=document.getElementById('transcriptBody');
+  var icon=document.getElementById('transcriptIcon');
+  if(!btn||!body)return;
+  btn.addEventListener('click',function(){
+    var open=body.style.display!=='none';
+    body.style.display=open?'none':'block';
+    icon.style.transform=open?'rotate(0deg)':'rotate(90deg)';
+    btn.style.background=open?'rgba(245,244,242,0.7)':'rgba(204,40,40,0.06)';
+    btn.style.borderColor=open?'rgba(0,0,0,0.08)':'rgba(204,40,40,0.15)';
+    btn.style.color=open?'#1a1a1a':'#cc2828';
+    if(!open) body.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+})();
+</script>
+
+<!-- Background scroll fade -->
+<script>
+(function(){
+  var b=document.querySelector('.bg-illustration');if(!b)return;
+  var mx=parseFloat(getComputedStyle(b).opacity)||0.18,mn=0.03;
+  function u(){var s=window.pageYOffset||document.documentElement.scrollTop,h=window.innerHeight*1.5,p=Math.min(s/h,1),e=p*p;b.style.opacity=mx-(mx-mn)*e;}
+  window.addEventListener('scroll',u,{passive:true});u();
+})();
+</script>
+
+<!-- Reveal on scroll -->
+<script>
+(function(){
+  var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){o.observe(el);});
+})();
+</script>
+
+<!-- Bilingual toggle -->
+<script>
+(function(){
+  var KEY='pb-lang',btnEN=document.getElementById('btnEN'),btnBN=document.getElementById('btnBN');
+  var lang=localStorage.getItem(KEY)||'en';
+  function apply(l){
+    lang=l;localStorage.setItem(KEY,lang);
+    btnEN.classList.toggle('active',lang==='en');
+    btnBN.classList.toggle('active',lang==='bn');
+    document.body.classList.toggle('bn-mode',lang==='bn');
+    document.querySelectorAll('[data-en][data-bn]').forEach(function(el){
+      var c=el.getAttribute('data-'+lang);
+      if(c.indexOf('<')!==-1){el.innerHTML=c;}else{el.textContent=c;}
+    });
+  }
+  btnEN.addEventListener('click',function(){apply('en');});
+  btnBN.addEventListener('click',function(){apply('bn');});
+  apply(lang);
+})();
+</script>
+</body>
+</html>
