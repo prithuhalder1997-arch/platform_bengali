@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms and Conditions · Platform Bengali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Noto+Sans+Bengali:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & Base ────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #f8f6f2;
+      --ink: #1a1a1a;
+      --ink-mid: #3d3d3d;
+      --ink-light: #7a7a7a;
+      --accent: #c0392b;
+      --glass-bg: rgba(255,255,255,0.72);
+      --glass-border: rgba(255,255,255,0.55);
+      --glass-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      --header-h: 64px;
+      --font-head: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-bn: 'Noto Sans Bengali', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background-color: var(--off-white);
+      background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(192,57,43,0.04) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 90%, rgba(192,57,43,0.03) 0%, transparent 55%);
+      min-height: 100vh;
+    }
+
+    /* Bengali mode font switch */
+    body.bn-mode .lang-en { display: none; }
+    body:not(.bn-mode) .lang-bn { display: none; }
+    body.bn-mode { font-family: var(--font-bn); }
+    body.bn-mode p,
+    body.bn-mode li,
+    body.bn-mode .section-label,
+    body.bn-mode .meta { font-family: var(--font-bn); }
+
+    /* ── Header ──────────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      z-index: 1000;
+    }
+
+    .header-left, .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-logo img { height: 32px; width: auto; display: block; }
+
+    .header-divider {
+      width: 1px;
+      height: 28px;
+      background: rgba(0,0,0,0.12);
+    }
+
+    /* Language Toggle */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 20px;
+      overflow: hidden;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .lang-toggle button {
+      padding: 5px 13px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+      color: var(--ink-light);
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 20px;
+    }
+
+    /* Back link */
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-mid);
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link::before { content: '←'; font-size: 14px; }
+
+    /* ── Main Layout ─────────────────────────────────────── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: calc(var(--header-h) + 56px) 24px 80px;
+    }
+
+    /* ── Page Header Block ───────────────────────────────── */
+    .page-header {
+      margin-bottom: 52px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(0,0,0,0.10);
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-family: var(--font-head);
+      font-size: clamp(40px, 8vw, 68px);
+      line-height: 1.0;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .page-title-bn {
+      font-family: var(--font-bn);
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+    .meta span { margin-right: 20px; }
+
+    /* ── T&C Sections ────────────────────────────────────── */
+    .tc-section {
+      margin-bottom: 44px;
+    }
+
+    .tc-section-inner {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .tc-number {
+      font-family: var(--font-head);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .tc-title {
+      font-family: var(--font-head);
+      font-size: 26px;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .tc-title-bn {
+      font-family: var(--font-bn);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink-mid);
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+
+    .tc-divider {
+      width: 32px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 18px;
+      opacity: 0.6;
+    }
+
+    .tc-body {
+      font-size: 15px;
+      line-height: 1.80;
+      color: var(--ink-mid);
+    }
+
+    .tc-body p + p { margin-top: 12px; }
+
+    .tc-body .lang-bn {
+      font-family: var(--font-bn);
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--ink-mid);
+    }
+
+    /* ── Contact Section ─────────────────────────────────── */
+    .contact-block {
+      background: var(--ink);
+      border-radius: 12px;
+      padding: 32px 36px;
+      color: var(--white);
+      margin-top: 8px;
+    }
+
+    .contact-block .tc-number { color: rgba(255,255,255,0.4); }
+    .contact-block .tc-title { color: var(--white); }
+    .contact-block .tc-title-bn { color: rgba(255,255,255,0.7); }
+    .contact-block .tc-divider { background: rgba(255,255,255,0.3); }
+    .contact-block .tc-body { color: rgba(255,255,255,0.75); }
+    .contact-block .tc-body .lang-bn { color: rgba(255,255,255,0.75); }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .contact-row + .contact-row { margin-top: 10px; }
+
+    .contact-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.10);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 2px;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .contact-value a {
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s;
+    }
+    .contact-value a:hover { border-color: var(--white); }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    footer {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(0,0,0,0.07);
+      padding: 24px 28px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+
+    footer a {
+      color: var(--ink-mid);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--accent); }
+
+    /* ── Scroll Reveal ───────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 600px) {
+      header { padding: 0 16px; }
+      main { padding-top: calc(var(--header-h) + 36px); padding-left: 16px; padding-right: 16px; }
+      .tc-section-inner, .contact-block { padding: 24px 20px; }
+      .tc-title { font-size: 22px; }
+      .page-title { font-size: 44px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ─────────────────────────────────────────── -->
+  <header>
+    <div class="header-left">
+      <a href="https://bhashascope.in/index.html" class="header-logo">
+        <img src="https://bhashascope.in/img/ifa-logo.png" alt="IFA" />
+      </a>
+      <div class="header-divider"></div>
+      <a href="https://bhashascope.in/index.html" class="back-link">
+        <span class="lang-en">Back to Home</span>
+        <span class="lang-bn">প্রচ্ছদে ফিরুন</span>
+      </a>
+    </div>
+
+    <div class="header-right">
+      <a href="https://bhashascope.in/index.html" class="header-logo">
+        <img src="https://bhashascope.in/img/Bhashascope_logo.png" alt="Bhashascope" />
+      </a>
+      <div class="header-divider"></div>
+      <div class="lang-toggle">
+        <button id="btnEN" class="active" onclick="setLang('en')">English</button>
+        <button id="btnBN" onclick="setLang('bn')">বাংলা</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── MAIN ───────────────────────────────────────────── -->
+  <main>
+
+    <!-- Page Header -->
+    <div class="page-header reveal">
+      <div class="section-label">
+        <span class="lang-en">Legal · Platform Bengali</span>
+        <span class="lang-bn">আইনি · প্ল্যাটফর্ম বেঙ্গলি</span>
+      </div>
+
+      <div class="lang-en">
+        <div class="page-title">Terms &amp;<br>Conditions</div>
+      </div>
+      <div class="lang-bn">
+        <div class="page-title-bn">নিয়মাবলি ও শর্তসমূহ</div>
+      </div>
+
+      <div class="meta">
+        <span class="lang-en">
+          <span>Effective Date: February 2026</span>
+          <span>Last Updated: April 2026</span>
+        </span>
+        <span class="lang-bn">
+          <span>কার্যকর তারিখ: ফেব্রুয়ারি ২০২৬</span>
+          &nbsp;·&nbsp;
+          <span>সর্বশেষ আপডেট: এপ্রিল ২০২৬</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- §1 About This Website -->
+    <div class="tc-section reveal">
+      <div class="tc-section-inner">
+        <div class="tc-number">01</div>
+        <div class="tc-title">
+          <span class="lang-en">About This Website</span>
+        </div>
+        <div class="tc-title-bn lang-bn">এই ওয়েবসাইট সম্পর্কে</div>
+        <div class="tc-divider"></div>
+        <div class="tc-body">
+          <p class="lang-en">Platform Bengali (প্ল্যাটফর্ম বাংলা) is a research website supported by the India Foundation for the Arts (IFA), Bengaluru, as part of its Arts Research programme. The project maps the evolution of the Bengali language in digital spaces and serves as the public interface for a programme of workshops, a monthly speaker series, YouTube creator conversations, an international hybrid conference, and a bilingual digital repository.</p>
+          <p class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি (Platform Bengali) একটি গবেষণাভিত্তিক ওয়েবসাইট, যা বেঙ্গালুরুর ইন্ডিয়া ফাউন্ডেশন ফর দ্য আর্টস (আইএফএ)-এর কলা গবেষণা কার্যক্রমের আওতায় পরিচালিত। এই প্রকল্পটি ডিজিটাল পরিসরে বাংলা ভাষার বিবর্তন চিহ্নিত করে এবং বিভিন্ন কর্মশালা, মাসিক বক্তৃতামালা, ইউটিউব সিরিজ, আন্তর্জাতিক সম্মেলন ও একটি দ্বিভাষিক ডিজিটাল সংগ্রহশালার পাবলিক ইন্টারফেস হিসেবে কাজ করে।</p>
+          <p class="lang-en">By accessing or using this website, you agree to the terms set out below.</p>
+          <p class="lang-bn">এই ওয়েবসাইট ব্যবহার বা অ্যাক্সেস করার মাধ্যমে আপনি নিচে উল্লিখিত শর্তাবলিতে সম্মত হচ্ছেন।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- §2 Intellectual Property -->
+    <div class="tc-section reveal">
+      <div class="tc-section-inner">
+        <div class="tc-number">02</div>
+        <div class="tc-title lang-en">Intellectual Property</div>
+        <div class="tc-title-bn lang-bn">মেধাস্বত্ব</div>
+        <div class="tc-divider"></div>
+        <div class="tc-body">
+          <p class="lang-en">All original content on this website — including texts, research summaries, graphic design, typographic elements, and source code — is the intellectual property of the Platform Bengali project and its contributing researchers, unless otherwise stated.</p>
+          <p class="lang-bn">এই ওয়েবসাইটের সমস্ত মৌলিক বিষয়বস্তু — পাঠ্য, গবেষণা সারাংশ, গ্রাফিক ডিজাইন, টাইপোগ্রাফিক উপাদান এবং সোর্স কোড সহ — প্ল্যাটফর্ম বেঙ্গলি প্রকল্প ও এর গবেষকদের মেধাস্বত্বাধীন, যদি অন্যথা উল্লেখ না থাকে।</p>
+          <p class="lang-en">You may share links to this website and cite its content for non-commercial academic purposes, provided clear attribution is given to Platform Bengali and the relevant authors. Reproduction of substantial portions of text or visual material for commercial purposes is not permitted without prior written consent.</p>
+          <p class="lang-bn">অ-বাণিজ্যিক একাডেমিক উদ্দেশ্যে এই ওয়েবসাইটের লিঙ্ক শেয়ার করা এবং বিষয়বস্তু উদ্ধৃত করা যাবে, তবে প্ল্যাটফর্ম বেঙ্গলি ও সংশ্লিষ্ট লেখকদের কৃতিত্ব স্পষ্টভাবে উল্লেখ করতে হবে। বাণিজ্যিক উদ্দেশ্যে পূর্বলিখিত অনুমতি ছাড়া পাঠ্য বা দৃশ্যমান উপকরণের উল্লেখযোগ্য অংশ পুনর্মুদ্রণ অনুমোদিত নয়।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- §3 Third-Party Content -->
+    <div class="tc-section reveal">
+      <div class="tc-section-inner">
+        <div class="tc-number">03</div>
+        <div class="tc-title lang-en">Third-Party Content &amp; Links</div>
+        <div class="tc-title-bn lang-bn">তৃতীয় পক্ষের বিষয়বস্তু ও লিঙ্ক</div>
+        <div class="tc-divider"></div>
+        <div class="tc-body">
+          <p class="lang-en">This website may reference, embed, or link to third-party materials including academic publications, YouTube videos, external speaker profiles, and partner institution pages. Platform Bengali is not responsible for the content, availability, or privacy practices of any third-party websites or services.</p>
+          <p class="lang-bn">এই ওয়েবসাইটে একাডেমিক প্রকাশনা, ইউটিউব ভিডিও, বাইরের বক্তাদের প্রোফাইল এবং অংশীদার প্রতিষ্ঠানের পাতার রেফারেন্স, এম্বেড বা লিঙ্ক থাকতে পারে। কোনো তৃতীয় পক্ষের ওয়েবসাইট বা পরিষেবার বিষয়বস্তু, প্রাপ্যতা বা গোপনীয়তা নীতির জন্য প্ল্যাটফর্ম বেঙ্গলি দায়ী নয়।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- §4 Certificates -->
+    <div class="tc-section reveal">
+      <div class="tc-section-inner">
+        <div class="tc-number">04</div>
+        <div class="tc-title lang-en">Certificates &amp; Event Participation</div>
+        <div class="tc-title-bn lang-bn">সার্টিফিকেট ও অনুষ্ঠানে অংশগ্রহণ</div>
+        <div class="tc-divider"></div>
+        <div class="tc-body">
+          <p class="lang-en">Certificates of participation issued through this platform are records of attendance at Platform Bengali events. They do not constitute academic credentials or qualifications issued by any university or accrediting body, and Platform Bengali and IFA make no representations regarding their recognition by third parties.</p>
+          <p class="lang-bn">এই প্ল্যাটফর্মের মাধ্যমে প্রদত্ত অংশগ্রহণ সার্টিফিকেটগুলি প্ল্যাটফর্ম বেঙ্গলির অনুষ্ঠানে উপস্থিতির রেকর্ড মাত্র। এগুলি কোনো বিশ্ববিদ্যালয় বা স্বীকৃতি সংস্থার প্রদত্ত একাডেমিক যোগ্যতা বা ডিগ্রির সমতুল্য নয়, এবং এগুলির তৃতীয় পক্ষ কর্তৃক স্বীকৃতি সম্পর্কে প্ল্যাটফর্ম বেঙ্গলি বা আইএফএ কোনো প্রতিশ্রুতি দেয় না।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- §5 No Warranties -->
+    <div class="tc-section reveal">
+      <div class="tc-section-inner">
+        <div class="tc-number">05</div>
+        <div class="tc-title lang-en">No Warranties</div>
+        <div class="tc-title-bn lang-bn">কোনো ওয়ারেন্টি নেই</div>
+        <div class="tc-divider"></div>
+        <div class="tc-body">
+          <p class="lang-en">This website is provided on an "as is" basis. While we strive to keep content accurate and up to date, Platform Bengali and IFA make no warranties — express or implied — regarding the completeness, accuracy, or fitness for a particular purpose of the information presented. Content may be updated, moved, or removed at any time without notice.</p>
+          <p class="lang-bn">এই ওয়েবসাইটটি "যেমন আছে" ভিত্তিতে প্রদান করা হয়। আমরা বিষয়বস্তু নির্ভুল ও আপ-টু-ডেট রাখার চেষ্টা করি, তবে প্ল্যাটফর্ম বেঙ্গলি ও আইএফএ তথ্যের সম্পূর্ণতা, নির্ভুলতা বা বিশেষ উদ্দেশ্যে উপযুক্ততার বিষয়ে কোনো প্রকাশ্য বা আন্তর্নিহিত ওয়ারেন্টি প্রদান করে না। বিষয়বস্তু যেকোনো সময় নোটিশ ছাড়াই আপডেট, সরানো বা মুছে ফেলা হতে পারে।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- §6 Limitation of Liability -->
+    <div class="tc-section reveal">
+      <div class="tc-section-inner">
+        <div class="tc-number">06</div>
+        <div class="tc-title lang-en">Limitation of Liability</div>
+        <div class="tc-title-bn lang-bn">দায়বদ্ধতার সীমা</div>
+        <div class="tc-divider"></div>
+        <div class="tc-body">
+          <p class="lang-en">To the fullest extent permitted by applicable law, Platform Bengali and IFA shall not be liable for any direct, indirect, incidental, or consequential loss arising from your use of, or inability to use, this website or its content.</p>
+          <p class="lang-bn">প্রযোজ্য আইনের অনুমোদিত সর্বোচ্চ সীমা পর্যন্ত, প্ল্যাটফর্ম বেঙ্গলি ও আইএফএ এই ওয়েবসাইট বা এর বিষয়বস্তু ব্যবহার বা ব্যবহারে অক্ষমতা থেকে উদ্ভূত কোনো প্রত্যক্ষ, পরোক্ষ, আনুষঙ্গিক বা পরিণামী ক্ষতির জন্য দায়ী থাকবে না।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- §7 Privacy -->
+    <div class="tc-section reveal">
+      <div class="tc-section-inner">
+        <div class="tc-number">07</div>
+        <div class="tc-title lang-en">Privacy &amp; Data</div>
+        <div class="tc-title-bn lang-bn">গোপনীয়তা ও তথ্য</div>
+        <div class="tc-divider"></div>
+        <div class="tc-body">
+          <p class="lang-en">This website does not operate a user account system. We do not knowingly collect personal data beyond what is standard for web analytics (e.g. anonymised page-view data). If you contact us via the email address below, your message will be handled in accordance with IFA's institutional privacy policy, available at <a href="https://indiaifa.org" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(192,57,43,0.3);">indiaifa.org</a>.</p>
+          <p class="lang-bn">এই ওয়েবসাইটে কোনো ব্যবহারকারী অ্যাকাউন্ট সিস্টেম নেই। ওয়েব অ্যানালিটিক্সের স্বাভাবিক মান (যেমন বেনামী পেজ-ভিউ ডেটা)-র বাইরে আমরা ইচ্ছাকৃতভাবে কোনো ব্যক্তিগত তথ্য সংগ্রহ করি না। নিচের ইমেইল ঠিকানায় যোগাযোগ করলে আপনার বার্তা আইএফএর প্রাতিষ্ঠানিক গোপনীয়তা নীতি অনুযায়ী পরিচালিত হবে, যা পাওয়া যাবে indiaifa.org-এ।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- §8 Governing Law -->
+    <div class="tc-section reveal">
+      <div class="tc-section-inner">
+        <div class="tc-number">08</div>
+        <div class="tc-title lang-en">Governing Law</div>
+        <div class="tc-title-bn lang-bn">প্রযোজ্য আইন</div>
+        <div class="tc-divider"></div>
+        <div class="tc-body">
+          <p class="lang-en">These terms are governed by the laws of the Republic of India. Any disputes arising in connection with this website shall be subject to the jurisdiction of the courts of Bengaluru, Karnataka, where IFA is headquartered.</p>
+          <p class="lang-bn">এই শর্তাবলি ভারত প্রজাতন্ত্রের আইন দ্বারা পরিচালিত। এই ওয়েবসাইট সম্পর্কিত যেকোনো বিরোধ কর্ণাটকের বেঙ্গালুরুর আদালতের এখতিয়ারের অধীনে থাকবে, যেখানে আইএফএর সদর দফতর অবস্থিত।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- §9 Changes -->
+    <div class="tc-section reveal">
+      <div class="tc-section-inner">
+        <div class="tc-number">09</div>
+        <div class="tc-title lang-en">Changes to These Terms</div>
+        <div class="tc-title-bn lang-bn">শর্তাবলির পরিবর্তন</div>
+        <div class="tc-divider"></div>
+        <div class="tc-body">
+          <p class="lang-en">We reserve the right to update these Terms and Conditions at any time. The date at the top of this page will reflect the most recent revision. Continued use of the website after any update constitutes acceptance of the revised terms.</p>
+          <p class="lang-bn">আমরা যেকোনো সময় এই শর্তাবলি আপডেট করার অধিকার সংরক্ষণ করি। পাতার শীর্ষে থাকা তারিখটি সর্বশেষ সংশোধনী প্রতিফলিত করবে। যেকোনো আপডেটের পরে ওয়েবসাইট ব্যবহার অব্যাহত রাখলে সংশোধিত শর্তাবলি গৃহীত হয়েছে বলে ধরা হবে।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- §10 Contact -->
+    <div class="tc-section reveal">
+      <div class="contact-block">
+        <div class="tc-number">10</div>
+        <div class="tc-title lang-en">Contact</div>
+        <div class="tc-title-bn lang-bn">যোগাযোগ</div>
+        <div class="tc-divider"></div>
+        <div class="tc-body">
+          <p class="lang-en">For questions about this website or these terms, please contact the Platform Bengali project team:</p>
+          <p class="lang-bn">এই ওয়েবসাইট বা এই শর্তাবলি সম্পর্কে কোনো প্রশ্নের জন্য প্ল্যাটফর্ম বেঙ্গলি প্রকল্প দলের সাথে যোগাযোগ করুন:</p>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon">✉</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:bhashascope@gmail.com">bhashascope@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <div class="contact-label">Website</div>
+            <div class="contact-value"><a href="https://bhashascope.in" target="_blank" rel="noopener">bhashascope.in</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer>
+    <span class="lang-en">© 2026 Platform Bengali — India Foundation for the Arts · <a href="https://bhashascope.in/index.html">Home</a></span>
+    <span class="lang-bn">© ২০২৬ প্ল্যাটফর্ম বেঙ্গলি — ইন্ডিয়া ফাউন্ডেশন ফর দ্য আর্টস · <a href="https://bhashascope.in/index.html">প্রচ্ছদ</a></span>
+  </footer>
+
+  <!-- ── SCRIPTS ─────────────────────────────────────────── -->
+  <script>
+    // Language toggle
+    function setLang(lang) {
+      const body = document.body;
+      const btnEN = document.getElementById('btnEN');
+      const btnBN = document.getElementById('btnBN');
+
+      if (lang === 'bn') {
+        body.classList.add('bn-mode');
+        btnBN.classList.add('active');
+        btnEN.classList.remove('active');
+        localStorage.setItem('pb-lang', 'bn');
+      } else {
+        body.classList.remove('bn-mode');
+        btnEN.classList.add('active');
+        btnBN.classList.remove('active');
+        localStorage.setItem('pb-lang', 'en');
+      }
+    }
+
+    // Restore saved language
+    (function () {
+      const saved = localStorage.getItem('pb-lang');
+      if (saved === 'bn') setLang('bn');
+    })();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
