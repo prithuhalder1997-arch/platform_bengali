@@ -1,212 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Machine Translation Workshop — Platform Bengali</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machine Translation in Bengali: History, Metrics, and the AI Frontier — Platform Bengali</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; max-width:100vw!important; overflow-x:hidden!important; }
+body { font-family:'DM Sans',sans-serif; background:#ffffff; color:#1a1a1a; max-width:100vw!important; overflow-x:hidden!important; }
+img { max-width:100%; height:auto; }
 
-    :root {
-      --cream: #1a1a1a;
-      --ochre: #cc2828;
-      --orange: #cc2828;
-      --teal: #4a4a4a;
-      --bg-deep: #d8d5d0;
-      --bg-section: #e0ddd8;
-    }
+.bg-illustration { position:fixed; inset:0; z-index:0; pointer-events:none; background:url('../img/jantar-mantar-desktop.png') center center / cover no-repeat; background-color:#fff; opacity:0.18; will-change:opacity; }
+@media(max-width:1024px){ .bg-illustration { background-image:url('../img/jantar-mantar-tablet.png'); } }
+@media(max-width:600px){ .bg-illustration { background-image:url('../img/jantar-mantar-mobile.png'); opacity:0.14; } }
 
-    body {
-      background: var(--bg-deep);
-      color: var(--cream);
-      font-family: 'DM Sans', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+.site-header { position:fixed; top:0; left:0; right:0; z-index:300; display:flex; align-items:center; justify-content:space-between; padding:clamp(8px,1.5vw,16px) clamp(12px,3vw,40px); background:rgba(255,255,255,0.55); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(0,0,0,0.04); }
+.header-logo { display:flex; align-items:center; }
+.logo-img { height:clamp(22px,3.5vw,40px); width:auto; display:block; }
+.header-logo-right .logo-img { height:clamp(40px,6vw,72px); }
+.logo-fallback { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(10px,1.2vw,14px); letter-spacing:0.1em; text-transform:uppercase; color:#1a1a1a; }
 
-    /* --- Cubist background (simplified) --- */
-    .page-bg {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background:
-        linear-gradient(160deg, #d8d5d0 0%, #dddad5 20%, #e0ddd8 40%, #dddad5 60%, #d9d4ce 80%, #d9d4ce 100%);
-    }
-    .page-bg::before {
-      content: ''; position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 600px 500px at 20% 30%, rgba(0,0,0,0.02), transparent),
-        radial-gradient(ellipse 400px 300px at 80% 70%, rgba(0,0,0,0.01), transparent);
-    }
-    .page-bg::after {
-      content: ''; position: absolute; inset: 0; opacity: 0.04;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-      background-size: 128px 128px;
-      mix-blend-mode: overlay;
-    }
+.lang-toggle-fixed { position:fixed; bottom:32px; right:32px; z-index:250; display:flex; background:rgba(255,255,255,0.8); backdrop-filter:blur(14px); border:1px solid rgba(0,0,0,0.08); border-radius:50px; padding:4px; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+.lang-toggle-fixed .lang-btn { border:none; background:transparent; outline:none; cursor:pointer; padding:8px 20px; border-radius:40px; font-family:'DM Sans',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; color:#8a8a8a; transition:all 0.3s; line-height:1; }
+.lang-toggle-fixed .lang-btn.active { background:#cc2828; color:#fff; box-shadow:0 2px 12px rgba(204,40,40,0.35); }
+.lang-toggle-fixed .lang-btn[data-lang="bn"] { font-family:'Noto Sans Bengali',sans-serif; font-weight:600; text-transform:none; font-size:13px; }
+@media(max-width:768px){ .lang-toggle-fixed{bottom:16px;right:16px;} .lang-toggle-fixed .lang-btn{padding:7px 14px;font-size:11px;} }
 
-    /* --- Navigation bar --- */
-    .top-nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 40px;
-      background: rgba(216,213,208,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-    .nav-home {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none; color: var(--cream);
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
-      opacity: 0.7; transition: opacity 0.3s;
-    }
-    .nav-home:hover { opacity: 1; }
-    .nav-home svg { width: 20px; height: 20px; }
-    .nav-lang {
-      font-family: 'Syne', sans-serif; font-size: 12px;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--orange); cursor: pointer;
-      background: none; border: 1px solid rgba(204,40,40,0.3);
-      padding: 6px 16px; border-radius: 20px;
-      transition: all 0.3s;
-    }
-    .nav-lang:hover { background: rgba(204,40,40,0.08); border-color: var(--orange); }
+.page-wrap { position:relative; z-index:1; min-height:100vh; padding-top:clamp(80px,10vh,120px); }
+.back-nav { display:inline-flex; align-items:center; gap:8px; margin-bottom:40px; font-family:'Syne',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#8a8a8a; text-decoration:none; transition:color 0.3s; }
+.back-nav:hover { color:#cc2828; }
+.back-nav svg { width:18px; height:18px; }
 
-    /* --- Page content --- */
-    .page-content {
-      position: relative; z-index: 1;
-      max-width: 900px; margin: 0 auto;
-      padding: 140px 40px 80px;
-    }
+.event-header { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,60px); }
+.event-eyebrow { font-family:'Syne',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#cc2828; opacity:0.6; margin-bottom:14px; }
+.event-title { font-family:'Syne',sans-serif; font-size:clamp(28px,4.5vw,50px); font-weight:800; line-height:1.1; letter-spacing:-0.02em; color:#1a1a1a; margin-bottom:8px; }
+.event-subtitle { font-family:'Syne',sans-serif; font-size:clamp(13px,1.4vw,16px); font-weight:600; letter-spacing:0.04em; color:#8a8a8a; margin-bottom:8px; }
+.event-meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; margin-bottom:40px; }
+.meta-tag { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:6px 16px; border-radius:40px; border:1px solid rgba(0,0,0,0.08); color:#4a4a4a; background:rgba(245,244,242,0.7); }
+.meta-tag.accent { background:rgba(204,40,40,0.06); border-color:rgba(204,40,40,0.15); color:#cc2828; }
+.meta-tag.green { background:rgba(69,123,110,0.06); border-color:rgba(69,123,110,0.15); color:#457b6e; }
 
-    .page-number {
-      font-family: 'Syne', sans-serif; font-size: 120px; font-weight: 800;
-      color: rgba(0,0,0,0.03); line-height: 1;
-      position: absolute; top: 100px; right: -20px;
-      pointer-events: none; user-select: none;
-    }
+.section-wrap { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,60px); }
+.event-desc { font-size:clamp(15px,1.1vw,17px); line-height:1.9; color:#4a4a4a; max-width:680px; margin-bottom:28px; }
+.event-desc strong { color:#1a1a1a; font-weight:700; }
+.event-callout { background:rgba(245,244,242,0.7); border:1px solid rgba(0,0,0,0.05); border-left:3px solid #cc2828; border-radius:0 12px 12px 0; padding:24px 28px; margin:28px 0 36px; }
+.event-callout p { font-size:14px; line-height:1.75; color:#4a4a4a; }
+.event-sep { width:40px; height:2px; background:rgba(0,0,0,0.08); margin:40px 0; border-radius:1px; }
 
-    .page-title {
-      font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 0.04em;
-      color: var(--cream); margin-bottom: 8px;
-      line-height: 1.1;
-    }
-    .page-subtitle {
-      font-family: 'DM Sans', sans-serif; font-size: 15px;
-      color: rgba(74,74,74,0.7); letter-spacing: 0.08em;
-      text-transform: uppercase; margin-bottom: 48px;
-    }
+/* Poster gallery */
+.poster-gallery { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:36px 0; }
+.poster-gallery img { border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.06); cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; }
+.poster-gallery img:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,0.12); }
+@media(max-width:600px){ .poster-gallery { grid-template-columns:1fr; } }
 
-    .divider {
-      width: 60px; height: 2px; background: var(--ochre);
-      margin-bottom: 48px; opacity: 0.6;
-    }
+/* Resource person cards */
+.rp-stack { display:flex; flex-direction:column; gap:20px; margin:32px 0; }
+.rp-card { padding:24px; border-radius:14px; border:1px solid rgba(0,0,0,0.06); background:rgba(250,249,247,0.85); transition:all 0.3s; }
+.rp-card:hover { box-shadow:0 10px 32px rgba(0,0,0,0.04); transform:translateY(-2px); }
+.rp-name { font-family:'Syne',sans-serif; font-size:17px; font-weight:800; color:#1a1a1a; margin-bottom:4px; }
+.rp-role { font-size:13px; line-height:1.6; color:#4a4a4a; }
+.rp-days { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#cc2828; margin-bottom:8px; }
 
-    .content-placeholder {
-      background: rgba(255,255,255,0.3);
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 8px;
-      padding: 48px;
-      min-height: 300px;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 16px;
-    }
-    .content-placeholder p {
-      color: rgba(74,74,74,0.5);
-      font-size: 15px; text-align: center; line-height: 1.7;
-    }
-    .content-placeholder .placeholder-icon {
-      width: 48px; height: 48px; opacity: 0.15;
-      border: 2px solid var(--cream); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 8px;
-    }
+/* Day schedule */
+.day-stack { display:flex; flex-direction:column; gap:24px; margin:32px 0; position:relative; padding-left:28px; }
+.day-stack::before { content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,#3d5a80,#b08d40,#457b6e); opacity:0.15; }
+.day-item { position:relative; }
+.day-dot { position:absolute; left:-24px; top:6px; width:10px; height:10px; border-radius:50%; background:#cc2828; opacity:0.4; }
+.day-label { font-family:'Syne',sans-serif; font-size:13px; font-weight:800; color:#1a1a1a; margin-bottom:2px; }
+.day-title { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; color:#4a4a4a; margin-bottom:4px; }
+.day-rp { font-size:12px; color:#8a8a8a; margin-bottom:6px; font-style:italic; }
+.day-desc { font-size:13px; line-height:1.7; color:#4a4a4a; max-width:640px; }
 
-    /* --- Footer --- */
-    .page-footer {
-      position: relative; z-index: 1;
-      max-width: 900px; margin: 0 auto;
-      padding: 0 40px 48px;
-      border-top: 1px solid rgba(0,0,0,0.06);
-      padding-top: 32px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .footer-text {
-      font-size: 12px; color: rgba(74,74,74,0.4);
-      letter-spacing: 0.05em;
-    }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a {
-      font-size: 12px; color: rgba(74,74,74,0.5);
-      text-decoration: none; letter-spacing: 0.05em;
-      text-transform: uppercase; font-family: 'Syne', sans-serif;
-      transition: color 0.3s;
-    }
-    .footer-links a:hover { color: var(--ochre); }
+/* CTA button */
+.cta-btn { display:inline-flex; align-items:center; gap:10px; font-family:'Syne',sans-serif; font-size:13px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; color:#fff; background:#cc2828; border:none; border-radius:50px; padding:14px 32px; text-decoration:none; cursor:pointer; transition:all 0.3s; box-shadow:0 4px 20px rgba(204,40,40,0.25); }
+.cta-btn:hover { background:#b02222; transform:translateY(-2px); box-shadow:0 8px 28px rgba(204,40,40,0.35); }
+.cta-btn svg { width:16px; height:16px; }
 
-    /* --- Responsive --- */
-    @media (max-width: 600px) {
-      .top-nav { padding: 16px 20px; }
-      .page-content { padding: 120px 20px 60px; }
-      .page-title { font-size: 32px; }
-      .page-number { font-size: 80px; top: 90px; right: 10px; }
-      .content-placeholder { padding: 32px 20px; }
-      .page-footer { padding: 0 20px 32px; flex-direction: column; gap: 16px; text-align: center; }
-    }
-  </style>
+/* Info grid */
+.info-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
+.info-item { padding:20px; border-radius:12px; background:rgba(245,244,242,0.7); border:1px solid rgba(0,0,0,0.05); }
+.info-label { font-family:'Syne',sans-serif; font-size:9px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8a8a8a; margin-bottom:6px; }
+.info-value { font-size:14px; font-weight:600; color:#1a1a1a; line-height:1.4; }
+@media(max-width:600px){ .info-grid { grid-template-columns:1fr; } }
+
+.event-footer { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,60px) 60px; border-top:1px solid rgba(0,0,0,0.06); padding-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+.event-footer span { font-size:12px; color:#8a8a8a; }
+.event-footer a { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#cc2828; text-decoration:none; border-bottom:1px solid rgba(204,40,40,0.3); padding-bottom:2px; }
+
+.rv { opacity:0; transform:translateY(24px); transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.rv.vis { opacity:1; transform:translateY(0); }
+.rv-d1{transition-delay:0.1s;} .rv-d2{transition-delay:0.2s;} .rv-d3{transition-delay:0.3s;} .rv-d4{transition-delay:0.4s;}
+
+.lang-en { display:inline; } .lang-bn { display:none; }
+body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; }
+body.bn-mode .event-title, body.bn-mode .event-subtitle, body.bn-mode .event-eyebrow, body.bn-mode .meta-tag, body.bn-mode .rp-name, body.bn-mode .day-label, body.bn-mode .day-title, body.bn-mode .info-label, body.bn-mode .info-value, body.bn-mode .cta-btn { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav, body.bn-mode .rp-role, body.bn-mode .day-desc, body.bn-mode .day-rp { font-family:'Noto Sans Bengali',sans-serif; }
+
+@media(max-width:768px){
+  .site-header { padding:8px 12px; }
+  .header-logo-right .logo-img { max-height:38px; }
+  .event-meta { gap:8px; }
+}
+</style>
 </head>
 <body>
-  <div class="page-bg"></div>
 
-  <nav class="top-nav">
-    <a href="../index.html" class="nav-home">
+<div class="bg-illustration"></div>
+
+<header class="site-header">
+  <div class="header-logo header-logo-left"><img src="../img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span></div>
+  <div class="header-logo header-logo-right"><img src="../img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></div>
+</header>
+
+<div class="lang-toggle-fixed" id="langToggleFixed">
+  <button class="lang-btn active" id="btnEN" data-lang="en">English</button>
+  <button class="lang-btn" id="btnBN" data-lang="bn">বাংলা</button>
+</div>
+
+<div class="page-wrap">
+
+  <div class="event-header">
+    <a href="../index.html" class="back-nav rv">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Platform Bengali
+      <span class="lang-en">Back to Home</span><span class="lang-bn">প্রচ্ছদে ফিরুন</span>
     </a>
-    <button class="nav-lang" id="langToggle">EN / বাং</button>
-  </nav>
 
-  <main class="page-content">
-    <div class="page-number">02</div>
-    <h1 class="page-title" data-en="Machine Translation Workshop" data-bn="যন্ত্রানুবাদ কর্মশালা">Machine Translation Workshop</h1>
-    <p class="page-subtitle" data-en="Five-day intensive workshop" data-bn="পাঁচ দিনের নিবিড় কর্মশালা">Five-day intensive workshop</p>
-    <div class="divider"></div>
+    <div class="event-eyebrow rv rv-d1" data-en="Event 05 · 5-Day Workshop · 7–11 May 2026" data-bn="কর্মসূচি ০৫ · ৫ দিনের কর্মশালা · ৭–১১ মে ২০২৬">Event 05 · 5-Day Workshop · 7–11 May 2026</div>
 
-    <div class="content-placeholder">
-      <div class="placeholder-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v12M6 12h12"/></svg>
+    <h1 class="event-title rv rv-d1">
+      <span class="lang-en">Machine Translation in Bengali</span>
+      <span class="lang-bn">বাংলা ভাষার যন্ত্র-অনুবাদ</span>
+    </h1>
+
+    <p class="event-subtitle rv rv-d2">
+      <span class="lang-en">History, Metrics, and the AI Frontier</span>
+      <span class="lang-bn">ইতিহাস, মূল্যায়ন ও ভবিষ্যৎ</span>
+    </p>
+
+    <p class="rv rv-d2" style="font-size:clamp(13px,1vw,15px); color:#4a4a4a; margin-top:12px;">
+      <span class="lang-en">In collaboration with <strong>Department of English, Ramakrishna Mission Residential College, Narendrapur</strong></span>
+      <span class="lang-bn"><strong>রামকৃষ্ণ মিশন রেসিডেন্সিয়াল কলেজ, নরেন্দ্রপুর</strong>-এর ইংরেজি বিভাগের সহযোগিতায়</span>
+    </p>
+
+    <div class="event-meta rv rv-d2">
+      <span class="meta-tag" data-en="In-Person" data-bn="সশরীর">In-Person</span>
+      <span class="meta-tag" data-en="7–11 May 2026" data-bn="৭–১১ মে ২০২৬">7–11 May 2026</span>
+      <span class="meta-tag" data-en="11 AM – 4 PM" data-bn="সকাল ১১টা – বিকেল ৪টা">11 AM – 4 PM</span>
+      <span class="meta-tag" data-en="30 Seats" data-bn="৩০ জন">30 Seats</span>
+      <span class="meta-tag green" data-en="Free · Applications Open" data-bn="বিনামূল্যে · আবেদন চলছে">Free · Applications Open</span>
+    </div>
+
+    <!-- CTA -->
+    <div class="rv rv-d3" style="margin-bottom:40px;">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6bsKFZ6apTyX55XARIce1t3XdctCSxf2XZv0rZZHijryq1Q/viewform" target="_blank" rel="noopener noreferrer" class="cta-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l6.1-6.1M10 5H5a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>
+        <span class="lang-en">Apply Now</span><span class="lang-bn">আবেদন করুন</span>
+      </a>
+      <p style="font-size:12px; color:#8a8a8a; margin-top:10px;">
+        <span class="lang-en">Last date of application: <strong style="color:#cc2828;">30 April 2026</strong> · Selected candidates notified by: <strong>3 May 2026</strong></span>
+        <span class="lang-bn">আবেদনের শেষ তারিখ: <strong style="color:#cc2828;">৩০ এপ্রিল ২০২৬</strong> · নির্বাচিতদের জানানো হবে: <strong>৩ মে ২০২৬</strong></span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Posters -->
+  <div class="section-wrap rv rv-d3">
+    <div class="poster-gallery">
+      <a href="../img/MTW_Page_1.jpg" target="_blank"><img src="../img/MTW_Page_1.jpg" alt="MT Workshop Poster Page 1"></a>
+      <a href="../img/MTW_Page_2.jpg" target="_blank"><img src="../img/MTW_Page_2.jpg" alt="MT Workshop Poster Page 2"></a>
+    </div>
+  </div>
+
+  <!-- Quick info -->
+  <div class="section-wrap rv rv-d4">
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label" data-en="Venue" data-bn="স্থান">Venue</div>
+        <div class="info-value" data-en="Ramakrishna Mission Residential College, Narendrapur" data-bn="রামকৃষ্ণ মিশন রেসিডেন্সিয়াল কলেজ, নরেন্দ্রপুর">Ramakrishna Mission Residential College, Narendrapur</div>
       </div>
-      <p>Content for this section is being prepared.<br>Check back soon.</p>
+      <div class="info-item">
+        <div class="info-label" data-en="Timings" data-bn="সময়সূচি">Timings</div>
+        <div class="info-value">
+          <span class="lang-en">Session I: 11:00–1:30 · Lunch: 1:30–2:15 · Session II: 2:15–4:00</span>
+          <span class="lang-bn">প্রথম সেশন: ১১:০০–১:৩০ · মধ্যাহ্নভোজ: ১:৩০–২:১৫ · দ্বিতীয় সেশন: ২:১৫–৪:০০</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label" data-en="Participants" data-bn="অংশগ্রহণকারী">Participants</div>
+        <div class="info-value">
+          <span class="lang-en">Humanities/social science scholars, Bengali translators, literature students, DH researchers — no programming background needed</span>
+          <span class="lang-bn">মানবিক/সমাজবিজ্ঞানের গবেষক, বাংলা অনুবাদক, সাহিত্যের শিক্ষার্থী, DH গবেষক — প্রোগ্রামিং জানার প্রয়োজন নেই</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-label" data-en="Deliverable" data-bn="প্রকল্প-প্রদেয়">Deliverable</div>
+        <div class="info-value">
+          <span class="lang-en">Comprehensive Workshop Report on Bengali MT for the Bhashascope repository</span>
+          <span class="lang-bn">ভাষাস্কোপ আর্কাইভের জন্য বাংলা যন্ত্র-অনুবাদের বিস্তৃত প্রতিবেদন</span>
+        </div>
+      </div>
     </div>
-  </main>
+  </div>
 
-  <footer class="page-footer">
-    <span class="footer-text">© 2025 Platform Bengali — India Foundation for the Arts</span>
-    <div class="footer-links">
-      <a href="../index.html">Home</a>
-      <a href="../about-ifa.html">About IFA</a>
+  <!-- Description -->
+  <div class="section-wrap" style="margin-top:40px;">
+    <p class="event-desc rv">
+      <span class="lang-en">Bengali, the seventh most spoken language in the world with over 265 million speakers, occupies a paradoxical position in the landscape of language technology. While its literary heritage is among the richest in the South Asian tradition, its computational representation — particularly in the domain of machine translation — has historically lagged behind languages with comparable or even smaller speaker populations. The gulf between Bengali's cultural weight and its technological infrastructure forms the central provocation of this workshop.</span>
+      <span class="lang-bn">বিশ্বের সপ্তম বৃহত্তম ভাষা বাংলা, ২৬.৫ কোটিরও বেশি মানুষের মুখের ভাষা, ভাষা প্রযুক্তির পরিসরে এক বিরোধাভাসের অবস্থানে দাঁড়িয়ে। সাহিত্যিক ঐতিহ্যে দক্ষিণ এশিয়ার সমৃদ্ধতম ভাষাগুলির অন্যতম হলেও, যন্ত্র-অনুবাদের ক্ষেত্রে এর প্রযুক্তিগত অবকাঠামো তুলনীয় বা ক্ষুদ্রতর জনসংখ্যার ভাষাগুলির চেয়েও পিছিয়ে। বাংলার সাংস্কৃতিক গুরুত্ব ও প্রযুক্তিগত অবকাঠামোর এই ব্যবধান এই কর্মশালার কেন্দ্রীয় প্ররোচনা।</span>
+    </p>
+
+    <div class="event-callout rv">
+      <p>
+        <span class="lang-en">This five-day intensive workshop equips participants with the historical knowledge, critical vocabulary, and evaluative frameworks necessary to understand, assess, and intervene in the machine translation landscape for Bengali — <strong>as informed humanists rather than passive consumers of technology</strong>. No prior knowledge of programming, computational linguistics, or NLP is required.</span>
+        <span class="lang-bn">এই পাঁচ দিনের নিবিড় কর্মশালা অংশগ্রহণকারীদের বাংলা যন্ত্র-অনুবাদের পরিসরে বোঝা, মূল্যায়ন ও হস্তক্ষেপের জন্য প্রয়োজনীয় ঐতিহাসিক জ্ঞান, সমালোচনামূলক শব্দভাণ্ডার ও মূল্যায়ন কাঠামো দিয়ে সজ্জিত করবে — <strong>প্রযুক্তির নিষ্ক্রিয় ভোক্তা হিসেবে নয়, সচেতন মানবিক গবেষক হিসেবে</strong>। প্রোগ্রামিং বা কম্পিউটেশনাল ভাষাবিজ্ঞানের পূর্ব অভিজ্ঞতা প্রয়োজন নেই।</span>
+      </p>
     </div>
-  </footer>
 
-  <script>
-    const langToggle = document.getElementById('langToggle');
-    let lang = 'en';
-    langToggle.addEventListener('click', () => {
-      lang = lang === 'en' ? 'bn' : 'en';
-      document.querySelectorAll('[data-en][data-bn]').forEach(el => {
-        el.textContent = el.getAttribute('data-' + lang);
-        if (lang === 'bn') {
-          el.style.fontFamily = "'Nirmala UI', 'Bangla Sangam MN', 'Noto Sans Bengali', sans-serif";
-          el.style.textTransform = 'none';
-        } else {
-          el.style.fontFamily = '';
-          el.style.textTransform = '';
-        }
-      });
+    <div class="event-sep"></div>
+
+    <!-- Resource Persons -->
+    <p style="font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8a8a8a; margin-bottom:16px;" data-en="Resource Persons" data-bn="পরিচালকবৃন্দ">Resource Persons</p>
+
+    <div class="rp-stack rv">
+      <div class="rp-card">
+        <div class="rp-days" data-en="Days 1–2 · Foundational Infrastructure" data-bn="দিন ১–২ · মৌলিক পরিকাঠামো">Days 1–2 · Foundational Infrastructure</div>
+        <div class="rp-name" data-en="Dr. Bidyut Baran Chaudhuri" data-bn="ড. বিদ্যুৎ বরণ চৌধুরী">Dr. Bidyut Baran Chaudhuri</div>
+        <div class="rp-role">
+          <span class="lang-en">INAE Distinguished Professor and J. C. Bose Fellow, ISI Kolkata. Built the first complete OCR system for printed Bengali script and spent decades creating the text processing infrastructure upon which all subsequent Bengali NLP depends.</span>
+          <span class="lang-bn">INAE ডিস্টিংগুইশড প্রফেসর এবং জে. সি. বোস ফেলো, ISI কলকাতা। মুদ্রিত বাংলা লিপির জন্য প্রথম সম্পূর্ণ OCR সিস্টেম তৈরি করেছেন এবং কয়েক দশক ধরে বাংলা NLP-এর মৌলিক পরিকাঠামো নির্মাণ করেছেন।</span>
+        </div>
+      </div>
+      <div class="rp-card">
+        <div class="rp-days" data-en="Days 3–4 · The Transitional Moment" data-bn="দিন ৩–৪ · পরিবর্তনের সন্ধিক্ষণ">Days 3–4 · The Transitional Moment</div>
+        <div class="rp-name" data-en="Dr. Pinaki Bhaskar" data-bn="ড. পিনাকী ভাস্কর">Dr. Pinaki Bhaskar</div>
+        <div class="rp-role">
+          <span class="lang-en">Staff Engineer – Architect, Machine Learning, Advanced Technology Lab (ATL), Advance Research Group (ARG), Samsung R&D Institute India, Bangalore. Doctoral and postdoctoral research at Jadavpur University and CNR Pisa on cross-lingual information access and multi-document summarisation for Bengali.</span>
+          <span class="lang-bn">স্টাফ ইঞ্জিনিয়ার – আর্কিটেক্ট, মেশিন লার্নিং, Samsung R&D Institute India, ব্যাঙ্গালোর। যাদবপুর বিশ্ববিদ্যালয় ও CNR পিসায় ক্রস-লিঙ্গুয়াল ইনফরমেশন অ্যাক্সেস ও বাংলা মাল্টি-ডকুমেন্ট সামারাইজেশন নিয়ে গবেষণা।</span>
+        </div>
+      </div>
+      <div class="rp-card">
+        <div class="rp-days" data-en="Day 5 · The Contemporary Frontier" data-bn="দিন ৫ · বর্তমান সীমান্ত">Day 5 · The Contemporary Frontier</div>
+        <div class="rp-name" data-en="Pritam Dey" data-bn="প্রীতম দে">Pritam Dey</div>
+        <div class="rp-role">
+          <span class="lang-en">Data Scientist at Amgen; AI Agents and LLM Expert. Addresses the current landscape: neural machine translation, large language models, agent-driven translation, and the practical challenges faced by contemporary Bengali translation practitioners.</span>
+          <span class="lang-bn">ডেটা সায়েন্টিস্ট, Amgen; AI এজেন্ট ও LLM বিশেষজ্ঞ। বর্তমান পরিস্থিতি নিয়ে আলোচনা: নিউরাল মেশিন ট্রান্সলেশন, লার্জ ল্যাঙ্গুয়েজ মডেল, এজেন্ট-চালিত অনুবাদ এবং বাংলা অনুবাদকদের সমসাময়িক চ্যালেঞ্জ।</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-sep"></div>
+
+    <!-- 5-Day Programme -->
+    <p style="font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8a8a8a; margin-bottom:20px;" data-en="Five-Day Programme" data-bn="পাঁচ দিনের কর্মসূচি">Five-Day Programme</p>
+
+    <div class="day-stack rv">
+      <div class="day-item">
+        <div class="day-dot"></div>
+        <div class="day-label" data-en="Day 1 · 7 May" data-bn="দিন ১ · ৭ মে">Day 1 · 7 May</div>
+        <div class="day-title" data-en="The Idea of Writing — From Spoken Word to Script to Machine" data-bn="লেখার ধারণা — কথ্য ভাষা থেকে লিপি থেকে যন্ত্র">The Idea of Writing — From Spoken Word to Script to Machine</div>
+        <div class="day-rp">Prof. B. B. Chaudhuri</div>
+        <p class="day-desc" data-en="What happens when spoken language becomes written? Traces the journey from the earliest decisions about representing speech in visual form, through encoding Bengali script on a machine, to the foundational problem that precedes all translation: making a language computationally legible." data-bn="মৌখিক ভাষা যখন লিখিত হয় তখন কী ঘটে? বাক্‌কে দৃশ্যরূপে উপস্থাপনের আদি সিদ্ধান্ত থেকে শুরু করে যন্ত্রে বাংলা লিপি এনকোডিং পর্যন্ত — অনুবাদের আগে ভাষাকে যন্ত্রের কাছে পাঠযোগ্য করার মৌলিক সমস্যা।">What happens when spoken language becomes written? Traces the journey from the earliest decisions about representing speech in visual form, through encoding Bengali script on a machine, to the foundational problem that precedes all translation: making a language computationally legible.</p>
+      </div>
+      <div class="day-item">
+        <div class="day-dot"></div>
+        <div class="day-label" data-en="Day 2 · 8 May" data-bn="দিন ২ · ৮ মে">Day 2 · 8 May</div>
+        <div class="day-title" data-en="Foundations — Dictionaries, Corpora, and the Earliest Bengali Language Technologies" data-bn="ভিত্তি — অভিধান, কর্পাস, এবং বাংলা ভাষা প্রযুক্তির সূচনা">Foundations — Dictionaries, Corpora, and the Earliest Bengali Language Technologies</div>
+        <div class="day-rp">Prof. B. B. Chaudhuri</div>
+        <p class="day-desc" data-en="From dictionaries and thesauri to the earliest experiments in OCR, spell-checking, and text processing. When we choose which texts to feed a machine, whose Bengali are we teaching it to speak?" data-bn="অভিধান ও থিসরাস থেকে OCR, বানান পরীক্ষা ও টেক্সট প্রসেসিংয়ের আদি পরীক্ষা-নিরীক্ষা। যখন আমরা যন্ত্রকে কোন লেখা শেখাবো ঠিক করি, তখন কার বাংলা শেখাচ্ছি?">From dictionaries and thesauri to the earliest experiments in OCR, spell-checking, and text processing. When we choose which texts to feed a machine, whose Bengali are we teaching it to speak?</p>
+      </div>
+      <div class="day-item">
+        <div class="day-dot"></div>
+        <div class="day-label" data-en="Day 3 · 9 May" data-bn="দিন ৩ · ৯ মে">Day 3 · 9 May</div>
+        <div class="day-title" data-en="When Machines Learned to Find Meaning Across Languages" data-bn="যখন যন্ত্র ভাষার সীমানা পেরিয়ে অর্থ খুঁজতে শিখল">When Machines Learned to Find Meaning Across Languages</div>
+        <div class="day-rp">Dr. Pinaki Bhaskar</div>
+        <p class="day-desc" data-en="A transitional moment: systems could not yet translate fluently, but had learned to retrieve meaning across languages. Translation here is no longer about finding the 'right' equivalent word, but about locating relevant meaning." data-bn="একটি পরিবর্তনের সন্ধিক্ষণ: সিস্টেম তখনও সাবলীলভাবে অনুবাদ করতে পারেনি, কিন্তু ভাষার সীমানা পেরিয়ে অর্থ খুঁজতে শিখেছিল। এখানে অনুবাদ মানে 'সঠিক' প্রতিশব্দ খোঁজা নয়, বরং প্রাসঙ্গিক অর্থ চিহ্নিত করা।">A transitional moment: systems could not yet translate fluently, but had learned to retrieve meaning across languages. Translation here is no longer about finding the 'right' equivalent word, but about locating relevant meaning.</p>
+      </div>
+      <div class="day-item">
+        <div class="day-dot"></div>
+        <div class="day-label" data-en="Day 4 · 10 May" data-bn="দিন ৪ · ১০ মে">Day 4 · 10 May</div>
+        <div class="day-title" data-en="The Neural Turn — How Today's Translation Systems Work" data-bn="নিউরাল বাঁক — আজকের অনুবাদ সিস্টেম কীভাবে কাজ করে">The Neural Turn — How Today's Translation Systems Work</div>
+        <div class="day-rp">Dr. Pinaki Bhaskar</div>
+        <p class="day-desc" data-en="Hands-on with IndicTrans2, BanglaBERT, Google Translate, and ChatGPT. A guided comparative exercise: assess the same Bengali literary passage, newspaper editorial, and conversational excerpt across multiple MT systems." data-bn="IndicTrans2, BanglaBERT, Google Translate, এবং ChatGPT নিয়ে হাতেকলমে কাজ। একটি তুলনামূলক অনুশীলন: একই বাংলা সাহিত্যের অংশ, সংবাদপত্রের সম্পাদকীয় ও কথোপকথনের নমুনা একাধিক MT সিস্টেমে যাচাই।">Hands-on with IndicTrans2, BanglaBERT, Google Translate, and ChatGPT. A guided comparative exercise: assess the same Bengali literary passage, newspaper editorial, and conversational excerpt across multiple MT systems.</p>
+      </div>
+      <div class="day-item">
+        <div class="day-dot"></div>
+        <div class="day-label" data-en="Day 5 · 11 May" data-bn="দিন ৫ · ১১ মে">Day 5 · 11 May</div>
+        <div class="day-title" data-en="The AI Frontier — What Translators and Scholars Need to Know Now" data-bn="এ আই-এর সীমান্ত — অনুবাদক ও গবেষকদের এখন কী জানা দরকার">The AI Frontier — What Translators and Scholars Need to Know Now</div>
+        <div class="day-rp">Pritam Dey</div>
+        <p class="day-desc" data-en="Cultural nuance lost in translation, rendering issues, register mismatches, dialectal diversity erased. Emerging agent-driven systems as tools — not replacements — for human translators. Closes with roundtable: 'Is Machine Translation Replacing or Reconfiguring the Translator?'" data-bn="অনুবাদে হারিয়ে যাওয়া সাংস্কৃতিক সূক্ষ্মতা, রেন্ডারিং সমস্যা, রেজিস্টার অমিল, আঞ্চলিক বৈচিত্র্যের বিলোপ। এজেন্ট-চালিত সিস্টেম মানব অনুবাদকের প্রতিস্থাপন নয়, সহায়ক হিসেবে। গোলটেবিল আলোচনা দিয়ে সমাপ্তি: 'যন্ত্র-অনুবাদ কি অনুবাদককে প্রতিস্থাপন করছে নাকি পুনর্গঠন করছে?'">Cultural nuance lost in translation, rendering issues, register mismatches, dialectal diversity erased. Emerging agent-driven systems as tools — not replacements — for human translators. Closes with roundtable: "Is Machine Translation Replacing or Reconfiguring the Translator?"</p>
+      </div>
+    </div>
+
+    <div class="event-sep"></div>
+
+    <!-- Significance -->
+    <p class="event-desc rv">
+      <span class="lang-en">Machine translation is not merely a technical convenience; it is a <strong>gatekeeping infrastructure</strong> that determines which Bengali content reaches non-Bengali audiences, how Bengali speakers access global knowledge, and what forms of Bengali are computationally legitimised. This workshop traces Bengali MT's evolution from encoding struggles through cross-lingual retrieval to agent-driven generation — and brings computer scientists and professional language practitioners into a conversation that rarely happens.</span>
+      <span class="lang-bn">যন্ত্র-অনুবাদ নিছক প্রযুক্তিগত সুবিধা নয়; এটি একটি <strong>দ্বাররক্ষী পরিকাঠামো</strong> যা নির্ধারণ করে কোন বাংলা বিষয়বস্তু অবাঙালি শ্রোতার কাছে পৌঁছায়, বাংলাভাষীরা কীভাবে বৈশ্বিক জ্ঞানে প্রবেশ করে, এবং বাংলার কোন রূপ প্রযুক্তিগতভাবে বৈধতা পায়। এই কর্মশালা বাংলা MT-এর বিবর্তন — এনকোডিং সংকট থেকে ক্রস-লিঙ্গুয়াল রিট্রিভাল থেকে এজেন্ট-চালিত জেনারেশন পর্যন্ত — অনুসরণ করে, এবং কম্পিউটার বিজ্ঞানী ও পেশাদার ভাষাচর্চাকারীদের এমন একটি কথোপকথনে আনে যা খুব কমই ঘটে।</span>
+    </p>
+
+    <!-- Second CTA -->
+    <div class="rv" style="margin:40px 0 20px; text-align:center;">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6bsKFZ6apTyX55XARIce1t3XdctCSxf2XZv0rZZHijryq1Q/viewform" target="_blank" rel="noopener noreferrer" class="cta-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l6.1-6.1M10 5H5a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>
+        <span class="lang-en">Apply Now — 30 Seats Only</span><span class="lang-bn">আবেদন করুন — মাত্র ৩০ জন</span>
+      </a>
+    </div>
+
+    <p class="rv" style="font-size:13px; font-style:italic; color:#8a8a8a; text-align:center; margin-bottom:48px;">
+      <span class="lang-en">Lunch and participation certificate will be provided to selected participants.</span>
+      <span class="lang-bn">নির্বাচিত অংশগ্রহণকারীদের মধ্যাহ্নভোজ ও অংশগ্রহণের সার্টিফিকেট দেওয়া হবে।</span>
+    </p>
+
+    <p class="rv" style="font-size:13px; font-style:italic; color:#8a8a8a; margin-bottom:8px;">
+      <span class="lang-en">Platform Bengali is a foundation project sponsored by the India Foundation for the Arts (IFA) under the Arts Research programme. Principal Investigator: Prithu Halder · Contact: bhashascope@gmail.com</span>
+      <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের (আই এফ এ) কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত একটি ফাউন্ডেশন প্রকল্প। প্রধান গবেষক: পৃথু হালদার · যোগাযোগ: bhashascope@gmail.com</span>
+    </p>
+  </div>
+
+  <div class="section-wrap">
+    <div class="event-sep"></div>
+  </div>
+
+  <div class="event-footer">
+    <span data-en="© 2026 Platform Bengali — India Foundation for the Arts" data-bn="© ২০২৬ প্ল্যাটফর্ম বাংলা — ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস">© 2026 Platform Bengali — India Foundation for the Arts</span>
+    <a href="../index.html"><span class="lang-en">Back to Home</span><span class="lang-bn">প্রচ্ছদে ফিরুন</span></a>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var b=document.querySelector('.bg-illustration');if(!b)return;
+  var mx=parseFloat(getComputedStyle(b).opacity)||0.18,mn=0.03;
+  function u(){var s=window.pageYOffset||document.documentElement.scrollTop,h=window.innerHeight*1.5,p=Math.min(s/h,1),e=p*p;b.style.opacity=mx-(mx-mn)*e;}
+  window.addEventListener('scroll',u,{passive:true});u();
+})();
+</script>
+<script>
+(function(){
+  var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){o.observe(el);});
+})();
+</script>
+<script>
+(function(){
+  var KEY='pb-lang',btnEN=document.getElementById('btnEN'),btnBN=document.getElementById('btnBN');
+  var lang=localStorage.getItem(KEY)||'en';
+  function apply(l){
+    lang=l;localStorage.setItem(KEY,lang);
+    btnEN.classList.toggle('active',lang==='en');
+    btnBN.classList.toggle('active',lang==='bn');
+    document.body.classList.toggle('bn-mode',lang==='bn');
+    document.querySelectorAll('[data-en][data-bn]').forEach(function(el){
+      var c=el.getAttribute('data-'+lang);
+      if(c.indexOf('<')!==-1){el.innerHTML=c;}else{el.textContent=c;}
     });
-  </script>
+  }
+  btnEN.addEventListener('click',function(){apply('en');});
+  btnBN.addEventListener('click',function(){apply('bn');});
+  apply(lang);
+})();
+</script>
 </body>
 </html>
