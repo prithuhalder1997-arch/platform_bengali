@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biswajit Ray — Monthly Lecture Series · Platform Bengali</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; max-width:100vw!important; overflow-x:hidden!important; }
+body { font-family:'DM Sans',sans-serif; background:#ffffff; color:#1a1a1a; max-width:100vw!important; overflow-x:hidden!important; }
+img { max-width:100%; height:auto; }
+
+.bg-illustration { position:fixed; inset:0; z-index:0; pointer-events:none; background:url('../../img/jantar-mantar-desktop.png') center center / cover no-repeat; background-color:#fff; opacity:0.18; will-change:opacity; }
+@media(max-width:1024px){ .bg-illustration { background-image:url('../../img/jantar-mantar-tablet.png'); } }
+@media(max-width:600px){ .bg-illustration { background-image:url('../../img/jantar-mantar-mobile.png'); opacity:0.14; } }
+
+.site-header { position:fixed; top:0; left:0; right:0; z-index:300; display:flex; align-items:center; justify-content:space-between; padding:clamp(8px,1.5vw,16px) clamp(12px,3vw,40px); background:rgba(255,255,255,0.55); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(0,0,0,0.04); }
+.header-logo { display:flex; align-items:center; }
+.logo-img { height:clamp(22px,3.5vw,40px); width:auto; display:block; }
+.header-logo-right .logo-img { height:clamp(40px,6vw,72px); }
+.logo-fallback { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(10px,1.2vw,14px); letter-spacing:0.1em; text-transform:uppercase; color:#1a1a1a; }
+
+.lang-toggle-fixed { position:fixed; bottom:32px; right:32px; z-index:250; display:flex; background:rgba(255,255,255,0.8); backdrop-filter:blur(14px); border:1px solid rgba(0,0,0,0.08); border-radius:50px; padding:4px; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+.lang-toggle-fixed .lang-btn { border:none; background:transparent; outline:none; cursor:pointer; padding:8px 20px; border-radius:40px; font-family:'DM Sans',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; color:#8a8a8a; transition:all 0.3s; line-height:1; }
+.lang-toggle-fixed .lang-btn.active { background:#cc2828; color:#fff; box-shadow:0 2px 12px rgba(204,40,40,0.35); }
+.lang-toggle-fixed .lang-btn[data-lang="bn"] { font-family:'Noto Sans Bengali',sans-serif; font-weight:600; text-transform:none; font-size:13px; }
+@media(max-width:768px){ .lang-toggle-fixed{bottom:16px;right:16px;} .lang-toggle-fixed .lang-btn{padding:7px 14px;font-size:11px;} }
+
+.page-wrap { position:relative; z-index:1; min-height:100vh; padding-top:clamp(80px,10vh,120px); }
+.back-nav { display:inline-flex; align-items:center; gap:8px; margin-bottom:32px; font-family:'Syne',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#8a8a8a; text-decoration:none; transition:color 0.3s; }
+.back-nav:hover { color:#cc2828; }
+.back-nav svg { width:18px; height:18px; }
+
+.section-wrap { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,60px); }
+.event-eyebrow { font-family:'Syne',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#cc2828; opacity:0.6; margin-bottom:14px; }
+.event-title { font-family:'Syne',sans-serif; font-size:clamp(28px,4.5vw,50px); font-weight:800; line-height:1.1; letter-spacing:-0.02em; color:#1a1a1a; margin-bottom:8px; }
+.event-subtitle { font-family:'Syne',sans-serif; font-size:clamp(13px,1.4vw,16px); font-weight:600; letter-spacing:0.04em; color:#8a8a8a; margin-bottom:8px; }
+.event-meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; margin-bottom:40px; }
+.meta-tag { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:6px 16px; border-radius:40px; border:1px solid rgba(0,0,0,0.08); color:#4a4a4a; background:rgba(245,244,242,0.7); }
+.meta-tag.accent { background:rgba(204,40,40,0.06); border-color:rgba(204,40,40,0.15); color:#cc2828; }
+.event-desc { font-size:clamp(15px,1.1vw,17px); line-height:1.9; color:#4a4a4a; max-width:680px; margin-bottom:28px; }
+.event-sep { width:40px; height:2px; background:rgba(0,0,0,0.08); margin:40px 0; border-radius:1px; }
+
+.poster-wrap { max-width:480px; margin:36px 0; }
+.poster-wrap img { border-radius:14px; box-shadow:0 12px 40px rgba(0,0,0,0.1); border:1px solid rgba(0,0,0,0.06); }
+
+.speaker-card { padding:28px; border-radius:16px; background:rgba(250,249,247,0.85); border:1px solid rgba(0,0,0,0.06); margin:28px 0; }
+.speaker-name { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; color:#1a1a1a; margin-bottom:6px; }
+.speaker-role { font-size:14px; line-height:1.6; color:#4a4a4a; }
+.speaker-badge { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#cc2828; margin-bottom:10px; }
+
+.event-footer { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,60px) 60px; border-top:1px solid rgba(0,0,0,0.06); padding-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+.event-footer span { font-size:12px; color:#8a8a8a; }
+.event-footer a { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#cc2828; text-decoration:none; border-bottom:1px solid rgba(204,40,40,0.3); padding-bottom:2px; }
+
+.rv { opacity:0; transform:translateY(24px); transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.rv.vis { opacity:1; transform:translateY(0); }
+.rv-d1{transition-delay:0.1s;} .rv-d2{transition-delay:0.2s;} .rv-d3{transition-delay:0.3s;} .rv-d4{transition-delay:0.4s;}
+
+.lang-en { display:inline; } .lang-bn { display:none; }
+body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; }
+body.bn-mode .event-title, body.bn-mode .event-subtitle, body.bn-mode .event-eyebrow, body.bn-mode .meta-tag, body.bn-mode .speaker-name, body.bn-mode .speaker-badge { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+body.bn-mode .event-desc, body.bn-mode .speaker-role, body.bn-mode .back-nav { font-family:'Noto Sans Bengali',sans-serif; }
+
+@media(max-width:768px){
+  .site-header { padding:8px 12px; }
+  .header-logo-right .logo-img { max-height:38px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-illustration"></div>
+
+<header class="site-header">
+  <div class="header-logo header-logo-left"><img src="../../img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span></div>
+  <div class="header-logo header-logo-right"><img src="../../img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></div>
+</header>
+
+<div class="lang-toggle-fixed" id="langToggleFixed">
+  <button class="lang-btn active" id="btnEN" data-lang="en">English</button>
+  <button class="lang-btn" id="btnBN" data-lang="bn">বাংলা</button>
+</div>
+
+<div class="page-wrap">
+  <div class="section-wrap">
+
+    <a href="../monthly-talks.html" class="back-nav rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span class="lang-en">Back to Monthly Lectures</span><span class="lang-bn">মাসিক বক্তৃতামালায় ফিরুন</span>
+    </a>
+
+    <div class="event-eyebrow rv rv-d1" data-en="Monthly Lecture 01/12 · April 2026" data-bn="মাসিক বক্তৃতা ০১/১২ · এপ্রিল ২০২৬">Monthly Lecture 01/12 · April 2026</div>
+
+    <h1 class="event-title rv rv-d1">
+      <span class="lang-en">The Body of Language and the Hand of Technology</span>
+      <span class="lang-bn">ভাষার শরীর ও প্রযুক্তির হাত</span>
+    </h1>
+
+    <p class="event-subtitle rv rv-d2">
+      <span class="lang-en">On Bengali</span>
+      <span class="lang-bn">প্রসঙ্গ বাংলা ভাষা</span>
+    </p>
+
+    <div class="event-meta rv rv-d2">
+      <span class="meta-tag" data-en="Online" data-bn="অনলাইন">Online</span>
+      <span class="meta-tag" data-en="26 April 2026" data-bn="২৬ এপ্রিল ২০২৬">26 April 2026</span>
+      <span class="meta-tag" data-en="6:30 PM IST" data-bn="সন্ধ্যা ৬:৩০">6:30 PM IST</span>
+      <span class="meta-tag accent" data-en="Upcoming" data-bn="আসন্ন">Upcoming</span>
+    </div>
+
+    <!-- Speaker -->
+    <div class="speaker-card rv rv-d3">
+      <div class="speaker-badge" data-en="Speaker" data-bn="বক্তা">Speaker</div>
+      <div class="speaker-name">
+        <span class="lang-en">Biswajit Ray</span>
+        <span class="lang-bn">বিশ্বজিৎ রায়</span>
+      </div>
+      <div class="speaker-role">
+        <span class="lang-en"><strong>Professor, Bengali Department, Visva-Bharati.</strong><br>Well-known author and scholar of Bengali language and literature.</span>
+        <span class="lang-bn"><strong>অধ্যাপক, বাংলা বিভাগ, বিশ্বভারতী।</strong><br>সুপরিচিত লেখক।</span>
+      </div>
+    </div>
+
+    <!-- Poster -->
+    <div class="poster-wrap rv rv-d3">
+      <a href="../../img/April_26.jpg" target="_blank"><img src="../../img/April_26.jpg" alt="Biswajit Ray — Monthly Lecture Poster"></a>
+    </div>
+
+    <div class="event-sep"></div>
+
+    <p class="event-desc rv rv-d4">
+      <span class="lang-en">What happens to the living body of a language when technology reshapes how it is written, spoken, read, and circulated? In the first lecture of the Platform Bengali Monthly Series, Professor Biswajit Ray examines the tension between the organic evolution of Bengali and the technological forces — from keyboards to AI — that increasingly mediate its form.</span>
+      <span class="lang-bn">যখন প্রযুক্তি একটি ভাষার লেখা, বলা, পড়া ও প্রচারের ধরন বদলে দেয়, তখন সেই ভাষার জীবন্ত শরীরে কী ঘটে? প্ল্যাটফর্ম বেঙ্গলি মাসিক বক্তৃতামালার প্রথম বক্তৃতায় অধ্যাপক বিশ্বজিৎ রায় বাংলার স্বাভাবিক বিবর্তন এবং কীবোর্ড থেকে এ আই পর্যন্ত যে প্রযুক্তিগত শক্তি ক্রমবর্ধমানভাবে ভাষার রূপকে নিয়ন্ত্রণ করছে — তার মধ্যেকার টানাপোড়েন পরীক্ষা করবেন।</span>
+    </p>
+
+    <p class="rv" style="font-size:13px; font-style:italic; color:#8a8a8a; margin-bottom:48px;">
+      <span class="lang-en">Part of the Monthly Lecture Series under Platform Bengali, a foundation project sponsored by the India Foundation for the Arts (IFA) under the Arts Research programme.</span>
+      <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলির মাসিক বক্তৃতামালার অংশ। ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত।</span>
+    </p>
+
+  </div>
+
+  <div class="event-footer">
+    <span data-en="© 2026 Platform Bengali — India Foundation for the Arts" data-bn="© ২০২৬ প্ল্যাটফর্ম বাংলা — ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস">© 2026 Platform Bengali — India Foundation for the Arts</span>
+    <a href="../../index.html"><span class="lang-en">Back to Home</span><span class="lang-bn">প্রচ্ছদে ফিরুন</span></a>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var b=document.querySelector('.bg-illustration');if(!b)return;
+  var mx=parseFloat(getComputedStyle(b).opacity)||0.18,mn=0.03;
+  function u(){var s=window.pageYOffset||document.documentElement.scrollTop,h=window.innerHeight*1.5,p=Math.min(s/h,1),e=p*p;b.style.opacity=mx-(mx-mn)*e;}
+  window.addEventListener('scroll',u,{passive:true});u();
+})();
+</script>
+<script>
+(function(){
+  var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){o.observe(el);});
+})();
+</script>
+<script>
+(function(){
+  var KEY='pb-lang',btnEN=document.getElementById('btnEN'),btnBN=document.getElementById('btnBN');
+  var lang=localStorage.getItem(KEY)||'en';
+  function apply(l){
+    lang=l;localStorage.setItem(KEY,lang);
+    btnEN.classList.toggle('active',lang==='en');
+    btnBN.classList.toggle('active',lang==='bn');
+    document.body.classList.toggle('bn-mode',lang==='bn');
+    document.querySelectorAll('[data-en][data-bn]').forEach(function(el){
+      var c=el.getAttribute('data-'+lang);
+      if(c.indexOf('<')!==-1){el.innerHTML=c;}else{el.textContent=c;}
+    });
+  }
+  btnEN.addEventListener('click',function(){apply('en');});
+  btnBN.addEventListener('click',function(){apply('bn');});
+  apply(lang);
+})();
+</script>
+</body>
+</html>
