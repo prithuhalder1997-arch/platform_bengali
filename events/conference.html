@@ -17,6 +17,8 @@
       --teal: #4a4a4a;
       --bg-deep: #d8d5d0;
       --bg-section: #e0ddd8;
+      --card-bg: rgba(250, 249, 247, 0.6);
+      --card-hover: rgba(250, 249, 247, 0.95);
     }
 
     body {
@@ -27,11 +29,10 @@
       overflow-x: hidden;
     }
 
-    /* --- Cubist background (simplified) --- */
+    /* --- Cubist background --- */
     .page-bg {
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background:
-        linear-gradient(160deg, #d8d5d0 0%, #dddad5 20%, #e0ddd8 40%, #dddad5 60%, #d9d4ce 80%, #d9d4ce 100%);
+      background: linear-gradient(160deg, #d8d5d0 0%, #dddad5 20%, #e0ddd8 40%, #dddad5 60%, #d9d4ce 80%, #d9d4ce 100%);
     }
     .page-bg::before {
       content: ''; position: absolute; inset: 0;
@@ -53,6 +54,7 @@
       padding: 20px 40px;
       background: rgba(216,213,208,0.85);
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(0,0,0,0.06);
     }
     .nav-home {
@@ -64,6 +66,7 @@
     }
     .nav-home:hover { opacity: 1; }
     .nav-home svg { width: 20px; height: 20px; }
+    
     .nav-lang {
       font-family: 'Syne', sans-serif; font-size: 12px;
       letter-spacing: 0.15em; text-transform: uppercase;
@@ -83,46 +86,126 @@
 
     .page-number {
       font-family: 'Syne', sans-serif; font-size: 120px; font-weight: 800;
-      color: rgba(0,0,0,0.03); line-height: 1;
+      color: rgba(0,0,0,0.04); line-height: 1;
       position: absolute; top: 100px; right: -20px;
       pointer-events: none; user-select: none;
     }
 
     .page-title {
-      font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 0.04em;
-      color: var(--cream); margin-bottom: 8px;
-      line-height: 1.1;
+      font-family: 'Syne', sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.02em;
+      color: var(--cream); margin-bottom: 12px;
+      line-height: 1.1; max-width: 800px;
     }
+    
     .page-subtitle {
-      font-family: 'DM Sans', sans-serif; font-size: 15px;
-      color: rgba(74,74,74,0.7); letter-spacing: 0.08em;
-      text-transform: uppercase; margin-bottom: 48px;
+      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500;
+      color: var(--teal); letter-spacing: 0.04em;
+      margin-bottom: 24px;
     }
 
-    .divider {
-      width: 60px; height: 2px; background: var(--ochre);
-      margin-bottom: 48px; opacity: 0.6;
+    .event-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+    .meta-tag {
+      font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 40px;
+      border: 1px solid rgba(0,0,0,0.08);
+      color: #4a4a4a; background: rgba(255,255,255,0.4);
+    }
+    .meta-tag.accent { background: rgba(204,40,40,0.08); border-color: rgba(204,40,40,0.15); color: var(--ochre); }
+
+    .divider { width: 60px; height: 2px; background: var(--ochre); margin: 40px 0; opacity: 0.6; }
+
+    /* --- Poster Image --- */
+    .poster-container {
+      margin-bottom: 48px;
+      text-align: center;
+    }
+    .poster-container img {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
-    .content-placeholder {
-      background: rgba(255,255,255,0.3);
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 8px;
-      padding: 48px;
-      min-height: 300px;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 16px;
+    /* --- Typography & Text Blocks --- */
+    .section-heading {
+      font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: #8a8a8a; margin-bottom: 20px; margin-top: 48px;
     }
-    .content-placeholder p {
-      color: rgba(74,74,74,0.5);
-      font-size: 15px; text-align: center; line-height: 1.7;
+    
+    .body-text {
+      font-size: clamp(15px, 1.1vw, 17px);
+      line-height: 1.8; color: #3a3a3a;
+      max-width: 760px; margin-bottom: 24px;
     }
-    .content-placeholder .placeholder-icon {
-      width: 48px; height: 48px; opacity: 0.15;
-      border: 2px solid var(--cream); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 8px;
+    .body-text strong { color: var(--cream); font-weight: 700; }
+
+    /* --- Cluster Cards (Themes) --- */
+    .cluster-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px; margin: 28px 0;
+    }
+    .cluster-card {
+      padding: 32px 28px; border-radius: 14px;
+      background: var(--card-bg); border: 1px solid rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+    .cluster-card:hover { background: var(--card-hover); box-shadow: 0 8px 28px rgba(0,0,0,0.04); transform: translateY(-2px); }
+    .cluster-part { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; color: var(--ochre); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .cluster-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--cream); margin-bottom: 12px; }
+    .cluster-desc { font-size: 14px; line-height: 1.6; color: var(--teal); margin-bottom: 16px; }
+    .cluster-list { list-style: none; padding: 0; }
+    .cluster-list li {
+      position: relative; padding-left: 16px;
+      font-size: 13.5px; line-height: 1.5; color: #4a4a4a; margin-bottom: 10px;
+    }
+    .cluster-list li::before {
+      content: '•'; position: absolute; left: 0; color: var(--ochre); font-weight: bold;
+    }
+
+    /* --- Timeline Row --- */
+    .timeline-row {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px; margin: 32px 0 48px;
+    }
+    .timeline-item {
+      padding: 24px 20px; border-radius: 12px;
+      background: rgba(255,255,255,0.4); border: 1px dashed rgba(0,0,0,0.1);
+    }
+    .timeline-date {
+      font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800;
+      color: var(--ochre); margin-bottom: 6px;
+    }
+    .timeline-label { font-size: 13px; color: var(--teal); font-weight: 500; line-height: 1.4; }
+
+    /* --- Reach Out Box --- */
+    .reach-box {
+      padding: 48px 40px; border-radius: 16px;
+      border: 1px solid rgba(204,40,40,0.15);
+      background: var(--card-bg); margin: 60px 0 40px;
+    }
+    .reach-title { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--cream); margin-bottom: 12px; }
+    .reach-sub { font-size: 15px; color: var(--teal); line-height: 1.7; margin-bottom: 32px; max-width: 600px; }
+    
+    .reach-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: #fff; background: var(--ochre); border: none;
+      border-radius: 50px; padding: 16px 36px; text-decoration: none;
+      cursor: pointer; transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(204,40,40,0.25);
+    }
+    .reach-btn:hover { background: #b02020; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(204,40,40,0.35); }
+    .reach-btn svg { width: 16px; height: 16px; }
+
+    .org-credits {
+      font-size: 13px; line-height: 1.6; color: #6a6a6a;
+      padding: 24px; background: rgba(255,255,255,0.3);
+      border-radius: 12px; margin-top: 48px; font-style: italic;
     }
 
     /* --- Footer --- */
@@ -134,26 +217,26 @@
       padding-top: 32px;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .footer-text {
-      font-size: 12px; color: rgba(74,74,74,0.4);
-      letter-spacing: 0.05em;
-    }
+    .footer-text { font-size: 12px; color: rgba(74,74,74,0.6); letter-spacing: 0.05em; }
     .footer-links { display: flex; gap: 24px; }
     .footer-links a {
-      font-size: 12px; color: rgba(74,74,74,0.5);
+      font-size: 12px; color: rgba(74,74,74,0.7);
       text-decoration: none; letter-spacing: 0.05em;
       text-transform: uppercase; font-family: 'Syne', sans-serif;
-      transition: color 0.3s;
+      transition: color 0.3s; font-weight: 600;
     }
     .footer-links a:hover { color: var(--ochre); }
 
-    /* --- Responsive --- */
+    /* --- Animations --- */
+    .rv { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    .rv.vis { opacity: 1; transform: translateY(0); }
+    .rv-d1{transition-delay:0.1s;} .rv-d2{transition-delay:0.2s;} .rv-d3{transition-delay:0.3s;}
+
     @media (max-width: 600px) {
       .top-nav { padding: 16px 20px; }
       .page-content { padding: 120px 20px 60px; }
-      .page-title { font-size: 32px; }
       .page-number { font-size: 80px; top: 90px; right: 10px; }
-      .content-placeholder { padding: 32px 20px; }
+      .reach-box { padding: 32px 24px; }
       .page-footer { padding: 0 20px 32px; flex-direction: column; gap: 16px; text-align: center; }
     }
   </style>
@@ -171,20 +254,137 @@
 
   <main class="page-content">
     <div class="page-number">03</div>
-    <h1 class="page-title" data-en="Conference" data-bn="আলোচনাচক্র">Conference</h1>
-    <p class="page-subtitle" data-en="Hybrid international conference" data-bn="আন্তর্জাতিক সংকর আলোচনাচক্র">Hybrid international conference</p>
+    
+    <h1 class="page-title rv rv-d1" data-en="Digital Humanities and Digital Culture in the Bangla-Speaking World" data-bn="বাংলা ভাষাভাষী বিশ্বে ডিজিটাল হিউম্যানিটিজ এবং ডিজিটাল সংস্কৃতি">
+      Digital Humanities and Digital Culture<br>in the Bangla-Speaking World
+    </h1>
+    
+    <p class="page-subtitle rv rv-d2" data-en="A One-Day Academic Conference" data-bn="একদিনের আন্তর্জাতিক আলোচনাচক্র">
+      A One-Day Academic Conference
+    </p>
+
+    <div class="event-meta rv rv-d2">
+      <span class="meta-tag">18 July 2026</span>
+      <span class="meta-tag">Hybrid Format</span>
+      <span class="meta-tag">RKMRC Narendrapur, Kolkata</span>
+      <span class="meta-tag accent">Call for Papers Open</span>
+    </div>
+
+    <div class="poster-container rv rv-d3">
+      <img src="img/conference_poster.jpg" alt="Platform Bengali Conference Poster">
+    </div>
+
     <div class="divider"></div>
 
-    <div class="content-placeholder">
-      <div class="placeholder-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v12M6 12h12"/></svg>
+    <h2 class="section-heading rv">About the Conference</h2>
+    <p class="body-text rv">
+      <strong>Platform Bengali: Digital Humanities and Digital Culture in the Bangla Speaking World</strong> is a one-day hybrid academic conference that seeks to bring together scholars from literary and cultural studies, linguistics, media studies, and the Digital Humanities to examine how digital technologies are reshaping the Bengali language, its cultural production, and the institutions that sustain it.
+    </p>
+    <p class="body-text rv">
+      Spoken by over 270 million people across national borders, diaspora networks, and digital platforms, Bengali is undergoing a transformation that is at once linguistic, aesthetic, and institutional. The rise of social media, streaming platforms, YouTube content creation, machine translation, and AI-driven language tools has generated new registers, audiences, and modes of cultural participation that existing disciplinary frameworks struggle to account for.
+    </p>
+    <p class="body-text rv">
+      Situated at the intersection of Digital Humanities and Digital Culture studies, the conference introduces conceptual vocabularies, including "platform vernaculars" and "vernacular remediation," to make sense of rapidly evolving, multimodal, and often ephemeral digital objects in Bengali.
+    </p>
+
+    <h2 class="section-heading rv">Themes and Topics</h2>
+    <p class="body-text rv" style="font-size: 14px; margin-bottom: 0;">We invite contributions that engage with the following four thematic clusters:</p>
+
+    <div class="cluster-grid rv">
+      <div class="cluster-card">
+        <div class="cluster-part">Part I</div>
+        <div class="cluster-title">Language in Transition</div>
+        <div class="cluster-desc">Examining how digital mediation is transforming Bengali at the level of syntax, spelling, neologism, and pedagogy.</div>
+        <ul class="cluster-list">
+          <li>Emerging trends in digital syntax, orthography, and neologisms.</li>
+          <li>Code-switching, transliteration, and Banglish on written Bengali.</li>
+          <li>Pedagogy in the age of AI, machine translation, and learning tools.</li>
+          <li>Computational and corpus-based approaches to studying language change.</li>
+        </ul>
       </div>
-      <p>Content for this section is being prepared.<br>Check back soon.</p>
+
+      <div class="cluster-card">
+        <div class="cluster-part">Part II</div>
+        <div class="cluster-title">Platform Vernaculars</div>
+        <div class="cluster-desc">Investigating how specific digital platforms shape Bengali language use, cultural production, and audience formation.</div>
+        <ul class="cluster-list">
+          <li>Evolution of blogs, literary portals, and web magazines.</li>
+          <li>Register formation on Facebook, Instagram, and X/Twitter.</li>
+          <li>Memes as vernacular archives: humour, subversion, and remix culture.</li>
+          <li>Linguistic innovation among YouTube content creators.</li>
+          <li>New visual regimes in OTT series, vertical films, and micro-dramas.</li>
+        </ul>
+      </div>
+
+      <div class="cluster-card">
+        <div class="cluster-part">Part III</div>
+        <div class="cluster-title">Digital Textuality & Cultural Memory</div>
+        <div class="cluster-desc">Exploring the interface between literary culture, DH projects, and new modes of audio-visual storytelling.</div>
+        <ul class="cluster-list">
+          <li>Audio storytelling: podcasts, audio dramas, and radio afterlives.</li>
+          <li>Literary culture: digital book fairs and internet microcelebrities.</li>
+          <li>DH tools, archives, and projects (e.g., Bichitra, Shabdakalpa).</li>
+          <li>Informal digital archives, piracy networks, and volunteered labour.</li>
+        </ul>
+      </div>
+
+      <div class="cluster-card">
+        <div class="cluster-part">Part IV</div>
+        <div class="cluster-title">Circulation, Policy, & Futures</div>
+        <div class="cluster-desc">Addressing the transnational reach of digital Bengali, cultural industries, and language policy.</div>
+        <ul class="cluster-list">
+          <li>Transnational Bengali: migration, diaspora, and borderless practices.</li>
+          <li>Transformation of cultural marketing, trailers, and PR registers.</li>
+          <li>Language policy, standardisation, and documenting vernacular shifts.</li>
+          <li>Politics of platform governance and algorithmic mediation.</li>
+        </ul>
+      </div>
     </div>
+
+    <h2 class="section-heading rv">Indicative Timeline</h2>
+    <div class="timeline-row rv">
+      <div class="timeline-item">
+        <div class="timeline-date">20 May 2026</div>
+        <div class="timeline-label">Abstract Submission Deadline</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">5 Jun 2026</div>
+        <div class="timeline-label">Notification of Acceptance</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">30 Jun 2026</div>
+        <div class="timeline-label">Full Paper Submission</div>
+      </div>
+      <div class="timeline-item" style="background: rgba(204,40,40,0.05); border-color: rgba(204,40,40,0.2);">
+        <div class="timeline-date" style="color: var(--cream);">18 Jul 2026</div>
+        <div class="timeline-label">Conference Date</div>
+      </div>
+    </div>
+
+    <div class="reach-box rv">
+      <div class="reach-title">Call for Papers</div>
+      <div class="reach-sub">
+        We invite proposals for original, unpublished papers (20-minute presentations). Abstracts of 300-500 words, a tentative title, up to three thematic keywords, and a brief author biography (100-150 words) should be submitted in Word (.docx) format. 
+        <br><br>
+        <strong>Publication:</strong> Select papers will be invited for inclusion in a peer-reviewed edited volume (Bloomsbury has expressed strong interest).
+      </div>
+      
+      <a href="mailto:prithuhalder1997@gmail.com?subject=CFP%20-%20Platform%20Bengali%20Conference" class="reach-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Submit Abstract
+      </a>
+    </div>
+
+    <div class="org-credits rv">
+      This conference is organised by the <strong>Platform Bengali Project</strong>, supported by the <strong>India Foundation for the Arts (IFA)</strong> under its Arts Research Programme, and partly sponsored by <strong>BNP Paribas</strong>. Organised in collaboration with <strong>Ramakrishna Mission Residential College (Autonomous) Narendrapur</strong>.<br><br>
+      <strong>Conference Convenor:</strong> Pranab K Mondal<br>
+      <strong>Volume Editors:</strong> Prithu Halder, Debapriya Basu, Spandan Bhattacharya
+    </div>
+
   </main>
 
   <footer class="page-footer">
-    <span class="footer-text">© 2025 Platform Bengali — India Foundation for the Arts</span>
+    <span class="footer-text">© 2026 Platform Bengali — India Foundation for the Arts</span>
     <div class="footer-links">
       <a href="../index.html">Home</a>
       <a href="../about-ifa.html">About IFA</a>
@@ -192,18 +392,31 @@
   </footer>
 
   <script>
+    (function(){
+      var o = new IntersectionObserver(function(e){
+        e.forEach(function(x){
+          if(x.isIntersecting) x.target.classList.add('vis');
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.rv').forEach(function(el){ o.observe(el); });
+    })();
+  </script>
+
+  <script>
     const langToggle = document.getElementById('langToggle');
     let lang = 'en';
     langToggle.addEventListener('click', () => {
       lang = lang === 'en' ? 'bn' : 'en';
       document.querySelectorAll('[data-en][data-bn]').forEach(el => {
-        el.textContent = el.getAttribute('data-' + lang);
+        el.innerHTML = el.getAttribute('data-' + lang);
         if (lang === 'bn') {
-          el.style.fontFamily = "'Nirmala UI', 'Bangla Sangam MN', 'Noto Sans Bengali', sans-serif";
+          el.style.fontFamily = "'Noto Sans Bengali', sans-serif";
           el.style.textTransform = 'none';
+          el.style.letterSpacing = 'normal';
         } else {
           el.style.fontFamily = '';
           el.style.textTransform = '';
+          el.style.letterSpacing = '';
         }
       });
     });
