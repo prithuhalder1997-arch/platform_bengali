@@ -55,16 +55,21 @@
     }
     .nav-home:hover { opacity: 1; }
     .nav-home svg { width: 20px; height: 20px; }
-    
-    .nav-lang {
-      font-family: 'Syne', sans-serif; font-size: 12px;
+
+    /* --- Subpage Language Toggle (fixed, matches all other subpages) --- */
+    .subpage-lang-toggle {
+      position: fixed; top: 22px; right: 20px; z-index: 99999;
+      font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
       letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--orange); cursor: pointer;
-      background: none; border: 1px solid rgba(204,40,40,0.3);
+      background: rgba(219, 215, 209, 0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(204,40,40,0.3);
       padding: 6px 16px; border-radius: 20px;
       transition: all 0.3s;
     }
-    .nav-lang:hover { background: rgba(204,40,40,0.08); border-color: var(--orange); }
+    .subpage-lang-toggle:hover { background: rgba(204,40,40,0.08); border-color: var(--orange); }
+    .subpage-lang-toggle.bn-active { border-color: var(--orange); background: rgba(204,40,40,0.1); }
 
     /* --- Page content --- */
     .page-content {
@@ -80,18 +85,37 @@
       pointer-events: none; user-select: none;
     }
 
+    /* --- Event label (matches MT Workshop style) --- */
+    .event-label {
+      font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--ochre); margin-bottom: 16px;
+      display: block;
+    }
+
     .page-title {
       font-family: 'Syne', sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 800;
       text-transform: uppercase; letter-spacing: 0.02em;
       color: var(--cream); margin-bottom: 12px;
       line-height: 1.1; max-width: 800px;
     }
+    .page-title.bn-title {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      text-transform: none; letter-spacing: normal;
+    }
     
     .page-subtitle {
       font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500;
       color: var(--teal); letter-spacing: 0.04em;
-      margin-bottom: 24px;
+      margin-bottom: 10px;
     }
+
+    /* --- Collaboration line --- */
+    .collab-line {
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 400;
+      color: var(--teal); margin-bottom: 28px; line-height: 1.5;
+    }
+    .collab-line strong { font-weight: 700; color: var(--cream); }
 
     .event-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
     .meta-tag {
@@ -106,14 +130,9 @@
     .divider { width: 60px; height: 2px; background: var(--ochre); margin: 40px 0; opacity: 0.6; }
 
     /* --- Poster Image --- */
-    .poster-container {
-      margin-bottom: 48px;
-      text-align: center;
-    }
+    .poster-container { margin-bottom: 48px; text-align: center; }
     .poster-container img {
-      width: 100%;
-      max-width: 700px;
-      border-radius: 12px;
+      width: 100%; max-width: 700px; border-radius: 12px;
       box-shadow: 0 16px 40px rgba(0,0,0,0.12);
       border: 1px solid rgba(255,255,255,0.4);
     }
@@ -131,6 +150,52 @@
       max-width: 760px; margin-bottom: 24px;
     }
     .body-text strong { color: var(--cream); font-weight: 700; }
+
+    /* Bengali body text */
+    .lang-bn { display: none; }
+    body.bn-mode .lang-en { display: none; }
+    body.bn-mode .lang-bn { display: inline; }
+    body.bn-mode .lang-bn.block { display: block; }
+    body.bn-mode .body-text,
+    body.bn-mode .page-subtitle,
+    body.bn-mode .collab-line,
+    body.bn-mode .cluster-desc,
+    body.bn-mode .cluster-list,
+    body.bn-mode .timeline-label,
+    body.bn-mode .reach-sub,
+    body.bn-mode .org-credits {
+      font-family: 'Noto Sans Bengali', sans-serif;
+    }
+    body.bn-mode .section-heading {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      letter-spacing: normal; text-transform: none;
+    }
+    body.bn-mode .cluster-title {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      letter-spacing: normal;
+    }
+    body.bn-mode .cluster-part {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      letter-spacing: normal; text-transform: none;
+    }
+    body.bn-mode .meta-tag {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      letter-spacing: normal; text-transform: none; font-size: 12px;
+    }
+    body.bn-mode .event-label {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      letter-spacing: normal; text-transform: none;
+    }
+    body.bn-mode .reach-title {
+      font-family: 'Noto Sans Bengali', sans-serif;
+    }
+    body.bn-mode .reach-btn {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      letter-spacing: normal; text-transform: none;
+    }
+    body.bn-mode .timeline-date {
+      font-family: 'Noto Sans Bengali', sans-serif;
+    }
 
     /* --- Cluster Cards (Themes) --- */
     .cluster-grid {
@@ -151,9 +216,7 @@
       position: relative; padding-left: 16px;
       font-size: 13.5px; line-height: 1.5; color: #4a4a4a; margin-bottom: 10px;
     }
-    .cluster-list li::before {
-      content: '•'; position: absolute; left: 0; color: var(--ochre); font-weight: bold;
-    }
+    .cluster-list li::before { content: '•'; position: absolute; left: 0; color: var(--ochre); font-weight: bold; }
 
     /* --- Timeline Row --- */
     .timeline-row {
@@ -164,10 +227,7 @@
       padding: 24px 20px; border-radius: 12px;
       background: rgba(250, 249, 247, 0.7); border: 1px dashed rgba(0,0,0,0.1);
     }
-    .timeline-date {
-      font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800;
-      color: var(--ochre); margin-bottom: 6px;
-    }
+    .timeline-date { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--ochre); margin-bottom: 6px; }
     .timeline-label { font-size: 13px; color: var(--teal); font-weight: 500; line-height: 1.4; }
 
     /* --- Reach Out Box --- */
@@ -178,7 +238,6 @@
     }
     .reach-title { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--cream); margin-bottom: 12px; }
     .reach-sub { font-size: 15px; color: var(--teal); line-height: 1.7; margin-bottom: 32px; max-width: 600px; }
-    
     .reach-btn {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800;
@@ -224,6 +283,7 @@
 
     @media (max-width: 600px) {
       .top-nav { padding: 16px 20px; }
+      .subpage-lang-toggle { top: 18px; right: 12px; font-size: 11px; padding: 5px 12px; }
       .page-content { padding: 120px 20px 60px; }
       .page-number { font-size: 80px; top: 90px; right: 10px; }
       .reach-box { padding: 32px 24px; }
@@ -232,6 +292,9 @@
   </style>
 </head>
 <body>
+  <!-- SUBPAGE STICKY LANGUAGE TOGGLE — first child of body, matches all other subpages -->
+  <button class="subpage-lang-toggle" id="langToggle">EN / বাং</button>
+
   <div class="bg-illustration"></div>
 
   <nav class="top-nav">
@@ -239,25 +302,48 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Platform Bengali
     </a>
-    <button class="nav-lang" id="langToggle">EN / বাং</button>
   </nav>
 
   <main class="page-content">
-    <div class="page-number">03</div>
+    <div class="page-number">04</div>
     
-    <h1 class="page-title rv rv-d1" data-en="Digital Humanities and Digital Culture in the Bangla-Speaking World" data-bn="বাংলা ভাষাভাষী বিশ্বে ডিজিটাল হিউম্যানিটিজ এবং ডিজিটাল সংস্কৃতি">
-      Digital Humanities and Digital Culture<br>in the Bangla-Speaking World
+    <span class="event-label rv rv-d1">
+      <span class="lang-en">Event 04 · One-Day Conference · 18 July 2026</span>
+      <span class="lang-bn">ইভেন্ট ০৪ · একদিনের সম্মেলন · ১৮ জুলাই ২০২৬</span>
+    </span>
+
+    <h1 class="page-title rv rv-d1">
+      <span class="lang-en">Digital Humanities and Digital Culture<br>in the Bangla-Speaking World</span>
+      <span class="lang-bn" style="font-family:'Noto Sans Bengali',sans-serif; font-size: clamp(26px,4vw,40px);">বাংলা ভাষাভাষী বিশ্বে ডিজিটাল হিউম্যানিটিজ<br>এবং ডিজিটাল সংস্কৃতি</span>
     </h1>
     
-    <p class="page-subtitle rv rv-d2" data-en="A One-Day Academic Conference" data-bn="একদিনের আন্তর্জাতিক আলোচনাচক্র">
-      A One-Day Academic Conference
+    <p class="page-subtitle rv rv-d2">
+      <span class="lang-en">A One-Day Academic Conference</span>
+      <span class="lang-bn">একদিনের আন্তর্জাতিক আলোচনাচক্র</span>
+    </p>
+
+    <p class="collab-line rv rv-d2">
+      <span class="lang-en">In association with <strong>Ramakrishna Mission Residential College (Autonomous), Narendrapur</strong></span>
+      <span class="lang-bn"><strong>রামকৃষ্ণ মিশন রেসিডেন্শিয়াল কলেজ (স্বশাসিত), নরেন্দ্রপুর</strong>-এর সহযোগিতায়</span>
     </p>
 
     <div class="event-meta rv rv-d2">
-      <span class="meta-tag">18 July 2026</span>
-      <span class="meta-tag">Hybrid Format</span>
-      <span class="meta-tag">RKMRC Narendrapur, Kolkata</span>
-      <span class="meta-tag accent">Call for Papers Open</span>
+      <span class="meta-tag">
+        <span class="lang-en">18 July 2026</span>
+        <span class="lang-bn">১৮ জুলাই ২০২৬</span>
+      </span>
+      <span class="meta-tag">
+        <span class="lang-en">Hybrid Format</span>
+        <span class="lang-bn">হাইব্রিড ফরম্যাট</span>
+      </span>
+      <span class="meta-tag">
+        <span class="lang-en">RKMRC Narendrapur, Kolkata</span>
+        <span class="lang-bn">আরকেএমআরসি নরেন্দ্রপুর, কলকাতা</span>
+      </span>
+      <span class="meta-tag accent">
+        <span class="lang-en">Call for Papers Open</span>
+        <span class="lang-bn">প্রবন্ধ আহ্বান চলছে</span>
+      </span>
     </div>
 
     <div class="poster-container rv rv-d3">
@@ -266,109 +352,247 @@
 
     <div class="divider"></div>
 
-    <h2 class="section-heading rv">About the Conference</h2>
+    <h2 class="section-heading rv">
+      <span class="lang-en">About the Conference</span>
+      <span class="lang-bn">সম্মেলন সম্পর্কে</span>
+    </h2>
     <p class="body-text rv">
-      <strong>Platform Bengali: Digital Humanities and Digital Culture in the Bangla Speaking World</strong> is a one-day hybrid academic conference that seeks to bring together scholars from literary and cultural studies, linguistics, media studies, and the Digital Humanities to examine how digital technologies are reshaping the Bengali language, its cultural production, and the institutions that sustain it.
+      <span class="lang-en"><strong>Platform Bengali: Digital Humanities and Digital Culture in the Bangla Speaking World</strong> is a one-day hybrid academic conference that seeks to bring together scholars from literary and cultural studies, linguistics, media studies, and the Digital Humanities to examine how digital technologies are reshaping the Bengali language, its cultural production, and the institutions that sustain it.</span>
+      <span class="lang-bn"><strong>প্ল্যাটফর্ম বাংলা: বাংলা ভাষাভাষী বিশ্বে ডিজিটাল হিউম্যানিটিজ এবং ডিজিটাল সংস্কৃতি</strong> একটি একদিনের হাইব্রিড আলোচনাচক্র, যেখানে সাহিত্য ও সাংস্কৃতিক অধ্যয়ন, ভাষাবিজ্ঞান, মিডিয়া স্টাডিজ এবং ডিজিটাল হিউম্যানিটিজের গবেষকদের একত্রিত করা হবে — ডিজিটাল প্রযুক্তি কীভাবে বাংলা ভাষা, তার সাংস্কৃতিক উৎপাদন এবং তাকে ধারণকারী প্রতিষ্ঠানগুলিকে পুনর্গঠিত করছে, তা পর্যালোচনা করতে।</span>
     </p>
     <p class="body-text rv">
-      Spoken by over 270 million people across national borders, diaspora networks, and digital platforms, Bengali is undergoing a transformation that is at once linguistic, aesthetic, and institutional. The rise of social media, streaming platforms, YouTube content creation, machine translation, and AI-driven language tools has generated new registers, audiences, and modes of cultural participation that existing disciplinary frameworks struggle to account for.
+      <span class="lang-en">Spoken by over 270 million people across national borders, diaspora networks, and digital platforms, Bengali is undergoing a transformation that is at once linguistic, aesthetic, and institutional. The rise of social media, streaming platforms, YouTube content creation, machine translation, and AI-driven language tools has generated new registers, audiences, and modes of cultural participation that existing disciplinary frameworks struggle to account for.</span>
+      <span class="lang-bn">জাতীয় সীমানা, প্রবাসী নেটওয়ার্ক এবং ডিজিটাল প্ল্যাটফর্মে ২৭ কোটিরও বেশি মানুষের মুখের ভাষা বাংলা আজ একটি রূপান্তরের মধ্য দিয়ে যাচ্ছে — যা একই সঙ্গে ভাষাগত, নান্দনিক এবং প্রাতিষ্ঠানিক। সামাজিক মাধ্যম, স্ট্রিমিং প্ল্যাটফর্ম, ইউটিউব কনটেন্ট নির্মাণ, মেশিন ট্রান্সলেশন এবং এআই-চালিত ভাষা সরঞ্জামের উত্থান নতুন রেজিস্টার, দর্শক এবং সাংস্কৃতিক অংশগ্রহণের ধরন তৈরি করেছে, যা বিদ্যমান শাস্ত্রীয় কাঠামো দিয়ে ব্যাখ্যা করা কঠিন।</span>
     </p>
     <p class="body-text rv">
-      Situated at the intersection of Digital Humanities and Digital Culture studies, the conference introduces conceptual vocabularies, including "platform vernaculars" and "vernacular remediation," to make sense of rapidly evolving, multimodal, and often ephemeral digital objects in Bengali.
+      <span class="lang-en">Situated at the intersection of Digital Humanities and Digital Culture studies, the conference introduces conceptual vocabularies, including "platform vernaculars" and "vernacular remediation," to make sense of rapidly evolving, multimodal, and often ephemeral digital objects in Bengali.</span>
+      <span class="lang-bn">ডিজিটাল হিউম্যানিটিজ ও ডিজিটাল কালচার স্টাডিজের সংযোগস্থলে অবস্থিত এই সম্মেলন "প্ল্যাটফর্ম ভার্নাকুলার" এবং "ভার্নাকুলার রেমিডিয়েশন"-এর মতো ধারণাগত পরিভাষা উপস্থাপন করে — বাংলার দ্রুত বিকশিত, বহুমাধ্যমিক এবং প্রায়শই ক্ষণস্থায়ী ডিজিটাল বস্তুগুলিকে বোঝার জন্য।</span>
     </p>
 
-    <h2 class="section-heading rv">Themes and Topics</h2>
-    <p class="body-text rv" style="font-size: 14px; margin-bottom: 0;">We invite contributions that engage with the following four thematic clusters:</p>
+    <h2 class="section-heading rv">
+      <span class="lang-en">Themes and Topics</span>
+      <span class="lang-bn">বিষয় ও প্রসঙ্গ</span>
+    </h2>
+    <p class="body-text rv" style="font-size: 14px; margin-bottom: 0;">
+      <span class="lang-en">We invite contributions that engage with the following four thematic clusters:</span>
+      <span class="lang-bn">আমরা নিম্নলিখিত চারটি বিষয়-গুচ্ছের অন্তর্গত প্রবন্ধ আহ্বান করছি:</span>
+    </p>
 
     <div class="cluster-grid rv">
       <div class="cluster-card">
-        <div class="cluster-part">Part I</div>
-        <div class="cluster-title">Language in Transition</div>
-        <div class="cluster-desc">Examining how digital mediation is transforming Bengali at the level of syntax, spelling, neologism, and pedagogy.</div>
+        <div class="cluster-part">
+          <span class="lang-en">Part I</span>
+          <span class="lang-bn">প্রথম পর্ব</span>
+        </div>
+        <div class="cluster-title">
+          <span class="lang-en">Language in Transition</span>
+          <span class="lang-bn">পরিবর্তনশীল ভাষা</span>
+        </div>
+        <div class="cluster-desc">
+          <span class="lang-en">Examining how digital mediation is transforming Bengali at the level of syntax, spelling, neologism, and pedagogy.</span>
+          <span class="lang-bn">ডিজিটাল মধ্যস্থতা কীভাবে বাংলাকে বাক্যগঠন, বানান, নতুন শব্দ এবং শিক্ষাপদ্ধতির স্তরে রূপান্তরিত করছে।</span>
+        </div>
         <ul class="cluster-list">
-          <li>Emerging trends in digital syntax, orthography, and neologisms.</li>
-          <li>Code-switching, transliteration, and Banglish on written Bengali.</li>
-          <li>Pedagogy in the age of AI, machine translation, and learning tools.</li>
-          <li>Computational and corpus-based approaches to studying language change.</li>
+          <li>
+            <span class="lang-en">Emerging trends in digital syntax, orthography, and neologisms.</span>
+            <span class="lang-bn">ডিজিটাল বাক্যগঠন, বানানরীতি ও নতুন শব্দের উদীয়মান ধারা।</span>
+          </li>
+          <li>
+            <span class="lang-en">Code-switching, transliteration, and Banglish on written Bengali.</span>
+            <span class="lang-bn">লিখিত বাংলায় কোড-সুইচিং, লিপ্যন্তর এবং বাংলিশ।</span>
+          </li>
+          <li>
+            <span class="lang-en">Pedagogy in the age of AI, machine translation, and learning tools.</span>
+            <span class="lang-bn">কৃত্রিম বুদ্ধিমত্তা, মেশিন ট্রান্সলেশন ও শিক্ষণ সরঞ্জামের যুগে শিক্ষাপদ্ধতি।</span>
+          </li>
+          <li>
+            <span class="lang-en">Computational and corpus-based approaches to studying language change.</span>
+            <span class="lang-bn">ভাষা পরিবর্তন অধ্যয়নে কম্পিউটেশনাল ও কর্পাস-ভিত্তিক পদ্ধতি।</span>
+          </li>
         </ul>
       </div>
 
       <div class="cluster-card">
-        <div class="cluster-part">Part II</div>
-        <div class="cluster-title">Platform Vernaculars</div>
-        <div class="cluster-desc">Investigating how specific digital platforms shape Bengali language use, cultural production, and audience formation.</div>
+        <div class="cluster-part">
+          <span class="lang-en">Part II</span>
+          <span class="lang-bn">দ্বিতীয় পর্ব</span>
+        </div>
+        <div class="cluster-title">
+          <span class="lang-en">Platform Vernaculars</span>
+          <span class="lang-bn">প্ল্যাটফর্ম ভার্নাকুলার</span>
+        </div>
+        <div class="cluster-desc">
+          <span class="lang-en">Investigating how specific digital platforms shape Bengali language use, cultural production, and audience formation.</span>
+          <span class="lang-bn">নির্দিষ্ট ডিজিটাল প্ল্যাটফর্ম কীভাবে বাংলা ভাষার ব্যবহার, সাংস্কৃতিক উৎপাদন ও দর্শক-গঠনকে রূপ দেয়।</span>
+        </div>
         <ul class="cluster-list">
-          <li>Evolution of blogs, literary portals, and web magazines.</li>
-          <li>Register formation on Facebook, Instagram, and X/Twitter.</li>
-          <li>Memes as vernacular archives: humour, subversion, and remix culture.</li>
-          <li>Linguistic innovation among YouTube content creators.</li>
-          <li>New visual regimes in OTT series, vertical films, and micro-dramas.</li>
+          <li>
+            <span class="lang-en">Evolution of blogs, literary portals, and web magazines.</span>
+            <span class="lang-bn">ব্লগ, সাহিত্যিক পোর্টাল ও ওয়েব পত্রিকার বিবর্তন।</span>
+          </li>
+          <li>
+            <span class="lang-en">Register formation on Facebook, Instagram, and X/Twitter.</span>
+            <span class="lang-bn">ফেসবুক, ইনস্টাগ্রাম ও এক্স/টুইটারে রেজিস্টার গঠন।</span>
+          </li>
+          <li>
+            <span class="lang-en">Memes as vernacular archives: humour, subversion, and remix culture.</span>
+            <span class="lang-bn">দেশীয় আর্কাইভ হিসেবে মিম: হাস্যরস, বিদ্রোহ ও রিমিক্স সংস্কৃতি।</span>
+          </li>
+          <li>
+            <span class="lang-en">Linguistic innovation among YouTube content creators.</span>
+            <span class="lang-bn">ইউটিউব কনটেন্ট নির্মাতাদের মধ্যে ভাষাগত উদ্ভাবন।</span>
+          </li>
+          <li>
+            <span class="lang-en">New visual regimes in OTT series, vertical films, and micro-dramas.</span>
+            <span class="lang-bn">ওটিটি সিরিজ, ভার্টিকাল ফিল্ম ও মাইক্রো-নাটকে নতুন দৃশ্যমান রীতি।</span>
+          </li>
         </ul>
       </div>
 
       <div class="cluster-card">
-        <div class="cluster-part">Part III</div>
-        <div class="cluster-title">Digital Textuality & Cultural Memory</div>
-        <div class="cluster-desc">Exploring the interface between literary culture, DH projects, and new modes of audio-visual storytelling.</div>
+        <div class="cluster-part">
+          <span class="lang-en">Part III</span>
+          <span class="lang-bn">তৃতীয় পর্ব</span>
+        </div>
+        <div class="cluster-title">
+          <span class="lang-en">Digital Textuality & Cultural Memory</span>
+          <span class="lang-bn">ডিজিটাল পাঠ্যতা ও সাংস্কৃতিক স্মৃতি</span>
+        </div>
+        <div class="cluster-desc">
+          <span class="lang-en">Exploring the interface between literary culture, DH projects, and new modes of audio-visual storytelling.</span>
+          <span class="lang-bn">সাহিত্যিক সংস্কৃতি, ডিএইচ প্রকল্প এবং দৃশ্য-শ্রাব্য আখ্যানের নতুন ধরনের মধ্যবর্তী স্থানটি অন্বেষণ।</span>
+        </div>
         <ul class="cluster-list">
-          <li>Audio storytelling: podcasts, audio dramas, and radio afterlives.</li>
-          <li>Literary culture: digital book fairs and internet microcelebrities.</li>
-          <li>DH tools, archives, and projects (e.g., Bichitra, Shabdakalpa).</li>
-          <li>Informal digital archives, piracy networks, and volunteered labour.</li>
+          <li>
+            <span class="lang-en">Audio storytelling: podcasts, audio dramas, and radio afterlives.</span>
+            <span class="lang-bn">শ্রাব্য আখ্যান: পডকাস্ট, অডিও নাটক ও বেতারের উত্তরজীবন।</span>
+          </li>
+          <li>
+            <span class="lang-en">Literary culture: digital book fairs and internet microcelebrities.</span>
+            <span class="lang-bn">সাহিত্যিক সংস্কৃতি: ডিজিটাল বইমেলা ও ইন্টারনেট মাইক্রোসেলিব্রিটি।</span>
+          </li>
+          <li>
+            <span class="lang-en">DH tools, archives, and projects (e.g., Bichitra, Shabdakalpa).</span>
+            <span class="lang-bn">ডিএইচ সরঞ্জাম, আর্কাইভ ও প্রকল্প (যেমন, বিচিত্রা, শব্দকল্প)।</span>
+          </li>
+          <li>
+            <span class="lang-en">Informal digital archives, piracy networks, and volunteered labour.</span>
+            <span class="lang-bn">অনানুষ্ঠানিক ডিজিটাল আর্কাইভ, পাইরেসি নেটওয়ার্ক ও স্বেচ্ছা-শ্রম।</span>
+          </li>
         </ul>
       </div>
 
       <div class="cluster-card">
-        <div class="cluster-part">Part IV</div>
-        <div class="cluster-title">Circulation, Policy, & Futures</div>
-        <div class="cluster-desc">Addressing the transnational reach of digital Bengali, cultural industries, and language policy.</div>
+        <div class="cluster-part">
+          <span class="lang-en">Part IV</span>
+          <span class="lang-bn">চতুর্থ পর্ব</span>
+        </div>
+        <div class="cluster-title">
+          <span class="lang-en">Circulation, Policy, & Futures</span>
+          <span class="lang-bn">প্রচলন, নীতি ও ভবিষ্যৎ</span>
+        </div>
+        <div class="cluster-desc">
+          <span class="lang-en">Addressing the transnational reach of digital Bengali, cultural industries, and language policy.</span>
+          <span class="lang-bn">ডিজিটাল বাংলার আন্তর্জাতিক বিস্তার, সাংস্কৃতিক শিল্প এবং ভাষা-নীতি নিয়ে আলোচনা।</span>
+        </div>
         <ul class="cluster-list">
-          <li>Transnational Bengali: migration, diaspora, and borderless practices.</li>
-          <li>Transformation of cultural marketing, trailers, and PR registers.</li>
-          <li>Language policy, standardisation, and documenting vernacular shifts.</li>
-          <li>Politics of platform governance and algorithmic mediation.</li>
+          <li>
+            <span class="lang-en">Transnational Bengali: migration, diaspora, and borderless practices.</span>
+            <span class="lang-bn">আন্তর্জাতিক বাংলা: অভিবাসন, প্রবাসী সম্প্রদায় ও সীমানাহীন চর্চা।</span>
+          </li>
+          <li>
+            <span class="lang-en">Transformation of cultural marketing, trailers, and PR registers.</span>
+            <span class="lang-bn">সাংস্কৃতিক বিপণন, ট্রেলার ও পিআর রেজিস্টারের রূপান্তর।</span>
+          </li>
+          <li>
+            <span class="lang-en">Language policy, standardisation, and documenting vernacular shifts.</span>
+            <span class="lang-bn">ভাষা-নীতি, মানকরণ এবং দেশীয় পরিবর্তনের নথিভুক্তি।</span>
+          </li>
+          <li>
+            <span class="lang-en">Politics of platform governance and algorithmic mediation.</span>
+            <span class="lang-bn">প্ল্যাটফর্ম পরিচালন ও অ্যালগরিদমিক মধ্যস্থতার রাজনীতি।</span>
+          </li>
         </ul>
       </div>
     </div>
 
-    <h2 class="section-heading rv">Indicative Timeline</h2>
+    <h2 class="section-heading rv">
+      <span class="lang-en">Indicative Timeline</span>
+      <span class="lang-bn">সম্ভাব্য সময়সূচি</span>
+    </h2>
     <div class="timeline-row rv">
       <div class="timeline-item">
-        <div class="timeline-date">20 May 2026</div>
-        <div class="timeline-label">Abstract Submission Deadline</div>
+        <div class="timeline-date">
+          <span class="lang-en">20 May 2026</span>
+          <span class="lang-bn">২০ মে ২০২৬</span>
+        </div>
+        <div class="timeline-label">
+          <span class="lang-en">Abstract Submission Deadline</span>
+          <span class="lang-bn">সারসংক্ষেপ জমার শেষ তারিখ</span>
+        </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-date">5 Jun 2026</div>
-        <div class="timeline-label">Notification of Acceptance</div>
+        <div class="timeline-date">
+          <span class="lang-en">5 Jun 2026</span>
+          <span class="lang-bn">৫ জুন ২০২৬</span>
+        </div>
+        <div class="timeline-label">
+          <span class="lang-en">Notification of Acceptance</span>
+          <span class="lang-bn">গ্রহণযোগ্যতার বিজ্ঞপ্তি</span>
+        </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-date">30 Jun 2026</div>
-        <div class="timeline-label">Full Paper Submission</div>
+        <div class="timeline-date">
+          <span class="lang-en">30 Jun 2026</span>
+          <span class="lang-bn">৩০ জুন ২০২৬</span>
+        </div>
+        <div class="timeline-label">
+          <span class="lang-en">Full Paper Submission</span>
+          <span class="lang-bn">পূর্ণ প্রবন্ধ জমার তারিখ</span>
+        </div>
       </div>
       <div class="timeline-item" style="background: rgba(204,40,40,0.05); border-color: rgba(204,40,40,0.2);">
-        <div class="timeline-date" style="color: var(--cream);">18 Jul 2026</div>
-        <div class="timeline-label">Conference Date</div>
+        <div class="timeline-date" style="color: var(--cream);">
+          <span class="lang-en">18 Jul 2026</span>
+          <span class="lang-bn">১৮ জুলাই ২০২৬</span>
+        </div>
+        <div class="timeline-label">
+          <span class="lang-en">Conference Date</span>
+          <span class="lang-bn">সম্মেলনের দিন</span>
+        </div>
       </div>
     </div>
 
     <div class="reach-box rv">
-      <div class="reach-title">Call for Papers</div>
+      <div class="reach-title">
+        <span class="lang-en">Call for Papers</span>
+        <span class="lang-bn">প্রবন্ধ আহ্বান</span>
+      </div>
       <div class="reach-sub">
-        We invite proposals for original, unpublished papers (20-minute presentations). Abstracts of 300-500 words, a tentative title, up to three thematic keywords, and a brief author biography (100-150 words) should be submitted in Word (.docx) format. 
-        <br><br>
-        <strong>Publication:</strong> Select papers will be invited for inclusion in a peer-reviewed edited volume (Bloomsbury has expressed strong interest).
+        <span class="lang-en">We invite proposals for original, unpublished papers (20-minute presentations). Abstracts of 300-500 words, a tentative title, up to three thematic keywords, and a brief author biography (100-150 words) should be submitted in Word (.docx) format.
+          <br><br>
+          <strong>Publication:</strong> Select papers will be invited for inclusion in a peer-reviewed edited volume (Bloomsbury has expressed strong interest).
+        </span>
+        <span class="lang-bn">আমরা মৌলিক, অপ্রকাশিত প্রবন্ধের প্রস্তাব আহ্বান করছি (২০ মিনিটের উপস্থাপনা)। ৩০০-৫০০ শব্দের সারসংক্ষেপ, একটি সম্ভাব্য শিরোনাম, সর্বোচ্চ তিনটি বিষয়-কীওয়ার্ড এবং একটি সংক্ষিপ্ত লেখক পরিচিতি (১০০-১৫০ শব্দ) Word (.docx) ফরম্যাটে পাঠাতে হবে।
+          <br><br>
+          <strong>প্রকাশনা:</strong> নির্বাচিত প্রবন্ধগুলি একটি পিয়ার-রিভিউড সম্পাদিত সংকলনে অন্তর্ভুক্তির জন্য আমন্ত্রণ জানানো হবে (ব্লুমসবেরি গভীর আগ্রহ প্রকাশ করেছে)।
+        </span>
       </div>
       
       <a href="mailto:prithuhalder1997@gmail.com?subject=CFP%20-%20Platform%20Bengali%20Conference" class="reach-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Submit Abstract
+        <span class="lang-en">Submit Abstract</span>
+        <span class="lang-bn">সারসংক্ষেপ পাঠান</span>
       </a>
     </div>
 
     <div class="org-credits rv">
-      This conference is organised by the <strong>Platform Bengali Project</strong>, supported by the <strong>India Foundation for the Arts (IFA)</strong> under its Arts Research Programme, and partly sponsored by <strong>BNP Paribas</strong>. Organised in collaboration with <strong>Ramakrishna Mission Residential College (Autonomous) Narendrapur</strong>.<br><br>
+      <span class="lang-en">This conference is organised by the <strong>Platform Bengali Project</strong>, supported by the <strong>India Foundation for the Arts (IFA)</strong> under its Arts Research Programme, and partly sponsored by <strong>BNP Paribas</strong>. Organised in collaboration with <strong>Ramakrishna Mission Residential College (Autonomous) Narendrapur</strong>.<br><br>
       <strong>Conference Convenor:</strong> Pranab K Mondal<br>
-      <strong>Volume Editors:</strong> Prithu Halder, Debapriya Basu, Spandan Bhattacharya
+      <strong>Volume Editors:</strong> Prithu Halder, Debapriya Basu, Spandan Bhattacharya</span>
+      <span class="lang-bn" style="display:none;">এই সম্মেলনটি <strong>প্ল্যাটফর্ম বাংলা প্রকল্প</strong> কর্তৃক আয়োজিত, <strong>ইন্ডিয়া ফাউন্ডেশন ফর দ্য আর্টস (আইএফএ)</strong>-এর আর্টস রিসার্চ প্রোগ্রামের সহায়তায় এবং আংশিকভাবে <strong>বিএনপি পারিবা</strong>-এর পৃষ্ঠপোষকতায়। <strong>রামকৃষ্ণ মিশন রেসিডেন্শিয়াল কলেজ (স্বশাসিত), নরেন্দ্রপুর</strong>-এর সহযোগিতায় আয়োজিত।<br><br>
+      <strong>সম্মেলন-আহ্বায়ক:</strong> প্রণব কুমার মণ্ডল<br>
+      <strong>সংকলন সম্পাদক:</strong> পৃথু হালদার, দেবাপ্রিয়া বসু, স্পন্দন ভট্টাচার্য</span>
     </div>
 
   </main>
@@ -402,23 +626,28 @@
   </script>
 
   <script>
-    const langToggle = document.getElementById('langToggle');
-    let lang = 'en';
-    langToggle.addEventListener('click', () => {
-      lang = lang === 'en' ? 'bn' : 'en';
-      document.querySelectorAll('[data-en][data-bn]').forEach(el => {
-        el.innerHTML = el.getAttribute('data-' + lang);
-        if (lang === 'bn') {
-          el.style.fontFamily = "'Noto Sans Bengali', sans-serif";
-          el.style.textTransform = 'none';
-          el.style.letterSpacing = 'normal';
-        } else {
-          el.style.fontFamily = '';
-          el.style.textTransform = '';
-          el.style.letterSpacing = '';
-        }
+    (function(){
+      var btn = document.getElementById('langToggle');
+      var lang = localStorage.getItem('pb-lang') || 'en';
+
+      function apply(l) {
+        lang = l;
+        localStorage.setItem('pb-lang', l);
+        document.body.classList.toggle('bn-mode', l === 'bn');
+        btn.classList.toggle('bn-active', l === 'bn');
+        btn.textContent = l === 'bn' ? 'বাং / EN' : 'EN / বাং';
+        // Show/hide lang-bn in org-credits (uses display:none inline)
+        document.querySelectorAll('.org-credits .lang-bn').forEach(function(el){
+          el.style.display = l === 'bn' ? 'block' : 'none';
+        });
+      }
+
+      btn.addEventListener('click', function(){
+        apply(lang === 'en' ? 'bn' : 'en');
       });
-    });
+
+      apply(lang);
+    })();
   </script>
 </body>
 </html>
