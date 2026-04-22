@@ -15,47 +15,36 @@
       --ochre: #cc2828;
       --orange: #cc2828;
       --teal: #4a4a4a;
-      --bg-deep: #d8d5d0;
-      --bg-section: #e0ddd8;
-      --card-bg: rgba(250, 249, 247, 0.6);
-      --card-hover: rgba(250, 249, 247, 0.95);
+      --card-bg: rgba(250, 249, 247, 0.85);
+      --card-hover: rgba(255, 255, 255, 0.95);
     }
 
     body {
-      background: var(--bg-deep);
+      background: #ffffff;
       color: var(--cream);
       font-family: 'DM Sans', sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* --- Cubist background --- */
-    .page-bg {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background: linear-gradient(160deg, #d8d5d0 0%, #dddad5 20%, #e0ddd8 40%, #dddad5 60%, #d9d4ce 80%, #d9d4ce 100%);
+    /* --- Illustration Background --- */
+    .bg-illustration { 
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; 
+      background: url('../img/jantar-mantar-desktop.png') center center / cover no-repeat; 
+      background-color: #fff; opacity: 0.18; will-change: opacity; 
     }
-    .page-bg::before {
-      content: ''; position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 600px 500px at 20% 30%, rgba(0,0,0,0.02), transparent),
-        radial-gradient(ellipse 400px 300px at 80% 70%, rgba(0,0,0,0.01), transparent);
-    }
-    .page-bg::after {
-      content: ''; position: absolute; inset: 0; opacity: 0.04;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-      background-size: 128px 128px;
-      mix-blend-mode: overlay;
-    }
+    @media(max-width:1024px){ .bg-illustration { background-image: url('../img/jantar-mantar-tablet.png'); } }
+    @media(max-width:600px){ .bg-illustration { background-image: url('../img/jantar-mantar-mobile.png'); opacity: 0.14; } }
 
     /* --- Navigation bar --- */
     .top-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 20px 40px;
-      background: rgba(216,213,208,0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
     }
     .nav-home {
       display: flex; align-items: center; gap: 12px;
@@ -110,9 +99,9 @@
       letter-spacing: 0.1em; text-transform: uppercase;
       padding: 6px 16px; border-radius: 40px;
       border: 1px solid rgba(0,0,0,0.08);
-      color: #4a4a4a; background: rgba(255,255,255,0.4);
+      color: #4a4a4a; background: rgba(245,244,242,0.7);
     }
-    .meta-tag.accent { background: rgba(204,40,40,0.08); border-color: rgba(204,40,40,0.15); color: var(--ochre); }
+    .meta-tag.accent { background: rgba(204,40,40,0.06); border-color: rgba(204,40,40,0.15); color: var(--ochre); }
 
     .divider { width: 60px; height: 2px; background: var(--ochre); margin: 40px 0; opacity: 0.6; }
 
@@ -126,7 +115,7 @@
       max-width: 700px;
       border-radius: 12px;
       box-shadow: 0 16px 40px rgba(0,0,0,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
     }
 
     /* --- Typography & Text Blocks --- */
@@ -153,7 +142,7 @@
       background: var(--card-bg); border: 1px solid rgba(0,0,0,0.05);
       transition: all 0.3s;
     }
-    .cluster-card:hover { background: var(--card-hover); box-shadow: 0 8px 28px rgba(0,0,0,0.04); transform: translateY(-2px); }
+    .cluster-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.04); transform: translateY(-2px); background: var(--card-hover); }
     .cluster-part { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; color: var(--ochre); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
     .cluster-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--cream); margin-bottom: 12px; }
     .cluster-desc { font-size: 14px; line-height: 1.6; color: var(--teal); margin-bottom: 16px; }
@@ -173,7 +162,7 @@
     }
     .timeline-item {
       padding: 24px 20px; border-radius: 12px;
-      background: rgba(255,255,255,0.4); border: 1px dashed rgba(0,0,0,0.1);
+      background: rgba(250, 249, 247, 0.7); border: 1px dashed rgba(0,0,0,0.1);
     }
     .timeline-date {
       font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800;
@@ -204,8 +193,9 @@
 
     .org-credits {
       font-size: 13px; line-height: 1.6; color: #6a6a6a;
-      padding: 24px; background: rgba(255,255,255,0.3);
+      padding: 24px; background: rgba(250, 249, 247, 0.85);
       border-radius: 12px; margin-top: 48px; font-style: italic;
+      border: 1px solid rgba(0,0,0,0.04);
     }
 
     /* --- Footer --- */
@@ -242,7 +232,7 @@
   </style>
 </head>
 <body>
-  <div class="page-bg"></div>
+  <div class="bg-illustration"></div>
 
   <nav class="top-nav">
     <a href="../index.html" class="nav-home">
@@ -271,7 +261,7 @@
     </div>
 
     <div class="poster-container rv rv-d3">
-      <img src="img/conference_poster.jpg" alt="Platform Bengali Conference Poster">
+      <img src="../img/conference_poster.jpg" alt="Platform Bengali Conference Poster" onerror="this.src='img/conference_poster.jpg'">
     </div>
 
     <div class="divider"></div>
@@ -390,6 +380,15 @@
       <a href="../about-ifa.html">About IFA</a>
     </div>
   </footer>
+
+  <script>
+    (function(){
+      var b=document.querySelector('.bg-illustration');if(!b)return;
+      var mx=parseFloat(getComputedStyle(b).opacity)||0.18,mn=0.03;
+      function u(){var s=window.pageYOffset||document.documentElement.scrollTop,h=window.innerHeight*1.5,p=Math.min(s/h,1),e=p*p;b.style.opacity=mx-(mx-mn)*e;}
+      window.addEventListener('scroll',u,{passive:true});u();
+    })();
+  </script>
 
   <script>
     (function(){
