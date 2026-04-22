@@ -1,212 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Youtuber Interviews — Platform Bengali</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Creator Interviews — Platform Bengali</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; max-width:100vw!important; overflow-x:hidden!important; }
+body { font-family:'DM Sans',sans-serif; background:#ffffff; color:#1a1a1a; max-width:100vw!important; overflow-x:hidden!important; }
+img { max-width:100%; height:auto; }
 
-    :root {
-      --cream: #1a1a1a;
-      --ochre: #cc2828;
-      --orange: #cc2828;
-      --teal: #4a4a4a;
-      --bg-deep: #d8d5d0;
-      --bg-section: #e0ddd8;
-    }
+.bg-illustration { position:fixed; inset:0; z-index:0; pointer-events:none; background:url('../img/jantar-mantar-desktop.png') center center / cover no-repeat; background-color:#fff; opacity:0.18; will-change:opacity; }
+@media(max-width:1024px){ .bg-illustration { background-image:url('../img/jantar-mantar-tablet.png'); } }
+@media(max-width:600px){ .bg-illustration { background-image:url('../img/jantar-mantar-mobile.png'); opacity:0.14; } }
 
-    body {
-      background: var(--bg-deep);
-      color: var(--cream);
-      font-family: 'DM Sans', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+.site-header { position:fixed; top:0; left:0; right:0; z-index:300; display:flex; align-items:center; justify-content:space-between; padding:clamp(8px,1.5vw,16px) clamp(12px,3vw,40px); background:rgba(255,255,255,0.55); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(0,0,0,0.04); }
+.header-logo { display:flex; align-items:center; }
+.logo-img { height:clamp(22px,3.5vw,40px); width:auto; display:block; }
+.header-logo-right .logo-img { height:clamp(40px,6vw,72px); }
 
-    /* --- Cubist background (simplified) --- */
-    .page-bg {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background:
-        linear-gradient(160deg, #d8d5d0 0%, #dddad5 20%, #e0ddd8 40%, #dddad5 60%, #d9d4ce 80%, #d9d4ce 100%);
-    }
-    .page-bg::before {
-      content: ''; position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 600px 500px at 20% 30%, rgba(0,0,0,0.02), transparent),
-        radial-gradient(ellipse 400px 300px at 80% 70%, rgba(0,0,0,0.01), transparent);
-    }
-    .page-bg::after {
-      content: ''; position: absolute; inset: 0; opacity: 0.04;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-      background-size: 128px 128px;
-      mix-blend-mode: overlay;
-    }
+.lang-toggle-fixed { position:fixed; bottom:32px; right:32px; z-index:250; display:flex; background:rgba(255,255,255,0.8); backdrop-filter:blur(14px); border:1px solid rgba(0,0,0,0.08); border-radius:50px; padding:4px; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+.lang-toggle-fixed .lang-btn { border:none; background:transparent; outline:none; cursor:pointer; padding:8px 20px; border-radius:40px; font-family:'DM Sans',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; color:#8a8a8a; transition:all 0.3s; line-height:1; }
+.lang-toggle-fixed .lang-btn.active { background:#cc2828; color:#fff; box-shadow:0 2px 12px rgba(204,40,40,0.35); }
+.lang-toggle-fixed .lang-btn[data-lang="bn"] { font-family:'Noto Sans Bengali',sans-serif; font-weight:600; text-transform:none; font-size:13px; }
+@media(max-width:768px){ .lang-toggle-fixed{bottom:16px;right:16px;} .lang-toggle-fixed .lang-btn{padding:7px 14px;font-size:11px;} }
 
-    /* --- Navigation bar --- */
-    .top-nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 40px;
-      background: rgba(216,213,208,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-    .nav-home {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none; color: var(--cream);
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
-      opacity: 0.7; transition: opacity 0.3s;
-    }
-    .nav-home:hover { opacity: 1; }
-    .nav-home svg { width: 20px; height: 20px; }
-    .nav-lang {
-      font-family: 'Syne', sans-serif; font-size: 12px;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--orange); cursor: pointer;
-      background: none; border: 1px solid rgba(204,40,40,0.3);
-      padding: 6px 16px; border-radius: 20px;
-      transition: all 0.3s;
-    }
-    .nav-lang:hover { background: rgba(204,40,40,0.08); border-color: var(--orange); }
+.page-wrap { position:relative; z-index:1; min-height:100vh; padding-top:clamp(80px,10vh,120px); }
+.back-nav { display:inline-flex; align-items:center; gap:8px; margin-bottom:40px; font-family:'Syne',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#8a8a8a; text-decoration:none; transition:color 0.3s; }
+.back-nav:hover { color:#cc2828; }
+.back-nav svg { width:18px; height:18px; }
 
-    /* --- Page content --- */
-    .page-content {
-      position: relative; z-index: 1;
-      max-width: 900px; margin: 0 auto;
-      padding: 140px 40px 80px;
-    }
+.section-wrap { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,60px); }
+.event-eyebrow { font-family:'Syne',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#cc2828; opacity:0.6; margin-bottom:14px; }
+.event-title { font-family:'Syne',sans-serif; font-size:clamp(32px,5vw,56px); font-weight:800; line-height:1.1; letter-spacing:-0.02em; color:#1a1a1a; margin-bottom:8px; }
+.event-subtitle { font-family:'Syne',sans-serif; font-size:clamp(13px,1.4vw,16px); font-weight:600; letter-spacing:0.04em; color:#8a8a8a; margin-bottom:8px; }
+.event-meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; margin-bottom:40px; }
+.meta-tag { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:6px 16px; border-radius:40px; border:1px solid rgba(0,0,0,0.08); color:#4a4a4a; background:rgba(245,244,242,0.7); }
+.meta-tag.accent { background:rgba(204,40,40,0.06); border-color:rgba(204,40,40,0.15); color:#cc2828; }
+.meta-tag.green { background:rgba(69,123,110,0.06); border-color:rgba(69,123,110,0.15); color:#457b6e; }
+.event-desc { font-size:clamp(15px,1.1vw,17px); line-height:1.9; color:#4a4a4a; max-width:680px; margin-bottom:28px; }
+.event-desc strong { color:#1a1a1a; font-weight:700; }
+.event-callout { background:rgba(245,244,242,0.7); border:1px solid rgba(0,0,0,0.05); border-left:3px solid #cc2828; border-radius:0 12px 12px 0; padding:24px 28px; margin:28px 0 36px; }
+.event-callout p { font-size:14px; line-height:1.75; color:#4a4a4a; }
+.event-callout strong { color:#1a1a1a; }
+.event-sep { width:40px; height:2px; background:rgba(0,0,0,0.08); margin:40px 0; border-radius:1px; }
 
-    .page-number {
-      font-family: 'Syne', sans-serif; font-size: 120px; font-weight: 800;
-      color: rgba(0,0,0,0.03); line-height: 1;
-      position: absolute; top: 100px; right: -20px;
-      pointer-events: none; user-select: none;
-    }
+/* Cluster cards */
+.cluster-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:16px; margin:28px 0; }
+.cluster-card { padding:22px; border-radius:14px; background:rgba(250,249,247,0.85); border:1px solid rgba(0,0,0,0.05); transition:all 0.3s; }
+.cluster-card:hover { box-shadow:0 8px 28px rgba(0,0,0,0.04); transform:translateY(-2px); }
+.cluster-icon { font-size:20px; margin-bottom:10px; opacity:0.5; }
+.cluster-title { font-family:'Syne',sans-serif; font-size:13px; font-weight:800; color:#1a1a1a; margin-bottom:6px; }
+.cluster-desc { font-size:12px; line-height:1.6; color:#4a4a4a; }
 
-    .page-title {
-      font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800;
-      text-transform: uppercase; letter-spacing: 0.04em;
-      color: var(--cream); margin-bottom: 8px;
-      line-height: 1.1;
-    }
-    .page-subtitle {
-      font-family: 'DM Sans', sans-serif; font-size: 15px;
-      color: rgba(74,74,74,0.7); letter-spacing: 0.08em;
-      text-transform: uppercase; margin-bottom: 48px;
-    }
+/* Big number stat */
+.stat-row { display:flex; gap:32px; flex-wrap:wrap; margin:36px 0; }
+.stat-item { text-align:center; }
+.stat-num { font-family:'Syne',sans-serif; font-size:clamp(36px,5vw,56px); font-weight:800; color:#1a1a1a; opacity:0.08; line-height:1; }
+.stat-label { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8a8a8a; margin-top:4px; }
 
-    .divider {
-      width: 60px; height: 2px; background: var(--ochre);
-      margin-bottom: 48px; opacity: 0.6;
-    }
+/* Creator slots */
+.creator-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:14px; margin:32px 0; }
+.creator-slot { padding:28px 16px; border-radius:14px; border:1px dashed rgba(0,0,0,0.08); background:rgba(250,249,247,0.5); text-align:center; transition:all 0.3s; }
+.creator-slot:hover { border-color:rgba(204,40,40,0.2); background:rgba(250,249,247,0.85); }
+.slot-num { font-family:'Syne',sans-serif; font-size:28px; font-weight:800; color:#1a1a1a; opacity:0.06; margin-bottom:8px; }
+.slot-label { font-family:'Syne',sans-serif; font-size:9px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8a8a8a; }
 
-    .content-placeholder {
-      background: rgba(255,255,255,0.3);
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 8px;
-      padding: 48px;
-      min-height: 300px;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 16px;
-    }
-    .content-placeholder p {
-      color: rgba(74,74,74,0.5);
-      font-size: 15px; text-align: center; line-height: 1.7;
-    }
-    .content-placeholder .placeholder-icon {
-      width: 48px; height: 48px; opacity: 0.15;
-      border: 2px solid var(--cream); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 8px;
-    }
+/* Reach out box */
+.reach-box { padding:40px 32px; border-radius:18px; border:2px solid rgba(69,123,110,0.15); background:rgba(250,249,247,0.85); margin:40px 0; }
+.reach-title { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; color:#1a1a1a; margin-bottom:8px; }
+.reach-sub { font-size:14px; color:#4a4a4a; line-height:1.7; margin-bottom:24px; max-width:600px; }
+.reach-criteria { margin-bottom:24px; }
+.reach-criteria-item { display:flex; align-items:flex-start; gap:12px; margin-bottom:12px; }
+.reach-check { width:20px; height:20px; border-radius:50%; border:2px solid #457b6e; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+.reach-check svg { width:12px; height:12px; color:#457b6e; }
+.reach-criteria-text { font-size:14px; line-height:1.5; color:#4a4a4a; }
+.reach-btn { display:inline-flex; align-items:center; gap:10px; font-family:'Syne',sans-serif; font-size:13px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; color:#fff; background:#457b6e; border:none; border-radius:50px; padding:14px 32px; text-decoration:none; cursor:pointer; transition:all 0.3s; box-shadow:0 4px 20px rgba(69,123,110,0.25); }
+.reach-btn:hover { background:#3a6b5f; transform:translateY(-2px); box-shadow:0 8px 28px rgba(69,123,110,0.35); }
+.reach-btn svg { width:16px; height:16px; }
+.reach-note { font-size:12px; color:#8a8a8a; margin-top:12px; font-style:italic; }
 
-    /* --- Footer --- */
-    .page-footer {
-      position: relative; z-index: 1;
-      max-width: 900px; margin: 0 auto;
-      padding: 0 40px 48px;
-      border-top: 1px solid rgba(0,0,0,0.06);
-      padding-top: 32px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .footer-text {
-      font-size: 12px; color: rgba(74,74,74,0.4);
-      letter-spacing: 0.05em;
-    }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a {
-      font-size: 12px; color: rgba(74,74,74,0.5);
-      text-decoration: none; letter-spacing: 0.05em;
-      text-transform: uppercase; font-family: 'Syne', sans-serif;
-      transition: color 0.3s;
-    }
-    .footer-links a:hover { color: var(--ochre); }
+.event-footer { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,60px) 60px; border-top:1px solid rgba(0,0,0,0.06); padding-top:28px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+.event-footer span { font-size:12px; color:#8a8a8a; }
+.event-footer a { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#cc2828; text-decoration:none; border-bottom:1px solid rgba(204,40,40,0.3); padding-bottom:2px; }
 
-    /* --- Responsive --- */
-    @media (max-width: 600px) {
-      .top-nav { padding: 16px 20px; }
-      .page-content { padding: 120px 20px 60px; }
-      .page-title { font-size: 32px; }
-      .page-number { font-size: 80px; top: 90px; right: 10px; }
-      .content-placeholder { padding: 32px 20px; }
-      .page-footer { padding: 0 20px 32px; flex-direction: column; gap: 16px; text-align: center; }
-    }
-  </style>
+.rv { opacity:0; transform:translateY(24px); transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.rv.vis { opacity:1; transform:translateY(0); }
+.rv-d1{transition-delay:0.1s;} .rv-d2{transition-delay:0.2s;} .rv-d3{transition-delay:0.3s;} .rv-d4{transition-delay:0.4s;}
+
+.lang-en { display:inline; } .lang-bn { display:none; }
+body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; }
+body.bn-mode .event-title, body.bn-mode .event-subtitle, body.bn-mode .event-eyebrow, body.bn-mode .meta-tag, body.bn-mode .cluster-title, body.bn-mode .stat-label, body.bn-mode .slot-label, body.bn-mode .reach-title { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav, body.bn-mode .cluster-desc, body.bn-mode .reach-sub, body.bn-mode .reach-criteria-text, body.bn-mode .reach-note, body.bn-mode .reach-btn { font-family:'Noto Sans Bengali',sans-serif; }
+
+@media(max-width:768px){
+  .site-header { padding:8px 12px; }
+  .header-logo-right .logo-img { max-height:38px; }
+  .stat-row { gap:20px; }
+  .creator-grid { grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:10px; }
+}
+</style>
 </head>
 <body>
-  <div class="page-bg"></div>
 
-  <nav class="top-nav">
-    <a href="../index.html" class="nav-home">
+<div class="bg-illustration"></div>
+
+<header class="site-header">
+  <div class="header-logo header-logo-left"><img src="../img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';"></div>
+  <div class="header-logo header-logo-right"><img src="../img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';"></div>
+</header>
+
+<div class="lang-toggle-fixed" id="langToggleFixed">
+  <button class="lang-btn active" id="btnEN" data-lang="en">English</button>
+  <button class="lang-btn" id="btnBN" data-lang="bn">বাংলা</button>
+</div>
+
+<div class="page-wrap">
+  <div class="section-wrap">
+
+    <a href="../index.html" class="back-nav rv">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Platform Bengali
+      <span class="lang-en">Back to Home</span><span class="lang-bn">প্রচ্ছদে ফিরুন</span>
     </a>
-    <button class="nav-lang" id="langToggle">EN / বাং</button>
-  </nav>
 
-  <main class="page-content">
-    <div class="page-number">04</div>
-    <h1 class="page-title" data-en="Youtuber Interviews" data-bn="সাক্ষাতে ইউটিউবার">Youtuber Interviews</h1>
-    <p class="page-subtitle" data-en="Ten Bengali content creator interviews" data-bn="দশ বাংলা কন্টেন্ট নির্মাতার সাক্ষাৎকার">Ten Bengali content creator interviews</p>
-    <div class="divider"></div>
+    <div class="event-eyebrow rv rv-d1" data-en="Event 04 · In-Depth Interviews · 2026–2027" data-bn="কর্মসূচি ০৪ · নিবিড় সাক্ষাৎকার · ২০২৬–২০২৭">Event 04 · In-Depth Interviews · 2026–2027</div>
 
-    <div class="content-placeholder">
-      <div class="placeholder-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6v12M6 12h12"/></svg>
+    <h1 class="event-title rv rv-d1">
+      <span class="lang-en">YouTube Creator Interviews</span>
+      <span class="lang-bn">ইউটিউব ক্রিয়েটর ইন্টারভিউস</span>
+    </h1>
+
+    <p class="event-subtitle rv rv-d2">
+      <span class="lang-en">10 Bengali Creators • Qualitative Research • Bilingual Archive</span>
+      <span class="lang-bn">১০ জন বাংলা কনটেন্ট নির্মাতা • গুণগত গবেষণা • দ্বিভাষিক আর্কাইভ</span>
+    </p>
+
+    <div class="event-meta rv rv-d2">
+      <span class="meta-tag" data-en="Online Interviews" data-bn="অনলাইন সাক্ষাৎকার">Online Interviews</span>
+      <span class="meta-tag" data-en="10 Interviews" data-bn="১০টি ইন্টারভিউ">10 Interviews</span>
+      <span class="meta-tag" data-en="3–4 Hours Each" data-bn="প্রতিটি ৩–৪ ঘণ্টা">3–4 Hours Each</span>
+      <span class="meta-tag green" data-en="In Progress" data-bn="চলমান">In Progress</span>
+    </div>
+
+    <div class="stat-row rv rv-d3">
+      <div class="stat-item"><div class="stat-num">10</div><div class="stat-label"><span class="lang-en">Creators</span><span class="lang-bn">নির্মাতা</span></div></div>
+      <div class="stat-item"><div class="stat-num">2</div><div class="stat-label"><span class="lang-en">Languages</span><span class="lang-bn">ভাষা</span></div></div>
+      <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label"><span class="lang-en">Stories</span><span class="lang-bn">গল্প</span></div></div>
+    </div>
+
+    <div class="event-sep"></div>
+
+    <p class="event-desc rv">
+      <span class="lang-en">Between 2020 and 2025, something out of the ordinary happened in the Bengali digital space. Bengali YouTube started to expand rapidly. Creators from Barasat to Bankura, from Kolkata flats to tea gardens in North Bengal, built audiences in the millions — speaking a Bengali that no textbook teaches and no academy sanctions. They coined words, bent grammar, and moved fluidly across dialects. In the process, these creators didn’t merely produce videos, they redefined what Bengali can sound like on screen. A register significantly different from the polished Bengali for Television or Radio audience.</span>
+      <span class="lang-bn">২০২০ থেকে ২০২৫ — এই পাঁচ বছরে নীরবে এক সাংস্কৃতিক পরিবর্তন ঘটেছে। বাংলা ইউটিউব হঠাৎ করেই দ্রুত বিস্তার লাভ করেছে। বারাসাত থেকে বাঁকুড়া, কলকাতার ফ্ল্যাট থেকে উত্তরবঙ্গের চা-বাগান—বিভিন্ন প্রান্তের নির্মাতারা লক্ষ লক্ষ দর্শক গড়ে তুলেছেন। তারা এমন এক বাংলা ভাষায় কথা বলছেন, যা কোনও পাঠ্যবই থেকে শেখা নয়, তাকে কোনও প্রতিষ্ঠানও নিয়ন্ত্রণ করে না। এক ঝাঁক নতুন শব্দ তৈরি হয়েছে, ব্যাকরণ গোঁত্তা খেয়েছে, ভাষা ও উপভাষা মিলে মিশে একাকার হয়েছে স্বতঃস্ফূর্তভাবে। এই প্রক্রিয়ায় তাঁরা শুধু ভিডিও বানাননি—স্ক্রিনে বাংলা ভাষার শোনার ভঙ্গিটাকেই বদলে দিয়েছেন।</span>
+    </p>
+
+    <p class="event-desc rv">
+      <span class="lang-en"><strong>Platform Bengali is documenting ten of these creators</strong> — not as influencers or celebrities, but as <strong>cultural practitioners</strong> whose creative labour, linguistic choices, and platform strategies constitute a form of art. Each interview is a 3 – 4 hour, in-depth research conversation, producing bilingual transcripts that will be permanently archived on the Bhashascope digital repository.</span>
+      <span class="lang-bn"><strong>প্ল্যাটফর্ম বাংলা</strong> এই পরিবর্তনেরই চিত্রগুপ্ত। এখানে দশজন নির্মাতাকে নথিবদ্ধ করা হচ্ছে—ইনফ্লুয়েন্সার বা সেলিব্রিটি হিসেবে নয়, বরং <strong>সাংস্কৃতিক অনুশীলনকারী</strong> হিসেবে। তাদের সৃজনশীল শ্রম, ভাষা ব্যবহারের ধরন এবং ডিজিটাল প্ল্যাটফর্ম নিয়ে কাজ করার প্রকৌশল— এই সব কিছুকেই এক ধরনের শিল্পচর্চা হিসেবে বিবেচনা করা হচ্ছে। প্রতিটি সাক্ষাৎকার ৩–৪ ঘণ্টার একটি বিস্তৃত আলোচনা, যার দ্বিভাষিক প্রতিলিপি স্থায়ীভাবে সংরক্ষিত হবে ভাষাস্কোপ ডিজিটাল আর্কাইভে।</span>
+    </p>
+
+    <div class="event-callout rv">
+      <p>
+        <span class="lang-en">This is not journalism. This is not a promotional feature. This is <strong>arts research</strong> — treating YouTube creators as practitioners engaged in sustained creative work within the vernacular digital sphere, and their output as a legitimate subject of scholarly inquiry.</span>
+        <span class="lang-bn">আমাদের কাজ সাংবাদিকতা নয়, নয় কোনও প্রচারমূলক বিজ্ঞপ্তি। বরং এটি এক নতুন ধরণের <strong>কলা গবেষণা</strong>—যেখানে ইউটিউব নির্মাতাদের দেখা হচ্ছে নতুন চোখে। তাদেরকে দেখা হবে দীর্ঘমেয়াদি সৃজনশীল জীবিকায় যুক্ত মানুষ হিসেবে, যাঁরা ডিজিটাল মাধ্যমকে অবলম্বন করে জীবিকানির্বাহ করেন। তাদের কাজকে আমরা বোঝার চেষ্টা করবো বৈধ গবেষণার বিষয় হিসেবে।</span>
+      </p>
+    </div>
+
+    <div class="event-sep"></div>
+
+    <p style="font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8a8a8a; margin-bottom:20px;" data-en="What the Interviews Explore" data-bn="সাক্ষাৎকারে যে বিষয়গুলি উঠে আসে">What the Interviews Explore</p>
+
+    <div class="cluster-grid rv">
+      <div class="cluster-card">
+        <div class="cluster-icon">🎬</div>
+        <div class="cluster-title"><span class="lang-en">Creative Practice</span><span class="lang-bn">সৃজনশীল প্রক্রিয়া</span></div>
+        <div class="cluster-desc"><span class="lang-en">How creators conceive, produce, and iterate their content; the daily rhythms of shooting, editing, and publishing; and what creativity means in their own terms.</span><span class="lang-bn">কীভাবে তারা কনটেন্ট ভাবেন, তৈরি করেন এবং সময়ের সঙ্গে বদলান; শুটিং, এডিটিং ও আপলোডের দৈনন্দিন ছন্দ; তাদের কাছে 'সৃজনশীলতা' মানে কী।</span></div>
       </div>
-      <p>Content for this section is being prepared.<br>Check back soon.</p>
+      <div class="cluster-card">
+        <div class="cluster-icon">🗣️</div>
+        <div class="cluster-title"><span class="lang-en">Language & Register</span><span class="lang-bn">ভাষা ও ব্যবহার</span></div>
+        <div class="cluster-desc"><span class="lang-en">Which Bengali they speak and why; code-switching, dialect choices, platform-specific vocabulary, and how the audience shapes linguistic decisions.</span><span class="lang-bn">তারা কোন ধরনের বাংলা বলেন এবং কেন; কোড-সুইচিং, উপভাষার ব্যবহার, প্ল্যাটফর্ম-নির্দিষ্ট শব্দভাণ্ডার, এবং দর্শক কীভাবে ভাষার সিদ্ধান্তকে প্রভাবিত করে।</span></div>
+      </div>
+      <div class="cluster-card">
+        <div class="cluster-icon">📈</div>
+        <div class="cluster-title"><span class="lang-en">The Pandemic Shift</span><span class="lang-bn">মহামারির সময়ের পরিবর্তন</span></div>
+        <div class="cluster-desc"><span class="lang-en">How lockdown transformed content creation from a hobby into a livelihood; audience behaviour during confinement; and the economic and emotional toll of sudden visibility.</span><span class="lang-bn">লকডাউন কীভাবে কনটেন্ট তৈরিকে শখ থেকে জীবিকায় পরিণত করল; বন্দি সময়ে দর্শকের আচরণ; হঠাৎ দৃশ্যমানতা পাওয়ার অর্থনৈতিক ও মানসিক প্রভাব।</span></div>
+      </div>
+      <div class="cluster-card">
+        <div class="cluster-icon">⚙️</div>
+        <div class="cluster-title"><span class="lang-en">Platform & Algorithm</span><span class="lang-bn">প্ল্যাটফর্ম ও অ্যালগরিদম</span></div>
+        <div class="cluster-desc"><span class="lang-en">How creators learned YouTube; their understanding of the algorithm; thumbnail strategies, monetisation; and what happens when the rules change overnight.</span><span class="lang-bn">তারা কীভাবে ইউটিউব শিখেছেন; অ্যালগরিদম সম্পর্কে তাদের ধারণা; থাম্বনেল কৌশল, আয়ের পথ, এবং নিয়ম হঠাৎ বদলে গেলে তার প্রভাব।</span></div>
+      </div>
+      <div class="cluster-card">
+        <div class="cluster-icon">🪞</div>
+        <div class="cluster-title"><span class="lang-en">Visibility & Identity</span><span class="lang-bn">দৃশ্যমানতা ও পরিচয়</span></div>
+        <div class="cluster-desc"><span class="lang-en">How public exposure reshapes private life; negotiating family, locality, gender norms, and the moral economy of online fame in Bengali society.</span><span class="lang-bn">অনলাইনে পরিচিতি কীভাবে ব্যক্তিগত জীবনকে বদলে দেয়; পরিবার, পাড়া, লিঙ্গভিত্তিক সামাজিক ধারণা, এবং বাংলা সমাজে অনলাইন জনপ্রিয়তার নৈতিক দিকগুলি।</span></div>
+      </div>
+      <div class="cluster-card">
+        <div class="cluster-icon">🔮</div>
+        <div class="cluster-title"><span class="lang-en">Future & Uncertainty</span><span class="lang-bn">ভবিষ্যৎ ও অনিশ্চয়তা</span></div>
+        <div class="cluster-desc"><span class="lang-en">Long-term plans, backup careers, aspirations beyond YouTube, the fear of platform collapse, and what sustainability looks like when virality fades.</span><span class="lang-bn">দীর্ঘমেয়াদি পরিকল্পনা, বিকল্প পেশার ভাবনা, ইউটিউবের বাইরে আকাঙ্ক্ষা, প্ল্যাটফর্ম ভেঙে পড়ার আশঙ্কা, এবং ভাইরালিটির পর টিকে থাকার প্রশ্ন।</span></div>
+      </div>
     </div>
-  </main>
 
-  <footer class="page-footer">
-    <span class="footer-text">© 2025 Platform Bengali — India Foundation for the Arts</span>
-    <div class="footer-links">
-      <a href="../index.html">Home</a>
-      <a href="../about-ifa.html">About IFA</a>
+    <div class="event-sep"></div>
+
+    <p class="event-desc rv">
+      <span class="lang-en">We are documenting <strong>diversity of practice, not popularity</strong>. The ten creators span geography, gender, scale, and content type — food, gaming, education, satire, devotional, lifestyle, political commentary, rural craft, and more. Subscriber count does not determine selection. The project documents practice.</span>
+      <span class="lang-bn">এই প্রকল্প <strong>জনপ্রিয়তা নয়, চর্চার বৈচিত্র্য</strong> নথিবদ্ধ করে। নির্বাচিত দশজন নির্মাতা ভৌগোলিক বিস্তার, লিঙ্গ, পরিসর এবং কনটেন্টের ধরনে ভিন্ন (যেমনঃ খাবার, গেমিং, শিক্ষা, ব্যঙ্গ, ভক্তিমূলক, লাইফস্টাইল, রাজনৈতিক মন্তব্য, গ্রামীণ কারুশিল্পসহ আরও অনেক কিছু)। সাবস্ক্রাইবার সংখ্যা এখানে নির্ধারক নয়। এই প্রকল্পের মূল বিষয় চর্চা এবং অনুশীলন।</span>
+    </p>
+
+    <p style="font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8a8a8a; margin-bottom:16px;" data-en="10 Creators · Interviews in Progress" data-bn="১০ জন নির্মাতা · সাক্ষাৎকার চলছে">10 Creators · Interviews in Progress</p>
+
+    <div class="creator-grid rv">
+      <div class="creator-slot"><div class="slot-num">01</div><div class="slot-label"><span class="lang-en">Coming Soon</span><span class="lang-bn">শীঘ্রই আসছে</span></div></div>
+      <div class="creator-slot"><div class="slot-num">02</div><div class="slot-label"><span class="lang-en">Coming Soon</span><span class="lang-bn">শীঘ্রই আসছে</span></div></div>
+      <div class="creator-slot"><div class="slot-num">03</div><div class="slot-label"><span class="lang-en">Coming Soon</span><span class="lang-bn">শীঘ্রই আসছে</span></div></div>
+      <div class="creator-slot"><div class="slot-num">04</div><div class="slot-label"><span class="lang-en">Coming Soon</span><span class="lang-bn">শীঘ্রই আসছে</span></div></div>
+      <div class="creator-slot"><div class="slot-num">05</div><div class="slot-label"><span class="lang-en">Coming Soon</span><span class="lang-bn">শীঘ্রই আসছে</span></div></div>
+      <div class="creator-slot"><div class="slot-num">06</div><div class="slot-label"><span class="lang-en">Coming Soon</span><span class="lang-bn">শীঘ্রই আসছে</span></div></div>
+      <div class="creator-slot"><div class="slot-num">07</div><div class="slot-label"><span class="lang-en">Coming Soon</span><span class="lang-bn">শীঘ্রই আসছে</span></div></div>
+      <div class="creator-slot"><div class="slot-num">08</div><div class="slot-label"><span class="lang-en">Coming Soon</span><span class="lang-bn">শীঘ্রই আসছে</span></div></div>
+      <div class="creator-slot"><div class="slot-num">09</div><div class="slot-label"><span class="lang-en">Coming Soon</span><span class="lang-bn">শীঘ্রই আসছে</span></div></div>
+      <div class="creator-slot"><div class="slot-num">10</div><div class="slot-label"><span class="lang-en">Coming Soon</span><span class="lang-bn">শীঘ্রই আসছে</span></div></div>
     </div>
-  </footer>
 
-  <script>
-    const langToggle = document.getElementById('langToggle');
-    let lang = 'en';
-    langToggle.addEventListener('click', () => {
-      lang = lang === 'en' ? 'bn' : 'en';
-      document.querySelectorAll('[data-en][data-bn]').forEach(el => {
-        el.textContent = el.getAttribute('data-' + lang);
-        if (lang === 'bn') {
-          el.style.fontFamily = "'Nirmala UI', 'Bangla Sangam MN', 'Noto Sans Bengali', sans-serif";
-          el.style.textTransform = 'none';
-        } else {
-          el.style.fontFamily = '';
-          el.style.textTransform = '';
-        }
-      });
+    <p class="rv" style="font-size:13px; color:#8a8a8a; font-style:italic; margin-bottom:8px;">
+      <span class="lang-en">Interview transcripts and creator profiles will be published here as they are completed and approved by participants.</span>
+      <span class="lang-bn">সাক্ষাৎকারের প্রতিলিপি এবং নির্মাতাদের প্রোফাইল ধাপে ধাপে প্রকাশিত হবে, অংশগ্রহণকারীদের অনুমোদনের ভিত্তিতে।</span>
+    </p>
+
+    <div class="event-sep"></div>
+
+    <div class="reach-box rv">
+      <div class="reach-title"><span class="lang-en">Are You a Bengali YouTube Creator?</span><span class="lang-bn">আপনি কি বাংলা ইউটিউব নির্মাতা?</span></div>
+      <div class="reach-sub">
+        <span class="lang-en">If your work sits at the intersection of Bengali language and digital culture, we would like to hear from you. Platform Bengali is building an archive of vernacular creative practice — and your voice matters.</span>
+        <span class="lang-bn">আপনার কাজ যদি বাংলা ভাষা এবং ডিজিটাল সংস্কৃতির সংযোগস্থলে দাঁড়িয়ে থাকে, আমরা আপনার কথা শুনতে আগ্রহী। প্ল্যাটফর্ম বাংলা একটি আর্কাইভ তৈরি করছে—এবং সেখানে আপনার কণ্ঠ গুরুত্বপূর্ণ।</span>
+      </div>
+
+      <p style="font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#8a8a8a; margin-bottom:14px;" data-en="Criteria" data-bn="মূল্যায়নের শর্ত">Criteria</p>
+
+      <div class="reach-criteria">
+        <div class="reach-criteria-item">
+          <div class="reach-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <span class="reach-criteria-text"><span class="lang-en">Your channel was <strong>active before 2020</strong> (pre-pandemic origin)</span><span class="lang-bn">আপনার চ্যানেল <strong>২০২০ সালের আগে থেকে সক্রিয়</strong></span></span>
+        </div>
+        <div class="reach-criteria-item">
+          <div class="reach-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <span class="reach-criteria-text"><span class="lang-en">You have <strong>sustained engagement</strong> over the years (consistent uploads, active community)</span><span class="lang-bn">আপনি <strong>ধারাবাহিকভাবে কনটেন্ট প্রকাশ</strong> করেছেন এবং সক্রিয় দর্শকগোষ্ঠী রয়েছে</span></span>
+        </div>
+        <div class="reach-criteria-item">
+          <div class="reach-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <span class="reach-criteria-text"><span class="lang-en">You create content <strong>primarily in Bengali</strong></span><span class="lang-bn">আপনার কনটেন্ট <strong>মূলত বাংলা ভাষায়</strong> তৈরি</span></span>
+        </div>
+      </div>
+
+      <a href="https://docs.google.com/forms/d/18m4PGWrHbmywgVxR6MJ4g7H6LMquhsAI5omWDD-V28M/viewform?edit_requested=true" target="_blank" rel="noopener noreferrer" class="reach-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l6.1-6.1M10 5H5a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>
+        <span class="lang-en">Register Now</span><span class="lang-bn">নিবন্ধন করুন</span>
+      </a>
+      <p class="reach-note">
+        <span class="lang-en">Last date of registration: <strong style="color:#cc2828; font-style:normal;">15 May 2026</strong></span>
+        <span class="lang-bn">নিবন্ধনের শেষ তারিখ: <strong style="color:#cc2828; font-style:normal;">১৫ মে ২০২৬</strong></span>
+      </p>
+    </div>
+
+    <div class="event-sep"></div>
+
+    <p class="rv" style="font-size:13px; font-style:italic; color:#8a8a8a; margin-bottom:48px;">
+      <span class="lang-en">Platform Bengali is a foundation project sponsored by the India Foundation for the Arts (IFA) under the Arts Research programme. All interviews are conducted with informed consent, and participants retain the right to review and approve transcripts before publication. Contact: bhashascope@gmail.com</span>
+      <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত। সমস্ত সাক্ষাৎকার সম্মতিসাপেক্ষে পরিচালিত হয় এবং অংশগ্রহণকারীরা প্রকাশের আগে প্রতিলিপি পর্যালোচনা ও অনুমোদনের অধিকার রাখেন। যোগাযোগ: bhashascope@gmail.com</span>
+    </p>
+
+  </div>
+
+  <div class="event-footer">
+    <span data-en="© 2026 Platform Bengali — India Foundation for the Arts" data-bn="© ২০২৬ প্ল্যাটফর্ম বাংলা — ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস">© 2026 Platform Bengali — India Foundation for the Arts</span>
+    <a href="../index.html"><span class="lang-en">Back to Home</span><span class="lang-bn">প্রচ্ছদে ফিরুন</span></a>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var b=document.querySelector('.bg-illustration');if(!b)return;
+  var mx=parseFloat(getComputedStyle(b).opacity)||0.18,mn=0.03;
+  function u(){var s=window.pageYOffset||document.documentElement.scrollTop,h=window.innerHeight*1.5,p=Math.min(s/h,1),e=p*p;b.style.opacity=mx-(mx-mn)*e;}
+  window.addEventListener('scroll',u,{passive:true});u();
+})();
+</script>
+<script>
+(function(){
+  var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('vis');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){o.observe(el);});
+})();
+</script>
+<script>
+(function(){
+  var KEY='pb-lang',btnEN=document.getElementById('btnEN'),btnBN=document.getElementById('btnBN');
+  var lang=localStorage.getItem(KEY)||'en';
+  function apply(l){
+    lang=l;localStorage.setItem(KEY,lang);
+    btnEN.classList.toggle('active',lang==='en');
+    btnBN.classList.toggle('active',lang==='bn');
+    document.body.classList.toggle('bn-mode',lang==='bn');
+    document.querySelectorAll('[data-en][data-bn]').forEach(function(el){
+      var c=el.getAttribute('data-'+lang);
+      if(c.indexOf('<')!==-1){el.innerHTML=c;}else{el.textContent=c;}
     });
-  </script>
+  }
+  btnEN.addEventListener('click',function(){apply('en');});
+  btnBN.addEventListener('click',function(){apply('bn');});
+  apply(lang);
+})();
+</script>
 </body>
 </html>
