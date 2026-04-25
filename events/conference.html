@@ -196,6 +196,10 @@
     body.bn-mode .timeline-date {
       font-family: 'Noto Sans Bengali', sans-serif;
     }
+    body.bn-mode .cfp-links-label {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      letter-spacing: normal; text-transform: none;
+    }
 
     /* --- Cluster Cards (Themes) --- */
     .cluster-grid {
@@ -229,6 +233,34 @@
     }
     .timeline-date { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--ochre); margin-bottom: 6px; }
     .timeline-label { font-size: 13px; color: var(--teal); font-weight: 500; line-height: 1.4; }
+
+    /* --- CFP Links Row --- */
+    .cfp-links-row {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      margin-top: 28px;
+    }
+    .cfp-link-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ochre); background: rgba(204,40,40,0.06);
+      border: 1px solid rgba(204,40,40,0.25);
+      border-radius: 40px; padding: 10px 20px; text-decoration: none;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .cfp-link-btn:hover { background: rgba(204,40,40,0.12); border-color: var(--ochre); transform: translateY(-1px); }
+    .cfp-link-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .cfp-link-btn.primary {
+      color: #fff; background: var(--ochre); border-color: var(--ochre);
+      box-shadow: 0 4px 20px rgba(204,40,40,0.25);
+    }
+    .cfp-link-btn.primary:hover { background: #b02020; box-shadow: 0 8px 28px rgba(204,40,40,0.35); }
+    .cfp-links-label {
+      font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: #8a8a8a; margin-top: 24px; margin-bottom: 10px;
+      display: block;
+    }
 
     /* --- Reach Out Box --- */
     .reach-box {
@@ -288,6 +320,7 @@
       .page-number { font-size: 80px; top: 90px; right: 10px; }
       .reach-box { padding: 32px 24px; }
       .page-footer { padding: 0 20px 32px; flex-direction: column; gap: 16px; text-align: center; }
+      .cfp-links-row { flex-direction: column; }
     }
   </style>
 </head>
@@ -323,8 +356,8 @@
     </p>
 
     <p class="collab-line rv rv-d2">
-      <span class="lang-en">In association with <strong>Ramakrishna Mission Residential College, Narendrapur</strong></span>
-      <span class="lang-bn"><strong>রামকৃষ্ণ মিশন রেসিডেন্শিয়াল কলেজ (স্বশাসিত), নরেন্দ্রপুর</strong>-এর সহযোগিতায়</span>
+      <span class="lang-en">In association with <strong>Ramakrishna Mission Residential College, Narendrapur</strong>, part-supported by <strong>BNP Paribas</strong>, and implemented by <strong>India Foundation for the Arts</strong></span>
+      <span class="lang-bn"><strong>রামকৃষ্ণ মিশন রেসিডেন্শিয়াল কলেজ (স্বশাসিত), নরেন্দ্রপুর</strong>-এর সহযোগিতায়, <strong>বিএনপি পারিবা</strong>-এর আংশিক সহায়তায়, এবং <strong>ইন্ডিয়া ফাউন্ডেশন ফর দ্য আর্টস</strong>-এর বাস্তবায়নে</span>
     </p>
 
     <div class="event-meta rv rv-d2">
@@ -578,12 +611,29 @@
           <strong>প্রকাশনা:</strong> নির্বাচিত প্রবন্ধগুলি একটি পিয়ার-রিভিউড সম্পাদিত সংকলনে অন্তর্ভুক্তির জন্য আমন্ত্রণ জানানো হবে (ব্লুমসবেরি গভীর আগ্রহ প্রকাশ করেছে)।
         </span>
       </div>
-      
-      <a href="mailto:prithuhalder1997@gmail.com?subject=CFP%20-%20Platform%20Bengali%20Conference" class="reach-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <span class="lang-en">Submit Abstract</span>
-        <span class="lang-bn">সারসংক্ষেপ পাঠান</span>
-      </a>
+
+      <!-- CFP Links -->
+      <span class="cfp-links-label">
+        <span class="lang-en">CFP Resources</span>
+        <span class="lang-bn">সিএফপি রিসোর্স</span>
+      </span>
+      <div class="cfp-links-row">
+        <a href="https://drive.google.com/file/d/1uLR9Ivvua6ZMotrukih8hf6sDbqRw5Yc/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="cfp-link-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span class="lang-en">Download CFP (PDF)</span>
+          <span class="lang-bn">সিএফপি ডাউনলোড করুন (পিডিএফ)</span>
+        </a>
+        <a href="https://call-for-papers.sas.upenn.edu/cfp/2026/04/23/platform-bengali-digital-humanities-and-digital-culture-in-the-bangla-speaking-world" target="_blank" rel="noopener noreferrer" class="cfp-link-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-en">CFP on UPenn Database</span>
+          <span class="lang-bn">ইউপেন ডেটাবেসে সিএফপি</span>
+        </a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScAOyHDvHUvKUPN5Eg2opQzSK3HDfzdGK4RgwkBGnAP6WT4Kw/viewform" target="_blank" rel="noopener noreferrer" class="cfp-link-btn primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          <span class="lang-en">Submit Abstract (Form)</span>
+          <span class="lang-bn">সারসংক্ষেপ জমা দিন (ফর্ম)</span>
+        </a>
+      </div>
     </div>
 
     <div class="org-credits rv">
