@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conference Certificate — Platform Bengali / Bhashascope</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--red:#cc2828;--dark:#1a1a1a;--mid:#4a4a4a;--border:rgba(0,0,0,0.07);--green:#457b6e;--gold:#b08d40;--blue:#3d5a80;}
+body{font-family:'DM Sans',sans-serif;background:#faf9f7;color:var(--dark);min-height:100vh;}
+.cert-header{background:#fff;border-bottom:1px solid var(--border);padding:16px clamp(20px,5vw,48px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100;}
+.cert-header-logos{display:flex;align-items:center;gap:14px;}
+.cert-header-logos img{height:28px;width:auto;object-fit:contain;}
+.cert-header-sep{width:1px;height:22px;background:rgba(0,0,0,0.12);}
+.cert-header-back{display:inline-flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);text-decoration:none;opacity:0.7;transition:opacity 0.2s;}
+.cert-header-back:hover{opacity:1;}
+.cert-hero{background:linear-gradient(135deg,rgba(42,39,37,0.95) 0%,rgba(40,50,70,0.92) 100%);padding:clamp(40px,7vh,72px) clamp(20px,5vw,64px);text-align:center;}
+.cert-hero-eyebrow{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(204,40,40,0.7);margin-bottom:16px;}
+.cert-hero-title{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:#e8e4df;line-height:1.1;margin-bottom:10px;}
+.cert-hero-sub{font-size:clamp(13px,1.1vw,15px);color:rgba(232,228,223,0.55);margin-bottom:24px;line-height:1.6;}
+.cert-soon-badge{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;background:rgba(61,90,128,0.12);border:1px solid rgba(61,90,128,0.3);font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#7ea0c8;}
+.cert-main{max-width:760px;margin:0 auto;padding:clamp(40px,7vh,72px) clamp(20px,5vw,40px);text-align:center;}
+.soon-icon{width:72px;height:72px;border-radius:50%;background:rgba(61,90,128,0.07);border:2px solid rgba(61,90,128,0.16);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;}
+.soon-icon svg{width:32px;height:32px;stroke:var(--blue);}
+.soon-heading{font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--dark);margin-bottom:14px;}
+.soon-body{font-size:15px;line-height:1.8;color:var(--mid);max-width:540px;margin:0 auto 32px;}
+.cert-types{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:36px;}
+.cert-type{padding:9px 18px;border-radius:40px;background:#fff;border:1px solid var(--border);font-size:12px;font-weight:500;color:var(--mid);}
+.cert-type span{display:block;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#8a8a8a;margin-bottom:2px;}
+.soon-info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;text-align:left;}
+.info-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+.info-card-label{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#8a8a8a;margin-bottom:5px;}
+.info-card-val{font-size:14px;font-weight:500;color:var(--dark);}
+.cert-footer{border-top:1px solid var(--border);padding:24px clamp(20px,5vw,48px);text-align:center;font-size:12px;color:#8a8a8a;line-height:1.7;margin-top:48px;}
+.cert-footer a{color:var(--red);text-decoration:none;}
+.lang-en{display:inline;}.lang-bn{display:none;}
+body.bn-mode .lang-en{display:none;} body.bn-mode .lang-bn{display:inline;}
+body.bn-mode .cert-hero-title,.cert-hero-eyebrow,.soon-heading,.info-card-label{font-family:'Noto Sans Bengali',sans-serif;}
+body.bn-mode .cert-hero-sub,.soon-body,.info-card-val{font-family:'Noto Sans Bengali',sans-serif;}
+.lang-mini{position:fixed;bottom:24px;right:24px;display:flex;background:rgba(255,255,255,0.9);backdrop-filter:blur(12px);border:1px solid rgba(0,0,0,0.08);border-radius:40px;padding:3px;box-shadow:0 4px 16px rgba(0,0,0,0.07);}
+.lang-mini button{border:none;background:transparent;cursor:pointer;padding:6px 14px;border-radius:30px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;color:#8a8a8a;transition:all 0.25s;}
+.lang-mini button.active{background:var(--red);color:#fff;}
+.lang-mini button[data-lang="bn"]{font-family:'Noto Sans Bengali',sans-serif;text-transform:none;font-size:12px;}
+</style>
+</head>
+<body>
+
+<header class="cert-header">
+  <div class="cert-header-logos">
+    <img src="../../img/ifa-logo.png" alt="IFA" onerror="this.style.display='none'">
+    <span class="cert-header-sep"></span>
+    <img src="../../img/BNPP_Logo.jpg" alt="BNP Paribas" onerror="this.style.display='none'">
+    <span class="cert-header-sep"></span>
+    <img src="../../img/Bhashascope_logo.png" alt="Bhashascope" onerror="this.style.display='none'">
+  </div>
+  <a href="../../index.html" class="cert-header-back">
+    ← <span class="lang-en">Back to Platform Bengali</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলিতে ফিরুন</span>
+  </a>
+</header>
+
+<div class="cert-hero">
+  <div class="cert-hero-eyebrow">
+    <span class="lang-en">Platform Bengali / Bhashascope · Certificate Registry</span>
+    <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ · সার্টিফিকেট রেজিস্ট্রি</span>
+  </div>
+  <div class="cert-hero-title">
+    <span class="lang-en">Academic Conference</span>
+    <span class="lang-bn">শিক্ষামূলক আলোচনাসভা</span>
+  </div>
+  <div class="cert-hero-sub">
+    <span class="lang-en">Platform Bengali: Technology &amp; Vernacular in the Digital Age<br>Hybrid Conference · 15 July 2026 · RKM Narendrapur</span>
+    <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি: বৈদ্যুতিন যুগে প্রযুক্তি ও আঞ্চলিক ভাষা<br>হাইব্রিড আলোচনাসভা · ১৫ জুলাই ২০২৬ · রামকৃষ্ণ মিশন নরেন্দ্রপুর</span>
+  </div>
+  <span class="cert-soon-badge">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+    <span class="lang-en">Certificates Coming Soon · July 2026</span><span class="lang-bn">সার্টিফিকেট শীঘ্রই আসছে · জুলাই ২০২৬</span>
+  </span>
+</div>
+
+<main class="cert-main">
+  <div class="soon-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+  </div>
+  <h2 class="soon-heading">
+    <span class="lang-en">Conference certificates will be issued after the event</span>
+    <span class="lang-bn">আলোচনাসভার পরে সার্টিফিকেট প্রদান করা হবে</span>
+  </h2>
+  <p class="soon-body">
+    <span class="lang-en">Certificates will be issued for both presenters and registered participants. This page URL is permanent — return here after the conference using the QR code or bookmark.</span>
+    <span class="lang-bn">উপস্থাপক ও নিবন্ধিত অংশগ্রহণকারী উভয়কেই সার্টিফিকেট দেওয়া হবে। এই পাতার ঠিকানা স্থায়ী — আলোচনাসভার পরে QR কোড বা বুকমার্ক ব্যবহার করে ফিরে আসুন।</span>
+  </p>
+
+  <div class="cert-types">
+    <div class="cert-type">
+      <span><span class="lang-en">Type A</span><span class="lang-bn">ধরন এ</span></span>
+      <span class="lang-en">Presenter Certificate</span><span class="lang-bn">উপস্থাপকের সার্টিফিকেট</span>
+    </div>
+    <div class="cert-type">
+      <span><span class="lang-en">Type B</span><span class="lang-bn">ধরন বি</span></span>
+      <span class="lang-en">Participant Certificate</span><span class="lang-bn">অংশগ্রহণকারীর সার্টিফিকেট</span>
+    </div>
+    <div class="cert-type">
+      <span><span class="lang-en">Type C</span><span class="lang-bn">ধরন সি</span></span>
+      <span class="lang-en">Session Chair Certificate</span><span class="lang-bn">সেশন সভাপতির সার্টিফিকেট</span>
+    </div>
+  </div>
+
+  <div class="soon-info-grid">
+    <div class="info-card">
+      <div class="info-card-label"><span class="lang-en">Conference Date</span><span class="lang-bn">সম্মেলনের তারিখ</span></div>
+      <div class="info-card-val"><span class="lang-en">15 July 2026</span><span class="lang-bn">১৫ জুলাই ২০২৬</span></div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label"><span class="lang-en">Format</span><span class="lang-bn">মাধ্যম</span></div>
+      <div class="info-card-val"><span class="lang-en">Hybrid (In-person + Online)</span><span class="lang-bn">হাইব্রিড (সরাসরি + অনলাইন)</span></div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label"><span class="lang-en">Venue</span><span class="lang-bn">স্থান</span></div>
+      <div class="info-card-val"><span class="lang-en">RKM Narendrapur</span><span class="lang-bn">রামকৃষ্ণ মিশন নরেন্দ্রপুর</span></div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label"><span class="lang-en">Certificate URL</span><span class="lang-bn">সার্টিফিকেট ঠিকানা</span></div>
+      <div class="info-card-val" style="font-size:12px;color:#8a8a8a;word-break:break-all;">/certificates/pb/conference.html</div>
+    </div>
+  </div>
+</main>
+
+<footer class="cert-footer">
+  <p>
+    <span class="lang-en">Platform Bengali / Bhashascope · Part-supported by BNP Paribas India · Implemented by India Foundation for the Arts</span>
+    <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ · বিএনপি পারিবা ইন্ডিয়ার আংশিক সহযোগিতায় · ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস কর্তৃক বাস্তবায়িত</span>
+  </p>
+  <p style="margin-top:6px;">
+    <a href="../../index.html"><span class="lang-en">Return to main site</span><span class="lang-bn">মূল সাইটে ফিরুন</span></a>
+  </p>
+</footer>
+
+<div class="lang-mini">
+  <button class="active" id="mBtnEN" data-lang="en">EN</button>
+  <button id="mBtnBN" data-lang="bn">বাং</button>
+</div>
+<script>
+function applyLang(l){document.body.classList.toggle('bn-mode',l==='bn');document.getElementById('mBtnEN').classList.toggle('active',l==='en');document.getElementById('mBtnBN').classList.toggle('active',l==='bn');localStorage.setItem('pb-lang',l);}
+document.getElementById('mBtnEN').addEventListener('click',function(){applyLang('en');});
+document.getElementById('mBtnBN').addEventListener('click',function(){applyLang('bn');});
+applyLang(localStorage.getItem('pb-lang')||'en');
+</script>
+</body>
+</html>
