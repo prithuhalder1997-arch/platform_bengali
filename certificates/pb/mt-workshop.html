@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MT Workshop Certificate — Platform Bengali / Bhashascope</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--red:#cc2828;--dark:#1a1a1a;--mid:#4a4a4a;--light:#f5f4f2;--border:rgba(0,0,0,0.07);--green:#457b6e;--gold:#b08d40;}
+body{font-family:'DM Sans',sans-serif;background:#faf9f7;color:var(--dark);min-height:100vh;}
+
+/* Header */
+.cert-header{background:#fff;border-bottom:1px solid var(--border);padding:16px clamp(20px,5vw,48px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100;}
+.cert-header-logos{display:flex;align-items:center;gap:14px;}
+.cert-header-logos img{height:28px;width:auto;object-fit:contain;}
+.cert-header-sep{width:1px;height:22px;background:rgba(0,0,0,0.12);}
+.cert-header-back{display:inline-flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);text-decoration:none;opacity:0.7;transition:opacity 0.2s;}
+.cert-header-back:hover{opacity:1;}
+
+/* Hero band */
+.cert-hero{background:linear-gradient(135deg,rgba(42,39,37,0.95) 0%,rgba(60,40,40,0.92) 100%);padding:clamp(40px,7vh,72px) clamp(20px,5vw,64px);text-align:center;}
+.cert-hero-eyebrow{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(204,40,40,0.7);margin-bottom:16px;}
+.cert-hero-title{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;color:#e8e4df;line-height:1.1;margin-bottom:10px;}
+.cert-hero-sub{font-size:clamp(13px,1.1vw,15px);color:rgba(232,228,223,0.55);margin-bottom:24px;line-height:1.6;}
+.cert-status-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border-radius:40px;background:rgba(176,141,64,0.12);border:1px solid rgba(176,141,64,0.28);font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#b08d40;}
+.cert-status-dot{width:7px;height:7px;border-radius:50%;background:#b08d40;}
+
+/* Main container */
+.cert-main{max-width:760px;margin:0 auto;padding:clamp(32px,6vh,64px) clamp(20px,5vw,40px);}
+
+/* Search box */
+.search-box{background:#fff;border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:32px;box-shadow:0 4px 24px rgba(0,0,0,0.04);}
+.search-label{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);margin-bottom:14px;display:block;}
+.search-row{display:flex;gap:10px;flex-wrap:wrap;}
+.search-input{flex:1;min-width:200px;padding:12px 18px;border:1px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--dark);background:#faf9f7;outline:none;transition:border-color 0.2s;}
+.search-input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(204,40,40,0.08);}
+.search-input::placeholder{color:#b0a8a0;}
+.search-btn{padding:12px 24px;border-radius:10px;border:none;background:var(--red);color:#fff;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.search-btn:hover{background:#b02020;transform:translateY(-1px);box-shadow:0 6px 18px rgba(204,40,40,0.25);}
+.search-hint{margin-top:10px;font-size:12px;color:#8a8a8a;font-style:italic;}
+
+/* Result area */
+.result-area{min-height:60px;}
+.result-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px 28px;display:flex;align-items:flex-start;gap:18px;animation:fadeUp 0.4s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.result-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.result-icon.found{background:rgba(69,123,110,0.1);}
+.result-icon.not-found{background:rgba(204,40,40,0.07);}
+.result-icon svg{width:22px;height:22px;}
+.result-icon.found svg{stroke:var(--green);}
+.result-icon.not-found svg{stroke:var(--red);}
+.result-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--dark);margin-bottom:4px;}
+.result-meta{font-size:13px;color:var(--mid);margin-bottom:14px;line-height:1.5;}
+.result-id{display:inline-block;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;padding:3px 10px;border-radius:8px;background:rgba(69,123,110,0.07);border:1px solid rgba(69,123,110,0.15);color:var(--green);margin-bottom:14px;}
+.result-dl-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:10px;background:var(--dark);color:#fff;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
+.result-dl-btn:hover{background:var(--red);transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,0.15);}
+.result-dl-btn svg{width:14px;height:14px;stroke:currentColor;}
+.result-not-found-msg{font-size:14px;color:var(--mid);line-height:1.6;}
+.result-not-found-msg strong{color:var(--dark);}
+
+/* Info section */
+.info-section{margin-top:40px;}
+.info-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#8a8a8a;margin-bottom:20px;}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+.info-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+.info-card-label{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#8a8a8a;margin-bottom:5px;}
+.info-card-val{font-size:14px;font-weight:500;color:var(--dark);line-height:1.4;}
+
+/* Footer */
+.cert-footer{border-top:1px solid var(--border);padding:24px clamp(20px,5vw,48px);text-align:center;font-size:12px;color:#8a8a8a;line-height:1.7;}
+.cert-footer a{color:var(--red);text-decoration:none;}
+.cert-footer a:hover{text-decoration:underline;}
+
+/* Bilingual */
+.lang-en{display:inline;} .lang-bn{display:none;}
+body.bn-mode .lang-en{display:none;} body.bn-mode .lang-bn{display:inline;}
+.lang-en.block,.lang-bn.block{display:block;}
+body.bn-mode .lang-en.block{display:none;} body.bn-mode .lang-bn.block{display:block;}
+body.bn-mode .cert-hero-title,.cert-hero-eyebrow,.search-label,.result-name,.info-card-label{font-family:'Noto Sans Bengali',sans-serif;}
+body.bn-mode .cert-hero-sub,.result-meta,.result-not-found-msg,.search-hint,.info-card-val{font-family:'Noto Sans Bengali',sans-serif;}
+
+/* Lang toggle */
+.lang-mini{position:fixed;bottom:24px;right:24px;display:flex;background:rgba(255,255,255,0.9);backdrop-filter:blur(12px);border:1px solid rgba(0,0,0,0.08);border-radius:40px;padding:3px;box-shadow:0 4px 16px rgba(0,0,0,0.07);}
+.lang-mini button{border:none;background:transparent;cursor:pointer;padding:6px 14px;border-radius:30px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;color:#8a8a8a;transition:all 0.25s;}
+.lang-mini button.active{background:var(--red);color:#fff;}
+.lang-mini button[data-lang="bn"]{font-family:'Noto Sans Bengali',sans-serif;text-transform:none;font-size:12px;}
+
+@media(max-width:600px){.search-row{flex-direction:column;}.search-btn{width:100%;}.cert-hero{padding:36px 20px;}.result-card{flex-direction:column;gap:12px;}}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="cert-header">
+  <div class="cert-header-logos">
+    <img src="../../img/ifa-logo.png" alt="IFA" onerror="this.style.display='none'">
+    <span class="cert-header-sep"></span>
+    <img src="../../img/BNPP_Logo.jpg" alt="BNP Paribas" onerror="this.style.display='none'">
+    <span class="cert-header-sep"></span>
+    <img src="../../img/Bhashascope_logo.png" alt="Bhashascope" onerror="this.style.display='none'">
+  </div>
+  <a href="../../index.html" class="cert-header-back">
+    ← <span class="lang-en">Back to Platform Bengali</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলিতে ফিরুন</span>
+  </a>
+</header>
+
+<!-- Hero -->
+<div class="cert-hero">
+  <div class="cert-hero-eyebrow">
+    <span class="lang-en">Platform Bengali / Bhashascope · Certificate Registry</span>
+    <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ · সার্টিফিকেট রেজিস্ট্রি</span>
+  </div>
+  <div class="cert-hero-title">
+    <span class="lang-en">MT Workshop</span>
+    <span class="lang-bn">যন্ত্র-অনুবাদ কর্মশালা</span>
+  </div>
+  <div class="cert-hero-sub">
+    <span class="lang-en">Bengali: Machine Translation &amp; AI · 5-Day Intensive · 7–11 May 2026<br>RKM Narendrapur, West Bengal</span>
+    <span class="lang-bn">বাংলায় যন্ত্র-অনুবাদ ও কৃত্রিম বুদ্ধিমত্তা · ৫ দিনের নিবিড় কর্মশালা · ৭–১১ মে ২০২৬<br>রামকৃষ্ণ মিশন নরেন্দ্রপুর, পশ্চিমবঙ্গ</span>
+  </div>
+  <span class="cert-status-badge">
+    <span class="cert-status-dot"></span>
+    <span class="lang-en">Certificates Coming Soon</span><span class="lang-bn">সার্টিফিকেট শীঘ্রই আসছে</span>
+  </span>
+</div>
+
+<!-- Main -->
+<main class="cert-main">
+
+  <!-- Coming Soon Notice -->
+  <div style="background:#fff;border:1px solid var(--border);border-radius:16px;padding:36px 32px;margin-bottom:32px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.04);">
+    <div style="width:56px;height:56px;border-radius:50%;background:rgba(176,141,64,0.1);border:1px solid rgba(176,141,64,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#b08d40" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    </div>
+    <h2 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:10px;">
+      <span class="lang-en">Certificates Not Yet Available</span>
+      <span class="lang-bn">সার্টিফিকেট এখনও উপলব্ধ নয়</span>
+    </h2>
+    <p style="font-size:14px;color:var(--mid);line-height:1.75;max-width:480px;margin:0 auto 20px;">
+      <span class="lang-en">The MT Workshop (7–11 May 2026) has not yet taken place. Certificates of participation will be issued and verifiable from this page once the workshop concludes.</span>
+      <span class="lang-bn">যন্ত্র-অনুবাদ কর্মশালা (৭–১১ মে ২০২৬) এখনও অনুষ্ঠিত হয়নি। কর্মশালা সম্পন্ন হলে অংশগ্রহণের সার্টিফিকেট এই পাতায় উপলব্ধ ও যাচাইযোগ্য হবে।</span>
+    </p>
+    <p style="font-size:13px;color:#8a8a8a;">
+      <span class="lang-en">Questions? Write to <a href="mailto:bhashascope@gmail.com" style="color:var(--red);text-decoration:none;">bhashascope@gmail.com</a></span>
+      <span class="lang-bn">জিজ্ঞাসা থাকলে লিখুন: <a href="mailto:bhashascope@gmail.com" style="color:var(--red);text-decoration:none;">bhashascope@gmail.com</a></span>
+    </p>
+  </div>
+
+  <!-- Workshop info -->
+  <div class="info-section">
+    <p class="info-title">
+      <span class="lang-en">Workshop Details</span>
+      <span class="lang-bn">কর্মশালার বিবরণ</span>
+    </p>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-label"><span class="lang-en">Dates</span><span class="lang-bn">তারিখ</span></div>
+        <div class="info-card-val"><span class="lang-en">7–11 May 2026</span><span class="lang-bn">৭–১১ মে ২০২৬</span></div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label"><span class="lang-en">Venue</span><span class="lang-bn">স্থান</span></div>
+        <div class="info-card-val"><span class="lang-en">RKM Narendrapur, West Bengal</span><span class="lang-bn">রামকৃষ্ণ মিশন নরেন্দ্রপুর, পশ্চিমবঙ্গ</span></div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label"><span class="lang-en">Focus</span><span class="lang-bn">বিষয়</span></div>
+        <div class="info-card-val"><span class="lang-en">Machine Translation &amp; AI in Bengali</span><span class="lang-bn">বাংলায় যন্ত্র-অনুবাদ ও এ আই</span></div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label"><span class="lang-en">Project</span><span class="lang-bn">প্রকল্প</span></div>
+        <div class="info-card-val"><span class="lang-en">Platform Bengali / Bhashascope</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ</span></div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label"><span class="lang-en">Supported by</span><span class="lang-bn">সহযোগিতায়</span></div>
+        <div class="info-card-val"><span class="lang-en">BNP Paribas India &amp; IFA</span><span class="lang-bn">বিএনপি পারিবা ইন্ডিয়া ও আই এফ এ</span></div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label"><span class="lang-en">Certificate URL</span><span class="lang-bn">সার্টিফিকেট ঠিকানা</span></div>
+        <div class="info-card-val" style="font-size:12px;color:#8a8a8a;word-break:break-all;">/certificates/pb/mt-workshop.html</div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- Footer -->
+<footer class="cert-footer">
+  <p>
+    <span class="lang-en">Platform Bengali / Bhashascope · Part-supported by BNP Paribas India · Implemented by India Foundation for the Arts</span>
+    <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ · বিএনপি পারিবা ইন্ডিয়ার আংশিক সহযোগিতায় · ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস কর্তৃক বাস্তবায়িত</span>
+  </p>
+  <p style="margin-top:6px;">
+    <a href="../../index.html">
+      <span class="lang-en">Return to main site</span><span class="lang-bn">মূল সাইটে ফিরুন</span>
+    </a>
+    &nbsp;·&nbsp;
+    <a href="contributors.html">
+      <span class="lang-en">Project Contributors</span><span class="lang-bn">প্রকল্প সহযোগী</span>
+    </a>
+  </p>
+</footer>
+
+<!-- Language toggle -->
+<div class="lang-mini" id="langMini">
+  <button class="active" id="mBtnEN" data-lang="en">EN</button>
+  <button id="mBtnBN" data-lang="bn">বাং</button>
+</div>
+
+<script>
+// ─── PARTICIPANT DATA ───────────────────────────────────────────────────────
+// Add participants here: { id, name, downloadUrl }
+// downloadUrl can be a path to a PDF, or null if not yet ready
+const PARTICIPANTS = [
+  // Example — replace with real data:
+  // { id: "MT2026-001", name: "Aniruddha Mitra", downloadUrl: null },
+  // { id: "MT2026-002", name: "Priya Sengupta", downloadUrl: null },
+];
+// ─────────────────────────────────────────────────────────────────────────────
+
+function normalise(s){ return s.toLowerCase().replace(/\s+/g,' ').trim(); }
+
+function doSearch(){
+  var q = document.getElementById('searchInput').value;
+  var area = document.getElementById('resultArea');
+  if(!q.trim()){ area.innerHTML=''; return; }
+  var match = PARTICIPANTS.find(function(p){ return normalise(p.name)===normalise(q); });
+  if(!match){
+    // fuzzy — partial match
+    match = PARTICIPANTS.find(function(p){ return normalise(p.name).indexOf(normalise(q))!==-1; });
+  }
+  if(match){
+    var dlBtn = match.downloadUrl
+      ? '<a href="'+match.downloadUrl+'" class="result-dl-btn" download><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v12M6 15l6 6 6-6"/><path d="M3 19h18"/></svg> <span class="lang-en">Download Certificate</span><span class="lang-bn">সার্টিফিকেট ডাউনলোড করুন</span></a>'
+      : '<span style="font-size:13px;color:var(--gold);"><span class="lang-en">Your certificate is being finalised — please check back shortly.</span><span class="lang-bn">আপনার সার্টিফিকেট তৈরি হচ্ছে — শীঘ্রই পুনরায় দেখুন।</span></span>';
+    area.innerHTML = '<div style="margin-top:18px;" class="result-card">'
+      +'<div class="result-icon found"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg></div>'
+      +'<div>'
+      +'<div class="result-name">'+escHtml(match.name)+'</div>'
+      +'<div class="result-id">'+escHtml(match.id)+'</div>'
+      +'<div class="result-meta"><span class="lang-en">MT Workshop · 7–11 May 2026 · Platform Bengali / Bhashascope</span><span class="lang-bn">যন্ত্র-অনুবাদ কর্মশালা · ৭–১১ মে ২০২৬ · প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ</span></div>'
+      +dlBtn
+      +'</div></div>';
+    applyLang(currentLang());
+  } else {
+    area.innerHTML = '<div style="margin-top:18px;" class="result-card">'
+      +'<div class="result-icon not-found"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>'
+      +'<div class="result-not-found-msg"><strong><span class="lang-en">Name not found</span><span class="lang-bn">নাম পাওয়া যায়নি</span></strong><br>'
+      +'<span class="lang-en">No record found for "<em>'+escHtml(q)+'</em>". Please check the spelling, or see the note below if you attended the workshop.</span>'
+      +'<span class="lang-bn">"<em>'+escHtml(q)+'</em>" নামে কোনো তথ্য পাওয়া যায়নি। বানান পরীক্ষা করুন, অথবা যোগাযোগের নির্দেশিকা দেখুন।</span>'
+      +'</div></div>';
+    applyLang(currentLang());
+  }
+}
+
+function onInput(){ if(!document.getElementById('searchInput').value.trim()) document.getElementById('resultArea').innerHTML=''; }
+function escHtml(s){ var d=document.createElement('div');d.textContent=s;return d.innerHTML; }
+
+// Bilingual
+function currentLang(){ return localStorage.getItem('pb-lang')||'en'; }
+function applyLang(l){
+  document.body.classList.toggle('bn-mode',l==='bn');
+  document.getElementById('mBtnEN').classList.toggle('active',l==='en');
+  document.getElementById('mBtnBN').classList.toggle('active',l==='bn');
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    var val=el.getAttribute('data-'+l);
+    if(val){ if(val.indexOf('<')!==-1){el.innerHTML=val;}else{el.textContent=val;} }
+  });
+  localStorage.setItem('pb-lang',l);
+}
+document.getElementById('mBtnEN').addEventListener('click',function(){applyLang('en');});
+document.getElementById('mBtnBN').addEventListener('click',function(){applyLang('bn');});
+applyLang(currentLang());
+
+// Sync placeholder to lang
+function syncPlaceholder(){
+  var inp=document.getElementById('searchInput');
+  inp.placeholder=currentLang()==='bn'?'সম্পূর্ণ নাম লিখুন…':'Enter full name as on certificate…';
+}
+document.getElementById('mBtnEN').addEventListener('click',syncPlaceholder);
+document.getElementById('mBtnBN').addEventListener('click',syncPlaceholder);
+syncPlaceholder();
+</script>
+</body>
+</html>
