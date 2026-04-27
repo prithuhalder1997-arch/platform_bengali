@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core Contributors — Platform Bengali / Bhashascope</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:#f9f8f6; color:#1a1a1a; min-height:100vh; }
+
+/* Language toggle */
+.lang-toggle { position:fixed; bottom:24px; right:24px; z-index:200; display:flex; background:rgba(255,255,255,0.85); backdrop-filter:blur(12px); border:1px solid rgba(0,0,0,0.08); border-radius:40px; padding:4px; box-shadow:0 4px 20px rgba(0,0,0,0.08); }
+.lang-btn { border:none; background:transparent; cursor:pointer; padding:7px 16px; border-radius:32px; font-family:'DM Sans',sans-serif; font-weight:700; font-size:11px; text-transform:uppercase; color:#8a8a8a; transition:all 0.25s; }
+.lang-btn.active { background:#cc2828; color:#fff; box-shadow:0 2px 10px rgba(204,40,40,0.3); }
+.lang-btn[data-lang="bn"] { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; font-size:12px; }
+.lang-en { display:inline; } .lang-bn { display:none; }
+body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; }
+.lang-en.block { display:block; } .lang-bn.block { display:none; }
+body.bn-mode .lang-bn.block { display:block; } body.bn-mode .lang-en.block { display:none; }
+body.bn-mode h1, body.bn-mode h2, body.bn-mode h3, body.bn-mode .eyebrow, body.bn-mode .role-tag, body.bn-mode .project-tag { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+body.bn-mode p, body.bn-mode .contributor-name, body.bn-mode .footer-text { font-family:'Noto Sans Bengali',sans-serif; }
+
+/* Header */
+.cert-header { background:#fff; border-bottom:1px solid rgba(0,0,0,0.06); padding:18px clamp(20px,5vw,48px); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; position:sticky; top:0; z-index:100; }
+.header-logos { display:flex; align-items:center; gap:14px; }
+.header-logos img { height:28px; width:auto; flex-shrink:0; }
+.header-logo-sep { width:1px; height:24px; background:rgba(0,0,0,0.12); }
+.back-link { display:inline-flex; align-items:center; gap:6px; font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#8a8a8a; text-decoration:none; transition:color 0.2s; }
+.back-link:hover { color:#cc2828; }
+.back-link svg { transition:transform 0.2s; }
+.back-link:hover svg { transform:translateX(-3px); }
+
+/* Hero */
+.cert-hero { background:linear-gradient(135deg,rgba(42,39,37,0.93) 0%,rgba(60,50,40,0.92) 100%); color:#e8e4df; padding:clamp(48px,8vh,80px) clamp(20px,5vw,64px); text-align:center; position:relative; overflow:hidden; }
+.cert-hero::before { content:'★'; position:absolute; font-size:220px; font-weight:800; opacity:0.03; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; font-family:'Syne',sans-serif; }
+.eyebrow { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:rgba(204,40,40,0.8); margin-bottom:14px; }
+.cert-hero h1 { font-family:'Syne',sans-serif; font-size:clamp(28px,5vw,52px); font-weight:800; line-height:1.1; letter-spacing:-0.02em; margin-bottom:16px; }
+.cert-hero p { font-size:clamp(14px,1.2vw,16px); line-height:1.8; color:rgba(232,228,223,0.72); max-width:560px; margin:0 auto 24px; }
+.project-tag { display:inline-flex; align-items:center; gap:6px; padding:6px 16px; border-radius:20px; background:rgba(204,40,40,0.15); border:1px solid rgba(204,40,40,0.25); font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(232,228,223,0.85); }
+
+/* Main content */
+.cert-main { max-width:900px; margin:0 auto; padding:clamp(40px,6vh,72px) clamp(20px,5vw,48px); }
+
+/* Intro box */
+.intro-box { background:#fff; border-radius:16px; border:1px solid rgba(0,0,0,0.06); padding:32px; margin-bottom:48px; display:flex; gap:20px; align-items:flex-start; }
+.intro-icon { width:44px; height:44px; border-radius:10px; background:rgba(204,40,40,0.08); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.intro-icon svg { color:#cc2828; }
+.intro-box h2 { font-family:'Syne',sans-serif; font-size:18px; font-weight:800; margin-bottom:8px; }
+.intro-box p { font-size:14px; line-height:1.75; color:#4a4a4a; }
+@media(max-width:600px){ .intro-box { flex-direction:column; gap:14px; } }
+
+/* Role sections */
+.role-section { margin-bottom:52px; }
+.role-header { display:flex; align-items:center; gap:12px; margin-bottom:24px; padding-bottom:14px; border-bottom:2px solid rgba(0,0,0,0.06); }
+.role-tag { font-family:'Syne',sans-serif; font-size:9px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; padding:4px 12px; border-radius:20px; }
+.role-tag.pi    { background:rgba(204,40,40,0.08); color:#cc2828; border:1px solid rgba(204,40,40,0.15); }
+.role-tag.coord { background:rgba(61,90,128,0.08); color:#3d5a80; border:1px solid rgba(61,90,128,0.15); }
+.role-tag.res   { background:rgba(69,123,110,0.08); color:#457b6e; border:1px solid rgba(69,123,110,0.15); }
+.role-tag.int   { background:rgba(176,141,64,0.08); color:#8a6d00; border:1px solid rgba(176,141,64,0.15); }
+.role-tag.web   { background:rgba(100,80,160,0.08); color:#5a40a0; border:1px solid rgba(100,80,160,0.15); }
+.role-tag.sm    { background:rgba(60,140,100,0.08); color:#2a7a50; border:1px solid rgba(60,140,100,0.15); }
+.role-section h3 { font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#1a1a1a; }
+
+/* Contributor cards */
+.contributors-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
+.contributor-card { background:#fff; border-radius:14px; border:1px solid rgba(0,0,0,0.06); padding:22px 20px; display:flex; align-items:flex-start; gap:14px; transition:all 0.25s; }
+.contributor-card:hover { box-shadow:0 8px 28px rgba(0,0,0,0.06); transform:translateY(-2px); }
+.contributor-avatar { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:17px; font-weight:800; color:#fff; flex-shrink:0; }
+.contributor-info { flex:1; min-width:0; }
+.contributor-name { font-family:'Syne',sans-serif; font-size:15px; font-weight:800; margin-bottom:3px; color:#1a1a1a; }
+.contributor-role { font-size:11px; color:#8a8a8a; line-height:1.4; }
+.contributor-note { font-size:11px; color:#4a4a4a; margin-top:6px; line-height:1.5; font-style:italic; }
+
+/* For TBA / placeholder */
+.contributor-card.tba { opacity:0.5; }
+.contributor-card.tba .contributor-name { color:#8a8a8a; }
+
+/* Certificate note */
+.cert-note { background:rgba(245,244,242,0.8); border:1px solid rgba(0,0,0,0.06); border-left:3px solid #cc2828; border-radius:0 12px 12px 0; padding:20px 24px; margin-top:48px; }
+.cert-note p { font-size:13px; line-height:1.75; color:#4a4a4a; }
+.cert-note strong { color:#1a1a1a; }
+
+/* Future projects section */
+.future-section { margin-top:56px; padding:36px; background:#fff; border-radius:18px; border:1px solid rgba(0,0,0,0.06); border-top:3px solid #cc2828; text-align:center; }
+.future-section h2 { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; margin-bottom:10px; }
+.future-section p { font-size:14px; line-height:1.75; color:#4a4a4a; max-width:520px; margin:0 auto 20px; }
+.future-tags { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.future-tag { font-size:11px; font-weight:500; padding:5px 14px; border-radius:20px; background:rgba(204,40,40,0.05); border:1px solid rgba(204,40,40,0.1); color:#4a4a4a; }
+
+/* Footer */
+.cert-footer { border-top:1px solid rgba(0,0,0,0.06); padding:24px clamp(20px,5vw,48px); text-align:center; }
+.footer-text { font-size:12px; color:#8a8a8a; line-height:1.8; }
+.footer-text a { color:#cc2828; text-decoration:none; }
+
+/* Stable URL banner */
+.url-banner { background:rgba(61,90,128,0.04); border:1px solid rgba(61,90,128,0.12); border-radius:10px; padding:14px 20px; margin-bottom:32px; display:flex; align-items:center; gap:10px; font-size:12px; color:#3d5a80; }
+.url-banner code { font-family:monospace; font-size:11px; background:rgba(61,90,128,0.08); padding:2px 7px; border-radius:4px; }
+
+@media(max-width:600px){ .contributors-grid { grid-template-columns:1fr; } .cert-hero { padding:48px 20px; } }
+</style>
+</head>
+<body>
+
+<div class="lang-toggle" id="langToggle">
+  <button class="lang-btn active" id="btnEN" data-lang="en">English</button>
+  <button class="lang-btn" id="btnBN" data-lang="bn">বাংলা</button>
+</div>
+
+<!-- Header -->
+<header class="cert-header">
+  <div class="header-logos">
+    <img src="../../img/ifa-logo.png" alt="IFA" onerror="this.style.display='none'">
+    <span class="header-logo-sep"></span>
+    <img src="../../img/BNPP_Logo.jpg" alt="BNP Paribas" onerror="this.style.display='none'">
+    <span class="header-logo-sep"></span>
+    <img src="../../img/Bhashascope_logo.png" alt="Bhashascope" onerror="this.style.display='none'">
+  </div>
+  <a href="../../index.html" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+    <span class="lang-en">Back to site</span><span class="lang-bn">মূল পাতায় ফিরুন</span>
+  </a>
+</header>
+
+<!-- Hero -->
+<div class="cert-hero">
+  <p class="eyebrow"><span class="lang-en">Platform Bengali · Bhashascope</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি · ভাষাস্কোপ</span></p>
+  <h1><span class="lang-en">Core Contributors</span><span class="lang-bn">মূল সহযোগীবৃন্দ</span></h1>
+  <p><span class="lang-en">Acknowledgement registry for the people who built, shaped, and sustained Platform Bengali (2020–2025) under the Bhashascope initiative.</span><span class="lang-bn">ভাষাস্কোপ উদ্যোগের অধীনে প্ল্যাটফর্ম বেঙ্গলি (২০২০–২০২৫) প্রকল্প নির্মাণ ও পরিচালনায় অবদান রেখেছেন যাঁরা, তাঁদের স্বীকৃতি নিবন্ধিকা।</span></p>
+  <span class="project-tag"><span class="lang-en">Platform Bengali · IFA Arts Research Programme · 2020–2025</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি · আই এফ এ কলা গবেষণা কার্যক্রম · ২০২০–২০২৫</span></span>
+</div>
+
+<!-- Main content -->
+<div class="cert-main">
+
+  <!-- Stable URL note -->
+  <div class="url-banner">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    <span><span class="lang-en">Stable URL: <code>bhashascope.in/certificates/pb/contributors.html</code> — this address will not change.</span><span class="lang-bn">স্থায়ী ঠিকানা: <code>bhashascope.in/certificates/pb/contributors.html</code> — এই ঠিকানা পরিবর্তন হবে না।</span></span>
+  </div>
+
+  <!-- Intro box -->
+  <div class="intro-box">
+    <div class="intro-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div>
+      <h2><span class="lang-en">About this Registry</span><span class="lang-bn">এই নিবন্ধিকা সম্পর্কে</span></h2>
+      <p><span class="lang-en">This page acknowledges the people whose work — intellectual, technical, creative, and organisational — made Platform Bengali possible. Each entry corresponds to a distinct role within the project structure. Acknowledgement certificates are issued under the Bhashascope umbrella and will remain valid at this stable URL as the project archive persists.</span><span class="lang-bn">এই পাতায় তাঁদের অবদান স্বীকৃত হয়েছে যাঁদের মেধাগত, প্রযুক্তিগত, সৃজনশীল এবং সাংগঠনিক পরিশ্রমে প্ল্যাটফর্ম বেঙ্গলি প্রকল্প সম্ভব হয়েছে। প্রতিটি নাম প্রকল্পের নির্দিষ্ট ভূমিকার সাথে সঙ্গতিপূর্ণ। ভাষাস্কোপের অধীনে প্রদত্ত এই স্বীকৃতি সার্টিফিকেট স্থায়ী আর্কাইভের সঙ্গে সঙ্গে এই স্থায়ী ঠিকানায় বৈধ থাকবে।</span></p>
+    </div>
+  </div>
+
+  <!-- ======== Principal Investigator ======== -->
+  <div class="role-section">
+    <div class="role-header">
+      <span class="role-tag pi"><span class="lang-en">Principal Investigator</span><span class="lang-bn">মুখ্য তদন্তকারী</span></span>
+      <h3><span class="lang-en">Principal Investigator</span><span class="lang-bn">মুখ্য তদন্তকারী</span></h3>
+    </div>
+    <div class="contributors-grid">
+      <div class="contributor-card">
+        <div class="contributor-avatar" style="background:linear-gradient(135deg,#cc2828,#a01e1e);">P</div>
+        <div class="contributor-info">
+          <div class="contributor-name">Prithu Halder</div>
+          <div class="contributor-role"><span class="lang-en">Principal Investigator · Project Coordinator<br>PhD Candidate, IIT Tirupati</span><span class="lang-bn">মুখ্য তদন্তকারী · প্রকল্প সমন্বয়কারী<br>পিএইচডি গবেষক, আইআইটি তিরুপতি</span></div>
+          <div class="contributor-note"><span class="lang-en">Conceptualisation, direction, and overall stewardship of Platform Bengali and Bhashascope.</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি ও ভাষাস্কোপের ধারণা, পরিচালনা এবং সামগ্রিক তত্ত্বাবধান।</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== Research Associates ======== -->
+  <div class="role-section">
+    <div class="role-header">
+      <span class="role-tag res"><span class="lang-en">Research Associates</span><span class="lang-bn">গবেষণা সহযোগী</span></span>
+      <h3><span class="lang-en">Research Associates</span><span class="lang-bn">গবেষণা সহযোগী</span></h3>
+    </div>
+    <div class="contributors-grid">
+      <div class="contributor-card tba">
+        <div class="contributor-avatar" style="background:linear-gradient(135deg,#457b6e,#2e5c52);">—</div>
+        <div class="contributor-info">
+          <div class="contributor-name"><span class="lang-en">To be announced</span><span class="lang-bn">শীঘ্রই ঘোষণা করা হবে</span></div>
+          <div class="contributor-role"><span class="lang-en">Research Associate · Platform Bengali</span><span class="lang-bn">গবেষণা সহযোগী · প্ল্যাটফর্ম বেঙ্গলি</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== Interviewers ======== -->
+  <div class="role-section">
+    <div class="role-header">
+      <span class="role-tag int"><span class="lang-en">Interviewers</span><span class="lang-bn">সাক্ষাৎকারগ্রহণকারী</span></span>
+      <h3><span class="lang-en">Interviewers</span><span class="lang-bn">সাক্ষাৎকারগ্রহণকারী</span></h3>
+    </div>
+    <p style="font-size:13px;color:#8a8a8a;margin-bottom:16px;font-style:italic;"><span class="lang-en">Interviewers for the YouTube Creator interview series (10 in-depth interviews, 2026–27).</span><span class="lang-bn">ইউটিউব কন্টেন্ট ক্রিয়েটরদের সাক্ষাৎকার সিরিজের সাক্ষাৎকারগ্রহণকারী (১০টি নিবিড় সাক্ষাৎকার, ২০২৬–২৭)।</span></p>
+    <div class="contributors-grid">
+      <div class="contributor-card tba">
+        <div class="contributor-avatar" style="background:linear-gradient(135deg,#b08d40,#8a6d00);">—</div>
+        <div class="contributor-info">
+          <div class="contributor-name"><span class="lang-en">To be announced</span><span class="lang-bn">শীঘ্রই ঘোষণা করা হবে</span></div>
+          <div class="contributor-role"><span class="lang-en">Interviewer · Creator Interview Series</span><span class="lang-bn">সাক্ষাৎকারগ্রহণকারী · ক্রিয়েটর ইন্টারভিউ সিরিজ</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== Website Developer ======== -->
+  <div class="role-section">
+    <div class="role-header">
+      <span class="role-tag web"><span class="lang-en">Website Developer</span><span class="lang-bn">ওয়েবসাইট ডেভেলপার</span></span>
+      <h3><span class="lang-en">Website Developer</span><span class="lang-bn">ওয়েবসাইট ডেভেলপার</span></h3>
+    </div>
+    <div class="contributors-grid">
+      <div class="contributor-card tba">
+        <div class="contributor-avatar" style="background:linear-gradient(135deg,#5a40a0,#3d2880);">—</div>
+        <div class="contributor-info">
+          <div class="contributor-name"><span class="lang-en">To be announced</span><span class="lang-bn">শীঘ্রই ঘোষণা করা হবে</span></div>
+          <div class="contributor-role"><span class="lang-en">Website Developer · bhashascope.in</span><span class="lang-bn">ওয়েবসাইট ডেভেলপার · bhashascope.in</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== Social Media Manager ======== -->
+  <div class="role-section">
+    <div class="role-header">
+      <span class="role-tag sm"><span class="lang-en">Social Media Manager</span><span class="lang-bn">সোশ্যাল মিডিয়া ম্যানেজার</span></span>
+      <h3><span class="lang-en">Social Media Manager</span><span class="lang-bn">সোশ্যাল মিডিয়া ম্যানেজার</span></h3>
+    </div>
+    <div class="contributors-grid">
+      <div class="contributor-card tba">
+        <div class="contributor-avatar" style="background:linear-gradient(135deg,#2a7a50,#1a5035);">—</div>
+        <div class="contributor-info">
+          <div class="contributor-name"><span class="lang-en">To be announced</span><span class="lang-bn">শীঘ্রই ঘোষণা করা হবে</span></div>
+          <div class="contributor-role"><span class="lang-en">Social Media Manager · Platform Bengali / Bhashascope</span><span class="lang-bn">সোশ্যাল মিডিয়া ম্যানেজার · প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificate note -->
+  <div class="cert-note">
+    <p><span class="lang-en"><strong>Acknowledgement certificates for this registry</strong> are issued at the close of the project (August 2027) for all active contributors. Each certificate acknowledges the specific role held within the Platform Bengali project under the Bhashascope initiative, part-supported by BNP Paribas India and implemented by the India Foundation for the Arts under its Arts Research programme.</span><span class="lang-bn"><strong>এই নিবন্ধিকার স্বীকৃতি সার্টিফিকেট</strong> প্রকল্পের সমাপ্তিতে (আগস্ট ২০২৭) সক্রিয় সকল সহযোগীকে প্রদান করা হবে। প্রতিটি সার্টিফিকেটে প্ল্যাটফর্ম বেঙ্গলি প্রকল্পে পালিত নির্দিষ্ট ভূমিকা উল্লেখ থাকবে — যা বিএনপি পারিবা ইন্ডিয়ার আংশিক সহযোগিতায় এবং ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত।</span></p>
+  </div>
+
+  <!-- Future projects -->
+  <div class="future-section">
+    <h2><span class="lang-en">Future Bhashascope Projects</span><span class="lang-bn">ভাষাস্কোপের ভবিষ্যৎ প্রকল্পসমূহ</span></h2>
+    <p><span class="lang-en">As Bhashascope takes on new projects beyond Platform Bengali, contributor acknowledgements for each new project will be added here as separate registries — all under this same stable URL structure.</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলির পরেও ভাষাস্কোপ যখন নতুন প্রকল্প গ্রহণ করবে, প্রতিটি নতুন প্রকল্পের সহযোগীদের স্বীকৃতি এখানে আলাদা নিবন্ধিকা হিসেবে যোগ করা হবে — একই স্থায়ী ঠিকানার কাঠামোর মধ্যে।</span></p>
+    <div class="future-tags">
+      <span class="future-tag"><span class="lang-en">Platform Bengali (2020–2025) — Active</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি (২০২০–২০২৫) — সক্রিয়</span></span>
+      <span class="future-tag" style="opacity:0.5;"><span class="lang-en">Future Bhashascope Project 2 — TBA</span><span class="lang-bn">ভবিষ্যৎ প্রকল্প ২ — শীঘ্রই</span></span>
+      <span class="future-tag" style="opacity:0.5;"><span class="lang-en">Future Bhashascope Project 3 — TBA</span><span class="lang-bn">ভবিষ্যৎ প্রকল্প ৩ — শীঘ্রই</span></span>
+    </div>
+  </div>
+
+</div><!-- /cert-main -->
+
+<!-- Footer -->
+<footer class="cert-footer">
+  <p class="footer-text">
+    <span class="lang-en">Platform Bengali / Bhashascope · Part-supported by BNP Paribas India · Implemented by <a href="https://indiaifa.org/" target="_blank">India Foundation for the Arts</a> under its Arts Research programme.<br>
+    Certificate registry: <code style="font-size:11px;background:rgba(0,0,0,0.05);padding:2px 6px;border-radius:4px;">bhashascope.in/certificates/pb/contributors.html</code></span>
+    <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ · বিএনপি পারিবা ইন্ডিয়ার আংশিক সহযোগিতায় · <a href="https://indiaifa.org/" target="_blank">ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস</a>-এর কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত।<br>
+    সার্টিফিকেট নিবন্ধিকা: <code style="font-size:11px;background:rgba(0,0,0,0.05);padding:2px 6px;border-radius:4px;">bhashascope.in/certificates/pb/contributors.html</code></span>
+  </p>
+</footer>
+
+<script>
+(function(){
+  var KEY='pb-lang', btnEN=document.getElementById('btnEN'), btnBN=document.getElementById('btnBN');
+  var lang = localStorage.getItem(KEY) || 'en';
+  function apply(l){
+    lang=l; localStorage.setItem(KEY,lang);
+    btnEN.classList.toggle('active',lang==='en');
+    btnBN.classList.toggle('active',lang==='bn');
+    document.body.classList.toggle('bn-mode',lang==='bn');
+  }
+  btnEN.addEventListener('click',function(){ apply('en'); });
+  btnBN.addEventListener('click',function(){ apply('bn'); });
+  apply(lang);
+})();
+</script>
+</body>
+</html>
