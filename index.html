@@ -16,6 +16,12 @@
 .lang-toggle-fixed .lang-btn[data-lang="bn"] { font-family:'Noto Sans Bengali',sans-serif; font-weight:600; text-transform:none; font-size:13px; }
 @media(max-width:768px){ .lang-toggle-fixed{bottom:16px;right:16px;} .lang-toggle-fixed .lang-btn{padding:7px 14px;font-size:11px;} }
 
+/* Header logo group — IFA + BNP side by side */
+.header-logo-left { display:flex; align-items:center; gap:14px; }
+.header-logo-sep { width:1px; height:26px; background:rgba(0,0,0,0.14); display:inline-block; flex-shrink:0; }
+.bnp-logo { height:26px; max-height:26px; width:auto; object-fit:contain; }
+@media(max-width:768px){ .bnp-logo{height:20px;} .header-logo-sep{height:20px;} }
+
 /* Story blocks */
 .story-block { position:relative; z-index:1; padding:clamp(60px,10vh,120px) clamp(24px,5vw,80px); overflow:hidden; }
 .story-inner { max-width:760px; margin:0 auto; }
@@ -91,6 +97,23 @@
 .close-stmt p { font-family:'Syne',sans-serif; font-size:clamp(16px,2.2vw,26px); font-weight:700; line-height:1.5; color:#4a4a4a; }
 .close-stmt .ifa-cr { margin-top:16px; font-family:'DM Sans',sans-serif; font-size:13px; font-style:italic; color:#8a8a8a; }
 .deco-fl { position:absolute; pointer-events:none; user-select:none; font-family:'Noto Sans Bengali',sans-serif; font-weight:800; opacity:0.03; line-height:1; }
+
+/* BNP Paribas section within About */
+.bnp-divider { border:none; border-top:1px solid rgba(0,0,0,0.07); margin:48px 0 40px; }
+.bnp-logo-block { display:flex; align-items:center; gap:24px; margin-bottom:28px; flex-wrap:wrap; }
+.bnp-logo-block img { height:48px; width:auto; object-fit:contain; flex-shrink:0; }
+
+/* Certificate cards — clickable */
+.cert-link { display:block; text-decoration:none; color:inherit; cursor:pointer; }
+.cert-link.placeholder-card { transition:all 0.28s cubic-bezier(0.22,1,0.36,1); }
+.cert-link.placeholder-card:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,0.09); border-color:rgba(204,40,40,0.28) !important; }
+.cert-arrow { display:inline-flex; align-items:center; gap:5px; margin-top:12px; font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#cc2828; }
+.cert-arrow svg { transition:transform 0.2s; }
+.cert-link.placeholder-card:hover .cert-arrow svg { transform:translateX(3px); }
+.cert-status { display:inline-block; font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:3px 9px; border-radius:12px; margin-bottom:8px; }
+.cert-status.active { background:rgba(69,123,110,0.1); color:#457b6e; border:1px solid rgba(69,123,110,0.2); }
+.cert-status.soon { background:rgba(176,141,64,0.1); color:#b08d40; border:1px solid rgba(176,141,64,0.2); }
+
 /* Bengali mode */
 .lang-en { display: inline; }
 .lang-bn { display: none; }
@@ -104,7 +127,9 @@ body.bn-mode .s-eyebrow, body.bn-mode .e-approach, body.bn-mode .dt-sub, body.bn
 body.bn-mode .s-prose, body.bn-mode .e-desc, body.bn-mode .dt-desc, body.bn-mode .maybe-txt, body.bn-mode .s-callout p, body.bn-mode .cfp-chip, body.bn-mode .archive-item, body.bn-mode .tl-what, body.bn-mode .e-tag { font-family:'Noto Sans Bengali',sans-serif; }
 body.bn-mode .section-heading, body.bn-mode .section-body, body.bn-mode .section-label { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
 body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-family:'Noto Sans Bengali',sans-serif; }
-@media(max-width:768px){ .story-block{padding:clamp(48px,8vh,80px) 18px;} .big-q{font-size:clamp(22px,5.5vw,30px);} .spectrum-row{flex-direction:column;align-items:flex-start;gap:8px;} .sp-bar{width:100%;margin:6px 0;} .sp-label{position:static;transform:none;} .e-row{grid-template-columns:1fr;gap:8px;padding:20px 16px;} .tl-row{display:grid;grid-template-columns:1fr;gap:0;padding:16px 0 8px 24px;} .tl-row::before{position:absolute;left:8px;top:16px;bottom:8px;width:2px;height:auto;right:auto;} .tl-stop{display:flex;flex-direction:row;align-items:flex-start;gap:10px;text-align:left;padding:10px 0;} .tl-mk{margin-bottom:0;margin-top:2px;margin-left:-20px;} .cfp-chip{font-size:11px;padding:7px 12px;} .archive-box{padding:28px 16px;} }
+body.bn-mode .cert-arrow { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+@media(max-width:768px){ .story-block{padding:clamp(48px,8vh,80px) 18px;} .big-q{font-size:clamp(22px,5.5vw,30px);} .spectrum-row{flex-direction:column;align-items:flex-start;gap:8px;} .sp-bar{width:100%;margin:6px 0;} .sp-label{position:static;transform:none;} .e-row{grid-template-columns:1fr;gap:8px;padding:20px 16px;} .tl-row{display:grid;grid-template-columns:1fr;gap:0;padding:16px 0 8px 24px;} .tl-row::before{position:absolute;left:8px;top:16px;bottom:8px;width:2px;height:auto;right:auto;} .tl-stop{display:flex;flex-direction:row;align-items:flex-start;gap:10px;text-align:left;padding:10px 0;} .tl-mk{margin-bottom:0;margin-top:2px;margin-left:-20px;} .cfp-chip{font-size:11px;padding:7px 12px;} .archive-box{padding:28px 16px;} .bnp-logo-block img{height:36px;} }
 </style>
 </head>
 <body>
@@ -114,7 +139,13 @@ body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-famil
 <div id="preloader" class="preloader"><div class="preloader-inner"><span class="preloader-text">ক</span><div class="preloader-bar"><div class="preloader-fill"></div></div></div></div>
 
 <header class="site-header" id="siteHeader">
-  <div class="header-logo header-logo-left"><img src="img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span></div>
+  <!-- Left: IFA + BNP Paribas logos -->
+  <div class="header-logo header-logo-left">
+    <img src="img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span>
+    <span class="header-logo-sep"></span>
+    <img src="img/BNPP_Logo.jpg" alt="BNP Paribas" class="logo-img bnp-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">BNP Paribas</span>
+  </div>
+  <!-- Right: Bhashascope -->
   <div class="header-logo header-logo-right"><img src="img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></div>
 </header>
 
@@ -129,7 +160,7 @@ body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-famil
     <div class="nav-fill" id="navFill" style="top:0%;height:16.66%;"></div>
     <div class="nav-segment active" data-section="0" style="top:0%;"><div class="nav-tick"></div><span class="nav-seg-label">Home</span></div>
     <div class="nav-segment" data-section="1" style="top:20%;"><div class="nav-tick"></div><span class="nav-seg-label">Project Vision</span></div>
-    <div class="nav-segment" data-section="2" style="top:40%;"><div class="nav-tick"></div><span class="nav-seg-label">About IFA</span></div>
+    <div class="nav-segment" data-section="2" style="top:40%;"><div class="nav-tick"></div><span class="nav-seg-label">About IFA &amp; BNP</span></div>
     <div class="nav-segment" data-section="3" style="top:60%;"><div class="nav-tick"></div><span class="nav-seg-label">Resources</span></div>
     <div class="nav-segment" data-section="4" style="top:80%;"><div class="nav-tick"></div><span class="nav-seg-label">Bhashascope</span></div>
     <div class="nav-segment" data-section="5" style="top:97%;"><div class="nav-tick"></div><span class="nav-seg-label">Certificates</span></div>
@@ -310,20 +341,22 @@ body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-famil
         <div class="tl-stop"><div class="tl-mk"></div><span class="tl-when" data-en="Mid 2027" data-bn="মধ্য ২০২৭">Mid 2027</span><span class="tl-what" data-en="Final Paperwork &amp; Closure" data-bn="অনুক্রমণিকা">Final Paperwork &amp; Closure</span></div>
       </div>
       <div class="close-stmt sr sd3">
-        <p ><span class="lang-en">"Words are walking without masters;<br>they go where they will."</span><span class="lang-bn">"কে তুমি? আমাকে যদি বলো তবু — চেয়ে দেখ<br>চশমা নই, জানলা নই,<br>স্বর্গের নরকের নাগরিক নই, আমি বাংলা ভাষা শুধু"</span></p>
-        <p style="font-size:clamp(12px,1vw,14px);color:#8a8a8a;margin-top:8px;font-weight:500;" ><span class="lang-en">— Zora Neale Hurston, <em>Their Eyes Were Watching God</em> (1937)</span><span class="lang-bn">— ভাস্কর চক্রবর্তী</span></p>
-        <p class="ifa-cr" data-en="Sponsored by the India Foundation for the Arts under its Arts Research programme." data-bn="ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত">Sponsored by the India Foundation for the Arts under its Arts Research programme.</p>
+        <p><span class="lang-en">"Words are walking without masters;<br>they go where they will."</span><span class="lang-bn">"কে তুমি? আমাকে যদি বলো তবু — চেয়ে দেখ<br>চশমা নই, জানলা নই,<br>স্বর্গের নরকের নাগরিক নই, আমি বাংলা ভাষা শুধু"</span></p>
+        <p style="font-size:clamp(12px,1vw,14px);color:#8a8a8a;margin-top:8px;font-weight:500;"><span class="lang-en">— Zora Neale Hurston, <em>Their Eyes Were Watching God</em> (1937)</span><span class="lang-bn">— ভাস্কর চক্রবর্তী</span></p>
+        <p class="ifa-cr" data-en="Part-supported by BNP Paribas India and implemented by the India Foundation for the Arts under its Arts Research programme." data-bn="বিএনপি পারিবা ইন্ডিয়ার আংশিক সহযোগিতায় এবং ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত।">Part-supported by BNP Paribas India and implemented by the India Foundation for the Arts under its Arts Research programme.</p>
       </div>
     </div>
   </div>
 
 </div><!-- /section-1 -->
 
-<!-- ==================== SECTION 2 — ABOUT IFA ==================== -->
+<!-- ==================== SECTION 2 — ABOUT IFA & BNP PARIBAS ==================== -->
 <section class="section-content section-b" id="section-2">
   <div class="section-inner">
     <div class="section-label reveal" data-en="02" data-bn="০২">02</div>
-    <p class="reveal" style="font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#cc2828;opacity:0.7;margin-bottom:24px;" data-en="This Foundation Project is implemented by India Foundation for the Arts (IFA), under the Arts Research Programme." data-bn="এই ফাউন্ডেশন প্রকল্পটি ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত">This Foundation Project is implemented by India Foundation for the Arts (IFA), under the Arts Research Programme.</p>
+    <p class="reveal" style="font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#cc2828;opacity:0.7;margin-bottom:24px;" data-en="Part-supported by BNP Paribas India. Implemented by India Foundation for the Arts (IFA), under the Arts Research Programme." data-bn="বিএনপি পারিবা ইন্ডিয়ার আংশিক সহযোগিতায়। ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত।">Part-supported by BNP Paribas India. Implemented by India Foundation for the Arts (IFA), under the Arts Research Programme.</p>
+
+    <!-- IFA Block -->
     <div class="reveal reveal-delay-1" style="display:flex;align-items:center;gap:24px;margin-bottom:32px;flex-wrap:wrap;">
       <img src="img/ifa-logo.png" alt="IFA" style="height:64px;width:auto;flex-shrink:0;" onerror="this.style.display='none';">
       <h2 class="section-heading" style="margin-bottom:0;" data-en="About IFA" data-bn="আই এফ এ -এর পরিচয়">About IFA</h2>
@@ -343,6 +376,20 @@ body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-famil
     </div>
     <div class="reveal reveal-delay-3" style="margin-top:32px;">
       <a href="https://indiaifa.org/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#cc2828;text-decoration:none;border-bottom:1px solid rgba(204,40,40,0.3);padding-bottom:3px;">Visit indiaifa.org <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+
+    <!-- BNP Paribas Divider -->
+    <hr class="bnp-divider reveal">
+
+    <!-- BNP Paribas Block -->
+    <div class="bnp-logo-block reveal reveal-delay-1">
+      <img src="img/BNPP_Logo.jpg" alt="BNP Paribas" onerror="this.style.display='none';">
+      <h2 class="section-heading" style="margin-bottom:0;" data-en="About BNP Paribas in India" data-bn="ভারতে বিএনপি পারিবা">About BNP Paribas in India</h2>
+    </div>
+    <p class="section-body reveal reveal-delay-2" data-en="BNP Paribas India started its operations in 1860 to support local and global corporate and financial institutions in their growth and expansion strategies. The second oldest foreign bank in the country, BNP Paribas offers a rich and broad suite of solutions across the entire range of corporate and institutional banking, financing, investment banking, hedging, and equity and derivatives." data-bn="বিএনপি পারিবা ইন্ডিয়া ১৮৬০ সালে ভারতে তাদের কার্যক্রম শুরু করে, দেশীয় ও আন্তর্জাতিক কর্পোরেট এবং আর্থিক প্রতিষ্ঠানগুলির বিকাশ ও সম্প্রসারণ কৌশলে সহায়তা প্রদানের লক্ষ্যে। দেশের দ্বিতীয় প্রাচীনতম বিদেশি ব্যাংক হিসেবে বিএনপি পারিবা কর্পোরেট ও প্রাতিষ্ঠানিক ব্যাংকিং, অর্থায়ন, বিনিয়োগ ব্যাংকিং, হেজিং এবং ইকুইটি ও ডেরিভেটিভস বিষয়ক ব্যাপক সমাধান প্রদান করে থাকে।">BNP Paribas India started its operations in 1860 to support local and global corporate and financial institutions in their growth and expansion strategies. The second oldest foreign bank in the country, BNP Paribas offers a rich and broad suite of solutions across the entire range of corporate and institutional banking, financing, investment banking, hedging, and equity and derivatives.</p>
+    <p class="section-body reveal reveal-delay-2" style="margin-top:20px;" data-en="Today the Group has around 15,000 employees in India across its various lines of businesses and its technology and operations global delivery centres in Bengaluru, Chennai and Mumbai. BNP Paribas has six branches in India, located in Bengaluru, Chennai, Mumbai, New Delhi, Pune, and the recently inaugurated GIFT City branch — its International Banking Unit (IBU)." data-bn="বর্তমানে গ্রুপের ভারতে প্রায় ১৫,০০০ কর্মী রয়েছেন, যাঁরা বিভিন্ন ব্যবসায়িক ক্ষেত্রে এবং বেঙ্গালুরু, চেন্নাই ও মুম্বাইয়ের প্রযুক্তি ও পরিচালনা কেন্দ্রগুলিতে কর্মরত। বিএনপি পারিবার ভারতে ছয়টি শাখা রয়েছে — বেঙ্গালুরু, চেন্নাই, মুম্বাই, নতুন দিল্লি, পুনে এবং সম্প্রতি উদ্বোধন হওয়া গিফট সিটি শাখা, যা আন্তর্জাতিক ব্যাংকিং ইউনিট (IBU) হিসেবে পরিচিত।">Today the Group has around 15,000 employees in India across its various lines of businesses and its technology and operations global delivery centres in Bengaluru, Chennai and Mumbai. BNP Paribas has six branches in India, located in Bengaluru, Chennai, Mumbai, New Delhi, Pune, and the recently inaugurated GIFT City branch — its International Banking Unit (IBU).</p>
+    <div class="reveal reveal-delay-3" style="margin-top:32px;">
+      <a href="https://india.bnpparibas/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#cc2828;text-decoration:none;border-bottom:1px solid rgba(204,40,40,0.3);padding-bottom:3px;">Visit BNP Paribas India <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
     </div>
   </div>
   <div class="section-number">02</div>
@@ -368,8 +415,8 @@ body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-famil
   <div class="section-inner">
     <div class="section-label reveal" data-en="04" data-bn="০৪">04</div>
     <h2 class="section-heading reveal reveal-delay-1" data-en="Project Bhashascope" data-bn="ভাষাস্কোপ প্রকল্প">Project Bhashascope</h2>
-    <p class="section-body reveal reveal-delay-2" ><span class="lang-en">Platform Bengali (2020–2025) represents a specific research initiative bounded by its IFA grant period and scope. However, the digital repository website <strong>www.bhashascope.in</strong> is designed as a lasting infrastructure that transcends these temporal and funding constraints.</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি (২০২০–২০২৫) নামের গবেষণা উদ্যোগটি আই এফ এ-এর অনুদানের জন্য নির্দিষ্ট সময়কাল ও সীমিত পরিসরে আবদ্ধ। তবে এর ডিজিটাল রিপোজিটরি ওয়েবসাইট <strong>www.bhashascope.in</strong> এমন একটি স্থায়ী পরিকাঠামো, যা এই সময়সীমা ও আর্থিক সীমাবদ্ধতাকে অতিক্রম করে দীর্ঘমেয়াদে টিকে থাকার স্বপ্ন দেখে।</span></p>
-    <p class="section-body reveal reveal-delay-2" style="margin-top:20px;" data-en="The name Bhashascope (ভাষাস্কোপ) serves as an expansive umbrella that houses Platform Bengali while promising a future beyond it. Just as a telescope or microscope extends human vision into realms otherwise invisible, Bhashascope extends our vision into the living, evolving landscape of language in the realm of the digital." data-bn="ভাষাস্কোপ ওয়েবসাইটটি বটগাছের মতো, যার অধীনে প্ল্যাটফর্ম বাংলা একটি গুরুত্বপূর্ণ প্রকল্প হিসেবে আত্মপ্রকাশ করেছে। যেমন টেলিস্কোপ বা মাইক্রোস্কোপ মানুষের দৃষ্টিতে এমন সব জগৎ খুলে দেয়, যা সাধারণত অদৃশ্য, তেমনি ভাষাস্কোপ আমাদের দৃষ্টির দিগন্ত বিস্তৃত করে ডিজিটাল পরিসরে ভাষা ও সংস্কৃতির ক্রমপরিবর্তনের রূপরেখাটির হদিশ দিতে সচেষ্ট।">The name Bhashascope (ভাษাস্কোপ) serves as an expansive umbrella that houses Platform Bengali while promising a future beyond it. Just as a telescope or microscope extends human vision into realms otherwise invisible, Bhashascope extends our vision into the living, evolving landscape of language in the realm of the digital.</p>
+    <p class="section-body reveal reveal-delay-2"><span class="lang-en">Platform Bengali (2020–2025) represents a specific research initiative bounded by its IFA grant period and scope. However, the digital repository website <strong>www.bhashascope.in</strong> is designed as a lasting infrastructure that transcends these temporal and funding constraints.</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি (২০২০–২০২৫) নামের গবেষণা উদ্যোগটি আই এফ এ-এর অনুদানের জন্য নির্দিষ্ট সময়কাল ও সীমিত পরিসরে আবদ্ধ। তবে এর ডিজিটাল রিপোজিটরি ওয়েবসাইট <strong>www.bhashascope.in</strong> এমন একটি স্থায়ী পরিকাঠামো, যা এই সময়সীমা ও আর্থিক সীমাবদ্ধতাকে অতিক্রম করে দীর্ঘমেয়াদে টিকে থাকার স্বপ্ন দেখে।</span></p>
+    <p class="section-body reveal reveal-delay-2" style="margin-top:20px;" data-en="The name Bhashascope (ভাষাস্কোপ) serves as an expansive umbrella that houses Platform Bengali while promising a future beyond it. Just as a telescope or microscope extends human vision into realms otherwise invisible, Bhashascope extends our vision into the living, evolving landscape of language in the realm of the digital." data-bn="ভাষাস্কোপ ওয়েবসাইটটি বটগাছের মতো, যার অধীনে প্ল্যাটফর্ম বাংলা একটি গুরুত্বপূর্ণ প্রকল্প হিসেবে আত্মপ্রকাশ করেছে। যেমন টেলিস্কোপ বা মাইক্রোস্কোপ মানুষের দৃষ্টিতে এমন সব জগৎ খুলে দেয়, যা সাধারণত অদৃশ্য, তেমনি ভাষাস্কোপ আমাদের দৃষ্টির দিগন্ত বিস্তৃত করে ডিজিটাল পরিসরে ভাষা ও সংস্কৃতির ক্রমপরিবর্তনের রূপরেখাটির হদিশ দিতে সচেষ্ট।">The name Bhashascope (ভাষাস্কোপ) serves as an expansive umbrella that houses Platform Bengali while promising a future beyond it. Just as a telescope or microscope extends human vision into realms otherwise invisible, Bhashascope extends our vision into the living, evolving landscape of language in the realm of the digital.</p>
     <div class="reveal reveal-delay-3" style="margin-top:40px;">
       <p style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#8a8a8a;margin-bottom:16px;" data-en="Key Conceptual Foundations" data-bn="প্রধান ধারণাগত ভিত্তি">Key Conceptual Foundations</p>
       <div class="placeholder-grid">
@@ -395,11 +442,48 @@ body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-famil
   <div class="section-inner">
     <div class="section-label reveal" data-en="05" data-bn="০৫">05</div>
     <h2 class="section-heading reveal reveal-delay-1" data-en="Certificate Registry" data-bn="সার্টিফিকেট রেজিস্ট্রি">Certificate Registry</h2>
-    <p class="section-body reveal reveal-delay-2" data-en="Participants of the workshops and conference can verify and download their certificates of participation here." data-bn="কর্মশালা ও সম্মেলনের অংশগ্রহণকারীরা এখানে তাদের অংশগ্রহণের সার্টিফিকেট যাচাই এবং ডাউনলোড করতে পারবেন।">Participants of the workshops and conference can verify and download their certificates of participation here.</p>
+    <p class="section-body reveal reveal-delay-2" data-en="Participants of the workshops and conference can verify and download their certificates of participation here. Each certificate page has a stable URL — scan the QR code on your certificate to return directly to your verification page." data-bn="কর্মশালা ও সম্মেলনের অংশগ্রহণকারীরা এখানে তাদের অংশগ্রহণের সার্টিফিকেট যাচাই এবং ডাউনলোড করতে পারবেন। প্রতিটি সার্টিফিকেটে একটি স্থায়ী লিংক রয়েছে — সরাসরি যাচাইয়ের পাতায় পৌঁছাতে সার্টিফিকেটের QR কোড স্ক্যান করুন।">Participants of the workshops and conference can verify and download their certificates of participation here. Each certificate page has a stable URL — scan the QR code on your certificate to return directly to your verification page.</p>
+
+    <!-- URL guidance note -->
+    <div style="display:inline-flex;align-items:center;gap:8px;margin:18px 0 32px;padding:10px 18px;border-radius:8px;background:rgba(61,90,128,0.05);border:1px solid rgba(61,90,128,0.12);font-size:12px;color:#3d5a80;" class="reveal reveal-delay-2">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      <span data-en="Platform Bengali event certificates live under /certificates/pb/ — a stable path that distinguishes them from future Bhashascope projects." data-bn="প্ল্যাটফর্ম বেঙ্গলির সমস্ত সার্টিফিকেটের পাতা /certificates/pb/ পথে স্থায়ীভাবে সংরক্ষিত — ভবিষ্যৎ প্রকল্পের সার্টিফিকেট থেকে আলাদা রাখতে।">Platform Bengali event certificates live under /certificates/pb/ — a stable path that distinguishes them from future Bhashascope projects.</span>
+    </div>
+
     <div class="placeholder-grid reveal reveal-delay-3">
-      <div class="placeholder-card"><h3 data-en="Orientation Workshop" data-bn="ওরিয়েন্টেশন কর্মশালা">Orientation Workshop</h3><p data-en="One-day introductory session certificates." data-bn="একদিনের প্রারম্ভিক সেশনের সার্টিফিকেট।">One-day introductory session certificates.</p></div>
-      <div class="placeholder-card"><h3 data-en="MT Workshop" data-bn="যন্ত্র অনুবাদ কর্মশালা">MT Workshop</h3><p data-en="5-day Machine Translation intensive certificates." data-bn="৫ দিনের নিবিড় যন্ত্র অনুবাদ কর্মশালার সার্টিফিকেট।">5-day Machine Translation intensive certificates.</p></div>
-      <div class="placeholder-card"><h3 data-en="Conference" data-bn="আলোচনাচক্র">Conference</h3><p data-en="International hybrid conference certificates." data-bn="গবেষক ও আগ্রহীদের জন্য সম্মেলনের সার্টিফিকেট।">International hybrid conference certificates.</p></div>
+
+      <!-- MT Workshop — Coming Soon -->
+      <a href="certificates/pb/mt-workshop.html" class="placeholder-card cert-link">
+        <span class="cert-status soon" data-en="○ Coming Soon" data-bn="○ শীঘ্রই আসছে">○ Coming Soon</span>
+        <h3 data-en="MT Workshop" data-bn="যন্ত্র অনুবাদ কর্মশালা">MT Workshop</h3>
+        <p data-en="5-day Machine Translation &amp; AI intensive, 7–11 May 2026. Certificates will be available after the workshop concludes." data-bn="৫ দিনের যন্ত্র-অনুবাদ ও এ আই কর্মশালা, ৭–১১ মে ২০২৬। কর্মশালা সম্পন্ন হলে সার্টিফিকেট উপলব্ধ হবে।">5-day Machine Translation &amp; AI intensive, 7–11 May 2026. Certificates will be available after the workshop concludes.</p>
+        <span class="cert-arrow"><span class="lang-en">View Page</span><span class="lang-bn">পাতাটি দেখুন</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+      </a>
+
+      <!-- Orientation Workshop — Coming Soon -->
+      <a href="certificates/pb/orientation-workshop.html" class="placeholder-card cert-link">
+        <span class="cert-status soon" data-en="○ Coming Soon" data-bn="○ শীঘ্রই আসছে">○ Coming Soon</span>
+        <h3 data-en="Orientation Workshop" data-bn="ওরিয়েন্টেশন কর্মশালা">Orientation Workshop</h3>
+        <p data-en="One-day introductory session on ethics of social media research. Certificate verification and download." data-bn="সোশ্যাল মিডিয়া গবেষণার নৈতিকতা বিষয়ক একদিনের কর্মশালা। সার্টিফিকেট যাচাই ও ডাউনলোড।">One-day introductory session on ethics of social media research. Certificate verification and download.</p>
+        <span class="cert-arrow"><span class="lang-en">View Page</span><span class="lang-bn">পাতাটি দেখুন</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+      </a>
+
+      <!-- Conference — Coming Soon -->
+      <a href="certificates/pb/conference.html" class="placeholder-card cert-link">
+        <span class="cert-status soon" data-en="○ Coming Soon" data-bn="○ শীঘ্রই আসছে">○ Coming Soon</span>
+        <h3 data-en="Conference" data-bn="আলোচনাচক্র">Conference</h3>
+        <p data-en="Platform Bengali hybrid academic conference, 15 July 2026. Certificates for presenters and participants." data-bn="প্ল্যাটফর্ম বেঙ্গলি হাইব্রিড শিক্ষামূলক আলোচনাসভা, ১৫ জুলাই ২০২৬। উপস্থাপক ও অংশগ্রহণকারীদের সার্টিফিকেট।">Platform Bengali hybrid academic conference, 15 July 2026. Certificates for presenters and participants.</p>
+        <span class="cert-arrow"><span class="lang-en">View Page</span><span class="lang-bn">পাতাটি দেখুন</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+      </a>
+
+      <!-- Project Contributors -->
+      <a href="certificates/pb/contributors.html" class="placeholder-card cert-link" style="border-color:rgba(204,40,40,0.12);">
+        <span class="cert-status" style="background:rgba(204,40,40,0.07);color:#cc2828;border:1px solid rgba(204,40,40,0.18);" data-en="★ Project Team" data-bn="★ প্রকল্প দল">★ Project Team</span>
+        <h3 data-en="Core Contributors" data-bn="মূল সহযোগীবৃন্দ">Core Contributors</h3>
+        <p data-en="Acknowledgement registry for the Platform Bengali project team — Principal Investigator, Research Associates, Interviewers, Website Developer, Social Media Manager, and more." data-bn="প্ল্যাটফর্ম বেঙ্গলি প্রকল্পের মূল সহযোগীদের স্বীকৃতি নিবন্ধিকা — মুখ্য তদন্তকারী, গবেষণা সহযোগী, সাক্ষাৎকারগ্রহণকারী, ওয়েবসাইট ডেভেলপার, সোশ্যাল মিডিয়া ম্যানেজার এবং আরো অনেকে।">Acknowledgement registry for the Platform Bengali project team — Principal Investigator, Research Associates, Interviewers, Website Developer, Social Media Manager, and more.</p>
+        <span class="cert-arrow"><span class="lang-en">View Contributors</span><span class="lang-bn">সহযোগীদের দেখুন</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+      </a>
+
     </div>
   </div>
   <div class="section-number">05</div>
@@ -407,7 +491,7 @@ body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-famil
 
 <!-- ==================== FOOTER ==================== -->
 <footer style="position:relative;z-index:1;max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,48px) 56px;border-top:1px solid rgba(0,0,0,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-  <span style="font-size:12px;color:#8a8a8a;" data-en="© 2026 Platform Bengali — India Foundation for the Arts" data-bn="© ২০২৬ প্ল্যাটফর্ম বাংলা — ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস">© 2026 Platform Bengali — India Foundation for the Arts</span>
+  <span style="font-size:12px;color:#8a8a8a;" data-en="© 2026 Platform Bengali / Bhashascope · Part-supported by BNP Paribas India · Implemented by IFA" data-bn="© ২০২৬ প্ল্যাটফর্ম বাংলা / ভাষাস্কোপ · বিএনপি পারিবা ইন্ডিয়ার আংশিক সহযোগিতায় · আই এফ এ কর্তৃক বাস্তবায়িত">© 2026 Platform Bengali / Bhashascope · Part-supported by BNP Paribas India · Implemented by IFA</span>
   <a href="terms.html" style="font-size:12px;color:#8a8a8a;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.15);padding-bottom:1px;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='#cc2828';this.style.borderColor='rgba(204,40,40,0.4)';" onmouseout="this.style.color='#8a8a8a';this.style.borderColor='rgba(0,0,0,0.15)';">
     <span class="lang-en">Terms &amp; Conditions</span>
     <span class="lang-bn">নিয়মাবলি ও শর্তসমূহ</span>
@@ -418,7 +502,6 @@ body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-famil
 <script src="js/matrix.js" defer></script>
 <script src="js/navigation.js" defer></script>
 
-<!-- Scroll nudge — hides on scroll, clicks to section-1 -->
 <script>
 (function(){
   var nudge=document.getElementById('scrollNudge');
@@ -438,7 +521,6 @@ body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-famil
 })();
 </script>
 
-<!-- Background scroll fade -->
 <script>
 (function(){
   var b=document.querySelector('.bg-illustration');if(!b)return;
@@ -448,7 +530,6 @@ body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-famil
 })();
 </script>
 
-<!-- Story scroll reveal -->
 <script>
 (function(){
   var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('sv');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
@@ -456,7 +537,6 @@ body.bn-mode .placeholder-card h3, body.bn-mode .placeholder-card p { font-famil
 })();
 </script>
 
-<!-- Bilingual toggle -->
 <script>
 (function(){
   var KEY='pb-lang',btnEN=document.getElementById('btnEN'),btnBN=document.getElementById('btnBN');
