@@ -42,12 +42,15 @@ img { max-width:100%; height:auto; }
 .meta-tag { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:6px 16px; border-radius:40px; border:1px solid rgba(0,0,0,0.08); color:#4a4a4a; background:rgba(245,244,242,0.7); }
 .meta-tag.accent { background:rgba(204,40,40,0.06); border-color:rgba(204,40,40,0.15); color:#cc2828; }
 .meta-tag.green { background:rgba(69,123,110,0.06); border-color:rgba(69,123,110,0.15); color:#457b6e; }
+.meta-tag.concluded { background:rgba(176,141,64,0.07); border-color:rgba(176,141,64,0.22); color:#8a6f2e; }
 
 .section-wrap { max-width:900px; margin:0 auto; padding:0 clamp(20px,5vw,60px); }
 .event-desc { font-size:clamp(15px,1.1vw,17px); line-height:1.9; color:#4a4a4a; max-width:680px; margin-bottom:28px; }
 .event-desc strong { color:#1a1a1a; font-weight:700; }
 .event-callout { background:rgba(245,244,242,0.7); border:1px solid rgba(0,0,0,0.05); border-left:3px solid #cc2828; border-radius:0 12px 12px 0; padding:24px 28px; margin:28px 0 36px; }
 .event-callout p { font-size:14px; line-height:1.75; color:#4a4a4a; }
+.event-callout.resources { border-left-color:#457b6e; background:rgba(69,123,110,0.04); }
+.event-callout.resources p { color:#2a4a43; }
 .event-sep { width:40px; height:2px; background:rgba(0,0,0,0.08); margin:40px 0; border-radius:1px; }
 
 /* Poster gallery */
@@ -64,6 +67,16 @@ img { max-width:100%; height:auto; }
 .rp-role { font-size:13px; line-height:1.6; color:#4a4a4a; }
 .rp-days { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#cc2828; margin-bottom:8px; }
 
+/* RP in-action photo grid */
+.rp-photo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:32px 0; }
+.rp-photo-item { display:flex; flex-direction:column; gap:0; border-radius:12px; overflow:hidden; border:1px solid rgba(0,0,0,0.06); box-shadow:0 4px 20px rgba(0,0,0,0.06); transition:transform 0.3s,box-shadow 0.3s; }
+.rp-photo-item:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,0.1); }
+.rp-photo-item img { width:100%; aspect-ratio:4/3; object-fit:cover; object-position:center top; display:block; }
+.rp-photo-caption { padding:10px 14px 12px; background:#fff; border-top:1px solid rgba(0,0,0,0.05); }
+.rp-photo-caption strong { font-family:'Syne',sans-serif; font-size:12px; font-weight:800; color:#1a1a1a; display:block; margin-bottom:1px; }
+.rp-photo-caption span { font-size:11px; color:#8a8a8a; line-height:1.4; }
+@media(max-width:600px){ .rp-photo-grid { grid-template-columns:1fr; } }
+
 /* Day schedule */
 .day-stack { display:flex; flex-direction:column; gap:24px; margin:32px 0; position:relative; padding-left:28px; }
 .day-stack::before { content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,#3d5a80,#b08d40,#457b6e); opacity:0.15; }
@@ -73,11 +86,6 @@ img { max-width:100%; height:auto; }
 .day-title { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; color:#4a4a4a; margin-bottom:4px; }
 .day-rp { font-size:12px; color:#8a8a8a; margin-bottom:6px; font-style:italic; }
 .day-desc { font-size:13px; line-height:1.7; color:#4a4a4a; max-width:640px; }
-
-/* CTA button */
-.cta-btn { display:inline-flex; align-items:center; gap:10px; font-family:'Syne',sans-serif; font-size:13px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; color:#fff; background:#cc2828; border:none; border-radius:50px; padding:14px 32px; text-decoration:none; cursor:pointer; transition:all 0.3s; box-shadow:0 4px 20px rgba(204,40,40,0.25); }
-.cta-btn:hover { background:#b02222; transform:translateY(-2px); box-shadow:0 8px 28px rgba(204,40,40,0.35); }
-.cta-btn svg { width:16px; height:16px; }
 
 /* Info grid */
 .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
@@ -96,8 +104,8 @@ img { max-width:100%; height:auto; }
 
 .lang-en { display:inline; } .lang-bn { display:none; }
 body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; }
-body.bn-mode .event-title, body.bn-mode .event-subtitle, body.bn-mode .event-eyebrow, body.bn-mode .meta-tag, body.bn-mode .rp-name, body.bn-mode .day-label, body.bn-mode .day-title, body.bn-mode .info-label, body.bn-mode .info-value, body.bn-mode .cta-btn { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
-body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav, body.bn-mode .rp-role, body.bn-mode .day-desc, body.bn-mode .day-rp { font-family:'Noto Sans Bengali',sans-serif; }
+body.bn-mode .event-title, body.bn-mode .event-subtitle, body.bn-mode .event-eyebrow, body.bn-mode .meta-tag, body.bn-mode .rp-name, body.bn-mode .day-label, body.bn-mode .day-title, body.bn-mode .info-label, body.bn-mode .info-value { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav, body.bn-mode .rp-role, body.bn-mode .day-desc, body.bn-mode .day-rp, body.bn-mode .rp-photo-caption span { font-family:'Noto Sans Bengali',sans-serif; }
 
 @media(max-width:768px){
   .site-header { padding:8px 12px; }
@@ -128,7 +136,7 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
       <span class="lang-en">Back to Home</span><span class="lang-bn">প্রচ্ছদে ফিরুন</span>
     </a>
 
-    <div class="event-eyebrow rv rv-d1" data-en="Event 03 · 5-Day Workshop · 7–11 May 2026" data-bn="কর্মসূচি ০৫ · ৫ দিনের কর্মশালা · ৭–১১ মে ২০২৬">Event 03 · 5-Day Workshop · 7–11 May 2026</div>
+    <div class="event-eyebrow rv rv-d1" data-en="Event 03 · 5-Day Workshop · 7–11 May 2026" data-bn="কর্মসূচি ০৩ · ৫ দিনের কর্মশালা · ৭–১১ মে ২০২৬">Event 03 · 5-Day Workshop · 7–11 May 2026</div>
 
     <h1 class="event-title rv rv-d1">
       <span class="lang-en">Machine Translation in Bengali</span>
@@ -149,20 +157,8 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
       <span class="meta-tag" data-en="In-Person" data-bn="সশরীর">In-Person</span>
       <span class="meta-tag" data-en="7–11 May 2026" data-bn="৭–১১ মে ২০২৬">7–11 May 2026</span>
       <span class="meta-tag" data-en="11 AM – 4 PM" data-bn="সকাল ১১টা – বিকেল ৪টা">11 AM – 4 PM</span>
-      <span class="meta-tag" data-en="30 Seats" data-bn="৩০ জন">30 Seats</span>
-      <span class="meta-tag green" data-en="Free · Applications Open" data-bn="বিনামূল্যে · আবেদন চলছে">Free · Applications Open</span>
-    </div>
-
-    <!-- CTA -->
-    <div class="rv rv-d3" style="margin-bottom:40px;">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6bsKFZ6apTyX55XARIce1t3XdctCSxf2XZv0rZZHijryq1Q/viewform" target="_blank" rel="noopener noreferrer" class="cta-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l6.1-6.1M10 5H5a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>
-        <span class="lang-en">Apply Now</span><span class="lang-bn">আবেদন করুন</span>
-      </a>
-      <p style="font-size:12px; color:#8a8a8a; margin-top:10px;">
-        <span class="lang-en">Last date of application: <strong style="color:#cc2828;">30 April 2026</strong> · Selected candidates notified by: <strong>3 May 2026</strong></span>
-        <span class="lang-bn">আবেদনের শেষ তারিখ: <strong style="color:#cc2828;">৩০ এপ্রিল ২০২৬</strong> · নির্বাচিতদের জানানো হবে: <strong>৩ মে ২০২৬</strong></span>
-      </p>
+      <span class="meta-tag" data-en="30 Participants" data-bn="৩০ জন অংশগ্রহণকারী">30 Participants</span>
+      <span class="meta-tag concluded" data-en="Workshop Concluded" data-bn="কর্মশালা সম্পন্ন">Workshop Concluded</span>
     </div>
   </div>
 
@@ -191,8 +187,8 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
       <div class="info-item">
         <div class="info-label" data-en="Participants" data-bn="অংশগ্রহণকারী">Participants</div>
         <div class="info-value">
-          <span class="lang-en">Humanities/social science scholars, Bengali translators, literature students, DH researchers — no programming background needed</span>
-          <span class="lang-bn">মানবিক/সমাজবিজ্ঞানের গবেষক, বাংলা অনুবাদক, সাহিত্যের শিক্ষার্থী, DH গবেষক — প্রোগ্রামিং জানার প্রয়োজন নেই</span>
+          <span class="lang-en">Humanities/social science scholars, Bengali translators, literature students, DH researchers</span>
+          <span class="lang-bn">মানবিক/সমাজবিজ্ঞানের গবেষক, বাংলা অনুবাদক, সাহিত্যের শিক্ষার্থী, DH গবেষক</span>
         </div>
       </div>
       <div class="info-item">
@@ -208,14 +204,14 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
   <!-- Description -->
   <div class="section-wrap" style="margin-top:40px;">
     <p class="event-desc rv">
-      <span class="lang-en">Bengali, the seventh most spoken language in the world with over 265 million speakers, occupies a paradoxical position in the landscape of language technology. While its literary heritage is among the richest in the South Asian tradition, its computational representation — particularly in the domain of machine translation — has historically lagged behind languages with comparable or even smaller speaker populations. The gulf between Bengali's cultural weight and its technological infrastructure forms the central provocation of this workshop.</span>
-      <span class="lang-bn">বিশ্বের সপ্তম বৃহত্তম ভাষা বাংলা, ২৬.৫ কোটিরও বেশি মানুষের মুখের ভাষা, ভাষা প্রযুক্তির পরিসরে এক বিরোধাভাসের অবস্থানে দাঁড়িয়ে। সাহিত্যিক ঐতিহ্যে দক্ষিণ এশিয়ার সমৃদ্ধতম ভাষাগুলির অন্যতম হলেও, যন্ত্র-অনুবাদের ক্ষেত্রে এর প্রযুক্তিগত অবকাঠামো তুলনীয় বা ক্ষুদ্রতর জনসংখ্যার ভাষাগুলির চেয়েও পিছিয়ে। বাংলার সাংস্কৃতিক গুরুত্ব ও প্রযুক্তিগত অবকাঠামোর এই ব্যবধান এই কর্মশালার কেন্দ্রীয় প্ররোচনা।</span>
+      <span class="lang-en">Bengali, the seventh most spoken language in the world with over 265 million speakers, occupies a paradoxical position in the landscape of language technology. While its literary heritage is among the richest in the South Asian tradition, its computational representation — particularly in the domain of machine translation — has historically lagged behind languages with comparable or even smaller speaker populations. The gulf between Bengali's cultural weight and its technological infrastructure formed the central provocation of this workshop.</span>
+      <span class="lang-bn">বিশ্বের সপ্তম বৃহত্তম ভাষা বাংলা, ২৬.৫ কোটিরও বেশি মানুষের মুখের ভাষা, ভাষা প্রযুক্তির পরিসরে এক বিরোধাভাসের অবস্থানে দাঁড়িয়ে। সাহিত্যিক ঐতিহ্যে দক্ষিণ এশিয়ার সমৃদ্ধতম ভাষাগুলির অন্যতম হলেও, যন্ত্র-অনুবাদের ক্ষেত্রে এর প্রযুক্তিগত অবকাঠামো তুলনীয় বা ক্ষুদ্রতর জনসংখ্যার ভাষাগুলির চেয়েও পিছিয়ে। বাংলার সাংস্কৃতিক গুরুত্ব ও প্রযুক্তিগত অবকাঠামোর এই ব্যবধান এই কর্মশালার কেন্দ্রীয় প্ররোচনা হিসেবে কাজ করেছিল।</span>
     </p>
 
     <div class="event-callout rv">
       <p>
-        <span class="lang-en">This five-day intensive workshop equips participants with the historical knowledge, critical vocabulary, and evaluative frameworks necessary to understand, assess, and intervene in the machine translation landscape for Bengali — <strong>as informed humanists rather than passive consumers of technology</strong>. No prior knowledge of programming, computational linguistics, or NLP is required.</span>
-        <span class="lang-bn">এই পাঁচ দিনের নিবিড় কর্মশালা অংশগ্রহণকারীদের বাংলা যন্ত্র-অনুবাদের পরিসরে বোঝা, মূল্যায়ন ও হস্তক্ষেপের জন্য প্রয়োজনীয় ঐতিহাসিক জ্ঞান, সমালোচনামূলক শব্দভাণ্ডার ও মূল্যায়ন কাঠামো দিয়ে সজ্জিত করবে — <strong>প্রযুক্তির নিষ্ক্রিয় ভোক্তা হিসেবে নয়, সচেতন মানবিক গবেষক হিসেবে</strong>। প্রোগ্রামিং বা কম্পিউটেশনাল ভাষাবিজ্ঞানের পূর্ব অভিজ্ঞতা প্রয়োজন নেই।</span>
+        <span class="lang-en">The five-day intensive workshop equipped participants with the historical knowledge, critical vocabulary, and evaluative frameworks necessary to understand, assess, and intervene in the machine translation landscape for Bengali — <strong>as informed humanists rather than passive consumers of technology</strong>. No prior knowledge of programming, computational linguistics, or NLP was required.</span>
+        <span class="lang-bn">এই পাঁচ দিনের নিবিড় কর্মশালা অংশগ্রহণকারীদের বাংলা যন্ত্র-অনুবাদের পরিসরে বোঝা, মূল্যায়ন ও হস্তক্ষেপের জন্য প্রয়োজনীয় ঐতিহাসিক জ্ঞান, সমালোচনামূলক শব্দভাণ্ডার ও মূল্যায়ন কাঠামো দিয়ে সজ্জিত করেছিল — <strong>প্রযুক্তির নিষ্ক্রিয় ভোক্তা হিসেবে নয়, সচেতন মানবিক গবেষক হিসেবে</strong>।</span>
       </p>
     </div>
 
@@ -245,8 +241,47 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
         <div class="rp-days" data-en="Day 5 · The Contemporary Frontier" data-bn="দিন ৫ · বর্তমান সীমান্ত">Day 5 · The Contemporary Frontier</div>
         <div class="rp-name" data-en="Pritam Dey" data-bn="প্রীতম দে">Pritam Dey</div>
         <div class="rp-role">
-          <span class="lang-en">Data Scientist at Amgen; AI Agents and LLM Expert. Addresses the current landscape: neural machine translation, large language models, agent-driven translation, and the practical challenges faced by contemporary Bengali translation practitioners.</span>
-          <span class="lang-bn">ডেটা সায়েন্টিস্ট, Amgen; AI এজেন্ট ও LLM বিশেষজ্ঞ। বর্তমান পরিস্থিতি নিয়ে আলোচনা: নিউরাল মেশিন ট্রান্সলেশন, লার্জ ল্যাঙ্গুয়েজ মডেল, এজেন্ট-চালিত অনুবাদ এবং বাংলা অনুবাদকদের সমসাময়িক চ্যালেঞ্জ।</span>
+          <span class="lang-en">Data Scientist at Amgen; AI Agents and LLM Expert. Discussed how AI agents can be deployed for more targeted Bengali translation, and conducted hands-on sessions using Google's Antigravity to demonstrate agent-driven workflows in practice.</span>
+          <span class="lang-bn">ডেটা সায়েন্টিস্ট, Amgen; AI এজেন্ট ও LLM বিশেষজ্ঞ। আলোচনা করেছেন কীভাবে AI এজেন্ট আরও লক্ষ্যভিত্তিক বাংলা অনুবাদের জন্য ব্যবহার করা যায়, এবং Google-এর Antigravity ব্যবহার করে এজেন্ট-চালিত কর্মপ্রবাহ হাতেকলমে প্রদর্শন করেছেন।</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RP in-action photos -->
+    <p style="font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8a8a8a; margin-bottom:16px;" data-en="Resource Persons in Action" data-bn="কর্মশালায় পরিচালকবৃন্দ">Resource Persons in Action</p>
+
+    <div class="rp-photo-grid rv">
+      <div class="rp-photo-item">
+        <img src="../img/BBC.jpg" alt="Dr. Bidyut Baran Chaudhuri conducting Days 1–2 of the MT Workshop">
+        <div class="rp-photo-caption">
+          <strong>
+            <span class="lang-en">Dr. Bidyut Baran Chaudhuri</span>
+            <span class="lang-bn">ড. বিদ্যুৎ বরণ চৌধুরী</span>
+          </strong>
+          <span class="lang-en">Days 1–2 · Foundational Infrastructure</span>
+          <span class="lang-bn">দিন ১–২ · মৌলিক পরিকাঠামো</span>
+        </div>
+      </div>
+      <div class="rp-photo-item">
+        <img src="../img/Pinaki.jpg" alt="Dr. Pinaki Bhaskar conducting Days 3–4 of the MT Workshop">
+        <div class="rp-photo-caption">
+          <strong>
+            <span class="lang-en">Dr. Pinaki Bhaskar</span>
+            <span class="lang-bn">ড. পিনাকী ভাস্কর</span>
+          </strong>
+          <span class="lang-en">Days 3–4 · The Transitional Moment</span>
+          <span class="lang-bn">দিন ৩–৪ · পরিবর্তনের সন্ধিক্ষণ</span>
+        </div>
+      </div>
+      <div class="rp-photo-item">
+        <img src="../img/Pritam.png" alt="Pritam Dey conducting Day 5 of the MT Workshop">
+        <div class="rp-photo-caption">
+          <strong>
+            <span class="lang-en">Pritam Dey</span>
+            <span class="lang-bn">প্রীতম দে</span>
+          </strong>
+          <span class="lang-en">Day 5 · The Contemporary Frontier</span>
+          <span class="lang-bn">দিন ৫ · বর্তমান সীমান্ত</span>
         </div>
       </div>
     </div>
@@ -262,60 +297,55 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
         <div class="day-label" data-en="Day 1 · 7 May" data-bn="দিন ১ · ৭ মে">Day 1 · 7 May</div>
         <div class="day-title" data-en="The Idea of Writing — From Spoken Word to Script to Machine" data-bn="লেখার ধারণা — কথ্য ভাষা থেকে লিপি থেকে যন্ত্র">The Idea of Writing — From Spoken Word to Script to Machine</div>
         <div class="day-rp">Prof. B. B. Chaudhuri</div>
-        <p class="day-desc" data-en="What happens when spoken language becomes written? Traces the journey from the earliest decisions about representing speech in visual form, through encoding Bengali script on a machine, to the foundational problem that precedes all translation: making a language computationally legible." data-bn="মৌখিক ভাষা যখন লিখিত হয় তখন কী ঘটে? বাক্‌কে দৃশ্যরূপে উপস্থাপনের আদি সিদ্ধান্ত থেকে শুরু করে যন্ত্রে বাংলা লিপি এনকোডিং পর্যন্ত — অনুবাদের আগে ভাষাকে যন্ত্রের কাছে পাঠযোগ্য করার মৌলিক সমস্যা।">What happens when spoken language becomes written? Traces the journey from the earliest decisions about representing speech in visual form, through encoding Bengali script on a machine, to the foundational problem that precedes all translation: making a language computationally legible.</p>
+        <p class="day-desc" data-en="The session traced the journey from the earliest decisions about representing speech in visual form, through the challenges of encoding Bengali script on a machine, to the foundational problem that precedes all translation: making a language computationally legible. Participants examined what is at stake — linguistically and politically — when a spoken language is formalised for a machine to read." data-bn="অধিবেশনটি মৌখিক ভাষাকে দৃশ্যরূপে উপস্থাপনের আদি সিদ্ধান্ত থেকে শুরু করে বাংলা লিপির যন্ত্রে এনকোডিং পর্যন্ত যাত্রা অনুসরণ করে — অনুবাদের পূর্ববর্তী মৌলিক সমস্যা: ভাষাকে যন্ত্রের কাছে পাঠযোগ্য করা। অংশগ্রহণকারীরা পরীক্ষা করেছিলেন যে মৌখিক ভাষাকে যন্ত্রপাঠ্য করার সময় ভাষাগত ও রাজনৈতিকভাবে কী বিপন্ন হয়।">The session traced the journey from the earliest decisions about representing speech in visual form, through the challenges of encoding Bengali script on a machine, to the foundational problem that precedes all translation: making a language computationally legible. Participants examined what is at stake — linguistically and politically — when a spoken language is formalised for a machine to read.</p>
       </div>
       <div class="day-item">
         <div class="day-dot"></div>
         <div class="day-label" data-en="Day 2 · 8 May" data-bn="দিন ২ · ৮ মে">Day 2 · 8 May</div>
         <div class="day-title" data-en="Foundations — Dictionaries, Corpora, and the Earliest Bengali Language Technologies" data-bn="ভিত্তি — অভিধান, কর্পাস, এবং বাংলা ভাষা প্রযুক্তির সূচনা">Foundations — Dictionaries, Corpora, and the Earliest Bengali Language Technologies</div>
         <div class="day-rp">Prof. B. B. Chaudhuri</div>
-        <p class="day-desc" data-en="From dictionaries and thesauri to the earliest experiments in OCR, spell-checking, and text processing. When we choose which texts to feed a machine, whose Bengali are we teaching it to speak?" data-bn="অভিধান ও থিসরাস থেকে OCR, বানান পরীক্ষা ও টেক্সট প্রসেসিংয়ের আদি পরীক্ষা-নিরীক্ষা। যখন আমরা যন্ত্রকে কোন লেখা শেখাবো ঠিক করি, তখন কার বাংলা শেখাচ্ছি?">From dictionaries and thesauri to the earliest experiments in OCR, spell-checking, and text processing. When we choose which texts to feed a machine, whose Bengali are we teaching it to speak?</p>
+        <p class="day-desc" data-en="Prof. Chaudhuri discussed the development of the earliest Bengali language resources — dictionaries, thesauri, and the pioneering experiments in OCR, spell-checking, and text processing that established the infrastructure for all subsequent work. The session raised a central question: when we choose which texts to feed a machine, whose Bengali are we teaching it to speak?" data-bn="অধ্যাপক চৌধুরী আলোচনা করেছিলেন বাংলার আদি ভাষা সম্পদ নির্মাণের ইতিহাস — অভিধান, থিসরাস, এবং OCR, বানান পরীক্ষা ও টেক্সট প্রসেসিংয়ের পথিকৃৎ পরীক্ষা-নিরীক্ষা যা পরবর্তী সমস্ত কাজের পরিকাঠামো তৈরি করেছিল। অধিবেশনে কেন্দ্রীয় প্রশ্নটি উঠে আসে: যখন আমরা যন্ত্রকে কোন লেখা শেখাবো ঠিক করি, তখন কার বাংলা শেখাচ্ছি?">Prof. Chaudhuri discussed the development of the earliest Bengali language resources — dictionaries, thesauri, and the pioneering experiments in OCR, spell-checking, and text processing that established the infrastructure for all subsequent work. The session raised a central question: when we choose which texts to feed a machine, whose Bengali are we teaching it to speak?</p>
       </div>
       <div class="day-item">
         <div class="day-dot"></div>
         <div class="day-label" data-en="Day 3 · 9 May" data-bn="দিন ৩ · ৯ মে">Day 3 · 9 May</div>
         <div class="day-title" data-en="When Machines Learned to Find Meaning Across Languages" data-bn="যখন যন্ত্র ভাষার সীমানা পেরিয়ে অর্থ খুঁজতে শিখল">When Machines Learned to Find Meaning Across Languages</div>
         <div class="day-rp">Dr. Pinaki Bhaskar</div>
-        <p class="day-desc" data-en="A transitional moment: systems could not yet translate fluently, but had learned to retrieve meaning across languages. Translation here is no longer about finding the 'right' equivalent word, but about locating relevant meaning." data-bn="একটি পরিবর্তনের সন্ধিক্ষণ: সিস্টেম তখনও সাবলীলভাবে অনুবাদ করতে পারেনি, কিন্তু ভাষার সীমানা পেরিয়ে অর্থ খুঁজতে শিখেছিল। এখানে অনুবাদ মানে 'সঠিক' প্রতিশব্দ খোঁজা নয়, বরং প্রাসঙ্গিক অর্থ চিহ্নিত করা।">A transitional moment: systems could not yet translate fluently, but had learned to retrieve meaning across languages. Translation here is no longer about finding the 'right' equivalent word, but about locating relevant meaning.</p>
+        <p class="day-desc" data-en="Dr. Bhaskar examined a pivotal transitional moment in the field: systems that could not yet translate fluently, but had learned to retrieve meaning across languages. He discussed how, at this stage, translation was no longer about finding the 'right' equivalent word, but about locating relevant meaning — a reframing that had significant consequences for how Bengali text was processed and ranked." data-bn="ড. ভাস্কর ক্ষেত্রটির একটি গুরুত্বপূর্ণ পরিবর্তনের মুহূর্ত পরীক্ষা করেছিলেন: সিস্টেম তখনও সাবলীলভাবে অনুবাদ করতে পারেনি, কিন্তু ভাষার সীমানা পেরিয়ে অর্থ খুঁজতে শিখেছিল। তিনি আলোচনা করেছিলেন কীভাবে এই পর্যায়ে অনুবাদ মানে 'সঠিক' প্রতিশব্দ খোঁজা নয়, বরং প্রাসঙ্গিক অর্থ চিহ্নিত করা — একটি পুনর্বিন্যাস যা বাংলা পাঠ্য প্রক্রিয়াকরণ ও র‍্যাঙ্কিংয়ের ওপর উল্লেখযোগ্য প্রভাব ফেলেছিল।">Dr. Bhaskar examined a pivotal transitional moment in the field: systems that could not yet translate fluently, but had learned to retrieve meaning across languages. He discussed how, at this stage, translation was no longer about finding the 'right' equivalent word, but about locating relevant meaning — a reframing that had significant consequences for how Bengali text was processed and ranked.</p>
       </div>
       <div class="day-item">
         <div class="day-dot"></div>
         <div class="day-label" data-en="Day 4 · 10 May" data-bn="দিন ৪ · ১০ মে">Day 4 · 10 May</div>
         <div class="day-title" data-en="The Neural Turn — How Today's Translation Systems Work" data-bn="নিউরাল বাঁক — আজকের অনুবাদ সিস্টেম কীভাবে কাজ করে">The Neural Turn — How Today's Translation Systems Work</div>
         <div class="day-rp">Dr. Pinaki Bhaskar</div>
-        <p class="day-desc" data-en="Hands-on with IndicTrans2, BanglaBERT, Google Translate, and ChatGPT. A guided comparative exercise: assess the same Bengali literary passage, newspaper editorial, and conversational excerpt across multiple MT systems." data-bn="IndicTrans2, BanglaBERT, Google Translate, এবং ChatGPT নিয়ে হাতেকলমে কাজ। একটি তুলনামূলক অনুশীলন: একই বাংলা সাহিত্যের অংশ, সংবাদপত্রের সম্পাদকীয় ও কথোপকথনের নমুনা একাধিক MT সিস্টেমে যাচাই।">Hands-on with IndicTrans2, BanglaBERT, Google Translate, and ChatGPT. A guided comparative exercise: assess the same Bengali literary passage, newspaper editorial, and conversational excerpt across multiple MT systems.</p>
+        <p class="day-desc" data-en="Participants worked hands-on with IndicTrans2, BanglaBERT, Google Translate, and ChatGPT in a guided comparative exercise. They assessed the same Bengali literary passage, newspaper editorial, and conversational excerpt across multiple MT systems, developing practical evaluative vocabulary to articulate what each system got right — and what it lost." data-bn="অংশগ্রহণকারীরা IndicTrans2, BanglaBERT, Google Translate এবং ChatGPT নিয়ে একটি পরিচালিত তুলনামূলক অনুশীলনে হাতেকলমে কাজ করেছিলেন। তারা একই বাংলা সাহিত্যের অংশ, সংবাদপত্রের সম্পাদকীয় ও কথোপকথনের নমুনা একাধিক MT সিস্টেমে যাচাই করেছিলেন — প্রতিটি সিস্টেম কী ঠিকঠাক করেছে এবং কোথায় ব্যর্থ হয়েছে তা স্পষ্ট করতে মূল্যায়নের ভাষা তৈরি করেছিলেন।">Participants worked hands-on with IndicTrans2, BanglaBERT, Google Translate, and ChatGPT in a guided comparative exercise. They assessed the same Bengali literary passage, newspaper editorial, and conversational excerpt across multiple MT systems, developing practical evaluative vocabulary to articulate what each system got right — and what it lost.</p>
       </div>
       <div class="day-item">
         <div class="day-dot"></div>
         <div class="day-label" data-en="Day 5 · 11 May" data-bn="দিন ৫ · ১১ মে">Day 5 · 11 May</div>
         <div class="day-title" data-en="The AI Frontier — What Translators and Scholars Need to Know Now" data-bn="এ আই-এর সীমান্ত — অনুবাদক ও গবেষকদের এখন কী জানা দরকার">The AI Frontier — What Translators and Scholars Need to Know Now</div>
         <div class="day-rp">Pritam Dey</div>
-        <p class="day-desc" data-en="Cultural nuance lost in translation, rendering issues, register mismatches, dialectal diversity erased. Emerging agent-driven systems as tools — not replacements — for human translators. Closes with roundtable: 'Is Machine Translation Replacing or Reconfiguring the Translator?'" data-bn="অনুবাদে হারিয়ে যাওয়া সাংস্কৃতিক সূক্ষ্মতা, রেন্ডারিং সমস্যা, রেজিস্টার অমিল, আঞ্চলিক বৈচিত্র্যের বিলোপ। এজেন্ট-চালিত সিস্টেম মানব অনুবাদকের প্রতিস্থাপন নয়, সহায়ক হিসেবে। গোলটেবিল আলোচনা দিয়ে সমাপ্তি: 'যন্ত্র-অনুবাদ কি অনুবাদককে প্রতিস্থাপন করছে নাকি পুনর্গঠন করছে?'">Cultural nuance lost in translation, rendering issues, register mismatches, dialectal diversity erased. Emerging agent-driven systems as tools — not replacements — for human translators. Closes with roundtable: "Is Machine Translation Replacing or Reconfiguring the Translator?"</p>
+        <p class="day-desc" data-en="Pritam Dey discussed how AI agents can be leveraged for more targeted Bengali translation — moving beyond generic output toward context-aware, domain-specific results. He conducted hands-on sessions using Google's Antigravity, walking participants through agent-driven translation workflows and their implications for language practitioners. The workshop concluded with a roundtable discussion, 'Is Machine Translation Replacing or Reconfiguring the Translator?', in which participants and resource persons reflected on the five days together." data-bn="প্রীতম দে আলোচনা করেছিলেন কীভাবে AI এজেন্ট আরও লক্ষ্যভিত্তিক বাংলা অনুবাদের জন্য ব্যবহার করা যায় — সাধারণ আউটপুট ছাড়িয়ে প্রসঙ্গ-সচেতন, বিষয়-নির্দিষ্ট ফলাফলের দিকে। তিনি Google-এর Antigravity ব্যবহার করে হাতেকলমে অধিবেশন পরিচালনা করেছিলেন, অংশগ্রহণকারীদের এজেন্ট-চালিত অনুবাদ কর্মপ্রবাহ ও ভাষাচর্চাকারীদের জন্য তার প্রাসঙ্গিকতা দেখিয়েছিলেন। কর্মশালা একটি গোলটেবিল আলোচনা দিয়ে সমাপ্ত হয়েছিল — 'যন্ত্র-অনুবাদ কি অনুবাদককে প্রতিস্থাপন করছে নাকি পুনর্গঠন করছে?' — যেখানে অংশগ্রহণকারী ও পরিচালকবৃন্দ একসাথে পাঁচ দিনের অভিজ্ঞতা নিয়ে ভাবনা ভাগ করেছিলেন।">Pritam Dey discussed how AI agents can be leveraged for more targeted Bengali translation — moving beyond generic output toward context-aware, domain-specific results. He conducted hands-on sessions using Google's Antigravity, walking participants through agent-driven translation workflows and their implications for language practitioners. The workshop concluded with a roundtable discussion, "Is Machine Translation Replacing or Reconfiguring the Translator?", in which participants and resource persons reflected on the five days together.</p>
       </div>
     </div>
 
     <div class="event-sep"></div>
 
-    <!-- Significance -->
-    <p class="event-desc rv">
-      <span class="lang-en">Machine translation is not merely a technical convenience; it is a <strong>gatekeeping infrastructure</strong> that determines which Bengali content reaches non-Bengali audiences, how Bengali speakers access global knowledge, and what forms of Bengali are computationally legitimised. This workshop traces Bengali MT's evolution from encoding struggles through cross-lingual retrieval to agent-driven generation — and brings computer scientists and professional language practitioners into a conversation that rarely happens.</span>
-      <span class="lang-bn">যন্ত্র-অনুবাদ নিছক প্রযুক্তিগত সুবিধা নয়; এটি একটি <strong>দ্বাররক্ষী পরিকাঠামো</strong> যা নির্ধারণ করে কোন বাংলা বিষয়বস্তু অবাঙালি শ্রোতার কাছে পৌঁছায়, বাংলাভাষীরা কীভাবে বৈশ্বিক জ্ঞানে প্রবেশ করে, এবং বাংলার কোন রূপ প্রযুক্তিগতভাবে বৈধতা পায়। এই কর্মশালা বাংলা MT-এর বিবর্তন — এনকোডিং সংকট থেকে ক্রস-লিঙ্গুয়াল রিট্রিভাল থেকে এজেন্ট-চালিত জেনারেশন পর্যন্ত — অনুসরণ করে, এবং কম্পিউটার বিজ্ঞানী ও পেশাদার ভাষাচর্চাকারীদের এমন একটি কথোপকথনে আনে যা খুব কমই ঘটে।</span>
-    </p>
-
-    <!-- Second CTA -->
-    <div class="rv" style="margin:40px 0 20px; text-align:center;">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6bsKFZ6apTyX55XARIce1t3XdctCSxf2XZv0rZZHijryq1Q/viewform" target="_blank" rel="noopener noreferrer" class="cta-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l6.1-6.1M10 5H5a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>
-        <span class="lang-en">Apply Now — 30 Seats Only</span><span class="lang-bn">আবেদন করুন — মাত্র ৩০ জন</span>
-      </a>
+    <!-- Resources & Report notice -->
+    <div class="event-callout resources rv">
+      <p>
+        <span class="lang-en">The slides, reading materials, and other resources used by the resource persons during the workshop will be made available on the <strong>Resources section</strong> of this website shortly. A comprehensive report of the workshop will be submitted to the <strong>India Foundation for the Arts</strong> as a formal project deliverable under the Platform Bengali / Bhashascope grant.</span>
+        <span class="lang-bn">কর্মশালায় পরিচালকবৃন্দ কর্তৃক ব্যবহৃত স্লাইড, পাঠ উপকরণ ও অন্যান্য সম্পদ শীঘ্রই এই ওয়েবসাইটের <strong>রিসোর্স বিভাগে</strong> পাওয়া যাবে। কর্মশালার একটি বিস্তারিত প্রতিবেদন প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ অনুদানের আনুষ্ঠানিক প্রকল্প-প্রদেয় হিসেবে <strong>ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসে</strong> জমা দেওয়া হবে।</span>
+      </p>
     </div>
 
-    <p class="rv" style="font-size:13px; font-style:italic; color:#8a8a8a; text-align:center; margin-bottom:48px;">
-      <span class="lang-en">Lunch and participation certificate will be provided to selected participants.</span>
-      <span class="lang-bn">নির্বাচিত অংশগ্রহণকারীদের মধ্যাহ্নভোজ ও অংশগ্রহণের সার্টিফিকেট দেওয়া হবে।</span>
+    <!-- Significance -->
+    <p class="event-desc rv" style="margin-top:32px;">
+      <span class="lang-en">Machine translation is not merely a technical convenience; it is a <strong>gatekeeping infrastructure</strong> that determines which Bengali content reaches non-Bengali audiences, how Bengali speakers access global knowledge, and what forms of Bengali are computationally legitimised. This workshop traced Bengali MT's evolution from encoding struggles through cross-lingual retrieval to agent-driven generation — and brought computer scientists and professional language practitioners into a conversation that rarely happens.</span>
+      <span class="lang-bn">যন্ত্র-অনুবাদ নিছক প্রযুক্তিগত সুবিধা নয়; এটি একটি <strong>দ্বাররক্ষী পরিকাঠামো</strong> যা নির্ধারণ করে কোন বাংলা বিষয়বস্তু অবাঙালি শ্রোতার কাছে পৌঁছায়, বাংলাভাষীরা কীভাবে বৈশ্বিক জ্ঞানে প্রবেশ করে, এবং বাংলার কোন রূপ প্রযুক্তিগতভাবে বৈধতা পায়। এই কর্মশালা বাংলা MT-এর বিবর্তন — এনকোডিং সংকট থেকে ক্রস-লিঙ্গুয়াল রিট্রিভাল থেকে এজেন্ট-চালিত জেনারেশন পর্যন্ত — অনুসরণ করেছে, এবং কম্পিউটার বিজ্ঞানী ও পেশাদার ভাষাচর্চাকারীদের এমন একটি কথোপকথনে এনেছে যা খুব কমই ঘটে।</span>
     </p>
 
-    <p class="rv" style="font-size:13px; font-style:italic; color:#8a8a8a; margin-bottom:8px;">
+    <p class="rv" style="font-size:13px; font-style:italic; color:#8a8a8a; margin-bottom:48px;">
       <span class="lang-en">Platform Bengali is a foundation project sponsored by the India Foundation for the Arts (IFA) under the Arts Research programme. Principal Investigator: Prithu Halder · Contact: bhashascope@gmail.com</span>
       <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টসের (আই এফ এ) কলা গবেষণা কার্যক্রমের অন্তর্ভুক্ত একটি ফাউন্ডেশন প্রকল্প। প্রধান গবেষক: পৃথু হালদার · যোগাযোগ: bhashascope@gmail.com</span>
     </p>
