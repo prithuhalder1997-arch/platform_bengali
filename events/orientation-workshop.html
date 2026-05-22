@@ -50,15 +50,16 @@ img { max-width:100%; height:auto; }
 .event-callout p { font-size:14px; line-height:1.75; color:#4a4a4a; }
 .event-sep { width:40px; height:2px; background:rgba(0,0,0,0.08); margin:40px 0; border-radius:1px; }
 
-/* Poster gallery with language swap */
-.poster-gallery { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:36px 0; }
-.poster-gallery img { border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.06); cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; }
-.poster-gallery img:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,0.12); }
-.poster-en { display:block; }
-.poster-bn { display:none; }
-body.bn-mode .poster-en { display:none; }
-body.bn-mode .poster-bn { display:block; }
-@media(max-width:600px){ .poster-gallery { grid-template-columns:1fr; } }
+/* Status banner */
+.status-banner { display:flex; align-items:flex-start; gap:14px; background:rgba(69,123,110,0.06); border:1px solid rgba(69,123,110,0.18); border-radius:12px; padding:18px 22px; margin:28px 0 36px; }
+.status-banner .status-icon { flex-shrink:0; width:22px; height:22px; color:#457b6e; margin-top:1px; }
+.status-banner .status-text { font-size:14px; line-height:1.7; color:#3a5a52; }
+.status-banner .status-text strong { color:#2e463f; font-weight:700; }
+
+/* Poster — single image */
+.poster-single { display:flex; justify-content:center; margin:36px 0; }
+.poster-single img { max-width:560px; width:100%; border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.06); cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; }
+.poster-single img:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,0.12); }
 
 /* Speaker card */
 .speaker-card { display:flex; gap:24px; align-items:flex-start; padding:28px; border-radius:16px; background:rgba(250,249,247,0.85); border:1px solid rgba(0,0,0,0.06); margin:32px 0; transition:all 0.3s; }
@@ -105,7 +106,7 @@ body.bn-mode .poster-bn { display:block; }
 .lang-en { display:inline; } .lang-bn { display:none; }
 body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; }
 body.bn-mode .event-title, body.bn-mode .event-subtitle, body.bn-mode .event-eyebrow, body.bn-mode .meta-tag, body.bn-mode .speaker-name, body.bn-mode .speaker-badge, body.bn-mode .engine-label, body.bn-mode .info-label, body.bn-mode .info-value { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
-body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav, body.bn-mode .speaker-role, body.bn-mode .topic-text { font-family:'Noto Sans Bengali',sans-serif; }
+body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav, body.bn-mode .speaker-role, body.bn-mode .topic-text, body.bn-mode .status-banner .status-text { font-family:'Noto Sans Bengali',sans-serif; }
 
 @media(max-width:768px){
   .site-header { padding:8px 12px; }
@@ -135,7 +136,7 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
       <span class="lang-en">Back to Home</span><span class="lang-bn">প্রচ্ছদে ফিরুন</span>
     </a>
 
-    <div class="event-eyebrow rv rv-d1" data-en="Event 02 · Inaugural Workshop · 26 April 2026" data-bn="কর্মসূচি ০২ · উদ্বোধনী কর্মশালা · ২৬ এপ্রিল ২০২৬">Event 02 · Inaugural Workshop · 26 April 2026</div>
+    <div class="event-eyebrow rv rv-d1" data-en="Event 02 · Inaugural Workshop · 23 May 2026" data-bn="কর্মসূচি ০২ · উদ্বোধনী কর্মশালা · ২৩ মে ২০২৬">Event 02 · Inaugural Workshop · 23 May 2026</div>
 
     <h1 class="event-title rv rv-d1">
       <span class="lang-en">Mining the Feed</span>
@@ -154,32 +155,25 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
 
     <div class="event-meta rv rv-d2">
       <span class="meta-tag" data-en="Online" data-bn="অনলাইন">Online</span>
-      <span class="meta-tag" data-en="Sunday" data-bn="রবিবার">Sunday</span>
+      <span class="meta-tag" data-en="Saturday" data-bn="শনিবার">Saturday</span>
       <span class="meta-tag" data-en="10:30 AM – 3:30 PM" data-bn="সকাল ১০:৩০ – বিকেল ৩:৩০">10:30 AM – 3:30 PM</span>
-      <span class="meta-tag accent" data-en="Upcoming · Registration Open" data-bn="আসন্ন · নিবন্ধন চলছে">Upcoming · Registration Open</span>
+      <span class="meta-tag accent" data-en="Registration Closed" data-bn="নিবন্ধন বন্ধ">Registration Closed</span>
     </div>
-    <!-- CTA -->
-    <div class="rv rv-d3" style="margin-bottom:40px;">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeIwmKXP1AKrsLP0h_lrjycKWXhNz_zfow_fypQClw4hnICEQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:#fff;background:#cc2828;border:none;border-radius:50px;padding:14px 32px;text-decoration:none;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 20px rgba(204,40,40,0.25);">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l6.1-6.1M10 5H5a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>
-        <span class="lang-en">Register Now</span><span class="lang-bn">নিবন্ধন করুন</span>
-      </a>
+
+    <!-- Status banner -->
+    <div class="status-banner rv rv-d3">
+      <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 2"/></svg>
+      <div class="status-text">
+        <span class="lang-en"><strong>Registration for this workshop has now closed.</strong> The session recording will be made available soon, and verifiable certificates will be shared with participants in a few days.</span>
+        <span class="lang-bn"><strong>এই কর্মশালার নিবন্ধন এখন বন্ধ হয়ে গেছে।</strong> শীঘ্রই সেশনের রেকর্ডিং উপলব্ধ করা হবে, এবং কয়েক দিনের মধ্যে অংশগ্রহণকারীদের যাচাইযোগ্য সার্টিফিকেট পাঠানো হবে।</span>
+      </div>
     </div>
   </div>
 
-  <!-- Posters — English and Bengali versions -->
+  <!-- Poster — single image -->
   <div class="section-wrap rv rv-d3">
-    <div class="poster-en">
-      <div class="poster-gallery">
-        <a href="../img/En_1.jpg" target="_blank"><img src="../img/En_1.jpg" alt="Orientation Workshop Poster — Speaker"></a>
-        <a href="../img/En_2.jpg" target="_blank"><img src="../img/En_2.jpg" alt="Orientation Workshop Poster — Topics"></a>
-      </div>
-    </div>
-    <div class="poster-bn">
-      <div class="poster-gallery">
-        <a href="../img/Bn_1.jpg" target="_blank"><img src="../img/Bn_1.jpg" alt="ওরিয়েন্টেশন কর্মশালা পোস্টার — বক্তা"></a>
-        <a href="../img/Bn_2.jpg" target="_blank"><img src="../img/Bn_2.jpg" alt="ওরিয়েন্টেশন কর্মশালা পোস্টার — বিষয়সমূহ"></a>
-      </div>
+    <div class="poster-single">
+      <a href="../img/Orientation_Workshop_Poster.png" target="_blank"><img src="../img/Orientation_Workshop_Poster.png" alt="Orientation Workshop Poster — Mining the Feed"></a>
     </div>
   </div>
 
@@ -189,8 +183,8 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
       <div class="info-item">
         <div class="info-label" data-en="Date &amp; Time" data-bn="তারিখ ও সময়">Date &amp; Time</div>
         <div class="info-value">
-          <span class="lang-en">26 April 2026 (Sunday)<br>Session I: 10:30 AM – 12:30 PM<br>Session II: 1:30 PM – 3:30 PM</span>
-          <span class="lang-bn">২৬ এপ্রিল ২০২৬ (রবিবার)<br>প্রথম সেশন: ১০:৩০ – ১২:৩০<br>দ্বিতীয় সেশন: ১:৩০ – ৩:৩০</span>
+          <span class="lang-en">23 May 2026 (Saturday)<br>Session I: 10:30 AM – 12:30 PM<br>Session II: 1:30 PM – 3:30 PM</span>
+          <span class="lang-bn">২৩ মে ২০২৬ (শনিবার)<br>প্রথম সেশন: ১০:৩০ – ১২:৩০<br>দ্বিতীয় সেশন: ১:৩০ – ৩:৩০</span>
         </div>
       </div>
       <div class="info-item">
