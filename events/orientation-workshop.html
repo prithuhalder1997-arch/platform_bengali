@@ -56,6 +56,22 @@ img { max-width:100%; height:auto; }
 .status-banner .status-text { font-size:14px; line-height:1.7; color:#3a5a52; }
 .status-banner .status-text strong { color:#2e463f; font-weight:700; }
 
+/* Section mini-label */
+.section-mini-label { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8a8a8a; margin-bottom:16px; }
+
+/* Recording video */
+.video-card { max-width:720px; margin:0 auto; }
+.video-thumb { position:relative; display:block; border-radius:12px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.10); border:1px solid rgba(0,0,0,0.06); aspect-ratio:16/9; background:#000; cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; }
+.video-thumb:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,0.16); }
+.video-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.video-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:72px; height:72px; border-radius:50%; background:rgba(204,40,40,0.92); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 24px rgba(0,0,0,0.35); transition:all 0.3s; }
+.video-thumb:hover .video-play { transform:translate(-50%,-50%) scale(1.08); background:#cc2828; }
+.video-play svg { width:30px; height:30px; fill:#fff; margin-left:4px; }
+.video-caption { display:flex; align-items:center; justify-content:center; gap:6px; margin-top:14px; font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; }
+.video-caption a { display:inline-flex; align-items:center; gap:6px; color:#cc2828; text-decoration:none; border-bottom:1px solid rgba(204,40,40,0.3); padding-bottom:2px; transition:border-color 0.3s; }
+.video-caption a:hover { border-color:#cc2828; }
+.video-caption svg { width:13px; height:13px; }
+
 /* Poster — single image */
 .poster-single { display:flex; justify-content:center; margin:36px 0; }
 .poster-single img { max-width:560px; width:100%; border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.06); cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; }
@@ -105,12 +121,14 @@ img { max-width:100%; height:auto; }
 
 .lang-en { display:inline; } .lang-bn { display:none; }
 body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; }
-body.bn-mode .event-title, body.bn-mode .event-subtitle, body.bn-mode .event-eyebrow, body.bn-mode .meta-tag, body.bn-mode .speaker-name, body.bn-mode .speaker-badge, body.bn-mode .engine-label, body.bn-mode .info-label, body.bn-mode .info-value { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+body.bn-mode .event-title, body.bn-mode .event-subtitle, body.bn-mode .event-eyebrow, body.bn-mode .meta-tag, body.bn-mode .speaker-name, body.bn-mode .speaker-badge, body.bn-mode .engine-label, body.bn-mode .info-label, body.bn-mode .info-value, body.bn-mode .section-mini-label, body.bn-mode .video-caption { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
 body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav, body.bn-mode .speaker-role, body.bn-mode .topic-text, body.bn-mode .status-banner .status-text { font-family:'Noto Sans Bengali',sans-serif; }
 
 @media(max-width:768px){
   .site-header { padding:8px 12px; }
   .header-logo-right .logo-img { max-height:38px; }
+  .video-play { width:60px; height:60px; }
+  .video-play svg { width:26px; height:26px; }
 }
 </style>
 </head>
@@ -158,20 +176,41 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
       <span class="meta-tag" data-en="Saturday" data-bn="শনিবার">Saturday</span>
       <span class="meta-tag" data-en="10:30 AM – 3:30 PM" data-bn="সকাল ১০:৩০ – বিকেল ৩:৩০">10:30 AM – 3:30 PM</span>
       <span class="meta-tag accent" data-en="Registration Closed" data-bn="নিবন্ধন বন্ধ">Registration Closed</span>
+      <span class="meta-tag green" data-en="Recording Available" data-bn="রেকর্ডিং উপলব্ধ">Recording Available</span>
     </div>
 
     <!-- Status banner -->
     <div class="status-banner rv rv-d3">
       <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 2"/></svg>
       <div class="status-text">
-        <span class="lang-en"><strong>Registration for this workshop has now closed.</strong> The session recording will be made available soon, and verifiable certificates will be shared with participants in a few days.</span>
-        <span class="lang-bn"><strong>এই কর্মশালার নিবন্ধন এখন বন্ধ হয়ে গেছে।</strong> শীঘ্রই সেশনের রেকর্ডিং উপলব্ধ করা হবে, এবং কয়েক দিনের মধ্যে অংশগ্রহণকারীদের যাচাইযোগ্য সার্টিফিকেট পাঠানো হবে।</span>
+        <span class="lang-en"><strong>The recording of this workshop is now available.</strong> Watch the full session below. Verifiable certificates will be shared with participants shortly.</span>
+        <span class="lang-bn"><strong>এই কর্মশালার রেকর্ডিং এখন উপলব্ধ।</strong> সম্পূর্ণ সেশনটি নিচে দেখুন। শীঘ্রই অংশগ্রহণকারীদের যাচাইযোগ্য সার্টিফিকেট পাঠানো হবে।</span>
       </div>
     </div>
   </div>
 
-  <!-- Poster — single image -->
-  <div class="section-wrap rv rv-d3">
+  <!-- Recording — YouTube -->
+  <div class="section-wrap rv rv-d3" style="margin-bottom:8px;">
+    <p class="section-mini-label" data-en="Watch the Recording" data-bn="রেকর্ডিং দেখুন">Watch the Recording</p>
+    <div class="video-card">
+      <a class="video-thumb" href="https://youtu.be/d-4_sNUKtFQ" target="_blank" rel="noopener" aria-label="Watch the workshop recording on YouTube">
+        <img src="https://img.youtube.com/vi/d-4_sNUKtFQ/maxresdefault.jpg"
+             alt="Mining the Feed — workshop recording thumbnail"
+             onerror="this.onerror=null;this.src='https://img.youtube.com/vi/d-4_sNUKtFQ/hqdefault.jpg';">
+        <span class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+      </a>
+      <div class="video-caption">
+        <a href="https://youtu.be/d-4_sNUKtFQ" target="_blank" rel="noopener">
+          <span data-en="Watch on YouTube" data-bn="ইউটিউবে দেখুন">Watch on YouTube</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Poster — single image (kept as record) -->
+  <div class="section-wrap rv rv-d4">
+    <p class="section-mini-label" data-en="Event Poster" data-bn="অনুষ্ঠানের পোস্টার">Event Poster</p>
     <div class="poster-single">
       <a href="../img/Orientation_Workshop_Poster.png" target="_blank"><img src="../img/Orientation_Workshop_Poster.png" alt="Orientation Workshop Poster — Mining the Feed"></a>
     </div>
