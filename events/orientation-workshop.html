@@ -72,6 +72,13 @@ img { max-width:100%; height:auto; }
 .video-caption a:hover { border-color:#cc2828; }
 .video-caption svg { width:13px; height:13px; }
 
+/* Certificate access button */
+.cert-cta { display:flex; justify-content:center; margin-top:24px; }
+.cert-btn { display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:50px; background:#cc2828; color:#fff; font-family:'Syne',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; box-shadow:0 4px 18px rgba(204,40,40,0.28); transition:transform 0.3s, box-shadow 0.3s, background 0.3s; }
+.cert-btn:hover { transform:translateY(-2px); background:#b02020; box-shadow:0 10px 28px rgba(204,40,40,0.35); }
+.cert-btn svg { width:17px; height:17px; }
+body.bn-mode .cert-btn { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+
 /* Poster — single image */
 .poster-single { display:flex; justify-content:center; margin:36px 0; }
 .poster-single img { max-width:560px; width:100%; border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.08); border:1px solid rgba(0,0,0,0.06); cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; }
@@ -174,7 +181,7 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
     <div class="event-meta rv rv-d2">
       <span class="meta-tag" data-en="Online" data-bn="অনলাইন">Online</span>
       <span class="meta-tag" data-en="Saturday" data-bn="শনিবার">Saturday</span>
-      <span class="meta-tag" data-en="10:30 AM – 3:30 PM" data-bn="সকাল ১০:৩০ – বিকেল ৩:৩০">10:30 AM – 3:30 PM</span>
+      <span class="meta-tag" data-en="10:30 AM – 2:30 PM" data-bn="সকাল ১০:৩০ – দুপুর ২:৩০">10:30 AM – 2:30 PM</span>
       <span class="meta-tag accent" data-en="Registration Closed" data-bn="নিবন্ধন বন্ধ">Registration Closed</span>
       <span class="meta-tag green" data-en="Recording Available" data-bn="রেকর্ডিং উপলব্ধ">Recording Available</span>
     </div>
@@ -183,8 +190,8 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
     <div class="status-banner rv rv-d3">
       <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 2"/></svg>
       <div class="status-text">
-        <span class="lang-en"><strong>The recording of this workshop is now available.</strong> Watch the full session below. Verifiable certificates will be shared with participants shortly.</span>
-        <span class="lang-bn"><strong>এই কর্মশালার রেকর্ডিং এখন উপলব্ধ।</strong> সম্পূর্ণ সেশনটি নিচে দেখুন। শীঘ্রই অংশগ্রহণকারীদের যাচাইযোগ্য সার্টিফিকেট পাঠানো হবে।</span>
+        <span class="lang-en"><strong>The recording of this workshop is now available.</strong> Watch the full session below. Verifiable certificates have been issued to participants — check yours using the link below.</span>
+        <span class="lang-bn"><strong>এই কর্মশালার রেকর্ডিং এখন উপলব্ধ।</strong> সম্পূর্ণ সেশনটি নিচে দেখুন। অংশগ্রহণকারীদের যাচাইযোগ্য সার্টিফিকেট প্রদান করা হয়েছে — নিচের লিঙ্ক থেকে আপনারটি যাচাই করুন।</span>
       </div>
     </div>
   </div>
@@ -206,6 +213,12 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
         </a>
       </div>
     </div>
+    <div class="cert-cta">
+      <a class="cert-btn" href="https://bhashascope.in/certificates/pb/orientation-workshop.html" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span data-en="Get Your Certificate" data-bn="আপনার সার্টিফিকেট নিন">Get Your Certificate</span>
+      </a>
+    </div>
   </div>
 
   <!-- Poster — single image (kept as record) -->
@@ -222,8 +235,8 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
       <div class="info-item">
         <div class="info-label" data-en="Date &amp; Time" data-bn="তারিখ ও সময়">Date &amp; Time</div>
         <div class="info-value">
-          <span class="lang-en">23 May 2026 (Saturday)<br>Session I: 10:30 AM – 12:30 PM<br>Session II: 1:30 PM – 3:30 PM</span>
-          <span class="lang-bn">২৩ মে ২০২৬ (শনিবার)<br>প্রথম সেশন: ১০:৩০ – ১২:৩০<br>দ্বিতীয় সেশন: ১:৩০ – ৩:৩০</span>
+          <span class="lang-en">23 May 2026 (Saturday)<br>Session I: 10:30 AM – 12:30 PM<br>Session II: 1:30 PM – 2:30 PM</span>
+          <span class="lang-bn">২৩ মে ২০২৬ (শনিবার)<br>প্রথম সেশন: ১০:৩০ – ১২:৩০<br>দ্বিতীয় সেশন: ১:৩০ – ২:৩০</span>
         </div>
       </div>
       <div class="info-item">
