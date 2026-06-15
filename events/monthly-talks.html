@@ -60,6 +60,12 @@ img { max-width:100%; height:auto; }
 .mc-talk { font-size:12px; color:#8a8a8a; font-style:italic; margin-top:8px; line-height:1.4; }
 .mc-date { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#8a8a8a; margin-top:10px; }
 
+/* Watch on YouTube link */
+.mc-watch { display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#cc2828; text-decoration:none; border-bottom:1px solid rgba(204,40,40,0.3); padding-bottom:2px; transition:color 0.3s; }
+.mc-watch:hover { color:#a01e1e; }
+.mc-watch svg { width:13px; height:13px; }
+body.bn-mode .mc-watch { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+
 /* TBA placeholder */
 .mc-tba { display:flex; align-items:center; justify-content:center; min-height:100px; }
 .mc-tba-text { font-family:'Syne',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8a8a8a; opacity:0.4; }
@@ -145,9 +151,9 @@ body.bn-mode .event-desc, body.bn-mode .mc-role, body.bn-mode .mc-talk, body.bn-
   <div class="section-wrap">
     <div class="month-grid rv rv-d3">
 
-      <!-- APRIL 2026 — Current, Speaker Revealed -->
-      <a href="monthly-talks/april-2026.html" class="month-card is-current">
-        <span class="mc-status current"><span class="lang-en">This Month</span><span class="lang-bn">এই মাসে</span></span>
+      <!-- APRIL 2026 — Concluded -->
+      <a href="monthly-talks/april-2026.html" class="month-card is-done">
+        <span class="mc-status done"><span class="lang-en">Concluded</span><span class="lang-bn">সম্পন্ন</span></span>
         <div class="mc-header">
           <span class="mc-month"><span class="lang-en">April 2026</span><span class="lang-bn">এপ্রিল ২০২৬</span></span>
           <span class="mc-num">01/12</span>
@@ -157,26 +163,45 @@ body.bn-mode .event-desc, body.bn-mode .mc-role, body.bn-mode .mc-talk, body.bn-
           <div class="mc-role"><span class="lang-en">Professor, Bengali Department, Visva-Bharati. Author.</span><span class="lang-bn">অধ্যাপক, বাংলা বিভাগ, বিশ্বভারতী। সুপরিচিত লেখক।</span></div>
           <div class="mc-talk"><span class="lang-en">"The Body of Language and the Hand of Technology: On Bengali"</span><span class="lang-bn">"ভাষার শরীর ও প্রযুক্তির হাত: প্রসঙ্গ বাংলা ভাষা"</span></div>
           <div class="mc-date"><span class="lang-en">26 April · 6:30 PM</span><span class="lang-bn">২৬ এপ্রিল · সন্ধ্যা ৬:৩০</span></div>
+          <a href="https://youtu.be/hhurWOx1gl0?si=Z1KBDq2mnSo9C0G9" target="_blank" rel="noopener" class="mc-watch" onclick="event.stopPropagation();">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></svg>
+            <span class="lang-en">Watch the talk</span><span class="lang-bn">বক্তৃতা দেখুন</span>
+          </a>
         </div>
       </a>
 
-      <!-- MAY 2026 -->
-      <div class="month-card">
+      <!-- MAY 2026 — Concluded -->
+      <a href="monthly-talks/may-2026.html" class="month-card is-done">
+        <span class="mc-status done"><span class="lang-en">Concluded</span><span class="lang-bn">সম্পন্ন</span></span>
         <div class="mc-header">
           <span class="mc-month"><span class="lang-en">May 2026</span><span class="lang-bn">মে ২০২৬</span></span>
           <span class="mc-num">02/12</span>
         </div>
-        <div class="mc-body"><div class="mc-tba"><span class="mc-tba-text"><span class="lang-en">Speaker TBA</span><span class="lang-bn">বক্তা ঘোষণা হবে</span></span></div></div>
-      </div>
+        <div class="mc-body">
+          <div class="mc-speaker"><span class="lang-en">Bijleeraj Patra</span><span class="lang-bn">বিজলীরাজ পাত্র</span></div>
+          <div class="mc-role"><span class="lang-en">Researcher &amp; Essayist</span><span class="lang-bn">গবেষক ও প্রাবন্ধিক</span></div>
+          <div class="mc-talk"><span class="lang-en">"Alien Life Is Not Science Fiction: Bengali Writers' Search for Science and the Technology of the Future"</span><span class="lang-bn">"ভিনগ্রহী জীবন কল্পবিজ্ঞান নয়: বাঙালি লেখকদের বিজ্ঞান ও ভবিষ্যৎ প্রযুক্তির সন্ধান"</span></div>
+          <a href="https://youtu.be/8B9qKFN3dxc?si=sou6xc-VVALY0djr" target="_blank" rel="noopener" class="mc-watch" onclick="event.stopPropagation();">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></svg>
+            <span class="lang-en">Watch the talk</span><span class="lang-bn">বক্তৃতা দেখুন</span>
+          </a>
+        </div>
+      </a>
 
-      <!-- JUNE 2026 -->
-      <div class="month-card">
+      <!-- JUNE 2026 — Announced -->
+      <a href="monthly-talks/june-2026.html" class="month-card is-current">
+        <span class="mc-status current"><span class="lang-en">This Month</span><span class="lang-bn">এই মাসে</span></span>
         <div class="mc-header">
           <span class="mc-month"><span class="lang-en">June 2026</span><span class="lang-bn">জুন ২০২৬</span></span>
           <span class="mc-num">03/12</span>
         </div>
-        <div class="mc-body"><div class="mc-tba"><span class="mc-tba-text"><span class="lang-en">Speaker TBA</span><span class="lang-bn">বক্তা ঘোষণা হবে</span></span></div></div>
-      </div>
+        <div class="mc-body">
+          <div class="mc-speaker"><span class="lang-en">Yashodhara Gupta</span><span class="lang-bn">যশোধরা গুপ্ত</span></div>
+          <div class="mc-role"><span class="lang-en">Professor, Bengali Department, Gurudas College. Advertising researcher, essayist.</span><span class="lang-bn">অধ্যাপক, বাংলা বিভাগ, গুরুদাস কলেজ। বিজ্ঞাপন গবেষক, প্রাবন্ধিক।</span></div>
+          <div class="mc-talk"><span class="lang-en">"Language, Brand, Bengali: The Changing Face of Bengali Advertising"</span><span class="lang-bn">"ভাষা, ব্র্যান্ড, বাঙালি: বাংলা বিজ্ঞাপনের বদলে যাওয়া চেহারা"</span></div>
+          <div class="mc-date"><span class="lang-en">26 June · 7:00 PM</span><span class="lang-bn">২৬ জুন · সন্ধ্যা ৭:০০</span></div>
+        </div>
+      </a>
 
       <!-- JULY 2026 -->
       <div class="month-card">
