@@ -47,6 +47,11 @@ img { max-width:100%; height:auto; }
 .poster-wrap { max-width:480px; margin:36px 0; }
 .poster-wrap img { border-radius:14px; box-shadow:0 12px 40px rgba(0,0,0,0.1); border:1px solid rgba(0,0,0,0.06); }
 
+.watch-btn { display:inline-flex; align-items:center; gap:8px; margin:8px 0 28px; padding:12px 24px; border-radius:40px; background:#cc2828; color:#fff; font-family:'Syne',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; box-shadow:0 4px 18px rgba(204,40,40,0.3); transition:all 0.3s; }
+.watch-btn:hover { background:#a01e1e; transform:translateY(-2px); box-shadow:0 8px 28px rgba(204,40,40,0.35); }
+.watch-btn svg { width:18px; height:18px; }
+body.bn-mode .watch-btn { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+
 .speaker-card { padding:28px; border-radius:16px; background:rgba(250,249,247,0.85); border:1px solid rgba(0,0,0,0.06); margin:28px 0; }
 .speaker-name { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; color:#1a1a1a; margin-bottom:6px; }
 .speaker-role { font-size:14px; line-height:1.6; color:#4a4a4a; }
@@ -109,7 +114,7 @@ body.bn-mode .event-desc, body.bn-mode .speaker-role, body.bn-mode .back-nav { f
       <span class="meta-tag" data-en="Online" data-bn="অনলাইন">Online</span>
       <span class="meta-tag" data-en="26 April 2026" data-bn="২৬ এপ্রিল ২০২৬">26 April 2026</span>
       <span class="meta-tag" data-en="6:30 PM IST" data-bn="সন্ধ্যা ৬:৩০">6:30 PM IST</span>
-      <span class="meta-tag accent" data-en="Upcoming" data-bn="আসন্ন">Upcoming</span>
+      <span class="meta-tag accent" data-en="Concluded" data-bn="সম্পন্ন">Concluded</span>
     </div>
 
     <!-- Speaker -->
@@ -130,11 +135,16 @@ body.bn-mode .event-desc, body.bn-mode .speaker-role, body.bn-mode .back-nav { f
       <a href="../../img/April_26.jpg" target="_blank"><img src="../../img/April_26.jpg" alt="Biswajit Ray — Monthly Lecture Poster"></a>
     </div>
 
+    <a href="https://youtu.be/hhurWOx1gl0?si=Z1KBDq2mnSo9C0G9" target="_blank" rel="noopener" class="watch-btn rv rv-d4">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></svg>
+      <span class="lang-en">Watch the recording</span><span class="lang-bn">রেকর্ডিং দেখুন</span>
+    </a>
+
     <div class="event-sep"></div>
 
     <p class="event-desc rv rv-d4">
-      <span class="lang-en">What happens to the living body of a language when technology reshapes how it is written, spoken, read, and circulated? In the first lecture of the Platform Bengali Monthly Series, Professor Biswajit Ray examines the tension between the organic evolution of Bengali and the technological forces — from keyboards to AI — that increasingly mediate its form.</span>
-      <span class="lang-bn">যখন প্রযুক্তি একটি ভাষার লেখা, বলা, পড়া ও প্রচারের ধরন বদলে দেয়, তখন সেই ভাষার জীবন্ত শরীরে কী ঘটে? প্ল্যাটফর্ম বেঙ্গলি মাসিক বক্তৃতামালার প্রথম বক্তৃতায় অধ্যাপক বিশ্বজিৎ রায় বাংলার স্বাভাবিক বিবর্তন এবং কীবোর্ড থেকে এ আই পর্যন্ত যে প্রযুক্তিগত শক্তি ক্রমবর্ধমানভাবে ভাষার রূপকে নিয়ন্ত্রণ করছে — তার মধ্যেকার টানাপোড়েন পরীক্ষা করবেন।</span>
+      <span class="lang-en">What happens to the living body of a language when technology reshapes how it is written, spoken, read, and circulated? In the opening lecture of the Platform Bengali Monthly Series, Professor Biswajit Ray examined the tension between the organic evolution of Bengali and the technological forces — from keyboards to AI — that increasingly mediate its form.</span>
+      <span class="lang-bn">যখন প্রযুক্তি একটি ভাষার লেখা, বলা, পড়া ও প্রচারের ধরন বদলে দেয়, তখন সেই ভাষার জীবন্ত শরীরে কী ঘটে? প্ল্যাটফর্ম বেঙ্গলি মাসিক বক্তৃতামালার প্রথম বক্তৃতায় অধ্যাপক বিশ্বজিৎ রায় বাংলার স্বাভাবিক বিবর্তন এবং কীবোর্ড থেকে এ আই পর্যন্ত যে প্রযুক্তিগত শক্তি ক্রমবর্ধমানভাবে ভাষার রূপকে নিয়ন্ত্রণ করছে — তার মধ্যেকার টানাপোড়েন তুলে ধরেন।</span>
     </p>
 
     <p class="rv" style="font-size:13px; font-style:italic; color:#8a8a8a; margin-bottom:48px;">
