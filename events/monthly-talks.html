@@ -50,8 +50,9 @@ img { max-width:100%; height:auto; }
 
 /* Card header band */
 .mc-header { padding:16px 20px 12px; display:flex; justify-content:space-between; align-items:center; }
+.month-card.is-done .mc-header, .month-card.is-current .mc-header { padding-top:40px; }
+.mc-num { font-family:'Syne',sans-serif; font-size:12px; font-weight:800; color:#cc2828; opacity:0.85; }
 .mc-month { font-family:'Syne',sans-serif; font-size:13px; font-weight:800; color:#1a1a1a; text-transform:uppercase; letter-spacing:0.06em; }
-.mc-num { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:#cc2828; opacity:0.4; }
 
 /* Card body */
 .mc-body { padding:0 20px 20px; min-height:120px; display:flex; flex-direction:column; justify-content:center; }
@@ -71,14 +72,14 @@ body.bn-mode .mc-watch { font-family:'Noto Sans Bengali',sans-serif; text-transf
 .mc-tba-text { font-family:'Syne',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#8a8a8a; opacity:0.4; }
 
 /* Status badges */
-.mc-status { position:absolute; top:14px; right:16px; font-family:'Syne',sans-serif; font-size:8px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; padding:4px 10px; border-radius:20px; }
+.mc-status { position:absolute; top:14px; left:16px; font-family:'Syne',sans-serif; font-size:9px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; padding:4px 10px; border-radius:20px; z-index:2; }
 .mc-status.done { background:rgba(0,0,0,0.04); color:#8a8a8a; }
 .mc-status.current { background:rgba(204,40,40,0.08); color:#cc2828; border:1px solid rgba(204,40,40,0.15); }
 .mc-status.upcoming { background:rgba(69,123,110,0.06); color:#457b6e; border:1px solid rgba(69,123,110,0.12); }
 
 /* States */
-.month-card.is-done { opacity:0.5; }
-.month-card.is-done:hover { opacity:0.7; }
+.month-card.is-done { opacity:0.88; }
+.month-card.is-done:hover { opacity:1; }
 .month-card.is-current { border-color:rgba(204,40,40,0.2); box-shadow:0 4px 20px rgba(204,40,40,0.06); }
 .month-card.is-current .mc-header { border-bottom:2px solid rgba(204,40,40,0.1); }
 
