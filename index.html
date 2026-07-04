@@ -223,20 +223,20 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 <div id="preloader" class="preloader"><div class="preloader-inner"><span class="preloader-text">ক</span><div class="preloader-bar"><div class="preloader-fill"></div></div></div></div>
 <script>
 (function(){
-  var pre=document.getElementById('preloader');
-  if(!pre) return;
-  function hide(){
-    if(!pre) return;
-    pre.classList.add('hidden');            // in case the CSS uses a .hidden state
-    pre.style.opacity='0';
-    pre.style.pointerEvents='none';
-    setTimeout(function(){ if(pre) pre.style.display='none'; }, 600);
+  // Preloader hides once BOTH canvas animations signal ready
+  // (matrix.js -> 'matrix-ready', ka-rotation.js -> 'ka-ready'),
+  // with a 3s failsafe so it can never hang the page.
+  var preloader=document.getElementById('preloader');
+  var kaReady=false, matrixReady=false;
+  function checkReady(){
+    if(kaReady && matrixReady && preloader && !preloader.classList.contains('loaded')){
+      preloader.classList.add('loaded');
+      setTimeout(function(){ preloader.style.display='none'; }, 600);
+    }
   }
-  // Hide as soon as the page is ready...
-  if(document.readyState==='complete'){ hide(); }
-  else { window.addEventListener('load', hide); }
-  // ...and a hard failsafe so it can NEVER hang the page again.
-  setTimeout(hide, 3000);
+  window.addEventListener('ka-ready', function(){ kaReady=true; checkReady(); });
+  window.addEventListener('matrix-ready', function(){ matrixReady=true; checkReady(); });
+  setTimeout(function(){ kaReady=true; matrixReady=true; checkReady(); }, 3000);
 })();
 </script>
 
@@ -746,6 +746,28 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll, {passive:true});
   onScroll();
+})();
+</script>
+
+<!-- ==================== ORBIT ITEM CLICK FEEDBACK (glass pill) ==================== -->
+<script>
+(function(){
+  document.querySelectorAll('.orbit-item').forEach(function(item){
+    item.addEventListener('click', function(e){
+      e.preventDefault();
+      var targetUrl = this.getAttribute('href');
+      document.querySelectorAll('.orbit-item.is-clicked').forEach(function(prev){
+        prev.classList.remove('is-clicked');
+      });
+      this.classList.add('is-clicked');
+      setTimeout(function(){ window.location.href = targetUrl; }, 300);
+    });
+  });
+  window.addEventListener('pageshow', function(){
+    document.querySelectorAll('.orbit-item.is-clicked').forEach(function(item){
+      item.classList.remove('is-clicked');
+    });
+  });
 })();
 </script>
 
