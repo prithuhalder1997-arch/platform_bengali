@@ -10,87 +10,33 @@
 <link rel="stylesheet" href="css/style.css">
 <style>
 html { scroll-behavior: smooth; }
-/* Fixed language toggle */
 .lang-toggle-fixed { position:fixed; bottom:32px; right:32px; z-index:250; display:flex; background:rgba(255,255,255,0.8); backdrop-filter:blur(14px); border:1px solid rgba(0,0,0,0.08); border-radius:50px; padding:4px; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
 .lang-toggle-fixed .lang-btn { border:none; background:transparent; outline:none; cursor:pointer; padding:8px 20px; border-radius:40px; font-family:'DM Sans',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; color:#8a8a8a; transition:all 0.3s; line-height:1; }
 .lang-toggle-fixed .lang-btn.active { background:#cc2828; color:#fff; box-shadow:0 2px 12px rgba(204,40,40,0.35); }
 .lang-toggle-fixed .lang-btn[data-lang="bn"] { font-family:'Noto Sans Bengali',sans-serif; font-weight:600; text-transform:none; font-size:13px; }
 @media(max-width:768px){ .lang-toggle-fixed{bottom:16px;right:16px;} .lang-toggle-fixed .lang-btn{padding:7px 14px;font-size:11px;} }
 
-/* Header logo group — IFA + BNP side by side */
 .header-logo-left { display:flex; align-items:center; gap:14px; }
 .header-logo-sep { width:1px; height:34px; background:rgba(0,0,0,0.14); display:inline-block; flex-shrink:0; }
-/* Enlarged BNP Paribas logo to balance IFA */
 .bnp-logo { height:40px; max-height:40px; width:auto; object-fit:contain; }
 @media(max-width:768px){ .bnp-logo{height:30px;} .header-logo-sep{height:26px;} }
 
-/* ==================== LIQUID GLASS GLASSMORPHISM NAV ==================== */
+/* LIQUID GLASS GLASSMORPHISM NAV — layered over style.css */
 .nav-bar {
-  position:fixed; top:50%; left:26px; transform:translateY(-50%);
-  z-index:240;
-  display:flex; flex-direction:column; align-items:center;
-  padding:20px 14px;
-  border-radius:26px;
-  background:linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.28));
-  backdrop-filter:blur(22px) saturate(180%);
-  -webkit-backdrop-filter:blur(22px) saturate(180%);
-  border:1px solid rgba(255,255,255,0.6);
-  box-shadow:
-    0 8px 40px rgba(0,0,0,0.10),
-    0 2px 10px rgba(0,0,0,0.05),
-    inset 0 1px 1px rgba(255,255,255,0.7),
-    inset 0 -1px 2px rgba(0,0,0,0.04);
+  background:linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.28)) !important;
+  backdrop-filter:blur(22px) saturate(180%) !important;
+  -webkit-backdrop-filter:blur(22px) saturate(180%) !important;
+  border:1px solid rgba(255,255,255,0.6) !important;
+  border-radius:26px !important;
+  box-shadow:0 8px 40px rgba(0,0,0,0.10), 0 2px 10px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.7), inset 0 -1px 2px rgba(0,0,0,0.04) !important;
 }
-.nav-bar::before {
-  content:''; position:absolute; inset:0; border-radius:26px; pointer-events:none;
-  background:linear-gradient(160deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 40%);
-  opacity:0.7;
-}
-.nav-counter, .nav-total {
-  font-family:'Syne',sans-serif; font-size:11px; font-weight:700;
-  color:#cc2828; letter-spacing:0.05em; position:relative; z-index:1;
-}
-.nav-counter { margin-bottom:14px; }
-.nav-total { margin-top:14px; color:#8a8a8a; }
-.nav-track {
-  position:relative; width:3px; height:260px;
-  background:rgba(0,0,0,0.08); border-radius:3px; z-index:1;
-}
-.nav-fill {
-  position:absolute; left:0; width:3px; border-radius:3px;
-  background:linear-gradient(to bottom,#cc2828,#b08d40);
-  transition:top 0.45s cubic-bezier(0.22,1,0.36,1), height 0.45s cubic-bezier(0.22,1,0.36,1);
-}
-.nav-segment {
-  position:absolute; left:50%; transform:translateX(-50%);
-  cursor:pointer; display:flex; align-items:center;
-}
-.nav-tick {
-  width:11px; height:11px; border-radius:50%;
-  background:rgba(255,255,255,0.7); border:2px solid rgba(0,0,0,0.18);
-  box-shadow:0 1px 3px rgba(0,0,0,0.12);
-  transition:all 0.3s ease;
-}
-.nav-segment:hover .nav-tick { border-color:#cc2828; transform:scale(1.25); }
-.nav-segment.active .nav-tick { background:#cc2828; border-color:#cc2828; box-shadow:0 0 0 4px rgba(204,40,40,0.15); }
 .nav-seg-label {
-  position:absolute; left:22px; white-space:nowrap;
-  font-family:'Syne',sans-serif; font-size:11px; font-weight:600;
-  letter-spacing:0.04em; color:#4a4a4a;
-  padding:5px 12px; border-radius:20px;
-  background:linear-gradient(135deg, rgba(255,255,255,0.75), rgba(255,255,255,0.45));
+  background:linear-gradient(135deg, rgba(255,255,255,0.75), rgba(255,255,255,0.45)) !important;
   backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-  border:1px solid rgba(255,255,255,0.6);
-  box-shadow:0 4px 16px rgba(0,0,0,0.08);
-  opacity:0; transform:translateX(-6px);
-  transition:opacity 0.28s ease, transform 0.28s ease;
-  pointer-events:none;
+  border:1px solid rgba(255,255,255,0.6) !important;
+  box-shadow:0 4px 16px rgba(0,0,0,0.08) !important;
 }
-.nav-segment:hover .nav-seg-label, .nav-segment.active .nav-seg-label { opacity:1; transform:translateX(0); }
-body.bn-mode .nav-seg-label { font-family:'Noto Sans Bengali',sans-serif; letter-spacing:0; }
-@media(max-width:900px){ .nav-bar{display:none;} }
 
-/* Story blocks */
 .story-block { position:relative; z-index:1; padding:clamp(60px,10vh,120px) clamp(24px,5vw,80px); overflow:hidden; }
 .story-inner { max-width:760px; margin:0 auto; }
 .sr { opacity:0; transform:translateY(28px); transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
@@ -166,14 +112,12 @@ body.bn-mode .nav-seg-label { font-family:'Noto Sans Bengali',sans-serif; letter
 .close-stmt .ifa-cr { margin-top:16px; font-family:'DM Sans',sans-serif; font-size:13px; font-style:italic; color:#8a8a8a; }
 .deco-fl { position:absolute; pointer-events:none; user-select:none; font-family:'Noto Sans Bengali',sans-serif; font-weight:800; opacity:0.03; line-height:1; }
 
-/* Supporters section blocks */
 .bnp-divider { border:none; border-top:1px solid rgba(0,0,0,0.07); margin:48px 0 40px; }
 .bnp-logo-block { display:flex; align-items:center; gap:24px; margin-bottom:28px; flex-wrap:wrap; }
 .bnp-logo-block img { height:48px; width:auto; object-fit:contain; flex-shrink:0; }
 .monotype-logo-link { display:inline-flex; align-items:center; transition:opacity 0.2s; }
 .monotype-logo-link:hover { opacity:0.75; }
 
-/* Certificate cards — clickable */
 .cert-link { display:block; text-decoration:none; color:inherit; cursor:pointer; }
 .cert-link.placeholder-card { transition:all 0.28s cubic-bezier(0.22,1,0.36,1); }
 .cert-link.placeholder-card:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,0.09); border-color:rgba(204,40,40,0.28) !important; }
@@ -184,7 +128,6 @@ body.bn-mode .nav-seg-label { font-family:'Noto Sans Bengali',sans-serif; letter
 .cert-status.active { background:rgba(69,123,110,0.1); color:#457b6e; border:1px solid rgba(69,123,110,0.2); }
 .cert-status.soon { background:rgba(176,141,64,0.1); color:#b08d40; border:1px solid rgba(176,141,64,0.2); }
 
-/* Resources — interactive expandable cards */
 .res-card { display:block; text-align:left; width:100%; cursor:pointer; border:1px solid rgba(0,0,0,0.06); transition:all 0.28s cubic-bezier(0.22,1,0.36,1); }
 .res-card:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,0.08); border-color:rgba(204,40,40,0.25); }
 .res-card .res-head { display:flex; align-items:center; justify-content:space-between; gap:12px; }
@@ -198,7 +141,6 @@ body.bn-mode .nav-seg-label { font-family:'Noto Sans Bengali',sans-serif; letter
 .res-sublist a svg { flex-shrink:0; color:#cc2828; opacity:0.7; }
 body.bn-mode .res-sublist a { font-family:'Noto Sans Bengali',sans-serif; }
 
-/* Bengali mode */
 .lang-en { display: inline; }
 .lang-bn { display: none; }
 body.bn-mode .lang-en { display: none; }
@@ -221,33 +163,13 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 <div class="bg-illustration"></div>
 
 <div id="preloader" class="preloader"><div class="preloader-inner"><span class="preloader-text">ক</span><div class="preloader-bar"><div class="preloader-fill"></div></div></div></div>
-<script>
-(function(){
-  // Preloader hides once BOTH canvas animations signal ready
-  // (matrix.js -> 'matrix-ready', ka-rotation.js -> 'ka-ready'),
-  // with a 3s failsafe so it can never hang the page.
-  var preloader=document.getElementById('preloader');
-  var kaReady=false, matrixReady=false;
-  function checkReady(){
-    if(kaReady && matrixReady && preloader && !preloader.classList.contains('loaded')){
-      preloader.classList.add('loaded');
-      setTimeout(function(){ preloader.style.display='none'; }, 600);
-    }
-  }
-  window.addEventListener('ka-ready', function(){ kaReady=true; checkReady(); });
-  window.addEventListener('matrix-ready', function(){ matrixReady=true; checkReady(); });
-  setTimeout(function(){ kaReady=true; matrixReady=true; checkReady(); }, 3000);
-})();
-</script>
 
 <header class="site-header" id="siteHeader">
-  <!-- Left: IFA + BNP Paribas logos -->
   <div class="header-logo header-logo-left">
     <img src="img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span>
     <span class="header-logo-sep"></span>
     <img src="img/BNPP_Logo.png" alt="BNP Paribas" class="logo-img bnp-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">BNP Paribas</span>
   </div>
-  <!-- Right: Bhashascope -->
   <div class="header-logo header-logo-right"><img src="img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></div>
 </header>
 
@@ -270,7 +192,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
   <div class="nav-total">/ 06</div>
 </nav>
 
-<!-- ==================== HERO ==================== -->
 <section class="hero" id="section-0">
   <div class="hero-bg"><div class="bg-curve bg-curve-1"></div><div class="bg-curve bg-curve-2"></div></div>
   <div class="hero-stage"><div class="hero-scale-wrapper">
@@ -295,10 +216,9 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
   <div class="deco-arrow"><svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1"><path d="M10 10 L40 25 L10 40"/></svg></div>
 </section>
 
-<!-- ==================== SECTION 1 — PROJECT VISION ==================== -->
-<div id="section-1">
+<!-- SECTION 1 — PROJECT VISION (a real <section> so navigation.js counts it → fixes counter/watermark mismatch) -->
+<section id="section-1" class="section-content">
 
-  <!-- 1A: Hook -->
   <div class="story-block sb-clear" style="min-height:90vh; display:flex; align-items:center;">
     <div class="story-inner">
       <div class="s-eyebrow sr" data-en="Project Vision" data-bn="প্রকল্প প্রস্তাবনা">Project Vision</div>
@@ -308,7 +228,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     </div>
   </div>
 
-  <!-- 1B: Provocation -->
   <div class="story-block sb-dark">
     <div class="deco-fl" style="font-size:180px;right:-20px;top:30px;">ভ</div>
     <div class="story-inner">
@@ -319,7 +238,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     </div>
   </div>
 
-  <!-- 1C: Think about it -->
   <div class="story-block sb-warm">
     <div class="story-inner">
       <p class="s-prose sr" style="font-style:italic;color:#8a8a8a;margin-bottom:28px;" data-en="Think about it this way —" data-bn="একটু তলিয়ে ভাবলে বোঝা যায় —">Think about it this way —</p>
@@ -331,7 +249,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     </div>
   </div>
 
-  <!-- 1D: Three Engines -->
   <div class="story-block sb-cool">
     <div class="story-inner">
       <div class="s-eyebrow sr" data-en="Project Framework" data-bn="প্রকল্পিত কাঠামো">Project Framework</div>
@@ -365,7 +282,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     </div>
   </div>
 
-  <!-- 1E: Deliverables -->
   <div class="story-block sb-dark">
     <div class="story-inner">
       <div class="s-eyebrow sr" style="color:rgba(204,40,40,0.7);" data-en="So how do we investigate this?" data-bn="ভাষা ও সংস্কৃতির অবস্থা কীভাবে ঠাওর করা হবে?">So how do we investigate this?</div>
@@ -383,7 +299,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     </div>
   </div>
 
-  <!-- 1F: CFP -->
   <div class="story-block sb-warm">
     <div class="story-inner">
       <div class="s-eyebrow sr" data-en="Conference" data-bn="আলোচনা সভা">Conference</div>
@@ -407,7 +322,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     </div>
   </div>
 
-  <!-- 1G: Archive -->
   <div class="story-block sb-clear">
     <div class="story-inner">
       <div class="s-eyebrow sr" data-en="Where does it all go?" data-bn="কোথায় থাকবে এসব?">Where does it all go?</div>
@@ -429,7 +343,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     </div>
   </div>
 
-  <!-- 1H: Timeline + Quote -->
   <div class="story-block sb-cool">
     <div class="story-inner">
       <div class="s-eyebrow sr" data-en="Timeline" data-bn="সময়সূচী">Timeline</div>
@@ -450,9 +363,9 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     </div>
   </div>
 
-</div><!-- /section-1 -->
+</section>
 
-<!-- ==================== SECTION 2 — PROJECT BHASHASCOPE ==================== -->
+<!-- SECTION 2 — PROJECT BHASHASCOPE -->
 <section class="section-content section-b" id="section-2">
   <div class="section-inner">
     <div class="section-label reveal" data-en="02" data-bn="০২">02</div>
@@ -479,7 +392,7 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
   <div class="section-number">02</div>
 </section>
 
-<!-- ==================== SECTION 3 — RELEVANT RESOURCES ==================== -->
+<!-- SECTION 3 — RELEVANT RESOURCES (interactive) -->
 <section class="section-content section-a" id="section-3">
   <div class="section-inner">
     <div class="section-label reveal" data-en="03" data-bn="০৩">03</div>
@@ -487,7 +400,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     <p class="section-body reveal reveal-delay-2" data-en="A curated collection of research materials, transcription repositories, theoretical frameworks, and documentation tools developed during the project. Tap any category to explore." data-bn="প্রকল্প চলাকালীন তৈরি গবেষণা সম্পর্কিত উপযোগী তথ্য, প্রতিলিপি ভান্ডার, তাত্ত্বিক কাঠামো এবং নথিবদ্ধকরণ। বিস্তারিত দেখতে যেকোনো বিভাগে ক্লিক করুন।">A curated collection of research materials, transcription repositories, theoretical frameworks, and documentation tools developed during the project. Tap any category to explore.</p>
     <div class="placeholder-grid reveal reveal-delay-3">
 
-      <!-- Publications -->
       <div class="placeholder-card res-card" id="resPublications" role="button" tabindex="0" aria-expanded="false">
         <div class="res-head">
           <h3 style="margin-bottom:0;" data-en="Publications" data-bn="প্রকাশনা">Publications</h3>
@@ -501,7 +413,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
         </ul>
       </div>
 
-      <!-- Project Outcomes -->
       <div class="placeholder-card res-card" id="resOutcomes" role="button" tabindex="0" aria-expanded="false">
         <div class="res-head">
           <h3 style="margin-bottom:0;" data-en="Project Outcomes" data-bn="প্রকল্পের ফলাফল">Project Outcomes</h3>
@@ -514,7 +425,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
         </ul>
       </div>
 
-      <!-- Tools -->
       <div class="placeholder-card res-card" id="resTools" role="button" tabindex="0" aria-expanded="false">
         <div class="res-head">
           <h3 style="margin-bottom:0;" data-en="Tools" data-bn="সরঞ্জাম">Tools</h3>
@@ -531,13 +441,12 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
   <div class="section-number">03</div>
 </section>
 
-<!-- ==================== SECTION 4 — SUPPORTERS ==================== -->
+<!-- SECTION 4 — SUPPORTERS (IFA + BNP + Monotype) -->
 <section class="section-content section-b" id="section-4">
   <div class="section-inner">
     <div class="section-label reveal" data-en="04" data-bn="০৪">04</div>
     <p class="reveal" style="font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#cc2828;opacity:0.7;margin-bottom:24px;" data-en="This Foundation Project is implemented by India Foundation for the Arts (IFA) under the Arts Research programme, supported by BNP Paribas India and Monotype." data-bn="এই ফাউন্ডেশন প্রকল্পটি ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস (আই এফ এ) কর্তৃক কলা গবেষণা কার্যক্রমের অধীনে বাস্তবায়িত, বিএনপি পারিবা ইন্ডিয়া ও মনোটাইপ-এর সহযোগিতায়।">This Foundation Project is implemented by India Foundation for the Arts (IFA) under the Arts Research programme, supported by BNP Paribas India and Monotype.</p>
 
-    <!-- IFA Block -->
     <div class="reveal reveal-delay-1" style="display:flex;align-items:center;gap:24px;margin-bottom:32px;flex-wrap:wrap;">
       <img src="img/ifa-logo.png" alt="IFA" style="height:64px;width:auto;flex-shrink:0;" loading="lazy" decoding="async" onerror="this.style.display='none';">
       <h2 class="section-heading" style="margin-bottom:0;" data-en="About IFA" data-bn="আই এফ এ -এর পরিচয়">About IFA</h2>
@@ -559,10 +468,8 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
       <a href="https://indiaifa.org/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#cc2828;text-decoration:none;border-bottom:1px solid rgba(204,40,40,0.3);padding-bottom:3px;">Visit indiaifa.org <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
     </div>
 
-    <!-- BNP Paribas Divider -->
     <hr class="bnp-divider reveal">
 
-    <!-- BNP Paribas Block -->
     <div class="bnp-logo-block reveal reveal-delay-1">
       <img src="img/BNPP_Logo.png" alt="BNP Paribas" loading="lazy" decoding="async" onerror="this.style.display='none';">
       <h2 class="section-heading" style="margin-bottom:0;" data-en="About BNP Paribas in India" data-bn="ভারতে বিএনপি পারিবা">About BNP Paribas in India</h2>
@@ -573,10 +480,8 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
       <a href="https://www.bnpparibas.bank.in/en/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#cc2828;text-decoration:none;border-bottom:1px solid rgba(204,40,40,0.3);padding-bottom:3px;">Visit BNP Paribas India <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
     </div>
 
-    <!-- Monotype Divider -->
     <hr class="bnp-divider reveal">
 
-    <!-- Monotype Block -->
     <div class="bnp-logo-block reveal reveal-delay-1">
       <a href="https://www.monotype.com/" target="_blank" rel="noopener noreferrer" class="monotype-logo-link" aria-label="Monotype">
         <picture>
@@ -594,14 +499,13 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
   <div class="section-number">04</div>
 </section>
 
-<!-- ==================== SECTION 5 — CERTIFICATES ==================== -->
+<!-- SECTION 5 — CERTIFICATES -->
 <section class="section-content section-a" id="section-5">
   <div class="section-inner">
     <div class="section-label reveal" data-en="05" data-bn="০৫">05</div>
     <h2 class="section-heading reveal reveal-delay-1" data-en="Certificate Registry" data-bn="সার্টিফিকেট রেজিস্ট্রি">Certificate Registry</h2>
     <p class="section-body reveal reveal-delay-2" data-en="Participants of the workshops and conference can verify and download their certificates of participation here. Each certificate page has a stable URL — scan the QR code on your certificate to return directly to your verification page." data-bn="কর্মশালা ও সম্মেলনের অংশগ্রহণকারীরা এখানে তাদের অংশগ্রহণের সার্টিফিকেট যাচাই এবং ডাউনলোড করতে পারবেন। প্রতিটি সার্টিফিকেটে একটি স্থায়ী লিংক রয়েছে — সরাসরি যাচাইয়ের পাতায় পৌঁছাতে সার্টিফিকেটের QR কোড স্ক্যান করুন।">Participants of the workshops and conference can verify and download their certificates of participation here. Each certificate page has a stable URL — scan the QR code on your certificate to return directly to your verification page.</p>
 
-    <!-- URL guidance note -->
     <div style="display:inline-flex;align-items:center;gap:8px;margin:18px 0 32px;padding:10px 18px;border-radius:8px;background:rgba(61,90,128,0.05);border:1px solid rgba(61,90,128,0.12);font-size:12px;color:#3d5a80;" class="reveal reveal-delay-2">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
       <span data-en="Platform Bengali event certificates live under /certificates/pb/ — a stable path that distinguishes them from future Bhashascope projects." data-bn="প্ল্যাটফর্ম বেঙ্গলির সমস্ত সার্টিফিকেটের পাতা /certificates/pb/ পথে স্থায়ীভাবে সংরক্ষিত — ভবিষ্যৎ প্রকল্পের সার্টিফিকেট থেকে আলাদা রাখতে।">Platform Bengali event certificates live under /certificates/pb/ — a stable path that distinguishes them from future Bhashascope projects.</span>
@@ -609,7 +513,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 
     <div class="placeholder-grid reveal reveal-delay-3">
 
-      <!-- MT Workshop — Coming Soon -->
       <a href="certificates/pb/mt-workshop.html" class="placeholder-card cert-link">
         <span class="cert-status soon" data-en="○ Coming Soon" data-bn="○ শীঘ্রই আসছে">○ Coming Soon</span>
         <h3 data-en="MT Workshop" data-bn="যন্ত্র অনুবাদ কর্মশালা">MT Workshop</h3>
@@ -617,7 +520,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
         <span class="cert-arrow"><span class="lang-en">View Page</span><span class="lang-bn">পাতাটি দেখুন</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
       </a>
 
-      <!-- Orientation Workshop — Coming Soon -->
       <a href="certificates/pb/orientation-workshop.html" class="placeholder-card cert-link">
         <span class="cert-status soon" data-en="○ Coming Soon" data-bn="○ শীঘ্রই আসছে">○ Coming Soon</span>
         <h3 data-en="Orientation Workshop" data-bn="ওরিয়েন্টেশন কর্মশালা">Orientation Workshop</h3>
@@ -625,7 +527,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
         <span class="cert-arrow"><span class="lang-en">View Page</span><span class="lang-bn">পাতাটি দেখুন</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
       </a>
 
-      <!-- Conference — Coming Soon -->
       <a href="certificates/pb/conference.html" class="placeholder-card cert-link">
         <span class="cert-status soon" data-en="○ Coming Soon" data-bn="○ শীঘ্রই আসছে">○ Coming Soon</span>
         <h3 data-en="Conference" data-bn="আলোচনাচক্র">Conference</h3>
@@ -633,7 +534,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
         <span class="cert-arrow"><span class="lang-en">View Page</span><span class="lang-bn">পাতাটি দেখুন</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
       </a>
 
-      <!-- Project Contributors -->
       <a href="certificates/pb/contributors.html" class="placeholder-card cert-link" style="border-color:rgba(204,40,40,0.12);">
         <span class="cert-status" style="background:rgba(204,40,40,0.07);color:#cc2828;border:1px solid rgba(204,40,40,0.18);" data-en="★ Project Team" data-bn="★ প্রকল্প দল">★ Project Team</span>
         <h3 data-en="Core Contributors" data-bn="মূল সহযোগীবৃন্দ">Core Contributors</h3>
@@ -646,7 +546,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
   <div class="section-number">05</div>
 </section>
 
-<!-- ==================== FOOTER ==================== -->
 <footer style="position:relative;z-index:1;max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,48px) 56px;border-top:1px solid rgba(0,0,0,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
   <span style="font-size:12px;color:#8a8a8a;" data-en="© 2026 Platform Bengali / Bhashascope · Implemented by IFA · Part-supported by BNP Paribas India and Monotype" data-bn="© ২০২৬ প্ল্যাটফর্ম বাংলা / ভাষাস্কোপ · আই এফ এ কর্তৃক বাস্তবায়িত · বিএনপি পারিবা ইন্ডিয়া ও মনোটাইপ-এর আংশিক সহযোগিতায়">© 2026 Platform Bengali / Bhashascope · Implemented by IFA · Part-supported by BNP Paribas India and Monotype</span>
   <a href="terms.html" style="font-size:12px;color:#8a8a8a;text-decoration:none;border-bottom:1px solid rgba(0,0,0,0.15);padding-bottom:1px;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='#cc2828';this.style.borderColor='rgba(204,40,40,0.4)';" onmouseout="this.style.color='#8a8a8a';this.style.borderColor='rgba(0,0,0,0.15)';">
@@ -655,8 +554,11 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
   </a>
 </footer>
 
+<!-- Canvas animations fire ka-ready / matrix-ready → navigation.js hides preloader -->
 <script src="js/ka-rotation.js" defer></script>
 <script src="js/matrix.js" defer></script>
+<!-- navigation.js owns preloader, nav bar, orbit clicks, scroll reveal. Its bilingual toggle is neutralized below. -->
+<script src="js/navigation.js" defer></script>
 
 <script>
 (function(){
@@ -686,6 +588,7 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 })();
 </script>
 
+<!-- Story-block reveal (.sr → .sv) for section-1 -->
 <script>
 (function(){
   var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('sv');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
@@ -693,85 +596,7 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 })();
 </script>
 
-<!-- ==================== NAVIGATION — smooth scroll + accurate active state ==================== -->
-<script>
-(function(){
-  var nav = document.getElementById('navBar');
-  if(!nav) return;
-  var segments = Array.prototype.slice.call(nav.querySelectorAll('.nav-segment'));
-  var counter = document.getElementById('navCounter');
-  var fill = document.getElementById('navFill');
-  // Section anchors in visual order (0..5)
-  var sections = segments.map(function(seg){
-    return document.getElementById('section-' + seg.getAttribute('data-section'));
-  });
-
-  function pad(n){ return (n<10?'0':'') + n; }
-
-  // Click → smooth scroll, aligning section top to viewport top
-  segments.forEach(function(seg, i){
-    seg.addEventListener('click', function(){
-      var target = sections[i];
-      if(target){
-        var top = target.getBoundingClientRect().top + (window.pageYOffset||document.documentElement.scrollTop);
-        window.scrollTo({ top: Math.round(top), behavior:'smooth' });
-      }
-    });
-  });
-
-  function setActive(idx){
-    segments.forEach(function(seg,i){ seg.classList.toggle('active', i===idx); });
-    if(counter) counter.textContent = pad(idx+1);
-    if(fill){
-      // Position the fill to reach the active tick along the track
-      var tops = [0,20,40,60,80,97];
-      fill.style.top = '0%';
-      fill.style.height = (tops[idx] + 3) + '%';
-    }
-  }
-
-  // Track which section occupies the viewport centre
-  var current = -1;
-  function onScroll(){
-    var mid = (window.pageYOffset||document.documentElement.scrollTop) + window.innerHeight*0.35;
-    var idx = 0;
-    for(var i=0;i<sections.length;i++){
-      var s = sections[i];
-      if(!s) continue;
-      var top = s.getBoundingClientRect().top + (window.pageYOffset||document.documentElement.scrollTop);
-      if(top <= mid) idx = i;
-    }
-    if(idx !== current){ current = idx; setActive(idx); }
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll, {passive:true});
-  onScroll();
-})();
-</script>
-
-<!-- ==================== ORBIT ITEM CLICK FEEDBACK (glass pill) ==================== -->
-<script>
-(function(){
-  document.querySelectorAll('.orbit-item').forEach(function(item){
-    item.addEventListener('click', function(e){
-      e.preventDefault();
-      var targetUrl = this.getAttribute('href');
-      document.querySelectorAll('.orbit-item.is-clicked').forEach(function(prev){
-        prev.classList.remove('is-clicked');
-      });
-      this.classList.add('is-clicked');
-      setTimeout(function(){ window.location.href = targetUrl; }, 300);
-    });
-  });
-  window.addEventListener('pageshow', function(){
-    document.querySelectorAll('.orbit-item.is-clicked').forEach(function(item){
-      item.classList.remove('is-clicked');
-    });
-  });
-})();
-</script>
-
-<!-- ==================== RESOURCES — interactive expandable cards ==================== -->
+<!-- Resources expandable cards -->
 <script>
 (function(){
   var cards = document.querySelectorAll('.res-card');
@@ -781,7 +606,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
       card.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
     card.addEventListener('click', function(e){
-      // Let clicks on actual sub-links navigate normally
       if(e.target.closest('a')) return;
       toggle();
     });
@@ -792,9 +616,17 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 })();
 </script>
 
+<!-- Bilingual toggle (rich-text compatible). Clone-replaces the buttons to strip navigation.js's textContent toggle so only this runs. -->
 <script>
-(function(){
-  var KEY='pb-lang',btnEN=document.getElementById('btnEN'),btnBN=document.getElementById('btnBN');
+window.addEventListener('load', function(){
+  var KEY='pb-lang';
+  var btnEN=document.getElementById('btnEN'), btnBN=document.getElementById('btnBN');
+  if(!btnEN||!btnBN) return;
+  var newEN=btnEN.cloneNode(true), newBN=btnBN.cloneNode(true);
+  btnEN.parentNode.replaceChild(newEN, btnEN);
+  btnBN.parentNode.replaceChild(newBN, btnBN);
+  btnEN=newEN; btnBN=newBN;
+
   var lang=localStorage.getItem(KEY)||'en';
   function apply(l){
     lang=l;localStorage.setItem(KEY,lang);
@@ -803,13 +635,14 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     document.body.classList.toggle('bn-mode',lang==='bn');
     document.querySelectorAll('[data-en][data-bn]').forEach(function(el){
       var c=el.getAttribute('data-'+lang);
+      el.style.fontFamily=''; el.style.letterSpacing=''; el.style.textTransform=''; el.style.fontSize='';
       if(c.indexOf('<')!==-1){el.innerHTML=c;}else{el.textContent=c;}
     });
   }
   btnEN.addEventListener('click',function(){apply('en');});
   btnBN.addEventListener('click',function(){apply('bn');});
   apply(lang);
-})();
+});
 </script>
 </body>
 </html>
