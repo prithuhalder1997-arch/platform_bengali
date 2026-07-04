@@ -221,6 +221,24 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 <div class="bg-illustration"></div>
 
 <div id="preloader" class="preloader"><div class="preloader-inner"><span class="preloader-text">ক</span><div class="preloader-bar"><div class="preloader-fill"></div></div></div></div>
+<script>
+(function(){
+  var pre=document.getElementById('preloader');
+  if(!pre) return;
+  function hide(){
+    if(!pre) return;
+    pre.classList.add('hidden');            // in case the CSS uses a .hidden state
+    pre.style.opacity='0';
+    pre.style.pointerEvents='none';
+    setTimeout(function(){ if(pre) pre.style.display='none'; }, 600);
+  }
+  // Hide as soon as the page is ready...
+  if(document.readyState==='complete'){ hide(); }
+  else { window.addEventListener('load', hide); }
+  // ...and a hard failsafe so it can NEVER hang the page again.
+  setTimeout(hide, 3000);
+})();
+</script>
 
 <header class="site-header" id="siteHeader">
   <!-- Left: IFA + BNP Paribas logos -->
@@ -521,7 +539,7 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 
     <!-- IFA Block -->
     <div class="reveal reveal-delay-1" style="display:flex;align-items:center;gap:24px;margin-bottom:32px;flex-wrap:wrap;">
-      <img src="img/ifa-logo.png" alt="IFA" style="height:64px;width:auto;flex-shrink:0;" onerror="this.style.display='none';">
+      <img src="img/ifa-logo.png" alt="IFA" style="height:64px;width:auto;flex-shrink:0;" loading="lazy" decoding="async" onerror="this.style.display='none';">
       <h2 class="section-heading" style="margin-bottom:0;" data-en="About IFA" data-bn="আই এফ এ -এর পরিচয়">About IFA</h2>
     </div>
     <p class="section-body reveal reveal-delay-2" data-en="The India Foundation for the Arts (IFA) is an independent, nationwide, not-for-profit organisation that makes grants and implements projects across research, practice, and education in the arts and culture in India. Set up as a Public Charitable Trust in 1993, IFA began making grants and implementing projects in 1995. Since then, it has supported and implemented over 850 projects, disbursing over ₹38.65 crore (USD 4.64 million) across the country." data-bn="ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস একটি স্বাধীন অলাভজনক সংস্থা যাঁরা ভারতবর্ষের গোটা দেশ জুড়ে কলা এবং সংস্কৃতি বিষয়ক গবেষণা, অনুশীলন এবং শিক্ষার জন্য অনুদান দেয় এবং প্রকল্প বাস্তবায়িত করতে সাহায্য করে। ১৯৯৩ সালে একটি দাতব্য প্রতিষ্ঠান হিসেবে যাত্রা শুরু করে, ১৯৯৫ সাল থেকে আই এফ এ ৮৫০ টির বেশি প্রকল্প বাস্তবায়নে সহযোগিতা করেছে, ৩৮.৫৬ কোটি টাকার অনুদানের মাধ্যমে।">The India Foundation for the Arts (IFA) is an independent, nationwide, not-for-profit organisation that makes grants and implements projects across research, practice, and education in the arts and culture in India. Set up as a Public Charitable Trust in 1993, IFA began making grants and implementing projects in 1995. Since then, it has supported and implemented over 850 projects, disbursing over ₹38.65 crore (USD 4.64 million) across the country.</p>
@@ -546,7 +564,7 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 
     <!-- BNP Paribas Block -->
     <div class="bnp-logo-block reveal reveal-delay-1">
-      <img src="img/BNPP_Logo.png" alt="BNP Paribas" onerror="this.style.display='none';">
+      <img src="img/BNPP_Logo.png" alt="BNP Paribas" loading="lazy" decoding="async" onerror="this.style.display='none';">
       <h2 class="section-heading" style="margin-bottom:0;" data-en="About BNP Paribas in India" data-bn="ভারতে বিএনপি পারিবা">About BNP Paribas in India</h2>
     </div>
     <p class="section-body reveal reveal-delay-2" data-en="BNP Paribas India started its operations in 1860 to support local and global corporate and financial institutions in their growth and expansion strategies. The second oldest foreign bank in the country, BNP Paribas offers a rich and broad suite of solutions across the entire range of corporate and institutional banking, financing, investment banking, hedging, and equity and derivatives." data-bn="বিএনপি পারিবা ইন্ডিয়া ১৮৬০ সালে ভারতে তাদের কার্যক্রম শুরু করে, দেশীয় ও আন্তর্জাতিক কর্পোরেট এবং আর্থিক প্রতিষ্ঠানগুলির বিকাশ ও সম্প্রসারণ কৌশলে সহায়তা প্রদানের লক্ষ্যে। দেশের দ্বিতীয় প্রাচীনতম বিদেশি ব্যাংক হিসেবে বিএনপি পারিবা কর্পোরেট ও প্রাতিষ্ঠানিক ব্যাংকিং, অর্থায়ন, বিনিয়োগ ব্যাংকিং, হেজিং এবং ইকুইটি ও ডেরিভেটিভস বিষয়ক ব্যাপক সমাধান প্রদান করে থাকে।">BNP Paribas India started its operations in 1860 to support local and global corporate and financial institutions in their growth and expansion strategies. The second oldest foreign bank in the country, BNP Paribas offers a rich and broad suite of solutions across the entire range of corporate and institutional banking, financing, investment banking, hedging, and equity and derivatives.</p>
@@ -561,7 +579,10 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     <!-- Monotype Block -->
     <div class="bnp-logo-block reveal reveal-delay-1">
       <a href="https://www.monotype.com/" target="_blank" rel="noopener noreferrer" class="monotype-logo-link" aria-label="Monotype">
-        <img src="img/Monotype_Black_Logo.png" alt="Monotype" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<span style=&quot;font-family:Syne,sans-serif;font-weight:800;font-size:24px;color:#1a1a1a;&quot;>Monotype</span>');">
+        <picture>
+          <source srcset="img/Monotype_Black_Logo.webp" type="image/webp">
+          <img src="img/Monotype_Black_Logo.png" alt="Monotype" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentElement.parentElement.insertAdjacentHTML('beforeend','<span style=&quot;font-family:Syne,sans-serif;font-weight:800;font-size:24px;color:#1a1a1a;&quot;>Monotype</span>');">
+        </picture>
       </a>
       <h2 class="section-heading" style="margin-bottom:0;" data-en="About Monotype" data-bn="মনোটাইপ সম্পর্কে">About Monotype</h2>
     </div>
