@@ -216,8 +216,8 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
   <div class="deco-arrow"><svg viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="1"><path d="M10 10 L40 25 L10 40"/></svg></div>
 </section>
 
-<!-- SECTION 1 — PROJECT VISION (a real <section> so navigation.js counts it → fixes counter/watermark mismatch) -->
-<section id="section-1" class="section-content">
+<!-- SECTION 1 — PROJECT VISION. Classless section element: navigation.js counts it via its selector, but it does NOT inherit the .section-content flex layout that was crushing the stacked story-blocks. -->
+<section id="section-1">
 
   <div class="story-block sb-clear" style="min-height:90vh; display:flex; align-items:center;">
     <div class="story-inner">
