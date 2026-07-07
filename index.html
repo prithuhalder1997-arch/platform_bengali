@@ -113,6 +113,8 @@ html { scroll-behavior: smooth; }
 .close-stmt .ifa-cr { margin-top:16px; font-family:'DM Sans',sans-serif; font-size:13px; font-style:italic; color:#8a8a8a; }
 .deco-fl { position:absolute; pointer-events:none; user-select:none; font-family:'Noto Sans Bengali',sans-serif; font-weight:800; opacity:0.03; line-height:1; }
 
+/* Section 1 (Project Vision) — relative anchor for its 02 watermark; not .section-content so story-blocks stack normally */
+#section-1 { position:relative; }
 .bnp-divider { border:none; border-top:1px solid rgba(0,0,0,0.07); margin:48px 0 40px; }
 .bnp-logo-block { display:flex; align-items:center; gap:24px; margin-bottom:28px; flex-wrap:wrap; }
 .bnp-logo-block img { height:48px; width:auto; object-fit:contain; flex-shrink:0; }
@@ -232,6 +234,7 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 
 <!-- SECTION 1 — PROJECT VISION. Classless section element: navigation.js counts it via its selector, but it does NOT inherit the .section-content flex layout that was crushing the stacked story-blocks. -->
 <section id="section-1">
+  <div class="section-number" style="position:absolute;right:clamp(16px,4vw,80px);top:40px;">02</div>
 
   <div class="story-block sb-clear" style="min-height:90vh; display:flex; align-items:center;">
     <div class="story-inner">
@@ -382,7 +385,7 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 <!-- SECTION 2 — PROJECT BHASHASCOPE -->
 <section class="section-content section-b" id="section-2">
   <div class="section-inner">
-    <div class="section-label reveal" data-en="02" data-bn="০২">02</div>
+    <div class="section-label reveal" data-en="03" data-bn="০৩">03</div>
     <h2 class="section-heading reveal reveal-delay-1" data-en="Project Bhashascope" data-bn="ভাষাস্কোপ প্রকল্প">Project Bhashascope</h2>
     <p class="section-body reveal reveal-delay-2"><span class="lang-en">Platform Bengali (2020–2025) represents a specific research initiative bounded by its IFA grant period and scope. However, the digital repository website <strong>www.bhashascope.in</strong> is designed as a lasting infrastructure that transcends these temporal and funding constraints.</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি (২০২০–২০২৫) নামের গবেষণা উদ্যোগটি আই এফ এ-এর অনুদানের জন্য নির্দিষ্ট সময়কাল ও সীমিত পরিসরে আবদ্ধ। তবে এর ডিজিটাল রিপোজিটরি ওয়েবসাইট <strong>www.bhashascope.in</strong> এমন একটি স্থায়ী পরিকাঠামো, যা এই সময়সীমা ও আর্থিক সীমাবদ্ধতাকে অতিক্রম করে দীর্ঘমেয়াদে টিকে থাকার স্বপ্ন দেখে।</span></p>
     <p class="section-body reveal reveal-delay-2" style="margin-top:20px;" data-en="The name Bhashascope (ভাষাস্কোপ) serves as an expansive umbrella that houses Platform Bengali while promising a future beyond it. Just as a telescope or microscope extends human vision into realms otherwise invisible, Bhashascope extends our vision into the living, evolving landscape of language in the realm of the digital." data-bn="ভাষাস্কোপ ওয়েবসাইটটি বটগাছের মতো, যার অধীনে প্ল্যাটফর্ম বাংলা একটি গুরুত্বপূর্ণ প্রকল্প হিসেবে আত্মপ্রকাশ করেছে। যেমন টেলিস্কোপ বা মাইক্রোস্কোপ মানুষের দৃষ্টিতে এমন সব জগৎ খুলে দেয়, যা সাধারণত অদৃশ্য, তেমনি ভাষাস্কোপ আমাদের দৃষ্টির দিগন্ত বিস্তৃত করে ডিজিটাল পরিসরে ভাষা ও সংস্কৃতির ক্রমপরিবর্তনের রূপরেখাটির হদিশ দিতে সচেষ্ট।">The name Bhashascope (ভাষাস্কোপ) serves as an expansive umbrella that houses Platform Bengali while promising a future beyond it. Just as a telescope or microscope extends human vision into realms otherwise invisible, Bhashascope extends our vision into the living, evolving landscape of language in the realm of the digital.</p>
@@ -403,13 +406,13 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
       <a href="https://www.bhashascope.in" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#cc2828;text-decoration:none;border-bottom:1px solid rgba(204,40,40,0.3);padding-bottom:3px;">Visit bhashascope.in <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
     </div>
   </div>
-  <div class="section-number">02</div>
+  <div class="section-number">03</div>
 </section>
 
 <!-- SECTION 3 — RELEVANT RESOURCES (interactive) -->
 <section class="section-content section-a" id="section-3">
   <div class="section-inner">
-    <div class="section-label reveal" data-en="03" data-bn="০৩">03</div>
+    <div class="section-label reveal" data-en="04" data-bn="০৪">04</div>
     <h2 class="section-heading reveal reveal-delay-1" data-en="Relevant Resources" data-bn="প্রাসঙ্গিক তথ্যপুঞ্জি">Relevant Resources</h2>
     <p class="section-body reveal reveal-delay-2" data-en="A curated collection of research materials, transcription repositories, theoretical frameworks, and documentation tools developed during the project. Tap any category to explore." data-bn="প্রকল্প চলাকালীন তৈরি গবেষণা সম্পর্কিত উপযোগী তথ্য, প্রতিলিপি ভান্ডার, তাত্ত্বিক কাঠামো এবং নথিবদ্ধকরণ। বিস্তারিত দেখতে যেকোনো বিভাগে ক্লিক করুন।">A curated collection of research materials, transcription repositories, theoretical frameworks, and documentation tools developed during the project. Tap any category to explore.</p>
     <div class="placeholder-grid reveal reveal-delay-3">
@@ -452,13 +455,13 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 
     </div>
   </div>
-  <div class="section-number">03</div>
+  <div class="section-number">04</div>
 </section>
 
 <!-- SECTION 4 — SUPPORTERS (IFA + BNP + Monotype) -->
 <section class="section-content section-b" id="section-4">
   <div class="section-inner">
-    <div class="section-label reveal" data-en="04" data-bn="০৪">04</div>
+    <div class="section-label reveal" data-en="05" data-bn="০৫">05</div>
     <p class="reveal" style="font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#cc2828;opacity:0.7;margin-bottom:24px;" data-en="This Foundation Project is implemented by India Foundation for the Arts (IFA) under the Arts Research programme, supported by BNP Paribas India and Monotype." data-bn="এই ফাউন্ডেশন প্রকল্পটি ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস (আই এফ এ) কর্তৃক কলা গবেষণা কার্যক্রমের অধীনে বাস্তবায়িত, বিএনপি পারিবা ইন্ডিয়া ও মনোটাইপ-এর সহযোগিতায়।">This Foundation Project is implemented by India Foundation for the Arts (IFA) under the Arts Research programme, supported by BNP Paribas India and Monotype.</p>
 
     <div class="reveal reveal-delay-1" style="display:flex;align-items:center;gap:24px;margin-bottom:32px;flex-wrap:wrap;">
@@ -510,13 +513,13 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
       <a href="https://www.monotype.com/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#cc2828;text-decoration:none;border-bottom:1px solid rgba(204,40,40,0.3);padding-bottom:3px;">Visit monotype.com <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
     </div>
   </div>
-  <div class="section-number">04</div>
+  <div class="section-number">05</div>
 </section>
 
 <!-- SECTION 5 — CERTIFICATES -->
 <section class="section-content section-a" id="section-5">
   <div class="section-inner">
-    <div class="section-label reveal" data-en="05" data-bn="০৫">05</div>
+    <div class="section-label reveal" data-en="06" data-bn="০৬">06</div>
     <h2 class="section-heading reveal reveal-delay-1" data-en="Certificate Registry" data-bn="সার্টিফিকেট রেজিস্ট্রি">Certificate Registry</h2>
     <p class="section-body reveal reveal-delay-2" data-en="Participants of the workshops and conference can verify and download their certificates of participation here. Each certificate page has a stable URL — scan the QR code on your certificate to return directly to your verification page." data-bn="কর্মশালা ও সম্মেলনের অংশগ্রহণকারীরা এখানে তাদের অংশগ্রহণের সার্টিফিকেট যাচাই এবং ডাউনলোড করতে পারবেন। প্রতিটি সার্টিফিকেটে একটি স্থায়ী লিংক রয়েছে — সরাসরি যাচাইয়ের পাতায় পৌঁছাতে সার্টিফিকেটের QR কোড স্ক্যান করুন।">Participants of the workshops and conference can verify and download their certificates of participation here. Each certificate page has a stable URL — scan the QR code on your certificate to return directly to your verification page.</p>
 
@@ -557,7 +560,7 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 
     </div>
   </div>
-  <div class="section-number">05</div>
+  <div class="section-number">06</div>
 </section>
 
 <footer style="position:relative;z-index:1;max-width:900px;margin:0 auto;padding:32px clamp(20px,5vw,48px) 56px;border-top:1px solid rgba(0,0,0,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
