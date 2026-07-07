@@ -19,7 +19,8 @@ html { scroll-behavior: smooth; }
 .header-logo-left { display:flex; align-items:center; gap:14px; }
 .header-logo-sep { width:1px; height:34px; background:rgba(0,0,0,0.14); display:inline-block; flex-shrink:0; }
 .bnp-logo { height:40px; max-height:40px; width:auto; object-fit:contain; }
-@media(max-width:768px){ .bnp-logo{height:30px;} .header-logo-sep{height:26px;} }
+.monotype-header-logo { height:22px; max-height:22px; width:auto; object-fit:contain; display:block; }
+@media(max-width:768px){ .bnp-logo{height:30px;} .header-logo-sep{height:26px;} .monotype-header-logo{height:17px;} }
 
 /* LIQUID GLASS GLASSMORPHISM NAV — layered over style.css */
 .nav-bar {
@@ -117,6 +118,14 @@ html { scroll-behavior: smooth; }
 .bnp-logo-block img { height:48px; width:auto; object-fit:contain; flex-shrink:0; }
 .monotype-logo-link { display:inline-flex; align-items:center; transition:opacity 0.2s; }
 .monotype-logo-link:hover { opacity:0.75; }
+/* Monotype supporter block: logo stacked ABOVE the heading (wide wordmark reads better this way) */
+.monotype-block { display:flex; flex-direction:column; align-items:flex-start; gap:18px; margin-bottom:28px; }
+.monotype-block .monotype-logo-link img { height:34px; width:auto; object-fit:contain; }
+/* Gently smaller supporter headings so "About BNP Paribas in India" isn't a mouthful — main section titles keep their size */
+.bnp-logo-block .section-heading,
+.monotype-block .section-heading,
+.header-logo-left + .section-heading,
+.supporter-heading { font-size:clamp(28px,3vw,40px) !important; }
 
 .cert-link { display:block; text-decoration:none; color:inherit; cursor:pointer; }
 .cert-link.placeholder-card { transition:all 0.28s cubic-bezier(0.22,1,0.36,1); }
@@ -169,6 +178,11 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
     <img src="img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span>
     <span class="header-logo-sep"></span>
     <img src="img/BNPP_Logo.png" alt="BNP Paribas" class="logo-img bnp-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">BNP Paribas</span>
+    <span class="header-logo-sep"></span>
+    <picture>
+      <source srcset="img/Monotype_Black_Logo.webp" type="image/webp">
+      <img src="img/Monotype_Black_Logo.png" alt="Monotype" class="logo-img monotype-header-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+    </picture><span class="logo-fallback" style="display:none;">Monotype</span>
   </div>
   <div class="header-logo header-logo-right"><img src="img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></div>
 </header>
@@ -449,7 +463,7 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 
     <div class="reveal reveal-delay-1" style="display:flex;align-items:center;gap:24px;margin-bottom:32px;flex-wrap:wrap;">
       <img src="img/ifa-logo.png" alt="IFA" style="height:64px;width:auto;flex-shrink:0;" loading="lazy" decoding="async" onerror="this.style.display='none';">
-      <h2 class="section-heading" style="margin-bottom:0;" data-en="About IFA" data-bn="আই এফ এ -এর পরিচয়">About IFA</h2>
+      <h2 class="section-heading supporter-heading" style="margin-bottom:0;" data-en="About IFA" data-bn="আই এফ এ -এর পরিচয়">About IFA</h2>
     </div>
     <p class="section-body reveal reveal-delay-2" data-en="The India Foundation for the Arts (IFA) is an independent, nationwide, not-for-profit organisation that makes grants and implements projects across research, practice, and education in the arts and culture in India. Set up as a Public Charitable Trust in 1993, IFA began making grants and implementing projects in 1995. Since then, it has supported and implemented over 850 projects, disbursing over ₹38.65 crore (USD 4.64 million) across the country." data-bn="ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস একটি স্বাধীন অলাভজনক সংস্থা যাঁরা ভারতবর্ষের গোটা দেশ জুড়ে কলা এবং সংস্কৃতি বিষয়ক গবেষণা, অনুশীলন এবং শিক্ষার জন্য অনুদান দেয় এবং প্রকল্প বাস্তবায়িত করতে সাহায্য করে। ১৯৯৩ সালে একটি দাতব্য প্রতিষ্ঠান হিসেবে যাত্রা শুরু করে, ১৯৯৫ সাল থেকে আই এফ এ ৮৫০ টির বেশি প্রকল্প বাস্তবায়নে সহযোগিতা করেছে, ৩৮.৫৬ কোটি টাকার অনুদানের মাধ্যমে।">The India Foundation for the Arts (IFA) is an independent, nationwide, not-for-profit organisation that makes grants and implements projects across research, practice, and education in the arts and culture in India. Set up as a Public Charitable Trust in 1993, IFA began making grants and implementing projects in 1995. Since then, it has supported and implemented over 850 projects, disbursing over ₹38.65 crore (USD 4.64 million) across the country.</p>
     <p class="section-body reveal reveal-delay-2" style="margin-top:20px;" data-en="IFA believes that the arts and culture are essential to individual and community lives, and for a more equitable and just world. As a facilitator, catalyst, and provocateur in the field, IFA supports critical investigations, explorations, and experiments that push boundaries of knowledge and practice, challenge dominant narratives, and speak truth to power — with a particular emphasis on encouraging work in Indian languages other than English." data-bn="আই এফ এ বিশ্বাস করে যে কলা এবং সংস্কৃতি হলো ব্যক্তি ও সমাজ জীবনের অপরিহার্য অংশ এবং একটি ন্যায্য পৃথিবী গঠনে গুরুত্বপূর্ণ ভূমিকা পালন করে। গবেষণাক্ষেত্রে সহযোগী এবং অনুঘটক হিসেবে আই এফ এ এমন সমালোচনামূলক অন্বেষণ এবং পরীক্ষাকে সমর্থন করে যা জ্ঞান এবং অনুশীলনের সীমানা অতিক্রম করে প্রভাবশালী বয়ানকে প্রশ্ন করে। সংস্থাটি ইংলিশ ছাড়া অন্য ভারতীয় ভাষার কাজে উৎসাহ প্রদান করে।">IFA believes that the arts and culture are essential to individual and community lives, and for a more equitable and just world. As a facilitator, catalyst, and provocateur in the field, IFA supports critical investigations, explorations, and experiments that push boundaries of knowledge and practice, challenge dominant narratives, and speak truth to power — with a particular emphasis on encouraging work in Indian languages other than English.</p>
@@ -472,7 +486,7 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 
     <div class="bnp-logo-block reveal reveal-delay-1">
       <img src="img/BNPP_Logo.png" alt="BNP Paribas" loading="lazy" decoding="async" onerror="this.style.display='none';">
-      <h2 class="section-heading" style="margin-bottom:0;" data-en="About BNP Paribas in India" data-bn="ভারতে বিএনপি পারিবা">About BNP Paribas in India</h2>
+      <h2 class="section-heading supporter-heading" style="margin-bottom:0;" data-en="About BNP Paribas in India" data-bn="ভারতে বিএনপি পারিবা">About BNP Paribas in India</h2>
     </div>
     <p class="section-body reveal reveal-delay-2" data-en="BNP Paribas India started its operations in 1860 to support local and global corporate and financial institutions in their growth and expansion strategies. The second oldest foreign bank in the country, BNP Paribas offers a rich and broad suite of solutions across the entire range of corporate and institutional banking, financing, investment banking, hedging, and equity and derivatives." data-bn="বিএনপি পারিবা ইন্ডিয়া ১৮৬০ সালে ভারতে তাদের কার্যক্রম শুরু করে, দেশীয় ও আন্তর্জাতিক কর্পোরেট এবং আর্থিক প্রতিষ্ঠানগুলির বিকাশ ও সম্প্রসারণ কৌশলে সহায়তা প্রদানের লক্ষ্যে। দেশের দ্বিতীয় প্রাচীনতম বিদেশি ব্যাংক হিসেবে বিএনপি পারিবা কর্পোরেট ও প্রাতিষ্ঠানিক ব্যাংকিং, অর্থায়ন, বিনিয়োগ ব্যাংকিং, হেজিং এবং ইকুইটি ও ডেরিভেটিভস বিষয়ক ব্যাপক সমাধান প্রদান করে থাকে।">BNP Paribas India started its operations in 1860 to support local and global corporate and financial institutions in their growth and expansion strategies. The second oldest foreign bank in the country, BNP Paribas offers a rich and broad suite of solutions across the entire range of corporate and institutional banking, financing, investment banking, hedging, and equity and derivatives.</p>
     <p class="section-body reveal reveal-delay-2" style="margin-top:20px;" data-en="Today the Group has around 15,000 employees in India across its various lines of businesses and its technology and operations global delivery centres in Bengaluru, Chennai and Mumbai. BNP Paribas has six branches in India, located in Bengaluru, Chennai, Mumbai, New Delhi, Pune, and the recently inaugurated GIFT City branch — its International Banking Unit (IBU)." data-bn="বর্তমানে গ্রুপের ভারতে প্রায় ১৫,০০০ কর্মী রয়েছেন, যাঁরা বিভিন্ন ব্যবসায়িক ক্ষেত্রে এবং বেঙ্গালুরু, চেন্নাই ও মুম্বাইয়ের প্রযুক্তি ও পরিচালনা কেন্দ্রগুলিতে কর্মরত। বিএনপি পারিবার ভারতে ছয়টি শাখা রয়েছে — বেঙ্গালুরু, চেন্নাই, মুম্বাই, নতুন দিল্লি, পুনে এবং সম্প্রতি উদ্বোধন হওয়া গিফট সিটি শাখা, যা আন্তর্জাতিক ব্যাংকিং ইউনিট (IBU) হিসেবে পরিচিত।">Today the Group has around 15,000 employees in India across its various lines of businesses and its technology and operations global delivery centres in Bengaluru, Chennai and Mumbai. BNP Paribas has six branches in India, located in Bengaluru, Chennai, Mumbai, New Delhi, Pune, and the recently inaugurated GIFT City branch — its International Banking Unit (IBU).</p>
@@ -482,14 +496,14 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 
     <hr class="bnp-divider reveal">
 
-    <div class="bnp-logo-block reveal reveal-delay-1">
+    <div class="monotype-block reveal reveal-delay-1">
       <a href="https://www.monotype.com/" target="_blank" rel="noopener noreferrer" class="monotype-logo-link" aria-label="Monotype">
         <picture>
           <source srcset="img/Monotype_Black_Logo.webp" type="image/webp">
           <img src="img/Monotype_Black_Logo.png" alt="Monotype" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentElement.parentElement.insertAdjacentHTML('beforeend','<span style=&quot;font-family:Syne,sans-serif;font-weight:800;font-size:24px;color:#1a1a1a;&quot;>Monotype</span>');">
         </picture>
       </a>
-      <h2 class="section-heading" style="margin-bottom:0;" data-en="About Monotype" data-bn="মনোটাইপ সম্পর্কে">About Monotype</h2>
+      <h2 class="section-heading supporter-heading" style="margin-bottom:0;" data-en="About Monotype" data-bn="মনোটাইপ সম্পর্কে">About Monotype</h2>
     </div>
     <p class="section-body reveal reveal-delay-2" data-en="Monotype is a global leader in typography, technology, and design expertise, shaping the visual language of the digital and physical world. With a legacy dating back to 1887, Monotype bridges history and innovation as the custodian of one of the world's most comprehensive and historically significant typographic archives. Home to over 150,000 typefaces—including iconic classics like Helvetica®, Arial®, and Times New Roman®—they provide the essential assets that empower creators, brands, and researchers to build authentic visual experiences. From preserving centuries of typographic heritage to pioneering modern digital rendering and AI-assisted design, Monotype ensures that text remains a powerful, legible, and creative force in global communication." data-bn="মনোটাইপ টাইপোগ্রাফি, প্রযুক্তি এবং ডিজাইন দক্ষতায় একটি বিশ্বব্যাপী নেতৃস্থানীয় প্রতিষ্ঠান, যা ডিজিটাল ও বাস্তব জগতের দৃশ্যভাষা গঠন করে চলেছে। ১৮৮৭ সাল থেকে চলে আসা এক ঐতিহ্যের ধারক হিসেবে মনোটাইপ ইতিহাস ও উদ্ভাবনের মধ্যে সেতুবন্ধন রচনা করে, বিশ্বের অন্যতম বিস্তৃত ও ঐতিহাসিকভাবে তাৎপর্যপূর্ণ টাইপোগ্রাফিক সংরক্ষণাগারের রক্ষক হিসেবে। Helvetica®, Arial® ও Times New Roman®-এর মতো আইকনিক ক্লাসিক সহ ১৫০,০০০-এরও বেশি টাইপফেসের আবাসস্থল হিসেবে তারা সেই অপরিহার্য সম্পদ প্রদান করে, যা নির্মাতা, ব্র্যান্ড ও গবেষকদের প্রকৃত দৃশ্য-অভিজ্ঞতা গড়ে তুলতে সক্ষম করে। শতাব্দীপ্রাচীন টাইপোগ্রাফিক ঐতিহ্য সংরক্ষণ থেকে শুরু করে আধুনিক ডিজিটাল রেন্ডারিং ও এ আই-সহায়ক ডিজাইনে পথিকৃৎ হয়ে মনোটাইপ নিশ্চিত করে যে লেখা বিশ্বজনীন যোগাযোগে একটি শক্তিশালী, সুস্পষ্ট ও সৃজনশীল শক্তি হিসেবে টিকে থাকে।">Monotype is a global leader in typography, technology, and design expertise, shaping the visual language of the digital and physical world. With a legacy dating back to 1887, Monotype bridges history and innovation as the custodian of one of the world's most comprehensive and historically significant typographic archives. Home to over 150,000 typefaces—including iconic classics like Helvetica®, Arial®, and Times New Roman®—they provide the essential assets that empower creators, brands, and researchers to build authentic visual experiences. From preserving centuries of typographic heritage to pioneering modern digital rendering and AI-assisted design, Monotype ensures that text remains a powerful, legible, and creative force in global communication.</p>
     <div class="reveal reveal-delay-3" style="margin-top:32px;">
