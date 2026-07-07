@@ -22,6 +22,16 @@ img { max-width:100%; height:auto; }
 .logo-img { height:clamp(22px,3.5vw,40px); width:auto; display:block; }
 .header-logo-right .logo-img { height:clamp(40px,6vw,72px); }
 .logo-fallback { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(10px,1.2vw,14px); letter-spacing:0.1em; text-transform:uppercase; color:#1a1a1a; }
+.header-logo-left { display:flex; align-items:center; gap:14px; }
+.header-logo-left .logo-img { max-height:40px; }
+.header-logo-left .logo-fallback { color:#4a4a4a; font-weight:700; }
+.header-logo-sep { width:1px; height:34px; background:rgba(0,0,0,0.14); display:inline-block; flex-shrink:0; }
+.bnp-logo { height:40px; max-height:40px; width:auto; object-fit:contain; }
+.monotype-header-logo { height:22px; max-height:22px; width:auto; object-fit:contain; display:block; }
+.header-home-link { text-decoration:none; cursor:pointer; transition:opacity 0.2s ease; border-radius:6px; }
+.header-home-link:hover { opacity:0.72; }
+.header-home-link:focus-visible { outline:2px solid rgba(204,40,40,0.5); outline-offset:3px; }
+.header-home-link.header-logo-right { margin-left:0 !important; }
 
 .lang-toggle-fixed { position:fixed; bottom:32px; right:32px; z-index:250; display:flex; background:rgba(255,255,255,0.8); backdrop-filter:blur(14px); border:1px solid rgba(0,0,0,0.08); border-radius:50px; padding:4px; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
 .lang-toggle-fixed .lang-btn { border:none; background:transparent; outline:none; cursor:pointer; padding:8px 20px; border-radius:40px; font-family:'DM Sans',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; color:#8a8a8a; transition:all 0.3s; line-height:1; }
@@ -110,6 +120,9 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
 @media(max-width:768px){
   .site-header { padding:8px 12px; }
   .header-logo-right .logo-img { max-height:38px; }
+  .header-logo-left { margin-left:auto; }
+  .header-logo-left .logo-img { max-height:30px; }
+  .bnp-logo{ height:30px; } .header-logo-sep{ height:26px; } .monotype-header-logo{ height:17px; }
   .event-meta { gap:8px; }
 }
 </style>
@@ -119,8 +132,19 @@ body.bn-mode .event-desc, body.bn-mode .event-callout p, body.bn-mode .back-nav,
 <div class="bg-illustration"></div>
 
 <header class="site-header">
-  <div class="header-logo header-logo-left"><img src="../img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span></div>
-  <div class="header-logo header-logo-right"><img src="../img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></div>
+  <!-- Left: Bhashascope — site brand, links home -->
+  <a href="../index.html" class="header-logo header-logo-right header-home-link" aria-label="Bhashascope — go to homepage"><img src="../img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></a>
+  <!-- Right: supporter logos -->
+  <div class="header-logo header-logo-left">
+    <img src="../img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span>
+    <span class="header-logo-sep"></span>
+    <img src="../img/BNPP_Logo.png" alt="BNP Paribas" class="logo-img bnp-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">BNP Paribas</span>
+    <span class="header-logo-sep"></span>
+    <picture>
+      <source srcset="../img/Monotype_Black_Logo.webp" type="image/webp">
+      <img src="../img/Monotype_Black_Logo.png" alt="Monotype" class="logo-img monotype-header-logo" onerror="var p=this.closest('picture'); if(p){ p.style.display='none'; var f=p.nextElementSibling; if(f) f.style.display='block'; }">
+    </picture><span class="logo-fallback" style="display:none;">Monotype</span>
+  </div>
 </header>
 
 <div class="lang-toggle-fixed" id="langToggleFixed">
