@@ -20,6 +20,13 @@ html { scroll-behavior: smooth; }
 .header-logo-sep { width:1px; height:34px; background:rgba(0,0,0,0.14); display:inline-block; flex-shrink:0; }
 .bnp-logo { height:40px; max-height:40px; width:auto; object-fit:contain; }
 .monotype-header-logo { height:22px; max-height:22px; width:auto; object-fit:contain; display:block; }
+/* Bhashascope logo now doubles as a home link (standard convention). Subtle hover cue signals it's clickable. */
+.header-home-link { text-decoration:none; cursor:pointer; transition:opacity 0.2s ease; border-radius:6px; }
+.header-home-link:hover { opacity:0.72; }
+.header-home-link:focus-visible { outline:2px solid rgba(204,40,40,0.5); outline-offset:3px; }
+/* Bhashascope now sits LEFT; cancel the inherited right-alignment and re-align sponsors to the right on mobile */
+.header-home-link.header-logo-right { margin-left:0 !important; }
+@media(max-width:768px){ .header-logo-left{ margin-left:auto; } }
 @media(max-width:768px){ .bnp-logo{height:30px;} .header-logo-sep{height:26px;} .monotype-header-logo{height:17px;} }
 
 /* LIQUID GLASS GLASSMORPHISM NAV — layered over style.css */
@@ -176,6 +183,9 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
 <div id="preloader" class="preloader"><div class="preloader-inner"><span class="preloader-text">ক</span><div class="preloader-bar"><div class="preloader-fill"></div></div></div></div>
 
 <header class="site-header" id="siteHeader">
+  <!-- Left: Bhashascope — the site's own brand, links to home (follows the standard convention) -->
+  <a href="index.html" class="header-logo header-logo-right header-home-link" aria-label="Bhashascope — go to homepage"><img src="img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></a>
+  <!-- Right: supporter logos (IFA, BNP Paribas, Monotype) -->
   <div class="header-logo header-logo-left">
     <img src="img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span>
     <span class="header-logo-sep"></span>
@@ -186,7 +196,6 @@ body.bn-mode .cert-status { font-family:'Noto Sans Bengali',sans-serif; text-tra
       <img src="img/Monotype_Black_Logo.png" alt="Monotype" class="logo-img monotype-header-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
     </picture><span class="logo-fallback" style="display:none;">Monotype</span>
   </div>
-  <div class="header-logo header-logo-right"><img src="img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></div>
 </header>
 
 <div class="lang-toggle-fixed" id="langToggleFixed">
