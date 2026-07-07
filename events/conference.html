@@ -56,6 +56,37 @@
     .nav-home:hover { opacity: 1; }
     .nav-home svg { width: 20px; height: 20px; }
 
+    /* --- Stable site header (matches index.html) --- */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: clamp(8px, 1.5vw, 16px) clamp(12px, 3vw, 40px);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .header-logo { display: flex; align-items: center; }
+    .header-logo .logo-img { height: auto; width: auto; object-fit: contain; }
+    .header-logo-right .logo-img { height: clamp(40px, 6vw, 72px); }
+    .header-logo-left { display:flex; align-items:center; gap:14px; }
+    .header-logo-left .logo-img { max-height: 40px; }
+    .header-logo-sep { width:1px; height:34px; background:rgba(0,0,0,0.14); display:inline-block; flex-shrink:0; }
+    .bnp-logo { height:40px; max-height:40px; width:auto; object-fit:contain; }
+    .monotype-header-logo { height:22px; max-height:22px; width:auto; object-fit:contain; display:block; }
+    .logo-fallback { font-weight:800; font-size:clamp(10px,1.2vw,14px); letter-spacing:0.1em; text-transform:uppercase; color:var(--text-primary); }
+    .header-logo-left .logo-fallback { color: var(--text-secondary); font-weight:700; }
+    /* Bhashascope logo doubles as home link */
+    .header-home-link { text-decoration:none; cursor:pointer; transition:opacity 0.2s ease; border-radius:6px; }
+    .header-home-link:hover { opacity:0.72; }
+    .header-home-link:focus-visible { outline:2px solid rgba(204,40,40,0.5); outline-offset:3px; }
+    .header-home-link.header-logo-right { margin-left:0 !important; }
+
+    /* --- Floating language toggle pill (matches index.html) --- */
+    .lang-toggle-fixed { position:fixed; bottom:32px; right:32px; z-index:99999; display:flex; background:rgba(255,255,255,0.8); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1px solid rgba(0,0,0,0.08); border-radius:50px; padding:4px; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+    .lang-toggle-fixed .lang-btn { border:none; background:transparent; outline:none; cursor:pointer; padding:8px 20px; border-radius:40px; font-family:'DM Sans',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; color:#8a8a8a; transition:all 0.3s; line-height:1; }
+    .lang-toggle-fixed .lang-btn.active { background:#cc2828; color:#fff; box-shadow:0 2px 12px rgba(204,40,40,0.35); }
+    .lang-toggle-fixed .lang-btn[data-lang="bn"] { font-family:'Noto Sans Bengali',sans-serif; font-weight:600; text-transform:none; font-size:13px; }
+
     /* --- Subpage Language Toggle (fixed, matches all other subpages) --- */
     .subpage-lang-toggle {
       position: fixed; top: 22px; right: 20px; z-index: 99999;
@@ -316,6 +347,12 @@
     @media (max-width: 600px) {
       .top-nav { padding: 16px 20px; }
       .subpage-lang-toggle { top: 18px; right: 12px; font-size: 11px; padding: 5px 12px; }
+      .lang-toggle-fixed { bottom:16px; right:16px; }
+      .lang-toggle-fixed .lang-btn { padding:7px 14px; font-size:11px; }
+      .header-logo-left { margin-left:auto; }
+      .header-logo-left .logo-img { max-height:30px; }
+      .bnp-logo{ height:30px; } .header-logo-sep{ height:26px; } .monotype-header-logo{ height:17px; }
+      .header-logo-right .logo-img { height: clamp(32px,7vw,44px); }
       .page-content { padding: 120px 20px 60px; }
       .page-number { font-size: 80px; top: 90px; right: 10px; }
       .reach-box { padding: 32px 24px; }
@@ -467,17 +504,29 @@
   </style>
 </head>
 <body>
-  <!-- SUBPAGE STICKY LANGUAGE TOGGLE — first child of body, matches all other subpages -->
-  <button class="subpage-lang-toggle" id="langToggle">EN / বাং</button>
+  <!-- Floating language toggle — two-button pill, matches index.html for uniformity -->
+  <div class="lang-toggle-fixed" id="langToggleFixed">
+    <button class="lang-btn active" id="btnEN" data-lang="en">English</button>
+    <button class="lang-btn" id="btnBN" data-lang="bn">বাংলা</button>
+  </div>
 
   <div class="bg-illustration"></div>
 
-  <nav class="top-nav">
-    <a href="../index.html" class="nav-home">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Platform Bengali
-    </a>
-  </nav>
+  <header class="site-header" id="siteHeader">
+    <!-- Left: Bhashascope — site brand, links home -->
+    <a href="../index.html" class="header-logo header-logo-right header-home-link" aria-label="Bhashascope — go to homepage"><img src="../img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></a>
+    <!-- Right: supporter logos -->
+    <div class="header-logo header-logo-left">
+      <img src="../img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span>
+      <span class="header-logo-sep"></span>
+      <img src="../img/BNPP_Logo.png" alt="BNP Paribas" class="logo-img bnp-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">BNP Paribas</span>
+      <span class="header-logo-sep"></span>
+      <picture>
+        <source srcset="../img/Monotype_Black_Logo.webp" type="image/webp">
+        <img src="../img/Monotype_Black_Logo.png" alt="Monotype" class="logo-img monotype-header-logo" onerror="var p=this.closest('picture'); if(p){ p.style.display='none'; var f=p.nextElementSibling; if(f) f.style.display='block'; }">
+      </picture><span class="logo-fallback" style="display:none;">Monotype</span>
+    </div>
+  </header>
 
   <main class="page-content">
     <div class="page-number">04</div>
@@ -498,8 +547,8 @@
     </p>
 
     <p class="collab-line rv rv-d2">
-      <span class="lang-en">In association with <strong>Ramakrishna Mission Residential College, Narendrapur</strong>, part-supported by <strong>BNP Paribas</strong>, and implemented by <strong>India Foundation for the Arts</strong></span>
-      <span class="lang-bn"><strong>রামকৃষ্ণ মিশন রেসিডেন্শিয়াল কলেজ (স্বশাসিত), নরেন্দ্রপুর</strong>-এর সহযোগিতায়, <strong>বিএনপি পারিবা</strong>-এর আংশিক সহায়তায়, এবং <strong>ইন্ডিয়া ফাউন্ডেশন ফর দ্য আর্টস</strong>-এর বাস্তবায়নে</span>
+      <span class="lang-en">In association with <strong>Ramakrishna Mission Residential College, Narendrapur</strong>, part-supported by <strong>BNP Paribas India</strong> and <strong>Monotype</strong>, and implemented by <strong>India Foundation for the Arts</strong></span>
+      <span class="lang-bn"><strong>রামকৃষ্ণ মিশন রেসিডেন্শিয়াল কলেজ (স্বশাসিত), নরেন্দ্রপুর</strong>-এর সহযোগিতায়, <strong>বিএনপি পারিবা ইন্ডিয়া</strong> ও <strong>মনোটাইপ</strong>-এর আংশিক সহায়তায়, এবং <strong>ইন্ডিয়া ফাউন্ডেশন ফর দ্য আর্টস</strong>-এর বাস্তবায়নে</span>
     </p>
 
     <div class="event-meta rv rv-d2">
@@ -771,7 +820,7 @@
         <div class="prog-time">10:30 a.m.</div>
         <div class="prog-body">
           <div class="prog-name">Inaugural Session</div>
-          <div class="prog-detail">Welcome Address · Dr. Pranab K. Mandal (Convenor) · Prof. Arya Ghosh (Head, Dept. of English, RKMRC) · Swami Ekachittananda (Principal, RKMRC) · Project Introduction · Prithu Halder · Introduction to Arts Research: What IFA Does · Dr. Harshita Bathwal (IFA)</div>
+          <div class="prog-detail">Welcome Address · Prof. Arya Ghosh (Convenor; Head, Dept. of English, RKMRC) · Swami Ekachittananda (Principal, RKMRC) · Project Introduction · Prithu Halder · Introduction to Arts Research: What IFA Does · Dr. Harshita Bathwal (IFA) (online)</div>
         </div>
       </div>
       <div class="prog-row">
@@ -1132,7 +1181,7 @@
           <button class="paper-head" type="button" onclick="togglePaper(this)">
             <span class="paper-num">02</span>
             <span class="paper-headtext">
-              <span class="paper-title">Unfinishedness as Archival Integrity: Shabdakalpa and Digital Cultural Memory in Bengali<span class="paper-mode online">Online</span></span>
+              <span class="paper-title">Unfinishedness as Archival Integrity: Shabdakalpa and Digital Cultural Memory in Bengali<span class="paper-mode inperson">In Person</span></span>
               <span class="paper-authors"><span class="pa-name">Lina Mandal</span> &mdash; Department of English, Jadavpur University</span>
             </span>
             <svg class="paper-plus" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
@@ -1174,7 +1223,7 @@
             <span class="paper-num">04</span>
             <span class="paper-headtext">
               <span class="paper-title">Digital Community Archives in the Bangla-Speaking World: Memory, Authority, and the Question of a Digital Commons<span class="paper-mode inperson">In Person</span></span>
-              <span class="paper-authors"><span class="pa-name">Sushanta Barua</span> &mdash; School of Cultural Texts and Records, Jadavpur University</span>
+              <span class="paper-authors"><span class="pa-name">Sushanta Barua</span> &amp; <span class="pa-name">Dr. Mainak Ghosh</span> &mdash; School of Cultural Texts and Records, Jadavpur University</span>
             </span>
             <svg class="paper-plus" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
           </button>
@@ -1187,6 +1236,7 @@
                 <span class="lang-en">Author Biography</span><span class="lang-bn">লেখক পরিচিতি</span>
               </div>
               <p class="bio-text">Sushanta Barua is a librarian and researcher affiliated with the School of Cultural Texts and Records at Jadavpur University. His research interests include Digital Humanities, archival studies, community digital archives, and postcolonial memory practices in South Asia. He is the author of an article in Archival Science on community digital archives of the South Asian diaspora.</p>
+<p class="bio-text">Dr. Mainak Ghosh is Professor and former Head of the Department of Architecture at Jadavpur University, Kolkata, and Joint Director of the School of Cultural Texts &amp; Records. He holds a PhD from Jadavpur University, an M.Des from IIT Kanpur, and a B.Arch from Jadavpur University. A Double Gold Medalist and Erasmus+ Fellowship Awardee, he has academic interests in architecture, cultural heritage, design, digital humanities, and interdisciplinary research. He has previously served as a faculty member at IIT Kharagpur and currently serves as Erasmus+ Coordinator and a member of the Institute Innovation Council at Jadavpur University. He is also an Executive Committee Member of the Indian Institute of Architects, West Bengal Chapter, and a registered architect with the Council of Architecture, India.</p>
             </div>
           </div>
         </div>
@@ -1768,11 +1818,11 @@
     </div>
 
     <div class="org-credits rv">
-      <span class="lang-en">This conference is organised by the <strong>Platform Bengali Project</strong>, supported by the <strong>India Foundation for the Arts (IFA)</strong> under its Arts Research Programme, and partly sponsored by <strong>BNP Paribas</strong>. Organised in collaboration with <strong>Ramakrishna Mission Residential College, Narendrapur</strong>.<br><br>
-      <strong>Conference Convenor:</strong> Pranab K Mondal<br>
+      <span class="lang-en">This conference is organised by the <strong>Platform Bengali Project</strong>, supported by the <strong>India Foundation for the Arts (IFA)</strong> under its Arts Research Programme, and part-supported by <strong>BNP Paribas India</strong> and <strong>Monotype</strong>. Organised in collaboration with <strong>Ramakrishna Mission Residential College, Narendrapur</strong>.<br><br>
+      <strong>Conference Convenor:</strong> Arya Ghosh<br>
       <strong>Volume Editors:</strong> Prithu Halder, Debapriya Basu, Spandan Bhattacharya</span>
-      <span class="lang-bn" style="display:none;">এই সম্মেলনটি <strong>প্ল্যাটফর্ম বাংলা প্রকল্প</strong> কর্তৃক আয়োজিত, <strong>ইন্ডিয়া ফাউন্ডেশন ফর দ্য আর্টস (আইএফএ)</strong>-এর আর্টস রিসার্চ প্রোগ্রামের সহায়তায় এবং আংশিকভাবে <strong>বিএনপি পারিবা</strong>-এর পৃষ্ঠপোষকতায়। <strong>রামকৃষ্ণ মিশন রেসিডেন্শিয়াল কলেজ (স্বশাসিত), নরেন্দ্রপুর</strong>-এর সহযোগিতায় আয়োজিত।<br><br>
-      <strong>সম্মেলন-আহ্বায়ক:</strong> প্রণব কুমার মণ্ডল<br>
+      <span class="lang-bn" style="display:none;">এই সম্মেলনটি <strong>প্ল্যাটফর্ম বাংলা প্রকল্প</strong> কর্তৃক আয়োজিত, <strong>ইন্ডিয়া ফাউন্ডেশন ফর দ্য আর্টস (আইএফএ)</strong>-এর আর্টস রিসার্চ প্রোগ্রামের সহায়তায় এবং <strong>বিএনপি পারিবা ইন্ডিয়া</strong> ও <strong>মনোটাইপ</strong>-এর আংশিক সহায়তায়। <strong>রামকৃষ্ণ মিশন রেসিডেন্শিয়াল কলেজ (স্বশাসিত), নরেন্দ্রপুর</strong>-এর সহযোগিতায় আয়োজিত।<br><br>
+      <strong>সম্মেলন-আহ্বায়ক:</strong> আর্য ঘোষ<br>
       <strong>সংকলন সম্পাদক:</strong> পৃথু হালদার, দেবাপ্রিয়া বসু, স্পন্দন ভট্টাচার্য</span>
     </div>
 
@@ -1808,25 +1858,25 @@
 
   <script>
     (function(){
-      var btn = document.getElementById('langToggle');
+      var btnEN = document.getElementById('btnEN');
+      var btnBN = document.getElementById('btnBN');
+      if(!btnEN || !btnBN) return;
       var lang = localStorage.getItem('pb-lang') || 'en';
 
       function apply(l) {
         lang = l;
         localStorage.setItem('pb-lang', l);
         document.body.classList.toggle('bn-mode', l === 'bn');
-        btn.classList.toggle('bn-active', l === 'bn');
-        btn.textContent = l === 'bn' ? 'বাং / EN' : 'EN / বাং';
-        // Show/hide lang-bn in org-credits (uses display:none inline)
+        btnEN.classList.toggle('active', l === 'en');
+        btnBN.classList.toggle('active', l === 'bn');
+        // org-credits .lang-bn uses inline display:none; toggle it explicitly
         document.querySelectorAll('.org-credits .lang-bn').forEach(function(el){
           el.style.display = l === 'bn' ? 'block' : 'none';
         });
       }
 
-      btn.addEventListener('click', function(){
-        apply(lang === 'en' ? 'bn' : 'en');
-      });
-
+      btnEN.addEventListener('click', function(){ apply('en'); });
+      btnBN.addEventListener('click', function(){ apply('bn'); });
       apply(lang);
     })();
   </script>
