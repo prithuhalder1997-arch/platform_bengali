@@ -24,6 +24,16 @@ a { color:inherit; }
 .logo-img { height:clamp(22px,3.5vw,40px); width:auto; display:block; }
 .header-logo-right .logo-img { height:clamp(40px,6vw,72px); }
 .logo-fallback { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(10px,1.2vw,14px); letter-spacing:0.1em; text-transform:uppercase; color:#1a1a1a; }
+.header-logo-left { display:flex; align-items:center; gap:14px; }
+.header-logo-left .logo-img { max-height:40px; }
+.header-logo-left .logo-fallback { color:#4a4a4a; font-weight:700; }
+.header-logo-sep { width:1px; height:34px; background:rgba(0,0,0,0.14); display:inline-block; flex-shrink:0; }
+.bnp-logo { height:40px; max-height:40px; width:auto; object-fit:contain; }
+.monotype-header-logo { height:22px; max-height:22px; width:auto; object-fit:contain; display:block; }
+.header-home-link { text-decoration:none; cursor:pointer; transition:opacity 0.2s ease; border-radius:6px; }
+.header-home-link:hover { opacity:0.72; }
+.header-home-link:focus-visible { outline:2px solid rgba(204,40,40,0.5); outline-offset:3px; }
+.header-home-link.header-logo-right { margin-left:0 !important; }
 
 .lang-toggle-fixed { position:fixed; bottom:32px; right:32px; z-index:250; display:flex; background:rgba(255,255,255,0.8); backdrop-filter:blur(14px); border:1px solid rgba(0,0,0,0.08); border-radius:50px; padding:4px; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
 .lang-toggle-fixed .lang-btn { border:none; background:transparent; outline:none; cursor:pointer; padding:8px 20px; border-radius:40px; font-family:'DM Sans',sans-serif; font-weight:700; font-size:12px; text-transform:uppercase; color:#8a8a8a; transition:all 0.3s; line-height:1; }
@@ -84,6 +94,18 @@ a.lecture-card:hover, a.lecture-card:focus-visible { transform:translateY(-3px);
 .lc-watch { display:inline-flex; align-items:center; gap:7px; margin-top:14px; font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#cc2828; cursor:pointer; padding:7px 14px; border:1px solid rgba(204,40,40,0.25); border-radius:40px; transition:all 0.3s; }
 .lc-watch:hover, .lc-watch:focus-visible { background:#cc2828; color:#fff; outline:none; }
 .lc-watch svg { width:15px; height:15px; }
+/* YouTube thumbnail preview (replaces the watch button on concluded talks) */
+.lc-thumb { display:block; position:relative; margin-top:16px; width:100%; max-width:420px; aspect-ratio:16/9; border-radius:12px; overflow:hidden; cursor:pointer; background:#000; box-shadow:0 4px 20px rgba(0,0,0,0.10); transition:transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s; }
+.lc-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s ease, opacity 0.3s; }
+.lc-thumb:hover img, .lc-thumb:focus-visible img { transform:scale(1.04); opacity:0.92; }
+.lc-thumb:focus-visible { outline:2px solid #cc2828; outline-offset:3px; }
+.lc-thumb-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:58px; height:40px; border-radius:11px; background:rgba(204,40,40,0.92); display:flex; align-items:center; justify-content:center; transition:background 0.3s, transform 0.3s; box-shadow:0 3px 14px rgba(0,0,0,0.25); }
+.lc-thumb:hover .lc-thumb-play, .lc-thumb:focus-visible .lc-thumb-play { background:#cc2828; transform:translate(-50%,-50%) scale(1.08); }
+.lc-thumb-play svg { width:22px; height:22px; color:#fff; }
+.lc-thumb-label { position:absolute; left:0; right:0; bottom:0; padding:20px 14px 10px; background:linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0)); color:#fff; font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; display:flex; align-items:center; gap:6px; }
+.lc-thumb-label svg { width:13px; height:13px; }
+body.bn-mode .lc-thumb-label { font-family:'Noto Sans Bengali',sans-serif; text-transform:none; letter-spacing:0; }
+@media(max-width:600px){ .lc-thumb { max-width:100%; } }
 
 .lc-tba { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.04em; color:#b0aea8; }
 
@@ -107,6 +129,9 @@ body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; 
 @media(max-width:768px){
   .site-header { padding:8px 12px; }
   .header-logo-right .logo-img { max-height:38px; }
+  .header-logo-left { margin-left:auto; }
+  .header-logo-left .logo-img { max-height:30px; }
+  .bnp-logo{ height:30px; } .header-logo-sep{ height:26px; } .monotype-header-logo{ height:17px; }
   .lecture-card { padding:16px 18px; }
   .lc-date-pill { margin-left:0; width:100%; }
 }
@@ -117,8 +142,19 @@ body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; 
 <div class="bg-illustration"></div>
 
 <header class="site-header">
-  <div class="header-logo header-logo-left"><img src="../img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span></div>
-  <div class="header-logo header-logo-right"><img src="../img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></div>
+  <!-- Left: Bhashascope — site brand, links home -->
+  <a href="../index.html" class="header-logo header-logo-right header-home-link" aria-label="Bhashascope — go to homepage"><img src="../img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></a>
+  <!-- Right: supporter logos -->
+  <div class="header-logo header-logo-left">
+    <img src="../img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span>
+    <span class="header-logo-sep"></span>
+    <img src="../img/BNPP_Logo.png" alt="BNP Paribas" class="logo-img bnp-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">BNP Paribas</span>
+    <span class="header-logo-sep"></span>
+    <picture>
+      <source srcset="../img/Monotype_Black_Logo.webp" type="image/webp">
+      <img src="../img/Monotype_Black_Logo.png" alt="Monotype" class="logo-img monotype-header-logo" onerror="var p=this.closest('picture'); if(p){ p.style.display='none'; var f=p.nextElementSibling; if(f) f.style.display='block'; }">
+    </picture><span class="logo-fallback" style="display:none;">Monotype</span>
+  </div>
 </header>
 
 <div class="lang-toggle-fixed" id="langToggleFixed">
@@ -153,11 +189,11 @@ body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; 
 
     <div class="series-stats rv rv-d3">
       <div class="stat">
-        <span class="stat-num accent" data-en="2" data-bn="২">2</span>
+        <span class="stat-num accent" data-en="3" data-bn="৩">3</span>
         <span class="stat-label"><span class="lang-en">Held</span><span class="lang-bn">সম্পন্ন</span></span>
       </div>
       <div class="stat">
-        <span class="stat-num" data-en="10" data-bn="১০">10</span>
+        <span class="stat-num" data-en="9" data-bn="৯">9</span>
         <span class="stat-label"><span class="lang-en">To come</span><span class="lang-bn">আসন্ন</span></span>
       </div>
       <div class="stat">
@@ -185,9 +221,10 @@ body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; 
           <div class="lc-speaker"><span class="lang-en">Biswajit Ray</span><span class="lang-bn">বিশ্বজিৎ রায়</span></div>
           <div class="lc-role"><span class="lang-en">Professor, Bengali Department, Visva-Bharati. Author.</span><span class="lang-bn">অধ্যাপক, বাংলা বিভাগ, বিশ্বভারতী। সুপরিচিত লেখক।</span></div>
           <div class="lc-talk"><span class="lang-en">The Body of Language and the Hand of Technology: On Bengali</span><span class="lang-bn">ভাষার শরীর ও প্রযুক্তির হাত: প্রসঙ্গ বাংলা ভাষা</span></div>
-          <span class="lc-watch" onclick="event.preventDefault();event.stopPropagation();window.open('https://youtu.be/hhurWOx1gl0?si=Z1KBDq2mnSo9C0G9','_blank','noopener');" role="link" tabindex="0" onkeydown="if(event.key==='Enter'){this.click();}">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></svg>
-            <span class="lang-en">Watch the talk</span><span class="lang-bn">বক্তৃতা দেখুন</span>
+          <span class="lc-thumb" onclick="event.preventDefault();event.stopPropagation();window.open('https://youtu.be/hhurWOx1gl0','_blank','noopener');" role="link" tabindex="0" aria-label="Watch the talk on YouTube" onkeydown="if(event.key==='Enter'){this.click();}">
+            <img src="https://img.youtube.com/vi/hhurWOx1gl0/hqdefault.jpg" alt="" loading="lazy" onerror="this.src='https://img.youtube.com/vi/hhurWOx1gl0/mqdefault.jpg';">
+            <span class="lc-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="lc-thumb-label"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></svg><span class="lang-en">Watch the talk</span><span class="lang-bn">বক্তৃতা দেখুন</span></span>
           </span>
         </a>
       </div>
@@ -203,25 +240,31 @@ body.bn-mode .lang-en { display:none; } body.bn-mode .lang-bn { display:inline; 
           <div class="lc-speaker"><span class="lang-en">Bijleeraj Patra</span><span class="lang-bn">বিজলীরাজ পাত্র</span></div>
           <div class="lc-role"><span class="lang-en">Researcher &amp; Essayist.</span><span class="lang-bn">গবেষক ও প্রাবন্ধিক।</span></div>
           <div class="lc-talk"><span class="lang-en">Alien Life Is Not Science Fiction: Bengali Writers' Search for Science and the Technology of the Future</span><span class="lang-bn">ভিনগ্রহী জীবন কল্পবিজ্ঞান নয়: বাঙালি লেখকদের বিজ্ঞান ও ভবিষ্যৎ প্রযুক্তির সন্ধান</span></div>
-          <span class="lc-watch" onclick="event.preventDefault();event.stopPropagation();window.open('https://youtu.be/8B9qKFN3dxc?si=sou6xc-VVALY0djr','_blank','noopener');" role="link" tabindex="0" onkeydown="if(event.key==='Enter'){this.click();}">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></svg>
-            <span class="lang-en">Watch the talk</span><span class="lang-bn">বক্তৃতা দেখুন</span>
+          <span class="lc-thumb" onclick="event.preventDefault();event.stopPropagation();window.open('https://youtu.be/8B9qKFN3dxc','_blank','noopener');" role="link" tabindex="0" aria-label="Watch the talk on YouTube" onkeydown="if(event.key==='Enter'){this.click();}">
+            <img src="https://img.youtube.com/vi/8B9qKFN3dxc/hqdefault.jpg" alt="" loading="lazy" onerror="this.src='https://img.youtube.com/vi/8B9qKFN3dxc/mqdefault.jpg';">
+            <span class="lc-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="lc-thumb-label"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></svg><span class="lang-en">Watch the talk</span><span class="lang-bn">বক্তৃতা দেখুন</span></span>
           </span>
         </a>
       </div>
 
-      <!-- 03 · JUNE 2026 — This Month -->
-      <div class="lecture current">
+      <!-- 03 · JUNE 2026 — Concluded -->
+      <div class="lecture done">
         <div class="node" data-en="03" data-bn="০৩">03</div>
         <a href="monthly-talks/june-2026.html" class="lecture-card">
           <div class="lc-meta">
             <span class="lc-month"><span class="lang-en">June 2026</span><span class="lang-bn">জুন ২০২৬</span></span>
-            <span class="lc-status current"><span class="lang-en">This Month</span><span class="lang-bn">এই মাসে</span></span>
+            <span class="lc-status done"><span class="lang-en">Concluded</span><span class="lang-bn">সম্পন্ন</span></span>
             <span class="lc-date-pill"><span class="lang-en">26 June · 7:00 PM</span><span class="lang-bn">২৬ জুন · সন্ধ্যা ৭:০০</span></span>
           </div>
           <div class="lc-speaker"><span class="lang-en">Yashodhara Gupta</span><span class="lang-bn">যশোধরা গুপ্ত</span></div>
           <div class="lc-role"><span class="lang-en">Professor, Bengali Department, Gurudas College. Advertising researcher, essayist.</span><span class="lang-bn">অধ্যাপক, বাংলা বিভাগ, গুরুদাস কলেজ। বিজ্ঞাপন গবেষক, প্রাবন্ধিক।</span></div>
           <div class="lc-talk"><span class="lang-en">Language, Brand, Bengali: The Changing Face of Bengali Advertising</span><span class="lang-bn">ভাষা, ব্র্যান্ড, বাঙালি: বাংলা বিজ্ঞাপনের বদলে যাওয়া চেহারা</span></div>
+          <span class="lc-thumb" onclick="event.preventDefault();event.stopPropagation();window.open('https://youtu.be/rJehbNgpOoE','_blank','noopener');" role="link" tabindex="0" aria-label="Watch the talk on YouTube" onkeydown="if(event.key==='Enter'){this.click();}">
+            <img src="https://img.youtube.com/vi/rJehbNgpOoE/hqdefault.jpg" alt="" loading="lazy" onerror="this.src='https://img.youtube.com/vi/rJehbNgpOoE/mqdefault.jpg';">
+            <span class="lc-thumb-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="lc-thumb-label"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></svg><span class="lang-en">Watch the talk</span><span class="lang-bn">বক্তৃতা দেখুন</span></span>
+          </span>
         </a>
       </div>
 
