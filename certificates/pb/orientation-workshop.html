@@ -12,13 +12,23 @@
 :root{--red:#cc2828;--dark:#1a1a1a;--mid:#4a4a4a;--light:#f5f4f2;--border:rgba(0,0,0,0.07);--green:#457b6e;--gold:#b08d40;}
 body{font-family:'DM Sans',sans-serif;background:#faf9f7;color:var(--dark);min-height:100vh;}
 
-/* Header */
-.cert-header{background:#fff;border-bottom:1px solid var(--border);padding:16px clamp(20px,5vw,48px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100;}
-.cert-header-logos{display:flex;align-items:center;gap:14px;}
-.cert-header-logos img{height:28px;width:auto;object-fit:contain;}
-.cert-header-sep{width:1px;height:22px;background:rgba(0,0,0,0.12);}
-.cert-header-back{display:inline-flex;align-items:center;gap:6px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);text-decoration:none;opacity:0.7;transition:opacity 0.2s;}
-.cert-header-back:hover{opacity:1;}
+/* Header — matches site-header on event pages */
+.site-header{position:sticky;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:clamp(8px,1.5vw,16px) clamp(12px,3vw,40px);background:rgba(255,255,255,0.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.04);}
+.header-logo{display:flex;align-items:center;}
+.header-logo .logo-img{height:auto;width:auto;object-fit:contain;}
+.header-logo-right .logo-img{height:clamp(40px,6vw,72px);}
+.header-logo-left{display:flex;align-items:center;gap:14px;}
+.header-logo-left .logo-img{max-height:40px;}
+.header-logo-sep{width:1px;height:34px;background:rgba(0,0,0,0.14);display:inline-block;flex-shrink:0;}
+.bnp-logo{height:40px;max-height:40px;width:auto;object-fit:contain;}
+.monotype-header-logo{height:22px;max-height:22px;width:auto;object-fit:contain;display:block;}
+.logo-fallback{font-weight:800;font-size:clamp(10px,1.2vw,14px);letter-spacing:0.1em;text-transform:uppercase;color:var(--dark);}
+.header-logo-left .logo-fallback{color:var(--mid);font-weight:700;}
+/* Bhashascope logo doubles as home link */
+.header-home-link{text-decoration:none;cursor:pointer;transition:opacity 0.2s ease;border-radius:6px;}
+.header-home-link:hover{opacity:0.72;}
+.header-home-link:focus-visible{outline:2px solid rgba(204,40,40,0.5);outline-offset:3px;}
+.header-home-link.header-logo-right{margin-left:0 !important;}
 
 /* Hero band */
 .cert-hero{background:linear-gradient(135deg,rgba(42,39,37,0.95) 0%,rgba(60,40,40,0.92) 100%);padding:clamp(40px,7vh,72px) clamp(20px,5vw,64px);text-align:center;}
@@ -65,6 +75,10 @@ body{font-family:'DM Sans',sans-serif;background:#faf9f7;color:var(--dark);min-h
 .result-not-found-msg{font-size:14px;color:var(--mid);line-height:1.6;}
 .result-not-found-msg strong{color:var(--dark);}
 .absent-notice{font-size:13px;color:#a0a0a0;line-height:1.6;font-style:italic;}
+
+/* QR note */
+.qr-note{margin-top:16px;padding:12px 16px;background:rgba(69,123,110,0.06);border:1px solid rgba(69,123,110,0.15);border-radius:10px;font-size:12.5px;color:var(--mid);line-height:1.6;display:flex;align-items:flex-start;gap:10px;}
+.qr-note svg{width:18px;height:18px;stroke:var(--green);flex-shrink:0;margin-top:1px;}
 
 /* Participant roster */
 .roster-section{margin-bottom:40px;}
@@ -113,28 +127,32 @@ body.bn-mode .cert-hero-title,.cert-hero-eyebrow,.search-label,.result-name,.inf
 body.bn-mode .cert-hero-sub,.result-meta,.result-not-found-msg,.search-hint,.info-card-val{font-family:'Noto Sans Bengali',sans-serif;}
 
 /* Lang toggle */
-.lang-mini{position:fixed;bottom:24px;right:24px;display:flex;background:rgba(255,255,255,0.9);backdrop-filter:blur(12px);border:1px solid rgba(0,0,0,0.08);border-radius:40px;padding:3px;box-shadow:0 4px 16px rgba(0,0,0,0.07);}
+.lang-mini{position:fixed;bottom:24px;right:24px;display:flex;background:rgba(255,255,255,0.9);backdrop-filter:blur(12px);border:1px solid rgba(0,0,0,0.08);border-radius:40px;padding:3px;box-shadow:0 4px 16px rgba(0,0,0,0.07);z-index:200;}
 .lang-mini button{border:none;background:transparent;cursor:pointer;padding:6px 14px;border-radius:30px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;color:#8a8a8a;transition:all 0.25s;}
 .lang-mini button.active{background:var(--red);color:#fff;}
 .lang-mini button[data-lang="bn"]{font-family:'Noto Sans Bengali',sans-serif;text-transform:none;font-size:12px;}
 
-@media(max-width:600px){.search-row{flex-direction:column;}.search-btn{width:100%;}.cert-hero{padding:36px 20px;}.result-card{flex-direction:column;gap:12px;}.roster-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.search-row{flex-direction:column;}.search-btn{width:100%;}.cert-hero{padding:36px 20px;}.result-card{flex-direction:column;gap:12px;}.roster-grid{grid-template-columns:1fr 1fr;}
+.header-logo-left{margin-left:auto;}.header-logo-left .logo-img{max-height:30px;}.bnp-logo{height:30px;}.header-logo-sep{height:26px;}.monotype-header-logo{height:17px;}.header-logo-right .logo-img{height:clamp(32px,7vw,44px);}}
 </style>
 </head>
 <body>
 
-<!-- Header -->
-<header class="cert-header">
-  <div class="cert-header-logos">
-    <img src="../../img/ifa-logo.png" alt="IFA" onerror="this.style.display='none'">
-    <span class="cert-header-sep"></span>
-    <img src="../../img/BNPP_Logo.jpg" alt="BNP Paribas" onerror="this.style.display='none'">
-    <span class="cert-header-sep"></span>
-    <img src="../../img/Bhashascope_logo.png" alt="Bhashascope" onerror="this.style.display='none'">
+<!-- Header — matches event pages -->
+<header class="site-header" id="siteHeader">
+  <!-- Left: Bhashascope — site brand, links home -->
+  <a href="../../index.html" class="header-logo header-logo-right header-home-link" aria-label="Bhashascope — go to homepage"><img src="../../img/Bhashascope_logo.png" alt="Bhashascope" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">Bhashascope</span></a>
+  <!-- Right: supporter logos -->
+  <div class="header-logo header-logo-left">
+    <img src="../../img/ifa-logo.png" alt="IFA" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">IFA</span>
+    <span class="header-logo-sep"></span>
+    <img src="../../img/BNPP_Logo.png" alt="BNP Paribas" class="logo-img bnp-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="logo-fallback" style="display:none;">BNP Paribas</span>
+    <span class="header-logo-sep"></span>
+    <picture>
+      <source srcset="../../img/Monotype_Black_Logo.webp" type="image/webp">
+      <img src="../../img/Monotype_Black_Logo.png" alt="Monotype" class="logo-img monotype-header-logo" onerror="var p=this.closest('picture'); if(p){ p.style.display='none'; var f=p.nextElementSibling; if(f) f.style.display='block'; }">
+    </picture><span class="logo-fallback" style="display:none;">Monotype</span>
   </div>
-  <a href="../../index.html" class="cert-header-back">
-    ← <span class="lang-en">Back to Platform Bengali</span><span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলিতে ফিরুন</span>
-  </a>
 </header>
 
 <!-- Hero -->
@@ -180,6 +198,13 @@ body.bn-mode .cert-hero-sub,.result-meta,.result-not-found-msg,.search-hint,.inf
       <span class="lang-bn">সার্টিফিকেটে যেভাবে নাম আছে সেইভাবে লিখুন।</span>
     </p>
     <div class="result-area" id="resultArea"></div>
+    <div class="qr-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="14" y1="14" x2="14" y2="21"/><line x1="18" y1="14" x2="18" y2="18"/><line x1="21" y1="18" x2="21" y2="21"/></svg>
+      <span>
+        <span class="lang-en">Each certificate carries a QR code that opens this verification page directly.</span>
+        <span class="lang-bn">প্রতিটি সার্টিফিকেটে একটি QR কোড রয়েছে, যা সরাসরি এই যাচাইকরণ পৃষ্ঠাটি খুলে দেয়।</span>
+      </span>
+    </div>
   </div>
 
   <!-- Participant Roster -->
@@ -224,7 +249,7 @@ body.bn-mode .cert-hero-sub,.result-meta,.result-not-found-msg,.search-hint,.inf
       </div>
       <div class="info-card">
         <div class="info-card-label"><span class="lang-en">Supported by</span><span class="lang-bn">সহযোগিতায়</span></div>
-        <div class="info-card-val"><span class="lang-en">BNP Paribas India &amp; IFA</span><span class="lang-bn">বিএনপি পারিবা ইন্ডিয়া ও আই এফ এ</span></div>
+        <div class="info-card-val"><span class="lang-en">BNP Paribas India, Monotype &amp; IFA</span><span class="lang-bn">বিএনপি পারিবা ইন্ডিয়া, মনোটাইপ ও আই এফ এ</span></div>
       </div>
       <div class="info-card">
         <div class="info-card-label"><span class="lang-en">Certificate URL</span><span class="lang-bn">সার্টিফিকেট ঠিকানা</span></div>
@@ -260,8 +285,8 @@ body.bn-mode .cert-hero-sub,.result-meta,.result-not-found-msg,.search-hint,.inf
 <!-- Footer -->
 <footer class="cert-footer">
   <p>
-    <span class="lang-en">Platform Bengali / Bhashascope · Part-supported by BNP Paribas India · Implemented by India Foundation for the Arts</span>
-    <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ · বিএনপি পারিবা ইন্ডিয়ার আংশিক সহযোগিতায় · ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস কর্তৃক বাস্তবায়িত</span>
+    <span class="lang-en">Platform Bengali / Bhashascope · Part-supported by BNP Paribas India and Monotype · Implemented by India Foundation for the Arts</span>
+    <span class="lang-bn">প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ · বিএনপি পারিবা ইন্ডিয়া ও মনোটাইপের আংশিক সহযোগিতায় · ইন্ডিয়া ফাউন্ডেশন ফর দি আর্টস কর্তৃক বাস্তবায়িত</span>
   </p>
   <p style="margin-top:6px;">
     <a href="../../index.html">
@@ -349,7 +374,7 @@ function doSearch(){
     } else {
       var dlBtn = match.downloadUrl
         ? '<a href="'+match.downloadUrl+'" class="result-dl-btn" download><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v12M6 15l6 6 6-6"/><path d="M3 19h18"/></svg> <span class="lang-en">Download Certificate</span><span class="lang-bn">সার্টিফিকেট ডাউনলোড করুন</span></a>'
-        : '<p style="font-size:13px;color:var(--mid);line-height:1.75;margin-top:2px;border-left:3px solid var(--green);padding-left:14px;"><span class="lang-en">It is hereby confirmed that this participant attended and actively engaged in the orientation workshop <strong>“Mining the Feed: Social Media Data for Arts Research”</strong>, led by Pankaj Chowdhury and held online in 23 May 2026 under the Platform Bengali / Bhashascope project.</span><span class="lang-bn">এতদ্বারা নিশ্চিত করা হচ্ছে যে এই অংশগ্রহণকারী প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ প্রকল্পের অধীনে পঙ্কজ চৌধুরীর পরিচালনায় ২৩ মে ২০২৬-এ অনলাইনে অনুষ্ঠিত <strong>“মাইনিং দ্য ফিড: শিল্প গবেষণার জন্য সোশ্যাল মিডিয়া ডেটা”</strong> শীর্ষক ওরিয়েন্টেশন কর্মশালায় উপস্থিত ছিলেন এবং সক্রিয়ভাবে অংশগ্রহণ করেছেন।</span></p>';
+        : '<p style="font-size:13px;color:var(--mid);line-height:1.75;margin-top:2px;border-left:3px solid var(--green);padding-left:14px;"><span class="lang-en">It is hereby confirmed that this participant attended and actively engaged in the orientation workshop <strong>“Mining the Feed: Social Media Data for Arts Research”</strong>, led by Pankaj Chowdhury and held online on 23 May 2026 under the Platform Bengali / Bhashascope project.</span><span class="lang-bn">এতদ্বারা নিশ্চিত করা হচ্ছে যে এই অংশগ্রহণকারী প্ল্যাটফর্ম বেঙ্গলি / ভাষাস্কোপ প্রকল্পের অধীনে পঙ্কজ চৌধুরীর পরিচালনায় ২৩ মে ২০২৬-এ অনলাইনে অনুষ্ঠিত <strong>“মাইনিং দ্য ফিড: শিল্প গবেষণার জন্য সোশ্যাল মিডিয়া ডেটা”</strong> শীর্ষক ওরিয়েন্টেশন কর্মশালায় উপস্থিত ছিলেন এবং সক্রিয়ভাবে অংশগ্রহণ করেছেন।</span></p>';
       body = '<div class="result-icon found"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg></div>'
         +'<div>'
         +'<div class="result-name">'+escHtml(match.name)+'</div>'
