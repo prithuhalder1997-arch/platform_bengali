@@ -116,6 +116,12 @@ body.bn-mode div.lang-en{ display:none; } body.bn-mode div.lang-bn{ display:bloc
 .p-card.dark .p-link:hover{ background:var(--accent); border-color:var(--accent); color:#fff; }
 .core-head{ padding-top:clamp(8px,1vh,12px); }
 
+/* Logo credit */
+.logo-sec{ margin-top:clamp(80px,12vh,120px); }
+.logo-card{ --c:var(--accent); --ph:300px; }
+.logo-panel{ display:flex; align-items:center; justify-content:center; aspect-ratio:4/3; padding:18px; border-radius:14px; background:#fff; border:1px solid var(--line); }
+.logo-panel img{ width:100%; height:auto; max-height:100%; object-fit:contain; display:block; }
+
 /* Group headings: PI / Core Team / Associates */
 .grp-head{ margin-bottom:clamp(28px,4vh,40px); }
 .grp-title{ font-family:'Syne',sans-serif; font-size:clamp(26px,3.2vw,38px); font-weight:800; letter-spacing:-0.01em; margin:0 0 8px; }
@@ -177,6 +183,7 @@ body.bn-mode .p-bio p{ line-height:1.95; }
   .tiers{ padding-left:26px; } .tiers::before{ left:5px; } .tier-dot{ left:-27px; width:12px; height:12px; }
   .p-card, .p-card.lead{ grid-template-columns:1fr; }
   .p-card > .p-photo{ max-width:220px; }
+  .logo-panel{ max-width:300px; }
   .v-row{ grid-template-columns:1fr; gap:8px; } .v-role{ padding-top:0; }
   .lang-toggle-fixed{ bottom:16px; right:16px; } .lang-toggle-fixed .lang-btn{ padding:7px 14px; font-size:11px; }
 }
@@ -364,6 +371,31 @@ body.bn-mode .p-bio p{ line-height:1.95; }
     </section>
 
   </div>
+
+  <!-- LOGO CREDIT -->
+  <section class="logo-sec">
+    <div class="grp-head sr">
+      <h2 class="grp-title" data-en="The Logo" data-bn="লোগো">The Logo</h2>
+      <p class="grp-note" data-en="Bhashascope's logo is designed by Sambit Basu." data-bn="ভাষাস্কোপের লোগোর নকশা করেছেন সম্বিত বসু।">Bhashascope's logo is designed by Sambit Basu.</p>
+    </div>
+    <article class="p-card logo-card sr">
+      <div class="logo-panel">
+        <img src="../../img/Bhashascope_logo.png" alt="Bhashascope logo" loading="lazy" decoding="async">
+      </div>
+      <div>
+        <div class="p-role" data-en="Logo Design" data-bn="লোগো নকশা">Logo Design</div>
+        <h2 class="p-name" data-en="Sambit Basu" data-bn="সম্বিত বসু">Sambit Basu</h2>
+        <div class="p-bio lang-en">
+          <p>Bhashascope sits where language, culture and technology meet, so Sambit built its logo from geometric forms and straight lines.</p>
+          <p>It takes its cue from the technology-driven calligraphy found across Bengal's own history of illustration. The logo is meant to carry the spirit of the project and, with it, a piece of the region's visual history.</p>
+        </div>
+        <div class="p-bio lang-bn">
+          <p>ভাষা, সংস্কৃতি আর প্রযুক্তির সংযোগস্থলে ভাষাস্কোপের অবস্থান। তাই সম্বিত এর লোগো গড়েছেন জ্যামিতিক নকশায়, সরলরেখার ব্যবহারে।</p>
+          <p>অনুপ্রেরণা বাংলার নিজস্ব অলংকরণের ইতিহাস, বিশেষ করে সেই ইতিহাসে প্রযুক্তির হাত ধরে গড়ে ওঠা নানা ক্যালিগ্রাফি। লোগোটি একদিকে প্রকল্পের মর্মকথা ধরে রাখে, অন্যদিকে বহন করে এই অঞ্চলের অলংকরণ-ঐতিহ্যের ছাপ।</p>
+        </div>
+      </div>
+    </article>
+  </section>
 
   <!-- ASSOCIATES — contributors attached to specific parts of the project -->
   <section class="assoc">
